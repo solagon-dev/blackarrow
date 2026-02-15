@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-playfair: 'Playfair Display', serif;
+  --font-inter: 'Inter', sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-white text-arrow-black antialiased;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out;
+  }
+  
+  .animate-slide-in-right {
+    animation: slideInRight 0.8s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+
+/* Custom gradient overlays */
+.gradient-overlay {
+  background: linear-gradient(135deg, rgba(10, 10, 26, 0.95) 0%, rgba(26, 26, 26, 0.85) 100%);
+}
+
+.gold-accent-line {
+  position: relative;
+}
+
+.gold-accent-line::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #D4AF37 0%, rgba(212, 175, 55, 0.3) 100%);
+}
