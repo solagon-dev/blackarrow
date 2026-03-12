@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useState } from 'react'
 import { insurancePages } from '@/lib/insurance-data'
 
@@ -63,7 +64,7 @@ export default function QuotePage() {
               </div>
               <h2 className="text-2xl font-display font-bold text-navy-900 mb-2">Quote Request Received!</h2>
               <p className="text-navy-600 mb-2">Thank you! One of our licensed agents will review your request and reach out to you shortly.</p>
-              <a href="/" className="inline-flex items-center justify-center btn-secondary">Back to Home</a>
+              <Link href="/" className="inline-flex items-center justify-center btn-secondary">Back to Home</Link>
             </div>
           ) : (
             <div className="card-premium p-8 sm:p-10">
