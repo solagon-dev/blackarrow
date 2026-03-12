@@ -2,18 +2,303 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --font-playfair: 'Playfair Display', serif;
-  --font-inter: 'Inter', sans-serif;
-}
+/* ============================================================
+   BlackArrow Insurance — Editorial Design System
+   Inspired by McKinsey & Co. institutional aesthetics
+   ============================================================ */
 
 @layer base {
+  :root {
+    --color-brand: #5C7890;
+    --color-brand-dark: #3F5C75;
+    --color-brand-light: #B8C8D3;
+    --color-navy: #12283A;
+    --color-navy-light: #243B53;
+    --header-height: 4.5rem;
+  }
+
   html {
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  
+
   body {
-    @apply bg-white text-arrow-black antialiased;
+    @apply text-navy-900 bg-white;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+  }
+
+  ::selection {
+    @apply bg-navy-900/10 text-navy-900;
+  }
+
+  /* --- Editorial Typography --- */
+  h1, h2, h3 {
+    @apply font-display;
+    text-wrap: balance;
+  }
+
+  h1 {
+    @apply text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.08];
+    letter-spacing: -0.025em;
+  }
+
+  h2 {
+    @apply text-3xl sm:text-4xl lg:text-[2.75rem] font-bold leading-[1.12];
+    letter-spacing: -0.02em;
+  }
+
+  h3 {
+    @apply text-xl font-semibold leading-snug;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    @apply leading-[1.75];
+  }
+}
+
+@layer components {
+  /* ---- Layout ---- */
+  .container-editorial {
+    @apply mx-auto max-w-[1200px] px-6 sm:px-10 lg:px-12;
+  }
+
+  .container-narrow {
+    @apply mx-auto max-w-3xl px-6 sm:px-10 lg:px-12;
+  }
+
+  /* Keep old class as alias for compatibility */
+  .container-premium {
+    @apply container-editorial;
+  }
+
+  .section-padding {
+    @apply py-24 sm:py-28 lg:py-36;
+  }
+
+  .section-padding-sm {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  /* ---- Editorial Dividers ---- */
+  .rule {
+    @apply w-full h-px bg-gray-200;
+  }
+
+  .rule-dark {
+    @apply w-full h-px bg-white/10;
+  }
+
+  .section-label {
+    @apply text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-4;
+  }
+
+  .section-divider {
+    @apply w-full h-px bg-gray-200;
+  }
+
+  /* ---- Buttons — Restrained & Confident ---- */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 text-center
+           px-7 py-3.5
+           bg-navy-900 text-white font-medium text-sm tracking-wide
+           hover:bg-navy-800
+           active:bg-navy-950
+           transition-colors duration-200
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-900 focus-visible:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 text-center
+           px-7 py-3.5
+           bg-brand-500 text-white font-medium text-sm tracking-wide
+           hover:bg-brand-600
+           active:bg-brand-700
+           transition-colors duration-200
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 text-center
+           px-7 py-3.5
+           border border-navy-900 text-navy-900 font-medium text-sm tracking-wide
+           hover:bg-navy-900 hover:text-white
+           active:bg-navy-950
+           transition-colors duration-200
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2;
+  }
+
+  .btn-outline-white {
+    @apply inline-flex items-center justify-center gap-2 text-center
+           px-7 py-3.5
+           border border-white/40 text-white font-medium text-sm tracking-wide
+           hover:bg-white hover:text-navy-900
+           active:bg-gray-100
+           transition-colors duration-200;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 text-center
+           px-4 py-2 rounded-sm
+           text-navy-600 font-medium text-sm
+           hover:text-navy-900
+           transition-colors duration-200;
+  }
+
+  /* Editorial text link — McKinsey arrow style */
+  .link-arrow {
+    @apply inline-flex items-center gap-2
+           text-sm font-medium text-navy-900
+           hover:gap-3
+           transition-all duration-300;
+  }
+
+  .link-arrow::after {
+    content: '→';
+    @apply text-navy-400 transition-colors duration-300;
+  }
+
+  .link-arrow:hover::after {
+    @apply text-navy-900;
+  }
+
+  .link-arrow-light {
+    @apply link-arrow text-white;
+  }
+
+  .link-arrow-light::after {
+    @apply text-white/50;
+  }
+
+  .link-arrow-light:hover::after {
+    @apply text-white;
+  }
+
+  /* ---- Cards — Minimal, Editorial ---- */
+  .card-editorial {
+    @apply bg-white border border-gray-200
+           transition-colors duration-200
+           hover:border-gray-300;
+  }
+
+  .card-elevated {
+    @apply bg-white border border-gray-200
+           transition-colors duration-200
+           hover:border-gray-300;
+  }
+
+  .card-premium {
+    @apply card-editorial;
+  }
+
+  .card-dark {
+    @apply bg-navy-900 border border-navy-800 text-white;
+  }
+
+  /* ---- Form Elements ---- */
+  .input-field {
+    @apply w-full px-4 py-3
+           border border-gray-300 bg-white
+           text-navy-900 text-sm placeholder:text-gray-400
+           hover:border-gray-400
+           focus:border-navy-900 focus:ring-0 focus:outline-none
+           transition-colors duration-200;
+  }
+
+  .input-label {
+    @apply block text-sm font-medium text-navy-700 mb-2;
+  }
+
+  /* ---- Badges ---- */
+  .badge {
+    @apply inline-flex items-center gap-1 px-3 py-1
+           text-xs font-semibold tracking-wide uppercase;
+  }
+
+  .badge-brand {
+    @apply badge bg-brand-50 text-brand-700;
+  }
+
+  .badge-navy {
+    @apply badge bg-navy-50 text-navy-700;
+  }
+
+  /* ---- Stat ---- */
+  .stat-card {
+    @apply text-center;
+  }
+
+  /* ---- Icon Box ---- */
+  .icon-box {
+    @apply w-11 h-11 flex items-center justify-center flex-shrink-0;
+  }
+
+  .icon-box-brand {
+    @apply icon-box bg-brand-50 text-brand-600;
+  }
+
+  .icon-box-navy {
+    @apply icon-box bg-navy-50 text-navy-700;
+  }
+
+  /* ---- Prose — Editorial Reading ---- */
+  .prose-premium {
+    @apply text-navy-700;
+    line-height: 1.85;
+  }
+
+  .prose-premium h2 {
+    @apply text-2xl sm:text-3xl font-display font-bold text-navy-900 mt-16 mb-5;
+  }
+
+  .prose-premium h3 {
+    @apply text-xl sm:text-2xl font-display font-semibold text-navy-900 mt-10 mb-4;
+  }
+
+  .prose-premium p {
+    @apply mb-6 text-base;
+    max-width: 65ch;
+  }
+
+  .prose-premium ul, .prose-premium ol {
+    @apply mb-6 pl-6;
+  }
+
+  .prose-premium li {
+    @apply mb-3 text-base leading-[1.85];
+  }
+
+  .prose-premium ul li {
+    @apply list-disc;
+  }
+
+  .prose-premium ol li {
+    @apply list-decimal;
+  }
+
+  .prose-premium strong {
+    @apply font-semibold text-navy-900;
+  }
+
+  .prose-premium blockquote {
+    @apply pl-6 border-l-2 border-navy-200 text-navy-600 my-8;
+  }
+
+  .prose-premium a {
+    @apply text-navy-900 underline underline-offset-4 decoration-navy-300 hover:decoration-navy-900 transition-colors;
+  }
+
+  /* ---- Scroll Reveal ---- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1), transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -21,66 +306,61 @@
   .text-balance {
     text-wrap: balance;
   }
-  
-  .animate-fade-in {
-    animation: fadeIn 0.8s ease-in-out;
+
+  .bg-gradient-hero {
+    @apply bg-navy-900;
   }
-  
-  .animate-slide-up {
-    animation: slideUp 0.8s ease-out;
-  }
-  
-  .animate-slide-in-right {
-    animation: slideInRight 0.8s ease-out;
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes slideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(-30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
+
+  .bg-gradient-subtle {
+    @apply bg-gray-50;
   }
 }
 
-/* Custom gradient overlays */
-.gradient-overlay {
-  background: linear-gradient(135deg, rgba(10, 10, 26, 0.95) 0%, rgba(26, 26, 26, 0.85) 100%);
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
 }
 
-.gold-accent-line {
-  position: relative;
+:focus-visible {
+  @apply outline-2 outline-offset-2 outline-navy-900;
 }
 
-.gold-accent-line::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 4px;
-  height: 100%;
-  background: linear-gradient(180deg, #D4AF37 0%, rgba(212, 175, 55, 0.3) 100%);
+/* ---- FAQ Accordion ---- */
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details[open] summary {
+  @apply border-b border-gray-200;
+}
+
+/* ---- Carrier Carousel ---- */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-scroll {
+  width: max-content;
+  animation: scroll 45s linear infinite;
+  will-change: transform;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-scroll {
+    animation: none;
+  }
 }

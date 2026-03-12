@@ -17,12 +17,24 @@ A professional, SEO-optimized Next.js website for BlackArrow Insurance featuring
 npm install
 ```
 
-2. Run the development server:
+2. Configure environment variables:
+```bash
+cp .env.example .env.local
+```
+
+3. Add your Resend settings to `.env.local`:
+```env
+RESEND_API_KEY=re_xxxxxxxxxxxxxxxxx
+RESEND_FROM_EMAIL="BlackArrow Insurance <forms@blackarrowfg.com>"
+```
+All website form submissions are sent to `service@blackarrowfg.com`. The `RESEND_FROM_EMAIL` value must use a sender on a domain verified in Resend.
+
+4. Run the development server:
 ```bash
 npm run dev
 ```
 
-3. Open [http://localhost:3000](http://localhost:3000) in your browser
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
 ## Build for Production
 

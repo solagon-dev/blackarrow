@@ -96,8 +96,10 @@ npm start
 Create `.env.local` for sensitive data:
 ```env
 NEXT_PUBLIC_SITE_URL=https://yoursite.com
-NEXT_PUBLIC_CONTACT_EMAIL=info@yoursite.com
+RESEND_API_KEY=re_xxxxxxxxxxxxxxxxx
+RESEND_FROM_EMAIL="BlackArrow Insurance <forms@blackarrowfg.com>"
 ```
+All public website forms submit through Resend and are sent to `service@blackarrowfg.com`. The `RESEND_FROM_EMAIL` sender must be on a domain you verify in Resend.
 
 ## Project Structure
 
