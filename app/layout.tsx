@@ -31,6 +31,11 @@ export const metadata: Metadata = {
     title: 'BlackArrow Insurance',
     description: 'Trusted Insurance Solutions in Eastern NC',
   },
+  icons: {
+    icon: '/images/BlackArrow_Favicon.svg',
+    shortcut: '/images/BlackArrow_Favicon.svg',
+    apple: '/images/BlackArrow_Favicon.svg',
+  },
   robots: {
     index: true,
     follow: true,

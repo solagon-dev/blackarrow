@@ -1,5 +1,5 @@
 const RESEND_API_URL = 'https://api.resend.com/emails'
-const FORM_NOTIFICATION_TO = 'stone@blackarrowfg.com'
+const FORM_NOTIFICATION_TO = 'service@blackarrowfg.com'
 
 const formConfigs = {
   contact: {

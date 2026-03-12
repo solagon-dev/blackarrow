@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { v4 as uuidv4 } from 'uuid'
-import { createFormSubmission } from '@/lib/db'
 import { isSupportedFormType, sendFormNotification } from '@/lib/forms-email'
 
 export async function POST(request: NextRequest) {
@@ -21,12 +20,24 @@ export async function POST(request: NextRequest) {
     }
 
     const submissionId = uuidv4()
+    let submissionStored = false
 
-    createFormSubmission({
-      id: submissionId,
-      form_type,
-      data: JSON.stringify(data),
-    })
+    try {
+      const { createFormSubmission } = await import('@/lib/db')
+
+      createFormSubmission({
+        id: submissionId,
+        form_type,
+        data: JSON.stringify(data),
+      })
+      submissionStored = true
+    } catch (storageError) {
+      console.error('Form submission storage error:', {
+        submissionId,
+        formType: form_type,
+        error: storageError,
+      })
+    }
 
     let emailDelivered = false
 
@@ -45,7 +56,7 @@ export async function POST(request: NextRequest) {
       })
     }
 
-    return NextResponse.json({ success: true, emailDelivered })
+    return NextResponse.json({ success: true, emailDelivered, submissionStored })
   } catch (error) {
     console.error('Form submission error:', error)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
