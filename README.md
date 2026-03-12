@@ -25,9 +25,9 @@ cp .env.example .env.local
 3. Add your Resend settings to `.env.local`:
 ```env
 RESEND_API_KEY=re_xxxxxxxxxxxxxxxxx
-RESEND_FROM_EMAIL="BlackArrow Insurance <forms@blackarrowfg.com>"
+RESEND_FROM_EMAIL="BlackArrow Insurance <forms@blackarrow.co>"
 ```
-All website form submissions are sent to `service@blackarrowfg.com`. The `RESEND_FROM_EMAIL` value must use a sender on a domain verified in Resend.
+All website form submissions are sent to `stone@blackarrowfg.com`. The `RESEND_FROM_EMAIL` value must use a sender on a domain verified in Resend.
 
 4. Run the development server:
 ```bash

@@ -38,7 +38,7 @@ export default function QuotePage() {
   return (
     <>
       <section className="bg-navy-900 relative overflow-hidden pt-36 pb-20 lg:pt-44 lg:pb-28">
-        <img src="/images/AdobeStock_294688686.jpeg" alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <img src="/images/AdobeStock_300395016.jpeg" alt="" className="absolute inset-0 w-full h-full object-cover object-center" />
         <div className="absolute inset-0 bg-navy-950/80" />
         <div className="container-editorial relative">
           <div className="max-w-3xl">

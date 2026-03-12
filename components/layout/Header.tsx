@@ -17,6 +17,9 @@ const policyManagement = [
   { label: 'File a Claim', href: '/file-a-claim', desc: 'Submit to your carrier' },
 ]
 
+const headerPhoneNumber = '(910) 914-6074'
+const headerPhoneHref = 'tel:9109146074'
+
 // Pages that do NOT have a dark hero (admin pages, legal, etc.)
 const LIGHT_HERO_PAGES = ['/admin', '/legal']
 
@@ -168,8 +171,8 @@ export default function Header() {
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-5">
-            <a href="tel:2529555898" className={`text-sm font-medium transition-colors hidden xl:block ${phoneClass}`}>
-              (252) 955-5898
+            <a href={headerPhoneHref} className={`text-sm font-medium transition-colors hidden xl:block ${phoneClass}`}>
+              {headerPhoneNumber}
             </a>
             <Link href="/quote" className={`inline-flex items-center justify-center text-center text-sm py-2.5 px-6 font-medium tracking-wide transition-colors duration-200 ${
               isTransparent
@@ -280,8 +283,8 @@ export default function Header() {
 
             {/* Mobile CTA */}
             <div className="pt-8 space-y-4">
-              <a href="tel:2529555898" className="block text-center text-sm font-medium text-navy-500 py-3">
-                (252) 955-5898
+              <a href={headerPhoneHref} className="block text-center text-sm font-medium text-navy-500 py-3">
+                {headerPhoneNumber}
               </a>
               <Link href="/quote" onClick={closeMobile} className="btn-primary w-full text-center">
                 Get a Quote

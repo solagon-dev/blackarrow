@@ -28,13 +28,24 @@ export async function POST(request: NextRequest) {
       data: JSON.stringify(data),
     })
 
-    await sendFormNotification({
-      submissionId,
-      formType: form_type,
-      data,
-    })
+    let emailDelivered = false
 
-    return NextResponse.json({ success: true })
+    try {
+      await sendFormNotification({
+        submissionId,
+        formType: form_type,
+        data,
+      })
+      emailDelivered = true
+    } catch (notificationError) {
+      console.error('Form notification delivery error:', {
+        submissionId,
+        formType: form_type,
+        error: notificationError,
+      })
+    }
+
+    return NextResponse.json({ success: true, emailDelivered })
   } catch (error) {
     console.error('Form submission error:', error)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
