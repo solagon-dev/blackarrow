@@ -29,14 +29,14 @@ export default function LoanNumberChangePage() {
 
   return (
     <>
-      <section className="bg-navy-900 relative overflow-hidden pt-36 pb-20 lg:pt-44 lg:pb-28">
+      <section className="bg-navy-900 relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-28">
         <img src="/images/AdobeStock_438274445.jpeg" alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-navy-950/80" />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-5">Policy Management</p>
-            <h1 className="text-white mb-6">Loan Number Change</h1>
-            <p className="text-lg text-navy-300 leading-relaxed">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-4 sm:mb-5">Policy Management</p>
+            <h1 className="text-white mb-4 sm:mb-6">Loan Number Change</h1>
+            <p className="text-base sm:text-lg text-navy-300 leading-relaxed">
               Updating your loan number is quick and simple. Ensure your insurance policy reflects your current financial details by filling out our form.
             </p>
           </div>
@@ -56,7 +56,7 @@ export default function LoanNumberChangePage() {
               <p className="text-navy-600 mb-2">Your loan number change has been received. We&apos;ll update your policy and confirm the changes.</p>
             </div>
           ) : (
-            <div className="card-premium p-8 sm:p-10">
+            <div className="card-premium p-5 sm:p-8 md:p-10">
               <form onSubmit={handleSubmit} className="space-y-8">
                 <div>
                   <h3 className="text-sm font-semibold uppercase tracking-wide text-navy-400 mb-4">Policy Information</h3>

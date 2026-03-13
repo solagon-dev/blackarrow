@@ -6,9 +6,14 @@ import { estimateReadingTime, formatReadingTime } from '@/lib/reading-time'
 import { InsightCard } from '@/components/insights/InsightCard'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 
+function resolveArticleImageUrl(imageUrl: string | null) {
+  if (!imageUrl) return undefined
+  return imageUrl.startsWith('http') ? imageUrl : `https://www.blackarrow.co${imageUrl}`
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
-  const post = getPostBySlug(slug)
+  const post = await getPostBySlug(slug)
   if (!post) return {}
   return {
     title: post.seo_title || post.title,
@@ -26,9 +31,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 }
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
   try {
-    const posts = getAllPosts('published')
+    const posts = await getAllPosts('published')
     return posts.map(p => ({ slug: p.slug }))
   } catch {
     return []
@@ -37,10 +42,10 @@ export function generateStaticParams() {
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const post = getPostBySlug(slug)
+  const post = await getPostBySlug(slug)
   if (!post || post.status !== 'published') notFound()
 
-  const related = getRelatedPosts(slug, post.category, 4)
+  const related = await getRelatedPosts(slug, post.category, 4)
   const readingTime = estimateReadingTime(post.content)
   const formattedDate = post.published_at
     ? new Date(post.published_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
@@ -65,7 +70,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       name: 'BlackArrow Insurance',
       url: 'https://www.blackarrow.co',
     },
-    image: post.featured_image ? [`https://www.blackarrow.co${post.featured_image}`] : undefined,
+    image: post.featured_image ? [resolveArticleImageUrl(post.featured_image)] : undefined,
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': `https://www.blackarrow.co/post/${post.slug}`,
@@ -81,12 +86,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       />
 
       {/* Hero */}
-      <section className="bg-navy-900 relative overflow-hidden pt-36 pb-16 lg:pt-44 lg:pb-24">
+      <section className="bg-navy-900 relative overflow-hidden pt-28 pb-12 sm:pt-36 sm:pb-16 lg:pt-44 lg:pb-24">
         <img src={heroImage} alt={post.title} className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-navy-950/85" />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
-            <Link href="/insights" className="inline-flex items-center gap-2 text-sm text-navy-400 hover:text-white transition-colors mb-10">
+            <Link href="/insights" className="inline-flex items-center gap-2 text-sm text-navy-400 hover:text-white transition-colors mb-8 sm:mb-10">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
@@ -94,7 +99,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </Link>
 
             {/* Article Metadata */}
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-5 sm:mb-6">
               {post.category && <span className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400">{post.category}</span>}
               {post.category && formattedDate && <span className="w-1 h-1 rounded-full bg-navy-500" />}
               {formattedDate && <span className="text-xs text-navy-400">{formattedDate}</span>}
@@ -102,10 +107,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <span className="text-xs text-navy-400">{formatReadingTime(readingTime)}</span>
             </div>
 
-            <h1 className="text-white mb-8">{post.title}</h1>
+            <h1 className="text-white mb-6 sm:mb-8">{post.title}</h1>
 
             {post.excerpt && (
-              <p className="text-lg text-navy-300 leading-relaxed max-w-2xl">{post.excerpt}</p>
+              <p className="text-base sm:text-lg text-navy-300 leading-relaxed max-w-2xl">{post.excerpt}</p>
             )}
           </div>
         </div>
@@ -137,8 +142,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       {/* Article Footer — Tags + Share */}
       <div className="bg-white border-t border-gray-200">
-        <div className="container-editorial py-8">
-          <div className="max-w-3xl flex items-center justify-between">
+        <div className="container-editorial py-6 sm:py-8">
+          <div className="max-w-3xl flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               {post.category && (
                 <span className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 border border-gray-200 px-3 py-1.5">
@@ -155,12 +160,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       </div>
 
       {/* CTA */}
-      <section className="bg-navy-900 py-20 lg:py-24">
+      <section className="bg-navy-900 py-14 sm:py-20 lg:py-24">
         <div className="container-editorial">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl font-display font-bold text-white mb-5">Need {post.category || 'Insurance'} Coverage?</h2>
-            <p className="text-navy-300 mb-8 leading-relaxed">Talk to a BlackArrow agent about your coverage options today.</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <h2 className="text-xl sm:text-2xl font-display font-bold text-white mb-4 sm:mb-5">Need {post.category || 'Insurance'} Coverage?</h2>
+            <p className="text-navy-300 mb-6 sm:mb-8 leading-relaxed">Talk to a BlackArrow agent about your coverage options today.</p>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Link href="/quote" className="btn-secondary">Request a Quote</Link>
               <Link href="/contact" className="btn-outline-white">Speak with an Advisor</Link>
             </div>
@@ -172,10 +177,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       {related.length > 0 && (
         <section className="section-padding bg-white">
           <div className="container-editorial">
-            <div className="flex items-end justify-between mb-12">
+            <div className="flex items-end justify-between mb-8 sm:mb-12">
               <div>
                 <p className="section-label">Continue Reading</p>
-                <h2 className="text-3xl">Related Articles</h2>
+                <h2 className="text-2xl sm:text-3xl">Related Articles</h2>
               </div>
               <Link href="/insights" className="link-arrow hidden sm:flex flex-shrink-0">
                 All insights

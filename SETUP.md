@@ -96,10 +96,12 @@ npm start
 Create `.env.local` for sensitive data:
 ```env
 NEXT_PUBLIC_SITE_URL=https://yoursite.com
+DATABASE_URL=postgresql://username:password@host/database?sslmode=require
+BLOB_READ_WRITE_TOKEN=vercel_blob_rw_xxxxxxxxxxxxxxxxx
 RESEND_API_KEY=re_xxxxxxxxxxxxxxxxx
 RESEND_FROM_EMAIL="BlackArrow Insurance <forms@blackarrow.co>"
 ```
-All public website forms submit through Resend and are sent to `service@blackarrowfg.com`. The `RESEND_FROM_EMAIL` sender must be on a domain you verify in Resend.
+`DATABASE_URL` is required for the Neon Postgres database. `BLOB_READ_WRITE_TOKEN` is required for admin image uploads via Vercel Blob. All public website forms submit through Resend and are sent to `service@blackarrowfg.com`. The `RESEND_FROM_EMAIL` sender must be on a domain you verify in Resend.
 
 ## Project Structure
 

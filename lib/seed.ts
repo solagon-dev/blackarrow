@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { getDb } from './db';
+import { createPost, createUser, getAllPosts, getUserByEmail } from './db';
 import { hashPassword } from './auth';
 
 interface SeedPost {
@@ -388,47 +388,47 @@ const blogPosts: SeedPost[] = [
 ]
 
 export async function seedDatabase() {
-  const db = getDb()
-
   // Check if posts already exist
-  const existingCount = db.prepare('SELECT COUNT(*) as count FROM posts').get() as { count: number }
-  if (existingCount.count > 0) {
-    console.log(`Database already has ${existingCount.count} posts. Skipping seed.`)
+  const existingPosts = await getAllPosts()
+  if (existingPosts.length > 0) {
+    console.log(`Database already has ${existingPosts.length} posts. Skipping seed.`)
     return
   }
 
   // Create admin user
-  const bcrypt = require('bcryptjs')
   const adminId = uuidv4()
-  const passwordHash = await bcrypt.hash('BlackArrow2024!', 12)
+  const passwordHash = await hashPassword('BlackArrow2024!')
 
-  const existingUser = db.prepare('SELECT id FROM users WHERE email = ?').get('admin@blackarrowfg.com')
+  let existingUser = await getUserByEmail('admin@blackarrowfg.com')
   if (!existingUser) {
-    db.prepare('INSERT INTO users (id, email, password_hash, name, role) VALUES (?, ?, ?, ?, ?)').run(
-      adminId, 'admin@blackarrowfg.com', passwordHash, 'Admin', 'admin'
-    )
+    existingUser = await createUser({
+      id: adminId,
+      email: 'admin@blackarrowfg.com',
+      password_hash: passwordHash,
+      name: 'Admin',
+      role: 'admin',
+    })
     console.log('Admin user created: admin@blackarrowfg.com / BlackArrow2024!')
   }
 
   // Seed blog posts
-  const insertPost = db.prepare(`
-    INSERT INTO posts (id, title, slug, excerpt, content, category, featured_image, seo_title, seo_description, status, author_id, published_at, created_at, updated_at)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-  `)
+  for (const post of blogPosts) {
+    const now = new Date().toISOString()
+    await createPost({
+      id: uuidv4(),
+      title: post.title,
+      slug: post.slug,
+      excerpt: post.excerpt,
+      content: post.content,
+      category: post.category,
+      featured_image: null,
+      seo_title: `${post.title} | BlackArrow Insurance`,
+      seo_description: post.excerpt,
+      status: 'published',
+      author_id: existingUser?.id || adminId,
+      published_at: now,
+    })
+  }
 
-  const insertMany = db.transaction((posts: SeedPost[]) => {
-    for (const post of posts) {
-      const now = new Date().toISOString()
-      const id = uuidv4()
-      insertPost.run(
-        id, post.title, post.slug, post.excerpt, post.content, post.category,
-        null, `${post.title} | BlackArrow Insurance`, post.excerpt,
-        'published', existingUser ? (existingUser as { id: string }).id : adminId,
-        now, now, now
-      )
-    }
-  })
-
-  insertMany(blogPosts)
   console.log(`Seeded ${blogPosts.length} blog posts`)
 }

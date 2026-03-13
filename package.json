@@ -7,13 +7,16 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint app components lib scripts --ext .js,.jsx,.mjs,.ts,.tsx",
-    "seed": "npx tsx scripts/seed.ts"
+    "seed": "npx tsx scripts/seed.ts",
+    "migrate:neon": "npx tsx scripts/migrate-sqlite-to-neon.ts"
   },
   "dependencies": {
+    "@vercel/blob": "^2.3.1",
     "bcryptjs": "^3.0.3",
     "better-sqlite3": "^12.6.2",
     "jsonwebtoken": "^9.0.3",
     "next": "^16.1.6",
+    "postgres": "^3.4.8",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
     "uuid": "^13.0.0"

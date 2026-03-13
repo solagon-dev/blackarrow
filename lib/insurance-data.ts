@@ -210,7 +210,7 @@ export const insurancePages: InsurancePage[] = [
     category: 'commercial',
     tagline: 'Specialized coverage for your heavy-duty fleet',
     description: 'Dump and straight truck insurance provides financial protection for your commercial vehicles, covering damages from accidents, theft, or unexpected events on the road.',
-    icon: 'truck',
+    icon: 'cube',
     coverageTypes: [
       { title: 'Liability Coverage', description: 'Covers injury and property damage you cause to others while operating your truck.' },
       { title: 'Physical Damage Coverage', description: 'Collision and comprehensive protection for your vehicle.' },
@@ -247,7 +247,7 @@ export const insurancePages: InsurancePage[] = [
     category: 'commercial',
     tagline: 'Keep your business moving with confidence',
     description: 'Commercial auto insurance provides financial protection for your business vehicles, covering damages from accidents, theft, or unexpected incidents on the road.',
-    icon: 'truck',
+    icon: 'clipboard-check',
     coverageTypes: [
       { title: 'Liability Coverage', description: 'Covers bodily injury and property damage you cause to others with your business vehicle.' },
       { title: 'Physical Damage Coverage', description: 'Collision and comprehensive protection for your commercial vehicles.' },

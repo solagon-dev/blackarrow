@@ -15,6 +15,8 @@
     --color-navy: #12283A;
     --color-navy-light: #243B53;
     --header-height: 4.5rem;
+    --safe-area-top: env(safe-area-inset-top, 0px);
+    --safe-area-bottom: env(safe-area-inset-bottom, 0px);
   }
 
   html {
@@ -39,17 +41,17 @@
   }
 
   h1 {
-    @apply text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.08];
+    @apply text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1];
     letter-spacing: -0.025em;
   }
 
   h2 {
-    @apply text-3xl sm:text-4xl lg:text-[2.75rem] font-bold leading-[1.12];
+    @apply text-[1.625rem] sm:text-3xl md:text-4xl lg:text-[2.75rem] font-bold leading-[1.12];
     letter-spacing: -0.02em;
   }
 
   h3 {
-    @apply text-xl font-semibold leading-snug;
+    @apply text-lg sm:text-xl font-semibold leading-snug;
     letter-spacing: -0.01em;
   }
 
@@ -61,11 +63,11 @@
 @layer components {
   /* ---- Layout ---- */
   .container-editorial {
-    @apply mx-auto max-w-[1200px] px-6 sm:px-10 lg:px-12;
+    @apply mx-auto max-w-[1200px] px-5 sm:px-8 md:px-10 lg:px-12;
   }
 
   .container-narrow {
-    @apply mx-auto max-w-3xl px-6 sm:px-10 lg:px-12;
+    @apply mx-auto max-w-3xl px-5 sm:px-8 md:px-10 lg:px-12;
   }
 
   /* Keep old class as alias for compatibility */
@@ -74,11 +76,11 @@
   }
 
   .section-padding {
-    @apply py-24 sm:py-28 lg:py-36;
+    @apply py-16 sm:py-24 md:py-28 lg:py-36;
   }
 
   .section-padding-sm {
-    @apply py-16 sm:py-20 lg:py-24;
+    @apply py-12 sm:py-16 md:py-20 lg:py-24;
   }
 
   /* ---- Editorial Dividers ---- */
@@ -198,12 +200,14 @@
 
   /* ---- Form Elements ---- */
   .input-field {
-    @apply w-full px-4 py-3
+    @apply w-full px-4 py-3.5 sm:py-3
            border border-gray-300 bg-white
-           text-navy-900 text-sm placeholder:text-gray-400
+           text-navy-900 text-base sm:text-sm placeholder:text-gray-400
            hover:border-gray-400
            focus:border-navy-900 focus:ring-0 focus:outline-none
            transition-colors duration-200;
+    -webkit-appearance: none;
+    border-radius: 0;
   }
 
   .input-label {
@@ -249,11 +253,11 @@
   }
 
   .prose-premium h2 {
-    @apply text-2xl sm:text-3xl font-display font-bold text-navy-900 mt-16 mb-5;
+    @apply text-xl sm:text-2xl md:text-3xl font-display font-bold text-navy-900 mt-10 sm:mt-16 mb-4 sm:mb-5;
   }
 
   .prose-premium h3 {
-    @apply text-xl sm:text-2xl font-display font-semibold text-navy-900 mt-10 mb-4;
+    @apply text-lg sm:text-xl md:text-2xl font-display font-semibold text-navy-900 mt-8 sm:mt-10 mb-3 sm:mb-4;
   }
 
   .prose-premium p {
@@ -363,4 +367,44 @@ details[open] summary {
   .animate-scroll {
     animation: none;
   }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---- Mobile-specific ---- */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .mobile-safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Prevent iOS zoom on input focus */
+@media screen and (max-width: 640px) {
+  select, textarea, input[type="text"], input[type="email"], input[type="tel"], input[type="url"], input[type="password"] {
+    font-size: 16px;
+  }
+}
+
+/* Ensure tap targets are large enough */
+@media (pointer: coarse) {
+  .btn-primary, .btn-secondary, .btn-outline, .btn-outline-white {
+    min-height: 48px;
+  }
+}
+
+/* ---- Admin Layout — Hide site header/footer ---- */
+.admin-layout {
+  margin-top: calc(-1 * var(--header-height));
+}
+
+body:has(.admin-layout) #site-header,
+body:has(.admin-layout) #site-footer {
+  display: none;
+}
+
+body:has(.admin-layout) main {
+  min-height: 100vh;
 }

@@ -3,8 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { cookies } from 'next/headers';
 import { getUserByEmail, getUserById, createSession, getSession, deleteSession, createUser } from './db';
 
-const SESSION_COOKIE = 'ba_session';
-const SESSION_DURATION_MS = 24 * 60 * 60 * 1000; // 24 hours
+export const SESSION_COOKIE = 'ba_session';
+export const SESSION_DURATION_MS = 24 * 60 * 60 * 1000; // 24 hours
 
 export async function hashPassword(password: string): Promise<string> {
   return bcrypt.hash(password, 12);
@@ -14,8 +14,8 @@ export async function verifyPassword(password: string, hash: string): Promise<bo
   return bcrypt.compare(password, hash);
 }
 
-export async function login(email: string, password: string): Promise<{ success: boolean; error?: string }> {
-  const user = getUserByEmail(email);
+export async function login(email: string, password: string): Promise<{ success: boolean; error?: string; sessionId?: string }> {
+  const user = await getUserByEmail(email);
   if (!user) {
     return { success: false, error: 'Invalid credentials' };
   }
@@ -27,27 +27,17 @@ export async function login(email: string, password: string): Promise<{ success:
 
   const sessionId = uuidv4();
   const expiresAt = new Date(Date.now() + SESSION_DURATION_MS).toISOString();
-  createSession({ id: sessionId, user_id: user.id, expires_at: expiresAt });
+  await createSession({ id: sessionId, user_id: user.id, expires_at: expiresAt });
 
-  const cookieStore = await cookies();
-  cookieStore.set(SESSION_COOKIE, sessionId, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    path: '/',
-    maxAge: SESSION_DURATION_MS / 1000,
-  });
-
-  return { success: true };
+  return { success: true, sessionId };
 }
 
-export async function logout(): Promise<void> {
-  const cookieStore = await cookies();
-  const sessionId = cookieStore.get(SESSION_COOKIE)?.value;
-  if (sessionId) {
-    deleteSession(sessionId);
-    cookieStore.delete(SESSION_COOKIE);
+export async function logout(sessionId?: string): Promise<void> {
+  if (!sessionId) {
+    return;
   }
+
+  await deleteSession(sessionId);
 }
 
 export async function getCurrentUser() {
@@ -56,10 +46,10 @@ export async function getCurrentUser() {
     const sessionId = cookieStore.get(SESSION_COOKIE)?.value;
     if (!sessionId) return null;
 
-    const session = getSession(sessionId);
+    const session = await getSession(sessionId);
     if (!session) return null;
 
-    const user = getUserById(session.user_id);
+    const user = await getUserById(session.user_id);
     if (!user) return null;
 
     const { password_hash, ...safeUser } = user;
@@ -70,10 +60,10 @@ export async function getCurrentUser() {
 }
 
 export async function ensureAdminUser(): Promise<void> {
-  const existing = getUserByEmail('admin@blackarrowfg.com');
+  const existing = await getUserByEmail('admin@blackarrowfg.com');
   if (!existing) {
     const hash = await hashPassword('BlackArrow2024!');
-    createUser({
+    await createUser({
       id: uuidv4(),
       email: 'admin@blackarrowfg.com',
       password_hash: hash,

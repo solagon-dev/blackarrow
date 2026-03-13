@@ -15,14 +15,14 @@ export default function OurStoryPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-navy-900 relative overflow-hidden pt-36 pb-20 lg:pt-44 lg:pb-28">
+      <section className="bg-navy-900 relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-28">
         <img src="/images/blackarrow_greenville.webp" alt="" className="absolute inset-0 w-full h-full object-cover object-center" />
         <div className="absolute inset-0 bg-navy-950/80" />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-5">About BlackArrow</p>
-            <h1 className="text-white mb-6">Our Story</h1>
-            <p className="text-lg text-navy-300 leading-relaxed max-w-2xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-4 sm:mb-5">About BlackArrow</p>
+            <h1 className="text-white mb-4 sm:mb-6">Our Story</h1>
+            <p className="text-base sm:text-lg text-navy-300 leading-relaxed max-w-2xl">
               Our mission is to provide reliable, personalized insurance solutions that protect what matters most to you.
             </p>
           </div>
@@ -32,13 +32,13 @@ export default function OurStoryPage() {
       {/* Who We Are — Editorial two-column */}
       <section className="section-padding bg-white">
         <div className="container-editorial">
-          <div className="grid lg:grid-cols-12 gap-16 lg:gap-24 items-start">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-24 items-start">
             <ScrollReveal className="lg:col-span-5">
               <p className="section-label">Who We Are</p>
               <h2>A Trusted Name in Eastern North Carolina Insurance</h2>
             </ScrollReveal>
             <ScrollReveal className="lg:col-span-7" delay={100}>
-              <div className="space-y-6 text-navy-600 leading-relaxed text-lg">
+              <div className="space-y-5 sm:space-y-6 text-navy-600 leading-relaxed text-base sm:text-lg">
                 <p>
                   We are proud to be a trusted source for insurance in the Eastern North Carolina region and are committed to being there for our customers when they need us most.
                 </p>
@@ -46,7 +46,7 @@ export default function OurStoryPage() {
                   We have been serving the Eastern North Carolina community for over 20 years. We are a locally-owned and operated insurance company, committed to providing our customers with the highest level of service and protection.
                 </p>
                 <p>
-                  Founded in 2002 by Scott Baldwin, originally under the name Iventure, the company has grown into the largest insurance agency in Greenville, NC, and has expanded to serve clients from our Whiteville office as well.
+                  Founded in 2002 by Scott Baldwin, originally under the name Iventure, the company has grown into one of the largest insurance agencies in Greenville, NC, and has expanded to serve clients from our Whiteville office as well.
                 </p>
               </div>
             </ScrollReveal>
@@ -55,15 +55,15 @@ export default function OurStoryPage() {
       </section>
 
       {/* Image + Stats */}
-      <section className="bg-white pb-24 lg:pb-36">
+      <section className="bg-white pb-16 sm:pb-24 lg:pb-36">
         <div className="container-editorial">
           <ScrollReveal>
-            <div className="overflow-hidden mb-12">
-              <img src="/images/AdobeStock_315860783.jpeg" alt="Team collaboration" className="w-full h-64 lg:h-80 object-cover" />
+            <div className="overflow-hidden mb-8 sm:mb-12">
+              <img src="/images/AdobeStock_530165977.jpeg" alt="" className="w-full h-48 sm:h-64 lg:h-80 object-cover" loading="lazy" />
             </div>
           </ScrollReveal>
           <ScrollReveal>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 pt-8 border-t border-gray-200">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 pt-6 sm:pt-8 border-t border-gray-200">
               {[
                 { value: '2002', label: 'Founded' },
                 { value: '20+', label: 'Years of Service' },
@@ -71,7 +71,7 @@ export default function OurStoryPage() {
                 { value: '20+', label: 'Carrier Partners' },
               ].map(stat => (
                 <div key={stat.label}>
-                  <p className="text-3xl lg:text-4xl font-display font-bold text-navy-900 mb-2">{stat.value}</p>
+                  <p className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-navy-900 mb-1 sm:mb-2">{stat.value}</p>
                   <p className="text-sm text-navy-400 tracking-wide">{stat.label}</p>
                 </div>
               ))}
@@ -102,7 +102,7 @@ export default function OurStoryPage() {
       <section className="section-padding bg-gray-50">
         <div className="container-editorial">
           <ScrollReveal>
-            <div className="max-w-3xl mx-auto text-center mb-16">
+            <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-16">
               <p className="section-label">Why BlackArrow</p>
               <h2>Why Clients Choose Us</h2>
             </div>
@@ -115,7 +115,7 @@ export default function OurStoryPage() {
               { title: 'Full-Service Agency', desc: 'From personal to commercial to property insurance — we handle it all under one roof.', icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4' },
             ].map((item, i) => (
               <ScrollReveal key={item.title} delay={i * 80}>
-                <div className="bg-white p-8 h-full">
+                <div className="bg-white p-6 sm:p-8 h-full">
                   <div className="icon-box-navy mb-5">
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d={item.icon} />
@@ -134,7 +134,7 @@ export default function OurStoryPage() {
       <section className="section-padding bg-white">
         <div className="container-editorial">
           <ScrollReveal>
-            <div className="mb-16">
+            <div className="mb-10 sm:mb-16">
               <p className="section-label">Leadership</p>
               <h2>Meet Our Owners</h2>
             </div>
@@ -143,7 +143,7 @@ export default function OurStoryPage() {
             {leadership.map((member, i) => (
               <ScrollReveal key={member.name} delay={i * 80}>
                 <div className="bg-white h-full">
-                  <div className="h-72 lg:h-80 bg-navy-900 relative overflow-hidden">
+                  <div className="h-56 sm:h-72 lg:h-80 bg-navy-900 relative overflow-hidden">
                     {member.image ? (
                       <img
                         src={member.image}
@@ -159,9 +159,9 @@ export default function OurStoryPage() {
                       </div>
                     )}
                   </div>
-                  <div className="p-8">
+                  <div className="p-6 sm:p-8">
                     <h3 className="text-lg font-semibold text-navy-900">{member.name}</h3>
-                    <p className="text-sm text-navy-400 mb-4">{member.role}</p>
+                    <p className="text-sm text-navy-400 mb-3 sm:mb-4">{member.role}</p>
                     <p className="text-sm text-navy-500 leading-relaxed">{member.bio}</p>
                   </div>
                 </div>
@@ -177,7 +177,7 @@ export default function OurStoryPage() {
       <section className="section-padding bg-gray-50">
         <div className="container-editorial">
           <ScrollReveal>
-            <div className="mb-16">
+            <div className="mb-10 sm:mb-16">
               <p className="section-label">Our Team</p>
               <h2>The People Behind BlackArrow</h2>
             </div>
@@ -185,7 +185,7 @@ export default function OurStoryPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200">
             {staff.map((member, i) => (
               <ScrollReveal key={member.name} delay={i * 60}>
-                <div className="bg-white p-8 h-full">
+                <div className="bg-white p-6 sm:p-8 h-full">
                   <div className="flex items-center gap-5 mb-5">
                     {member.image ? (
                       <img
@@ -218,7 +218,7 @@ export default function OurStoryPage() {
       <section className="section-padding bg-white">
         <div className="container-editorial">
           <ScrollReveal>
-            <div className="mb-16">
+            <div className="mb-10 sm:mb-16">
               <p className="section-label">Our Offices</p>
               <h2>Visit Us</h2>
             </div>
@@ -227,11 +227,11 @@ export default function OurStoryPage() {
             {offices.map((office, i) => (
               <ScrollReveal key={office.name} delay={i * 100}>
                 <div className="bg-white h-full">
-                  <div className="h-56 overflow-hidden bg-navy-100">
+                  <div className="h-44 sm:h-56 overflow-hidden bg-navy-100">
                     <img src={office.image} alt={office.imageAlt} className="w-full h-full object-cover" />
                   </div>
-                  <div className="p-8">
-                    <h3 className="text-xl font-semibold text-navy-900 mb-5">{office.name}</h3>
+                  <div className="p-6 sm:p-8">
+                    <h3 className="text-lg sm:text-xl font-semibold text-navy-900 mb-4 sm:mb-5">{office.name}</h3>
                     <div className="space-y-4 text-sm text-navy-500">
                       <p>{office.address}<br />{office.city}, {office.state} {office.zip}</p>
                       <a href={`tel:${office.phone.replace(/[^\d+]/g, '')}`} className="block font-medium text-navy-900 hover:text-navy-700 transition-colors">
@@ -251,11 +251,11 @@ export default function OurStoryPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-navy-900 py-24 lg:py-32 text-white">
+      <section className="bg-navy-900 py-16 sm:py-24 lg:py-32 text-white">
         <div className="container-editorial text-center">
           <ScrollReveal>
-            <h2 className="text-white mb-6">Ready to Get Started?</h2>
-            <p className="text-lg text-navy-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+            <h2 className="text-white mb-4 sm:mb-6">Ready to Get Started?</h2>
+            <p className="text-base sm:text-lg text-navy-300 mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed">
               Let our team of experienced professionals help you find the right coverage for your needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

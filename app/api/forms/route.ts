@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
     try {
       const { createFormSubmission } = await import('@/lib/db')
 
-      createFormSubmission({
+      await createFormSubmission({
         id: submissionId,
         form_type,
         data: JSON.stringify(data),

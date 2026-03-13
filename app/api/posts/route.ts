@@ -5,7 +5,7 @@ import { getCurrentUser } from '@/lib/auth'
 
 export async function GET() {
   try {
-    const posts = getAllPosts()
+    const posts = await getAllPosts()
     return NextResponse.json(posts)
   } catch (error) {
     console.error('Error fetching posts:', error)
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Title, slug, and content are required' }, { status: 400 })
     }
 
-    const post = createPost({
+    const post = await createPost({
       id: uuidv4(),
       title,
       slug,

@@ -5,7 +5,7 @@ import { getCurrentUser } from '@/lib/auth'
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params
-    const post = getPostById(id)
+    const post = await getPostById(id)
     if (!post) {
       return NextResponse.json({ error: 'Post not found' }, { status: 404 })
     }
@@ -28,13 +28,13 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
 
     // If changing to published and no published_at, set it
     if (body.status === 'published' && !body.published_at) {
-      const existing = getPostById(id)
+      const existing = await getPostById(id)
       if (existing && !existing.published_at) {
         body.published_at = new Date().toISOString()
       }
     }
 
-    const post = updatePost(id, body)
+    const post = await updatePost(id, body)
     if (!post) {
       return NextResponse.json({ error: 'Post not found' }, { status: 404 })
     }
@@ -54,7 +54,7 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
     }
 
     const { id } = await params
-    const success = deletePost(id)
+    const success = await deletePost(id)
     if (!success) {
       return NextResponse.json({ error: 'Post not found' }, { status: 404 })
     }

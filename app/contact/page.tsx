@@ -31,14 +31,14 @@ export default function ContactPage() {
 
   return (
     <>
-      <section className="bg-navy-900 relative overflow-hidden pt-36 pb-20 lg:pt-44 lg:pb-28">
+      <section className="bg-navy-900 relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-28">
         <img src="/images/blackarrow_greenville.webp" alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-navy-950/80" />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-5">Get in Touch</p>
-            <h1 className="text-white mb-6">Contact Us</h1>
-            <p className="text-lg text-navy-300 leading-relaxed">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-4 sm:mb-5">Get in Touch</p>
+            <h1 className="text-white mb-4 sm:mb-6">Contact Us</h1>
+            <p className="text-base sm:text-lg text-navy-300 leading-relaxed">
               We&apos;re here for you and all your insurance needs. Reach out to our team at either of our office locations.
             </p>
           </div>
@@ -48,8 +48,8 @@ export default function ContactPage() {
       <section className="section-padding bg-white">
         <div className="container-premium">
           <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
-            {/* Contact Info */}
-            <div className="lg:col-span-2 space-y-8">
+            {/* Contact Info — shown after form on mobile */}
+            <div className="lg:col-span-2 space-y-8 order-2 lg:order-1">
               {offices.map(office => (
                 <div key={office.name} className="card-premium overflow-hidden">
                   <div className="h-48 bg-navy-100">
@@ -88,9 +88,9 @@ export default function ContactPage() {
               ))}
             </div>
 
-            {/* Contact Form */}
-            <div className="lg:col-span-3">
-              <div className="card-premium p-8">
+            {/* Contact Form — shown first on mobile */}
+            <div className="lg:col-span-3 order-1 lg:order-2">
+              <div className="card-premium p-5 sm:p-8">
                 <h2 className="text-2xl font-display font-bold text-navy-900 mb-2">Send Us a Message</h2>
                 <p className="text-navy-600 mb-8">Fill out the form below and one of our agents will get back to you shortly.</p>
 

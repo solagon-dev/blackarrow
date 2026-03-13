@@ -19,25 +19,26 @@ const logos = [
 
 export default function CarrierLogoCarousel() {
   return (
-    <section className="py-8 bg-white border-b border-gray-200 overflow-hidden">
-      <div className="container-editorial mb-5">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 text-center">Trusted Carrier Partners</p>
+    <section className="py-6 sm:py-8 bg-white border-b border-gray-200 overflow-hidden">
+      <div className="container-editorial mb-4 sm:mb-5">
+        <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 text-center">Trusted Carrier Partners</p>
       </div>
       <div className="relative">
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10" />
+        <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-white to-transparent z-10" />
+        <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-white to-transparent z-10" />
         <div className="flex animate-scroll">
           {[0, 1].map((copyIndex) => (
             <div key={copyIndex} className="flex shrink-0 items-center" aria-hidden={copyIndex === 1}>
               {logos.map((logo) => (
                 <div
                   key={`${copyIndex}-${logo.name}`}
-                  className="flex-shrink-0 w-36 h-14 mx-8 flex items-center justify-center grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                  className="flex-shrink-0 w-28 sm:w-36 h-12 sm:h-14 mx-5 sm:mx-8 flex items-center justify-center grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
                 >
                   <img
                     src={logo.src}
                     alt={logo.name}
-                    className="max-h-9 max-w-full object-contain"
+                    className="max-h-7 sm:max-h-9 max-w-full object-contain"
+                    loading="lazy"
                   />
                 </div>
               ))}

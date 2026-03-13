@@ -13,24 +13,14 @@ export const metadata: Metadata = {
 
 export const dynamic = 'force-dynamic'
 
-const TOPIC_CATEGORIES = [
-  { label: 'Homeowner Insurance', slug: 'homeowner-insurance' },
-  { label: 'Auto Insurance', slug: 'auto-insurance' },
-  { label: 'Commercial Insurance', slug: 'commercial-insurance' },
-  { label: 'Rental Property', slug: 'rental-property' },
-  { label: 'Risk Management', slug: 'risk-management' },
-  { label: 'Insurance Education', slug: 'insurance-education' },
-]
-
-export default function InsightsPage() {
+export default async function InsightsPage() {
   let posts: { id: string; title: string; slug: string; content: string; category: string | null; excerpt: string | null; featured_image: string | null; published_at: string | null; author_id: string | null }[] = []
   let categories: string[] = []
   try {
-    posts = getAllPosts('published')
-    categories = getCategories()
+    posts = await getAllPosts('published')
+    categories = await getCategories()
   } catch {}
 
-  // Enrich posts with reading time
   const enrichedPosts = posts.map(post => ({
     ...post,
     readingTime: estimateReadingTime(post.content),
@@ -38,64 +28,100 @@ export default function InsightsPage() {
   }))
 
   const featuredPost = enrichedPosts[0]
-  const secondaryFeatured = enrichedPosts.slice(1, 3)
+  const secondaryFeatured = enrichedPosts.slice(1, 4)
   const hasContent = enrichedPosts.length > 0
 
   return (
     <>
       {/* Hero */}
-      <section className="bg-navy-900 relative overflow-hidden pt-36 pb-20 lg:pt-44 lg:pb-28">
+      <section className="bg-navy-900 relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-28">
         <img src="/images/AdobeStock_220240507.jpeg" alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-navy-950/80" />
         <div className="container-editorial relative">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-end">
-            <div className="lg:col-span-7">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-5">Knowledge Center</p>
-              <h1 className="text-white">Insights &amp; Resources</h1>
-            </div>
-            <div className="lg:col-span-5">
-              <p className="text-lg text-navy-300 leading-relaxed">
-                Expert guidance on insurance coverage, risk management, and property protection — helping you make informed decisions about what matters most.
-              </p>
-            </div>
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-4 sm:mb-5">Knowledge Center</p>
+            <h1 className="text-white mb-4 sm:mb-6">Insights &amp; Resources</h1>
+            <p className="text-base sm:text-lg text-navy-300 leading-relaxed max-w-2xl">
+              Expert guidance on insurance coverage, risk management, and property protection — helping you make informed decisions about what matters most.
+            </p>
           </div>
         </div>
       </section>
 
       {hasContent ? (
         <>
-          {/* Featured Insight */}
+          {/* Featured Article */}
           {featuredPost && (
             <section className="section-padding bg-white">
               <div className="container-editorial">
                 <ScrollReveal>
-                  <p className="section-label mb-10">Featured</p>
-                  <InsightCard
-                    slug={featuredPost.slug}
-                    title={featuredPost.title}
-                    excerpt={featuredPost.excerpt}
-                    category={featuredPost.category}
-                    featuredImage={featuredPost.featured_image}
-                    publishedAt={featuredPost.published_at}
-                    readingTime={featuredPost.readingTime}
-                    author={featuredPost.author}
-                    variant="featured"
-                  />
+                  <p className="section-label mb-10 sm:mb-12">Featured Article</p>
+                </ScrollReveal>
+                <ScrollReveal>
+                  <Link href={`/post/${featuredPost.slug}`} className="group block">
+                    <div className="grid lg:grid-cols-2 gap-0">
+                      <div className="h-56 sm:h-72 lg:h-[26rem] bg-navy-900 overflow-hidden">
+                        {featuredPost.featured_image ? (
+                          <img
+                            src={featuredPost.featured_image}
+                            alt={featuredPost.title}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center">
+                            <span className="text-navy-500 text-sm uppercase tracking-[0.2em]">{featuredPost.category || 'Insurance'}</span>
+                          </div>
+                        )}
+                      </div>
+                      <div className="bg-gray-50 p-8 sm:p-10 lg:p-14 flex flex-col justify-center">
+                        <div className="flex items-center gap-3 mb-5">
+                          {featuredPost.category && (
+                            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400">{featuredPost.category}</span>
+                          )}
+                          {featuredPost.category && featuredPost.published_at && <span className="w-1 h-1 rounded-full bg-navy-300" />}
+                          {featuredPost.published_at && (
+                            <span className="text-xs text-navy-400">
+                              {new Date(featuredPost.published_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                            </span>
+                          )}
+                        </div>
+                        <h2 className="text-2xl sm:text-3xl font-display font-bold text-navy-900 mb-4 sm:mb-5 group-hover:text-navy-700 transition-colors leading-tight">
+                          {featuredPost.title}
+                        </h2>
+                        {featuredPost.excerpt && (
+                          <p className="text-base text-navy-500 leading-relaxed mb-6 line-clamp-3">{featuredPost.excerpt}</p>
+                        )}
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            {featuredPost.readingTime && <span className="text-xs text-navy-400">{featuredPost.readingTime} min read</span>}
+                          </div>
+                          <span className="text-sm font-medium text-navy-400 group-hover:text-navy-900 transition-colors">
+                            Read article →
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
                 </ScrollReveal>
               </div>
             </section>
           )}
 
-          {/* Secondary Featured — Editorial Two-Up */}
+          {/* Latest Articles — 3-up */}
           {secondaryFeatured.length > 0 && (
             <>
               <div className="rule" />
               <section className="section-padding bg-white">
                 <div className="container-editorial">
                   <ScrollReveal>
-                    <p className="section-label mb-12">Latest</p>
+                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-12">
+                      <div>
+                        <p className="section-label">Latest</p>
+                        <h2 className="text-2xl sm:text-3xl">Recent Articles</h2>
+                      </div>
+                    </div>
                   </ScrollReveal>
-                  <div className="grid sm:grid-cols-2 gap-px bg-gray-200">
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200">
                     {secondaryFeatured.map((post, i) => (
                       <ScrollReveal key={post.slug} delay={i * 60}>
                         <InsightCard
@@ -116,28 +142,17 @@ export default function InsightsPage() {
             </>
           )}
 
-          {/* Topic Categories */}
-          <section className="py-16 bg-gray-50 border-y border-gray-200">
-            <div className="container-editorial">
-              <ScrollReveal>
-                <p className="section-label mb-10">Explore by Topic</p>
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px bg-gray-200">
-                  {TOPIC_CATEGORIES.map(topic => (
-                    <div key={topic.slug} className="bg-white p-6 text-center">
-                      <p className="text-sm font-semibold text-navy-900">{topic.label}</p>
-                    </div>
-                  ))}
-                </div>
-              </ScrollReveal>
-            </div>
-          </section>
-
           {/* All Articles with Search & Filter */}
-          <section className="section-padding bg-white">
+          <section className="section-padding bg-gray-50 border-y border-gray-200">
             <div className="container-editorial">
               <ScrollReveal>
-                <p className="section-label mb-2">All Insights</p>
-                <h2 className="text-3xl mb-10">Browse Articles</h2>
+                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-12">
+                  <div>
+                    <p className="section-label">All Insights</p>
+                    <h2 className="text-2xl sm:text-3xl">Browse by Topic</h2>
+                  </div>
+                  <p className="text-sm text-navy-400">{enrichedPosts.length} {enrichedPosts.length === 1 ? 'article' : 'articles'} published</p>
+                </div>
               </ScrollReveal>
               <InsightsFilter
                 posts={enrichedPosts.map(p => ({
@@ -155,83 +170,13 @@ export default function InsightsPage() {
             </div>
           </section>
 
-          {/* Popular Articles — Editorial two-column layout */}
-          {enrichedPosts.length > 5 && (
-            <>
-              <div className="rule" />
-              <section className="section-padding-sm bg-white">
-                <div className="container-editorial">
-                  <div className="grid lg:grid-cols-12 gap-16">
-                    <div className="lg:col-span-5">
-                      <ScrollReveal>
-                        <p className="section-label">Most Read</p>
-                        <h2 className="text-2xl mb-8">Popular Articles</h2>
-                        <div>
-                          {enrichedPosts.slice(0, 5).map(post => (
-                            <InsightCard
-                              key={post.slug}
-                              slug={post.slug}
-                              title={post.title}
-                              category={post.category}
-                              featuredImage={post.featured_image}
-                              readingTime={post.readingTime}
-                              variant="compact"
-                            />
-                          ))}
-                        </div>
-                      </ScrollReveal>
-                    </div>
-                    <div className="lg:col-span-7">
-                      <ScrollReveal delay={100}>
-                        <p className="section-label">Guides</p>
-                        <h2 className="text-2xl mb-8">Educational Resources</h2>
-                        <p className="text-navy-500 leading-relaxed mb-8 max-w-lg">
-                          Our team publishes in-depth guides to help you understand your coverage options, avoid common insurance mistakes, and make informed decisions about protecting what matters.
-                        </p>
-                        <div className="grid sm:grid-cols-2 gap-px bg-gray-200">
-                          {enrichedPosts.slice(0, 4).map(post => (
-                            <Link
-                              key={`guide-${post.slug}`}
-                              href={`/post/${post.slug}`}
-                              className="bg-white p-6 group block hover:bg-gray-50 transition-colors duration-200"
-                            >
-                              <div className="h-32 bg-navy-50 overflow-hidden flex items-center justify-center mb-4">
-                                {post.featured_image ? (
-                                  <img
-                                    src={post.featured_image}
-                                    alt={post.title}
-                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                                  />
-                                ) : (
-                                  <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-navy-400 px-4 text-center">
-                                    {post.category || 'Insight'}
-                                  </span>
-                                )}
-                              </div>
-                              {post.category && <span className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-2 block">{post.category}</span>}
-                              <h3 className="text-sm font-semibold text-navy-900 group-hover:text-navy-700 transition-colors line-clamp-2">
-                                {post.title}
-                              </h3>
-                              <span className="text-xs text-navy-400 mt-2 block">{post.readingTime} min read</span>
-                            </Link>
-                          ))}
-                        </div>
-                      </ScrollReveal>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            </>
-          )}
-
           {/* CTA */}
-          <section className="bg-navy-900 py-24 lg:py-32 text-white">
+          <section className="bg-navy-900 py-16 sm:py-24 lg:py-32 text-white">
             <div className="container-editorial text-center">
               <ScrollReveal>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-5">Stay Informed</p>
-                <h2 className="text-white mb-6">Insurance guidance when you need it</h2>
-                <p className="text-lg text-navy-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-                  Have questions about your coverage? Our team of licensed professionals is ready to help you find the right protection.
+                <h2 className="text-white mb-4 sm:mb-6">Have a Coverage Question?</h2>
+                <p className="text-base sm:text-lg text-navy-300 mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed">
+                  Our team of licensed professionals is ready to help you find the right protection for your home, vehicle, business, or investment property.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link href="/quote" className="btn-secondary px-8 py-4">
@@ -246,7 +191,6 @@ export default function InsightsPage() {
           </section>
         </>
       ) : (
-        /* Empty State */
         <section className="section-padding bg-white">
           <div className="container-editorial text-center">
             <h2 className="text-3xl font-display font-bold text-navy-900 mb-5">Coming Soon</h2>

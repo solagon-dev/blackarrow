@@ -36,50 +36,68 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-navy-900 flex items-center justify-center p-4 -mt-20">
-      <div className="w-full max-w-md relative">
-        <div className="text-center mb-8">
-          <div className="w-14 h-14 bg-navy-800 rounded-xl flex items-center justify-center mx-auto mb-4">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-white">
-              <path d="M5 12L12 5L19 12M12 5V19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
-          <h1 className="text-2xl font-display font-bold text-white">Admin Dashboard</h1>
-          <p className="text-navy-300 mt-1">Sign in to manage your content</p>
+    <div className="min-h-screen bg-navy-950 flex flex-col items-center justify-center p-5">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} />
+
+      <div className="w-full max-w-sm relative z-10">
+        {/* Logo */}
+        <div className="flex justify-center mb-10">
+          <img src="/images/BlackArrowLogo.svg" alt="BlackArrow Insurance" className="h-8 brightness-0 invert opacity-80" />
         </div>
 
-        <div className="bg-white rounded-2xl shadow-2xl p-8">
+        {/* Login card */}
+        <div className="bg-white p-8 sm:p-10">
+          <div className="mb-8">
+            <h1 className="text-xl font-display font-bold text-navy-900 mb-1">Sign in</h1>
+            <p className="text-sm text-navy-400">Access your admin dashboard</p>
+          </div>
+
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="input-label">Email Address</label>
+              <label className="block text-xs font-semibold uppercase tracking-wide text-navy-400 mb-2">Email</label>
               <input
                 type="email"
                 required
-                className="input-field"
+                className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-300 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 placeholder="admin@blackarrowfg.com"
               />
             </div>
             <div>
-              <label className="input-label">Password</label>
+              <label className="block text-xs font-semibold uppercase tracking-wide text-navy-400 mb-2">Password</label>
               <input
                 type="password"
                 required
-                className="input-field"
+                className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-300 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 placeholder="Enter your password"
               />
             </div>
             {error && (
-              <p className="text-red-600 text-sm bg-red-50 p-3 rounded-xl border border-red-100">{error}</p>
+              <div className="flex items-start gap-3 p-3 bg-red-50 border border-red-100">
+                <svg className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                </svg>
+                <p className="text-sm text-red-700">{error}</p>
+              </div>
             )}
-            <button type="submit" disabled={loading} className="btn-primary w-full">
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full py-3 bg-navy-900 text-white text-sm font-medium tracking-wide hover:bg-navy-800 active:bg-navy-950 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               {loading ? 'Signing in...' : 'Sign In'}
             </button>
           </form>
         </div>
+
+        {/* Footer */}
+        <p className="text-center text-xs text-navy-500 mt-8">
+          BlackArrow Insurance &middot; Admin Portal
+        </p>
       </div>
     </div>
   )

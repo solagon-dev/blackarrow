@@ -31,14 +31,14 @@ const carrierLinks: { name: string; url: string }[] = [
 export default function FileAClaimPage() {
   return (
     <>
-      <section className="bg-navy-900 relative overflow-hidden pt-36 pb-20 lg:pt-44 lg:pb-28">
+      <section className="bg-navy-900 relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-28">
         <img src="/images/AdobeStock_45348884.jpeg" alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-navy-950/80" />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-5">Policy Management</p>
-            <h1 className="text-white mb-6">File a Claim</h1>
-            <p className="text-lg text-navy-300 leading-relaxed">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-4 sm:mb-5">Policy Management</p>
+            <h1 className="text-white mb-4 sm:mb-6">File a Claim</h1>
+            <p className="text-base sm:text-lg text-navy-300 leading-relaxed">
               Click on one of the carriers below to file an insurance claim directly with your insurance company.
             </p>
           </div>

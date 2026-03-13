@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { insurancePages, getInsuranceBySlug, getInsuranceHeroImage, carriers } from '@/lib/insurance-data'
+import { serviceLocationPages } from '@/lib/service-location-data'
 import { getIconByName } from '@/components/ui/Icons'
 import { getPostsByCategory } from '@/lib/db'
 import ScrollReveal from '@/components/ui/ScrollReveal'
@@ -32,23 +33,23 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
   const relatedPages = page.relatedSlugs.map(s => insurancePages.find(p => p.slug === s)).filter(Boolean)
   let relatedPosts: { title: string; slug: string; category: string | null; excerpt: string | null; featured_image: string | null; published_at: string | null; content: string }[] = []
   try {
-    relatedPosts = getPostsByCategory(page.shortTitle).slice(0, 3)
+    relatedPosts = (await getPostsByCategory(page.shortTitle)).slice(0, 3)
   } catch {}
 
   return (
     <>
       {/* Hero */}
-      <section className="bg-navy-900 relative overflow-hidden pt-36 pb-20 lg:pt-44 lg:pb-28">
+      <section className="bg-navy-900 relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-28">
         <img src={heroImage} alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-navy-950/80" />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-4 sm:mb-5">
                 {page.category === 'personal' ? 'Personal Insurance' : page.category === 'commercial' ? 'Commercial Insurance' : 'Property Insurance'}
             </p>
-            <h1 className="text-white mb-6">{page.title}</h1>
-            <p className="text-lg text-navy-300 leading-relaxed mb-10 max-w-2xl">{page.description}</p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <h1 className="text-white mb-4 sm:mb-6">{page.title}</h1>
+            <p className="text-base sm:text-lg text-navy-300 leading-relaxed mb-8 sm:mb-10 max-w-2xl">{page.description}</p>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Link href="/quote" className="btn-secondary">
                 Get a Quote
               </Link>
@@ -63,14 +64,14 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
       {/* Coverage Types */}
       <section className="section-padding bg-white">
         <div className="container-editorial">
-          <ScrollReveal className="max-w-3xl mb-16">
+          <ScrollReveal className="max-w-3xl mb-10 sm:mb-16">
             <p className="section-label">What&apos;s Covered</p>
             <h2>Coverage Types</h2>
           </ScrollReveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200">
             {page.coverageTypes.map((coverage, idx) => (
               <ScrollReveal key={idx} delay={idx * 60}>
-                <div className="bg-white p-8 h-full">
+                <div className="bg-white p-6 sm:p-8 h-full">
                   <span className="text-xs font-semibold text-navy-300 tracking-wide">{String(idx + 1).padStart(2, '0')}</span>
                   <h3 className="text-lg font-semibold text-navy-900 mt-3 mb-3">{coverage.title}</h3>
                   <p className="text-sm text-navy-500 leading-relaxed">{coverage.description}</p>
@@ -86,11 +87,11 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
       {/* Who Needs This */}
       <section className="section-padding bg-white">
         <div className="container-editorial">
-          <div className="grid lg:grid-cols-12 gap-16 items-start">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
             <ScrollReveal className="lg:col-span-5">
               <p className="section-label">Who Benefits</p>
-              <h2 className="mb-6">Who Needs {page.title}?</h2>
-              <p className="text-navy-500 leading-relaxed mb-10">
+              <h2 className="mb-4 sm:mb-6">Who Needs {page.title}?</h2>
+              <p className="text-navy-500 leading-relaxed mb-8 sm:mb-10">
                 {page.title} is designed for a variety of individuals and organizations. Find out if this coverage is right for you.
               </p>
               <Link href="/quote" className="btn-primary">Get a Personalized Quote</Link>
@@ -209,7 +210,7 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
           <div className="grid sm:grid-cols-3 gap-px bg-gray-200">
             {relatedPages.map((rp, idx) => rp && (
               <ScrollReveal key={rp.slug} delay={idx * 60}>
-                <Link href={`/insurance/${rp.slug}`} className="bg-white p-8 group block h-full hover:bg-gray-50 transition-colors duration-200">
+                <Link href={`/insurance/${rp.slug}`} className="bg-white p-6 sm:p-8 group block h-full hover:bg-gray-50 transition-colors duration-200">
                   <div className="icon-box-navy w-10 h-10 mb-4">
                     {getIconByName(rp.icon, 'w-5 h-5')}
                   </div>
@@ -221,6 +222,32 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
           </div>
         </div>
       </section>
+
+      {/* Location-Specific Coverage */}
+      {(() => {
+        const locationVariants = serviceLocationPages.filter(sp => sp.insuranceSlug === page.slug)
+        if (locationVariants.length === 0) return null
+        return (
+          <section className="py-10 bg-white border-b border-gray-200">
+            <div className="container-editorial">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-5">
+                {page.shortTitle} by Location
+              </p>
+              <div className="flex flex-wrap gap-x-6 gap-y-3">
+                {locationVariants.map(sp => (
+                  <Link
+                    key={sp.slug}
+                    href={`/${sp.slug}`}
+                    className="text-sm font-medium text-navy-400 hover:text-navy-900 transition-colors"
+                  >
+                    {sp.serviceType} in {sp.city}, {sp.stateAbbr} →
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        )
+      })()}
 
       {/* Carriers */}
       <section className="py-12 bg-white">
@@ -240,11 +267,11 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
       <section className="section-padding bg-navy-900 text-white">
         <div className="container-editorial text-center">
           <ScrollReveal>
-            <h2 className="text-white mb-6">Get Your {page.shortTitle} Quote Today</h2>
-            <p className="text-lg text-navy-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+            <h2 className="text-white mb-4 sm:mb-6">Get Your {page.shortTitle} Quote Today</h2>
+            <p className="text-base sm:text-lg text-navy-300 mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed">
               Our licensed agents will help you find the right {page.shortTitle.toLowerCase()} coverage at the best rate. No obligation, no hassle.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Link href="/quote" className="btn-secondary px-8 py-4">
                 Request a Quote
               </Link>

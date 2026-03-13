@@ -20,8 +20,8 @@ export function InsightCard({ slug, title, excerpt, category, featuredImage, pub
   if (variant === 'featured') {
     return (
       <Link href={`/post/${slug}`} className="group block">
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-          <div className="lg:col-span-5 h-56 lg:h-80 bg-navy-900 flex items-center justify-center overflow-hidden">
+        <div className="grid lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-16 items-start">
+          <div className="lg:col-span-5 h-48 sm:h-56 lg:h-80 bg-navy-900 flex items-center justify-center overflow-hidden">
             {featuredImage ? (
               <img
                 src={featuredImage}
@@ -38,10 +38,10 @@ export function InsightCard({ slug, title, excerpt, category, featuredImage, pub
               {category && formattedDate && <span className="w-1 h-1 rounded-full bg-navy-300" />}
               {formattedDate && <span className="text-xs text-navy-400">{formattedDate}</span>}
             </div>
-            <h2 className="text-3xl lg:text-4xl font-bold text-navy-900 mb-5 group-hover:text-navy-700 transition-colors leading-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-navy-900 mb-4 sm:mb-5 group-hover:text-navy-700 transition-colors leading-tight">
               {title}
             </h2>
-            {excerpt && <p className="text-lg text-navy-500 leading-relaxed mb-6 max-w-xl">{excerpt}</p>}
+            {excerpt && <p className="text-base sm:text-lg text-navy-500 leading-relaxed mb-5 sm:mb-6 max-w-xl">{excerpt}</p>}
             <div className="flex items-center gap-4">
               {author && <span className="text-sm text-navy-500">{author}</span>}
               {author && readingTime && <span className="w-1 h-1 rounded-full bg-navy-300" />}
@@ -86,7 +86,7 @@ export function InsightCard({ slug, title, excerpt, category, featuredImage, pub
   // Default variant
   return (
     <Link href={`/post/${slug}`} className="bg-white group flex flex-col h-full hover:bg-gray-50 transition-colors duration-200">
-      <div className="h-52 bg-navy-50 overflow-hidden flex items-center justify-center">
+      <div className="h-40 sm:h-52 bg-navy-50 overflow-hidden flex items-center justify-center">
         {featuredImage ? (
           <img
             src={featuredImage}
@@ -99,7 +99,7 @@ export function InsightCard({ slug, title, excerpt, category, featuredImage, pub
           </span>
         )}
       </div>
-      <div className="p-8 flex flex-1 flex-col">
+      <div className="p-5 sm:p-8 flex flex-1 flex-col">
         <div className="flex items-center gap-3 mb-4">
           {category && <span className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400">{category}</span>}
           {category && formattedDate && <span className="w-1 h-1 rounded-full bg-navy-300" />}

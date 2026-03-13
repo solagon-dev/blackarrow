@@ -24,10 +24,12 @@ cp .env.example .env.local
 
 3. Add your Resend settings to `.env.local`:
 ```env
+DATABASE_URL=postgresql://username:password@host/database?sslmode=require
+BLOB_READ_WRITE_TOKEN=vercel_blob_rw_xxxxxxxxxxxxxxxxx
 RESEND_API_KEY=re_xxxxxxxxxxxxxxxxx
 RESEND_FROM_EMAIL="BlackArrow Insurance <forms@blackarrow.co>"
 ```
-All website form submissions are sent to `service@blackarrowfg.com`. The `RESEND_FROM_EMAIL` value must use a sender on a domain verified in Resend.
+`DATABASE_URL` is required for the Neon Postgres database. `BLOB_READ_WRITE_TOKEN` is required for admin image uploads via Vercel Blob. All website form submissions are sent to `service@blackarrowfg.com`. The `RESEND_FROM_EMAIL` value must use a sender on a domain verified in Resend.
 
 4. Run the development server:
 ```bash

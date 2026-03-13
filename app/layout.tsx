@@ -50,12 +50,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable}`}>
-      <body className="font-sans">
-        <Header />
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+      </head>
+      <body className="font-sans antialiased overflow-x-hidden">
+        <div id="site-header"><Header /></div>
         <main className="min-h-screen">
           {children}
         </main>
-        <Footer />
+        <div id="site-footer"><Footer /></div>
       </body>
     </html>
   )

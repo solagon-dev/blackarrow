@@ -186,7 +186,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden p-2"
+            className="lg:hidden p-3 -mr-1.5 touch-manipulation"
             aria-label="Toggle menu"
           >
             {mobileOpen ? (
@@ -204,8 +204,8 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="lg:hidden fixed inset-0 top-[4.5rem] bg-white z-40 overflow-y-auto animate-fade-in">
-          <div className="container-editorial py-8 space-y-1">
+        <div className="lg:hidden fixed inset-0 top-[4.5rem] bg-white z-40 overflow-y-auto overscroll-contain animate-fade-in">
+          <div className="container-editorial py-6 sm:py-8 space-y-1 pb-[calc(1.5rem+env(safe-area-inset-bottom,0px))]">
             {/* Insurance Accordion */}
             <div>
               <button
@@ -222,12 +222,12 @@ export default function Header() {
                   {navInsurance.map(group => (
                     <div key={group.label}>
                       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-3">{group.label}</p>
-                      <ul className="space-y-1">
+                      <ul className="space-y-0.5">
                         {group.items.map(item => (
                           <li key={item.href}>
                             <Link
                               href={item.href}
-                              className="block py-2 text-sm text-navy-600 hover:text-navy-900"
+                              className="block py-2.5 text-sm text-navy-600 hover:text-navy-900 active:text-navy-900"
                               onClick={closeMobile}
                             >
                               {item.label}
@@ -245,7 +245,7 @@ export default function Header() {
             <div>
               <button
                 onClick={() => setMobilePolicyOpen(!mobilePolicyOpen)}
-                className="flex items-center justify-between w-full py-4 text-left font-medium text-navy-900 border-b border-gray-100"
+                className="flex items-center justify-between w-full py-4 text-left font-medium text-navy-900 border-b border-gray-100 touch-manipulation"
               >
                 Policy Management
                 <svg className={`w-4 h-4 text-navy-400 transition-transform duration-200 ${mobilePolicyOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -254,12 +254,12 @@ export default function Header() {
               </button>
               {mobilePolicyOpen && (
                 <div className="pb-4 pt-4 animate-fade-in">
-                  <ul className="space-y-1">
+                  <ul className="space-y-0.5">
                     {policyManagement.map(item => (
                       <li key={item.href}>
                         <Link
                           href={item.href}
-                          className="block py-2 text-sm text-navy-600 hover:text-navy-900"
+                          className="block py-2.5 text-sm text-navy-600 hover:text-navy-900 active:text-navy-900"
                           onClick={closeMobile}
                         >
                           {item.label}
