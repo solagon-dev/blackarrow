@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { insurancePages } from '@/lib/insurance-data'
+import { getRecaptchaToken } from '@/lib/recaptcha'
 
 const insuranceTypes = insurancePages.map(p => ({ value: p.slug, label: p.title }))
 
@@ -26,10 +27,11 @@ export default function QuotePage() {
     e.preventDefault()
     setStatus('loading')
     try {
+      const recaptcha_token = await getRecaptchaToken('quote')
       const res = await fetch('/api/forms', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ form_type: 'quote', data: form }),
+        body: JSON.stringify({ form_type: 'quote', data: form, recaptcha_token }),
       })
       if (res.ok) {
         setStatus('success')

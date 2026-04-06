@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { getRecaptchaToken } from '@/lib/recaptcha'
 
 export default function LoanNumberChangePage() {
   const [form, setForm] = useState({
@@ -14,10 +15,11 @@ export default function LoanNumberChangePage() {
     e.preventDefault()
     setStatus('loading')
     try {
+      const recaptcha_token = await getRecaptchaToken('loan_number_change')
       const res = await fetch('/api/forms', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ form_type: 'loan-number-change', data: form }),
+        body: JSON.stringify({ form_type: 'loan-number-change', data: form, recaptcha_token }),
       })
       setStatus(res.ok ? 'success' : 'error')
     } catch {

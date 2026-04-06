@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { offices } from '@/lib/team-data'
+import { getRecaptchaToken } from '@/lib/recaptcha'
 import { IconPhone, IconMail, IconMapPin, IconClock } from '@/components/ui/Icons'
 
 export default function ContactPage() {
@@ -13,10 +14,11 @@ export default function ContactPage() {
     e.preventDefault()
     setStatus('loading')
     try {
+      const recaptcha_token = await getRecaptchaToken('contact')
       const res = await fetch('/api/forms', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ form_type: 'contact', data: form }),
+        body: JSON.stringify({ form_type: 'contact', data: form, recaptcha_token }),
       })
       if (res.ok) {
         setStatus('success')

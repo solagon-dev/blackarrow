@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { v4 as uuidv4 } from 'uuid'
 import { isSupportedFormType, sendFormNotification } from '@/lib/forms-email'
+import { verifyRecaptchaToken } from '@/lib/recaptcha'
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { form_type, data } = body
+    const { form_type, data, recaptcha_token } = body
 
     if (!form_type || !data) {
       return NextResponse.json({ error: 'Missing form_type or data' }, { status: 400 })
@@ -17,6 +18,16 @@ export async function POST(request: NextRequest) {
 
     if (!data || typeof data !== 'object' || Array.isArray(data)) {
       return NextResponse.json({ error: 'Invalid form data' }, { status: 400 })
+    }
+
+    // Verify reCAPTCHA token
+    if (!recaptcha_token || typeof recaptcha_token !== 'string') {
+      return NextResponse.json({ error: 'reCAPTCHA verification required' }, { status: 400 })
+    }
+
+    const recaptchaResult = await verifyRecaptchaToken(recaptcha_token)
+    if (!recaptchaResult.success) {
+      return NextResponse.json({ error: 'reCAPTCHA verification failed' }, { status: 403 })
     }
 
     const submissionId = uuidv4()
