@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
@@ -142,6 +143,12 @@ export default function RootLayout({
         <WebSiteSchema />
       </head>
       <body className="font-sans antialiased overflow-x-hidden">
+        {/* Ahrefs Web Analytics */}
+        <Script
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="V5dSlzHbIFvtNMzCtxKCGA"
+          strategy="afterInteractive"
+        />
         <div id="site-header"><Header /></div>
         <main className="min-h-screen">
           {children}
