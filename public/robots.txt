@@ -1,5 +1,8 @@
-# https://www.robotstxt.org/robotstxt.html
+# This file is overridden by app/robots.ts in production.
+# See app/robots.ts for the canonical robots configuration.
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /api/
 
-Sitemap: https://blackarrowinsurance.com/sitemap.xml
+Sitemap: https://www.blackarrow.co/sitemap.xml
