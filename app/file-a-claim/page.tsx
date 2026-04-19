@@ -3,8 +3,15 @@ import type { Metadata } from 'next'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 
 export const metadata: Metadata = {
-  title: 'File a Claim',
-  description: 'File an insurance claim directly with your carrier through BlackArrow Insurance. Quick access to all carrier claims portals.',
+  title: 'File an Insurance Claim — Direct Carrier Links',
+  description: 'File an insurance claim directly with your carrier through BlackArrow Insurance. Quick-access links to Progressive, Travelers, Safeco, Universal Property, The Hartford, and 15+ other claims portals.',
+  alternates: { canonical: '/file-a-claim' },
+  openGraph: {
+    title: 'File an Insurance Claim | BlackArrow Insurance',
+    description: 'Direct links to every carrier claims portal. File your home, auto, or commercial claim through BlackArrow Insurance.',
+    url: 'https://www.blackarrow.co/file-a-claim',
+    type: 'website',
+  },
 }
 
 const carrierLinks: { name: string; url: string }[] = [
@@ -32,7 +39,7 @@ export default function FileAClaimPage() {
   return (
     <>
       <section className="bg-navy-900 relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-28">
-        <img src="/images/AdobeStock_45348884.jpeg" alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <img src="/images/AdobeStock_45348884.jpeg" alt="Homeowner filing an insurance claim after property damage" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-navy-950/80" />
         <div className="container-editorial relative">
           <div className="max-w-3xl">

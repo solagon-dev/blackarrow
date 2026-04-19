@@ -15,17 +15,29 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const post = await getPostBySlug(slug)
   if (!post) return {}
+  const rawTitle = post.seo_title || post.title
+  const cleanTitle = rawTitle.replace(/\s*\|\s*BlackArrow Insurance\s*$/i, '')
+  const description = post.seo_description || post.excerpt || ''
+  const canonical = `/post/${post.slug}`
   return {
-    title: post.seo_title || post.title,
-    description: post.seo_description || post.excerpt || '',
+    title: cleanTitle,
+    description,
+    alternates: { canonical },
     openGraph: {
-      title: post.seo_title || post.title,
-      description: post.seo_description || post.excerpt || '',
+      title: cleanTitle,
+      description,
+      url: `https://www.blackarrow.co${canonical}`,
       type: 'article',
       publishedTime: post.published_at || undefined,
+      modifiedTime: post.updated_at || undefined,
+      authors: ['BlackArrow Insurance'],
+      section: post.category || undefined,
       images: post.featured_image ? [post.featured_image] : undefined,
     },
     twitter: {
+      card: 'summary_large_image',
+      title: cleanTitle,
+      description,
       images: post.featured_image ? [post.featured_image] : undefined,
     },
   }
@@ -52,29 +64,39 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     : null
   const heroImage = post.featured_image || '/images/AdobeStock_315458621.jpeg'
 
+  const postUrl = `https://www.blackarrow.co/post/${post.slug}`
+
   // JSON-LD Schema
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
+    '@id': `${postUrl}#article`,
     headline: post.title,
+    name: post.title,
     description: post.excerpt || post.seo_description || '',
     datePublished: post.published_at || post.created_at,
-    dateModified: post.updated_at,
+    dateModified: post.updated_at || post.published_at || post.created_at,
+    articleSection: post.category || 'Insurance',
+    wordCount: post.content ? post.content.replace(/<[^>]*>/g, '').split(/\s+/).filter(Boolean).length : undefined,
+    inLanguage: 'en-US',
     author: {
       '@type': 'Organization',
       name: 'BlackArrow Insurance',
       url: 'https://www.blackarrow.co',
     },
-    publisher: {
-      '@type': 'Organization',
-      name: 'BlackArrow Insurance',
-      url: 'https://www.blackarrow.co',
-    },
+    publisher: { '@id': 'https://www.blackarrow.co/#organization' },
     image: post.featured_image ? [resolveArticleImageUrl(post.featured_image)] : undefined,
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `https://www.blackarrow.co/post/${post.slug}`,
-    },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
+  }
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.blackarrow.co/' },
+      { '@type': 'ListItem', position: 2, name: 'Insights', item: 'https://www.blackarrow.co/insights' },
+      { '@type': 'ListItem', position: 3, name: post.title, item: postUrl },
+    ],
   }
 
   return (
@@ -83,6 +105,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       {/* Hero */}

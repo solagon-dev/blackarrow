@@ -55,7 +55,7 @@ export default function QuotePage() {
     <>
       {/* Hero — compact, conversion-focused */}
       <section className="bg-navy-950 relative overflow-hidden pt-28 pb-10 sm:pt-36 sm:pb-14 lg:pt-44 lg:pb-20">
-        <img src="/images/AdobeStock_300395016.jpeg" alt="" className="absolute inset-0 w-full h-full object-cover object-center" />
+        <img src="/images/AdobeStock_300395016.jpeg" alt="Family protected by BlackArrow Insurance coverage in North Carolina" className="absolute inset-0 w-full h-full object-cover object-center" />
         <div className="absolute inset-0 bg-navy-950/85" />
         <div className="container-editorial relative">
           <div className="max-w-2xl">

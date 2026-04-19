@@ -4,8 +4,15 @@ import { teamMembers, offices } from '@/lib/team-data'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 
 export const metadata: Metadata = {
-  title: 'Our Story',
-  description: 'Learn about BlackArrow Insurance — serving Eastern North Carolina for over 20 years with personalized insurance solutions. Meet our team of dedicated professionals.',
+  title: 'Our Story — Independent Insurance Agency Since 2002',
+  description: 'Learn about BlackArrow Insurance — an independent agency serving Eastern North Carolina since 2002. Meet our licensed agents and leadership team in Greenville and Whiteville, NC.',
+  alternates: { canonical: '/our-story' },
+  openGraph: {
+    title: 'Our Story | BlackArrow Insurance',
+    description: 'Independent insurance agency serving Eastern North Carolina since 2002. Meet our team in Greenville and Whiteville, NC.',
+    url: 'https://www.blackarrow.co/our-story',
+    type: 'website',
+  },
 }
 
 export default function OurStoryPage() {
@@ -16,7 +23,7 @@ export default function OurStoryPage() {
     <>
       {/* Hero */}
       <section className="bg-navy-900 relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-28">
-        <img src="/images/blackarrow_greenville.webp" alt="" className="absolute inset-0 w-full h-full object-cover object-center" />
+        <img src="/images/blackarrow_greenville.webp" alt="Exterior of BlackArrow Insurance's Greenville, NC office" className="absolute inset-0 w-full h-full object-cover object-center" />
         <div className="absolute inset-0 bg-navy-950/80" />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
@@ -59,7 +66,7 @@ export default function OurStoryPage() {
         <div className="container-editorial">
           <ScrollReveal>
             <div className="overflow-hidden mb-8 sm:mb-12">
-              <img src="/images/AdobeStock_530165977.jpeg" alt="" className="w-full h-48 sm:h-64 lg:h-80 object-cover" loading="lazy" />
+              <img src="/images/AdobeStock_530165977.jpeg" alt="BlackArrow Insurance team serving Eastern North Carolina clients" className="w-full h-48 sm:h-64 lg:h-80 object-cover" loading="lazy" />
             </div>
           </ScrollReveal>
           <ScrollReveal>

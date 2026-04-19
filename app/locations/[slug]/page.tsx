@@ -34,14 +34,65 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const page = getLocationBySlug(slug)
   if (!page) return {}
+  const cleanTitle = page.seoTitle.replace(/\s*\|\s*BlackArrow Insurance\s*$/i, '')
+  const canonical = `/locations/${page.slug}`
   return {
-    title: page.seoTitle,
+    title: cleanTitle,
     description: page.seoDescription,
+    alternates: { canonical },
     openGraph: {
-      title: page.seoTitle,
+      title: cleanTitle,
+      description: page.seoDescription,
+      url: `https://www.blackarrow.co${canonical}`,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: cleanTitle,
       description: page.seoDescription,
     },
   }
+}
+
+function LocationPageSchema({ page }: { page: (typeof locationPages)[0] }) {
+  const pageUrl = `https://www.blackarrow.co/locations/${page.slug}`
+
+  const localBusinessSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'InsuranceAgency',
+    '@id': `${pageUrl}#localbusiness`,
+    name: `BlackArrow Insurance — ${page.city}, ${page.stateAbbr}`,
+    description: page.seoDescription,
+    url: pageUrl,
+    parentOrganization: { '@id': 'https://www.blackarrow.co/#organization' },
+    areaServed: {
+      '@type': 'City',
+      name: page.city,
+      containedInPlace: { '@type': 'State', name: page.state },
+    },
+    serviceArea: {
+      '@type': 'GeoCircle',
+      geoMidpoint: { '@type': 'Place', name: `${page.city}, ${page.stateAbbr}` },
+    },
+    priceRange: '$$',
+  }
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.blackarrow.co/' },
+      { '@type': 'ListItem', position: 2, name: 'Locations', item: 'https://www.blackarrow.co/locations' },
+      { '@type': 'ListItem', position: 3, name: `${page.city}, ${page.stateAbbr}`, item: pageUrl },
+    ],
+  }
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+    </>
+  )
 }
 
 export default async function LocationPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -54,6 +105,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
 
   return (
     <>
+      <LocationPageSchema page={page} />
       {/* ============= HERO ============= */}
       <section className="bg-navy-900 relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-28">
         <div className="absolute inset-0 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800" />

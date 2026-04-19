@@ -7,8 +7,15 @@ import InsightsFilter from '@/components/insights/InsightsFilter'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 
 export const metadata: Metadata = {
-  title: 'Insights & Resources',
-  description: 'Insurance insights, expert guides, and risk management resources from the BlackArrow Insurance team. Stay informed about coverage, protection strategies, and industry trends.',
+  title: 'Insurance Insights & Resources for North Carolina',
+  description: 'Expert insurance guides and risk management resources from BlackArrow Insurance. Learn about auto, home, business, and coastal coverage topics for North Carolina residents.',
+  alternates: { canonical: '/insights' },
+  openGraph: {
+    title: 'Insurance Insights & Resources | BlackArrow Insurance',
+    description: 'Expert insurance guides and risk management resources for North Carolina homeowners, drivers, and business owners.',
+    url: 'https://www.blackarrow.co/insights',
+    type: 'website',
+  },
 }
 
 export const dynamic = 'force-dynamic'
@@ -35,7 +42,7 @@ export default async function InsightsPage() {
     <>
       {/* Hero */}
       <section className="bg-navy-900 relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-28">
-        <img src="/images/AdobeStock_220240507.jpeg" alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <img src="/images/AdobeStock_220240507.jpeg" alt="BlackArrow Insurance insights and educational resources" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-navy-950/80" />
         <div className="container-editorial relative">
           <div className="max-w-3xl">

@@ -32,7 +32,7 @@ export default function ChangeMortgageePage() {
   return (
     <>
       <section className="bg-navy-900 relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-28">
-        <img src="/images/AdobeStock_169692156.jpeg" alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <img src="/images/AdobeStock_169692156.jpeg" alt="Homeowner reviewing mortgage paperwork to change mortgagee on insurance policy" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-navy-950/80" />
         <div className="container-editorial relative">
           <div className="max-w-3xl">

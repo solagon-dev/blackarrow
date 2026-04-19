@@ -136,18 +136,18 @@ export default async function Home() {
               </div>
             </div>
           </ScrollReveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-200">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200">
             {personalInsurance.map((ins, idx) => (
               <ScrollReveal key={ins.slug} delay={idx * 50}>
-                <Link href={`/insurance/${ins.slug}`} className="bg-white p-6 sm:p-8 group block h-full hover:bg-gray-50 transition-colors duration-200">
+                <Link href={`/insurance/${ins.slug}`} className="bg-white p-5 sm:p-8 group block h-full hover:bg-gray-50 transition-colors duration-200">
                   <div className="icon-box-navy mb-4 sm:mb-5">
                     {getIconByName(ins.icon)}
                   </div>
-                  <h3 className="text-base font-semibold text-navy-900 mb-2 group-hover:text-navy-700 transition-colors">
+                  <h3 className="text-sm sm:text-base font-semibold text-navy-900 mb-2 group-hover:text-navy-700 transition-colors">
                     {ins.shortTitle}
                   </h3>
-                  <p className="text-sm text-navy-500 leading-relaxed mb-4 sm:mb-5">{ins.tagline}</p>
-                  <span className="text-sm font-medium text-navy-400 group-hover:text-navy-900 transition-colors">
+                  <p className="text-xs sm:text-sm text-navy-500 leading-relaxed mb-4 sm:mb-5">{ins.tagline}</p>
+                  <span className="text-xs sm:text-sm font-medium text-navy-400 group-hover:text-navy-900 transition-colors">
                     Learn more →
                   </span>
                 </Link>

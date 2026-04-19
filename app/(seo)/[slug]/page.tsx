@@ -17,29 +17,44 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const page = getServiceLocationBySlug(slug)
   if (!page) return {}
+  const cleanTitle = page.seoTitle.replace(/\s*\|\s*BlackArrow Insurance\s*$/i, '')
+  const canonical = `/${page.slug}`
   return {
-    title: page.seoTitle,
+    title: cleanTitle,
     description: page.seoDescription,
+    alternates: { canonical },
     openGraph: {
-      title: page.seoTitle,
+      title: cleanTitle,
+      description: page.seoDescription,
+      url: `https://www.blackarrow.co${canonical}`,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: cleanTitle,
       description: page.seoDescription,
     },
   }
 }
 
 function ServiceLocationSchema({ page }: { page: (typeof serviceLocationPages)[0] }) {
+  const pageUrl = `https://www.blackarrow.co/${page.slug}`
+
   const localBusiness = {
     '@context': 'https://schema.org',
     '@type': 'InsuranceAgency',
-    name: 'BlackArrow Insurance',
+    '@id': `${pageUrl}#localbusiness`,
+    name: `BlackArrow Insurance — ${page.serviceType} in ${page.city}, ${page.stateAbbr}`,
     description: page.seoDescription,
-    url: `https://www.blackarrow.co/${page.slug}`,
-    telephone: '(910) 914-6074',
+    url: pageUrl,
+    telephone: '+1-910-914-6074',
+    parentOrganization: { '@id': 'https://www.blackarrow.co/#organization' },
     areaServed: {
       '@type': 'City',
       name: page.city,
-      addressRegion: page.stateAbbr,
+      containedInPlace: { '@type': 'State', name: page.stateAbbr === 'NC' ? 'North Carolina' : page.stateAbbr },
     },
+    priceRange: '$$',
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: `${page.serviceType} in ${page.city}, ${page.stateAbbr}`,
@@ -54,9 +69,22 @@ function ServiceLocationSchema({ page }: { page: (typeof serviceLocationPages)[0
     },
   }
 
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${pageUrl}#service`,
+    name: `${page.serviceType} in ${page.city}, ${page.stateAbbr}`,
+    description: page.heroDescription,
+    serviceType: page.serviceType,
+    provider: { '@id': 'https://www.blackarrow.co/#organization' },
+    areaServed: { '@type': 'City', name: page.city },
+    url: pageUrl,
+  }
+
   const faqSchema = page.faqItems.length > 0 ? {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
+    '@id': `${pageUrl}#faq`,
     mainEntity: page.faqItems.map(faq => ({
       '@type': 'Question',
       name: faq.question,
@@ -67,18 +95,24 @@ function ServiceLocationSchema({ page }: { page: (typeof serviceLocationPages)[0
     })),
   } : null
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.blackarrow.co/' },
+      { '@type': 'ListItem', position: 2, name: `${page.city}, ${page.stateAbbr}`, item: `https://www.blackarrow.co/locations/${page.locationSlug}` },
+      { '@type': 'ListItem', position: 3, name: `${page.serviceType} in ${page.city}`, item: pageUrl },
+    ],
+  }
+
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       {faqSchema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       )}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
     </>
   )
 }

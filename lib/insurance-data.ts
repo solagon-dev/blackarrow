@@ -50,8 +50,8 @@ export const insurancePages: InsurancePage[] = [
       { question: 'Do I need insurance if my home is paid off?', answer: "While it's not legally required if you don't have a mortgage, homeowner's insurance is strongly recommended to protect your investment and provide liability coverage." },
     ],
     relatedSlugs: ['rental-dwelling', 'short-term-rental', 'builders-risk'],
-    seoTitle: "Homeowner's Insurance | BlackArrow Insurance",
-    seoDescription: "Protect your home and belongings with comprehensive homeowner's insurance from BlackArrow Insurance. Get a personalized quote today.",
+    seoTitle: "Homeowners Insurance in North Carolina — Get a Free Quote",
+    seoDescription: "Homeowners insurance in North Carolina from BlackArrow Insurance. We compare rates from 20+ carriers to protect your NC home, including coastal and wind/hail coverage. Free quote.",
   },
   {
     slug: 'auto',
@@ -89,8 +89,8 @@ export const insurancePages: InsurancePage[] = [
       { question: 'How are premiums calculated?', answer: 'Premiums are based on factors including your driving record, vehicle type, location, coverage levels, and deductible choices.' },
     ],
     relatedSlugs: ['commercial-auto', 'dump-straight-truck', 'boat'],
-    seoTitle: 'Auto Insurance | BlackArrow Insurance',
-    seoDescription: 'Get comprehensive auto insurance coverage tailored to your needs. BlackArrow Insurance offers competitive rates and personalized service.',
+    seoTitle: 'Auto Insurance in North Carolina — Compare NC Car Insurance Rates',
+    seoDescription: 'Affordable auto insurance in North Carolina from BlackArrow Insurance. Compare NC car insurance rates from 20+ carriers for liability, collision, and full coverage. Free quote.',
   },
   {
     slug: 'life',
@@ -126,7 +126,7 @@ export const insurancePages: InsurancePage[] = [
       { question: 'Can I modify my life insurance policy?', answer: 'Yes, many policies allow adjustments to coverage amounts, addition of riders, or conversion between policy types. Changes may affect your premiums.' },
     ],
     relatedSlugs: ['homeowners', 'auto', 'boat'],
-    seoTitle: 'Life Insurance | BlackArrow Insurance',
+    seoTitle: 'Life Insurance in North Carolina — Term, Whole & Universal',
     seoDescription: 'Protect your family\'s financial future with personalized life insurance from BlackArrow Insurance. Term, whole life, and universal options available.',
   },
   {
@@ -164,7 +164,7 @@ export const insurancePages: InsurancePage[] = [
       { question: 'Do I need coverage year-round?', answer: 'Year-round coverage is recommended even for seasonal boats, as risks like theft and weather damage exist even when your boat is in storage.' },
     ],
     relatedSlugs: ['auto', 'homeowners', 'life'],
-    seoTitle: 'Boat Insurance | BlackArrow Insurance',
+    seoTitle: 'Boat Insurance in North Carolina — Wilmington & Coastal NC',
     seoDescription: 'Protect your vessel with comprehensive boat insurance from BlackArrow Insurance. Get coverage for accidents, theft, liability, and more.',
   },
   {
@@ -201,7 +201,7 @@ export const insurancePages: InsurancePage[] = [
       { question: 'How can I lower my premiums?', answer: 'You can lower premiums by choosing higher deductibles, installing safety features (especially storm-resilient roofing in coastal NC), bundling policies, and maintaining a good claims history.' },
     ],
     relatedSlugs: ['short-term-rental', 'long-term-rental', 'homeowners'],
-    seoTitle: 'Rental Dwelling Insurance in North Carolina | BlackArrow Insurance',
+    seoTitle: 'Rental Dwelling Insurance in North Carolina — Landlord Coverage',
     seoDescription: 'Rental property insurance for North Carolina landlords. BlackArrow Insurance serves Eastern NC — Greenville, Whiteville, Wilmington, Raleigh. Protection against storm damage, liability, and lost rental income.',
   },
   {
@@ -238,7 +238,7 @@ export const insurancePages: InsurancePage[] = [
       { question: 'What coverage types are included?', answer: 'Standard options include liability, physical damage, cargo, and uninsured motorist coverage. Additional options are available.' },
     ],
     relatedSlugs: ['commercial-auto', 'equipment', 'general-liability'],
-    seoTitle: 'Dump & Straight Truck Insurance | BlackArrow Insurance',
+    seoTitle: 'Dump & Straight Truck Insurance in North Carolina',
     seoDescription: 'Get specialized dump truck and straight truck insurance from BlackArrow Insurance. Protect your fleet with comprehensive commercial coverage.',
   },
   {
@@ -275,7 +275,7 @@ export const insurancePages: InsurancePage[] = [
       { question: 'Can policies be customized?', answer: 'Yes, commercial auto policies can be tailored to match your specific fleet, drivers, and business operations.' },
     ],
     relatedSlugs: ['dump-straight-truck', 'general-liability', 'business-owners-package'],
-    seoTitle: 'Commercial Auto Insurance | BlackArrow Insurance',
+    seoTitle: 'Commercial Auto Insurance in North Carolina — NC Fleet Coverage',
     seoDescription: 'Protect your business vehicles with commercial auto insurance from BlackArrow Insurance. Customized fleet coverage with competitive rates.',
   },
   {
@@ -310,7 +310,7 @@ export const insurancePages: InsurancePage[] = [
       { question: 'How much coverage does my business need?', answer: 'Coverage needs vary by industry and risk level. Most small businesses start with $1 million per occurrence. Your agent can help determine the right amount.' },
     ],
     relatedSlugs: ['business-owners-package', 'workers-compensation', 'cyber-liability'],
-    seoTitle: 'General Liability Insurance | BlackArrow Insurance',
+    seoTitle: 'General Liability Insurance in North Carolina for Small Business',
     seoDescription: 'Protect your business from third-party claims with general liability insurance from BlackArrow Insurance. Get a quote today.',
   },
   {
@@ -345,7 +345,7 @@ export const insurancePages: InsurancePage[] = [
       { question: 'What cyber incidents are commonly covered?', answer: 'Data breaches, ransomware attacks, denial-of-service attacks, and unauthorized network access are commonly covered events.' },
     ],
     relatedSlugs: ['general-liability', 'business-owners-package', 'equipment'],
-    seoTitle: 'Cyber Liability Insurance | BlackArrow Insurance',
+    seoTitle: 'Cyber Liability Insurance in North Carolina for Small Business',
     seoDescription: 'Protect your business from cyber threats with cyber liability insurance from BlackArrow Insurance. Coverage for data breaches, ransomware, and more.',
   },
   {
@@ -380,7 +380,7 @@ export const insurancePages: InsurancePage[] = [
       { question: 'Is equipment insurance required?', answer: 'While not legally mandated, it\'s highly recommended for businesses that rely on expensive equipment.' },
     ],
     relatedSlugs: ['commercial-property', 'business-owners-package', 'general-liability'],
-    seoTitle: 'Equipment Insurance | BlackArrow Insurance',
+    seoTitle: 'Equipment Insurance in North Carolina — Tools & Machinery Coverage',
     seoDescription: 'Protect your business equipment from damage, theft, and breakdown with equipment insurance from BlackArrow Insurance.',
   },
   {
@@ -417,7 +417,7 @@ export const insurancePages: InsurancePage[] = [
       { question: 'How do I know if a BOP is right for my business?', answer: 'If you have property to protect, liability exposure, or income risk and prefer consolidated coverage, a BOP may be ideal. Speak with an agent for guidance.' },
     ],
     relatedSlugs: ['general-liability', 'commercial-property', 'workers-compensation'],
-    seoTitle: "Business Owner's Package Insurance | BlackArrow Insurance",
+    seoTitle: "Business Owner's Package (BOP) Insurance in North Carolina",
     seoDescription: "Get comprehensive business protection with a Business Owner's Package from BlackArrow Insurance. Bundled coverage at competitive rates.",
   },
   {
@@ -452,7 +452,7 @@ export const insurancePages: InsurancePage[] = [
       { question: 'What happens if I don\'t have coverage?', answer: 'Businesses without required coverage may face penalties, fines, legal action, and direct liability for all employee medical costs.' },
     ],
     relatedSlugs: ['general-liability', 'business-owners-package', 'commercial-property'],
-    seoTitle: "Worker's Compensation Insurance | BlackArrow Insurance",
+    seoTitle: "Workers Compensation Insurance in North Carolina",
     seoDescription: "Protect your employees with worker's compensation insurance from BlackArrow Insurance. Coverage for injuries, lost wages, and rehabilitation.",
   },
   {
@@ -487,7 +487,7 @@ export const insurancePages: InsurancePage[] = [
       { question: 'Do I need coverage if I lease my space?', answer: 'Yes, even if you lease, you may need coverage for your contents, business equipment, and improvements made to the space.' },
     ],
     relatedSlugs: ['business-owners-package', 'equipment', 'general-liability'],
-    seoTitle: 'Commercial Property Insurance | BlackArrow Insurance',
+    seoTitle: 'Commercial Property Insurance in North Carolina',
     seoDescription: 'Protect your business property with comprehensive commercial property insurance from BlackArrow Insurance. Buildings, equipment, and inventory coverage.',
   },
   {
@@ -522,7 +522,7 @@ export const insurancePages: InsurancePage[] = [
       { question: 'Is short-term rental insurance legally required?', answer: 'While not always legally required, many rental platforms strongly recommend it, and it\'s essential for protecting your investment.' },
     ],
     relatedSlugs: ['long-term-rental', 'rental-dwelling', 'homeowners'],
-    seoTitle: 'Short Term Rental Insurance | BlackArrow Insurance',
+    seoTitle: 'Short Term Rental Insurance in North Carolina — Airbnb & VRBO',
     seoDescription: 'Protect your Airbnb or vacation rental with short term rental insurance from BlackArrow Insurance. Coverage for damages, liability, and lost income.',
   },
   {
@@ -557,7 +557,7 @@ export const insurancePages: InsurancePage[] = [
       { question: 'Are tenant belongings covered?', answer: 'No, tenants need their own renters insurance for personal belongings. Your policy covers the structure and your property.' },
     ],
     relatedSlugs: ['short-term-rental', 'rental-dwelling', 'vacant-unoccupied'],
-    seoTitle: 'Long Term Rental Insurance | BlackArrow Insurance',
+    seoTitle: 'Long Term Rental Property Insurance in North Carolina',
     seoDescription: 'Protect your long-term rental property with comprehensive insurance from BlackArrow Insurance. Coverage for damage, liability, and lost income.',
   },
   {
@@ -592,7 +592,7 @@ export const insurancePages: InsurancePage[] = [
       { question: 'How long does coverage last?', answer: 'Coverage is effective for the construction period and may require renewal if the project extends beyond the original timeline.' },
     ],
     relatedSlugs: ['commercial-property', 'vacant-unoccupied', 'general-liability'],
-    seoTitle: "Builder's Risk Insurance | BlackArrow Insurance",
+    seoTitle: "Builder's Risk Insurance in North Carolina — Construction Coverage",
     seoDescription: "Protect your construction project with builder's risk insurance from BlackArrow Insurance. Coverage for materials, equipment, and property damage.",
   },
   {
@@ -625,7 +625,7 @@ export const insurancePages: InsurancePage[] = [
       { question: 'How is eligibility determined?', answer: 'Eligibility depends on the duration of vacancy, property condition, location, and the specific insurer\'s guidelines.' },
     ],
     relatedSlugs: ['builders-risk', 'rental-dwelling', 'homeowners'],
-    seoTitle: 'Vacant / Unoccupied Property Insurance | BlackArrow Insurance',
+    seoTitle: 'Vacant & Unoccupied Property Insurance in North Carolina',
     seoDescription: 'Protect your vacant or unoccupied property with specialized insurance from BlackArrow Insurance. Coverage for damage, vandalism, and liability.',
   },
   // ── NC-targeted landing pages (Ahrefs SEO: high-CPC low-KD opportunities) ──
@@ -663,8 +663,8 @@ export const insurancePages: InsurancePage[] = [
       { question: 'How quickly can BlackArrow get me quotes?', answer: 'Most NC workers comp quotes are back within 24–48 hours. We use 20+ carriers to match your classification codes and payroll to the best-priced policy.' },
     ],
     relatedSlugs: ['business-owners-package', 'general-liability', 'commercial-property'],
-    seoTitle: 'Workers Compensation Insurance in North Carolina | BlackArrow Insurance',
-    seoDescription: 'NC workers comp insurance for businesses with 3+ employees. BlackArrow Insurance shops 20+ carriers for contractors, healthcare, retail, and hospitality across Eastern North Carolina.',
+    seoTitle: 'NC Workers Compensation Insurance — Required Coverage for 3+ Employees',
+    seoDescription: 'NC workers comp insurance for businesses with 3+ employees. BlackArrow Insurance shops 20+ carriers for contractors, healthcare, retail, and hospitality across Eastern North Carolina. Same-day quotes.',
   },
   {
     slug: 'boat-insurance-north-carolina',
@@ -701,8 +701,8 @@ export const insurancePages: InsurancePage[] = [
       { question: 'Am I covered during transport on I-95 or Hwy 17?', answer: 'Yes — trailer-towed transport damage is typically covered. Verify your coverage limits match your boat\'s current value before long hauls.' },
     ],
     relatedSlugs: ['auto', 'homeowners', 'life'],
-    seoTitle: 'Boat Insurance in North Carolina | BlackArrow Insurance',
-    seoDescription: 'NC boat insurance for Intracoastal, Pamlico Sound, Albemarle Sound, and offshore waters. BlackArrow Insurance writes coastal NC policies with proper hurricane-named-storm deductibles.',
+    seoTitle: 'NC Boat Insurance — Intracoastal, Pamlico Sound & Offshore Coverage',
+    seoDescription: 'NC boat insurance for Intracoastal, Pamlico Sound, Albemarle Sound, and offshore Atlantic waters. BlackArrow writes coastal NC policies with proper hurricane-named-storm deductibles. Fast quotes.',
   },
   {
     slug: 'auto-insurance-greenville-nc',
@@ -740,8 +740,8 @@ export const insurancePages: InsurancePage[] = [
       { question: 'How fast can I get a Greenville quote?', answer: 'Most auto quotes are back same-day. Stop by 905 Conference Drive Suite 2B or request online.' },
     ],
     relatedSlugs: ['homeowners', 'life', 'boat'],
-    seoTitle: 'Auto Insurance in Greenville, NC | BlackArrow Insurance',
-    seoDescription: 'Greenville NC auto insurance from BlackArrow Insurance at 905 Conference Drive. We shop 20+ carriers for ECU students, healthcare workers, and Pitt County families.',
+    seoTitle: 'Auto Insurance in Greenville, NC — Car Insurance for Pitt County',
+    seoDescription: 'Greenville NC auto insurance from BlackArrow Insurance at 905 Conference Drive. We shop 20+ carriers for ECU students, healthcare workers, and Pitt County families. Same-day quotes.',
   },
 ];
 

@@ -34,7 +34,7 @@ export default function ContactPage() {
   return (
     <>
       <section className="bg-navy-900 relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-28">
-        <img src="/images/blackarrow_greenville.webp" alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <img src="/images/blackarrow_greenville.webp" alt="BlackArrow Insurance Greenville NC office exterior" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-navy-950/80" />
         <div className="container-editorial relative">
           <div className="max-w-3xl">

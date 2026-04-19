@@ -17,11 +17,81 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const page = getInsuranceBySlug(slug)
   if (!page) return {}
   const heroImage = getInsuranceHeroImage(page.slug)
+  // Strip any pre-existing " | BlackArrow Insurance" suffix — layout template adds it automatically.
+  const cleanTitle = page.seoTitle.replace(/\s*\|\s*BlackArrow Insurance\s*$/i, '')
+  const canonical = `/insurance/${page.slug}`
   return {
-    title: page.seoTitle,
+    title: cleanTitle,
     description: page.seoDescription,
-    openGraph: { title: page.seoTitle, description: page.seoDescription, images: [heroImage] },
+    alternates: { canonical },
+    openGraph: {
+      title: cleanTitle,
+      description: page.seoDescription,
+      url: `https://www.blackarrow.co${canonical}`,
+      type: 'website',
+      images: [{ url: heroImage, width: 1200, height: 630, alt: page.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: cleanTitle,
+      description: page.seoDescription,
+      images: [heroImage],
+    },
   }
+}
+
+function InsurancePageSchema({ page, heroImage }: { page: (typeof insurancePages)[0]; heroImage: string }) {
+  const pageUrl = `https://www.blackarrow.co/insurance/${page.slug}`
+
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${pageUrl}#service`,
+    name: page.title,
+    description: page.description,
+    serviceType: page.title,
+    provider: { '@id': 'https://www.blackarrow.co/#organization' },
+    areaServed: { '@type': 'State', name: 'North Carolina' },
+    image: `https://www.blackarrow.co${heroImage}`,
+    url: pageUrl,
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: `${page.title} Coverage Types`,
+      itemListElement: page.coverageTypes.map((c) => ({
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: c.title, description: c.description },
+      })),
+    },
+  }
+
+  const faqSchema = page.faqs.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': `${pageUrl}#faq`,
+    mainEntity: page.faqs.map(f => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: { '@type': 'Answer', text: f.answer },
+    })),
+  } : null
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.blackarrow.co/' },
+      { '@type': 'ListItem', position: 2, name: 'Insurance', item: 'https://www.blackarrow.co/quote' },
+      { '@type': 'ListItem', position: 3, name: page.title, item: pageUrl },
+    ],
+  }
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+    </>
+  )
 }
 
 export default async function InsurancePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -38,9 +108,10 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
 
   return (
     <>
+      <InsurancePageSchema page={page} heroImage={heroImage} />
       {/* Hero */}
       <section className="bg-navy-900 relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-28">
-        <img src={heroImage} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <img src={heroImage} alt={`${page.title} coverage in North Carolina from BlackArrow Insurance`} className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-navy-950/80" />
         <div className="container-editorial relative">
           <div className="max-w-3xl">

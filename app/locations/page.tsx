@@ -4,8 +4,15 @@ import { locationPages } from '@/lib/location-data'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 
 export const metadata: Metadata = {
-  title: 'Locations | BlackArrow Insurance',
-  description: 'BlackArrow Insurance serves communities across North Carolina including Whiteville, Greenville, Wilmington, and Raleigh. Find insurance services near you.',
+  title: 'Insurance Agency Locations in North Carolina',
+  description: 'BlackArrow Insurance serves clients across North Carolina with offices in Greenville and Whiteville. Independent coverage for Wilmington, Raleigh, and Eastern NC communities.',
+  alternates: { canonical: '/locations' },
+  openGraph: {
+    title: 'Insurance Agency Locations in NC | BlackArrow Insurance',
+    description: 'Independent insurance agency with North Carolina offices in Greenville and Whiteville. Serving Wilmington, Raleigh, and Eastern NC.',
+    url: 'https://www.blackarrow.co/locations',
+    type: 'website',
+  },
 }
 
 export default function LocationsPage() {

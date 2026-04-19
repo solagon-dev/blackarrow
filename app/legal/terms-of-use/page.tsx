@@ -4,6 +4,8 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'Terms of Service',
   description: 'BlackArrow Insurance terms of service — the rules and guidelines governing your use of our website and services.',
+  alternates: { canonical: '/legal/terms-of-use' },
+  robots: { index: true, follow: true },
 }
 
 const sections = [
