@@ -13,6 +13,12 @@ export interface InsurancePage {
   relatedSlugs: string[];
   seoTitle: string;
   seoDescription: string;
+  // Geo-targeted SEO variants of a core coverage (e.g. "Boat Insurance (NC)"
+  // is a variant of "Boat"). They remain in `insurancePages` so their
+  // /insurance/[slug] routes and sitemap entries are generated, but are
+  // excluded from the category arrays so they don't appear as duplicates
+  // in the homepage grid, nav, or footer.
+  geoVariant?: boolean;
 }
 
 export const insurancePages: InsurancePage[] = [
@@ -671,6 +677,7 @@ export const insurancePages: InsurancePage[] = [
     title: 'Boat Insurance in North Carolina',
     shortTitle: 'Boat Insurance (NC)',
     category: 'personal',
+    geoVariant: true,
     tagline: 'Coverage for NC waters — Intracoastal, Pamlico, Albemarle, and offshore',
     description: 'Boat insurance for North Carolina boat owners — fishing boats, pontoons, sailboats, center consoles, and yachts. BlackArrow Insurance writes policies for NC-registered vessels on the Intracoastal Waterway, Pamlico Sound, Albemarle Sound, and offshore Atlantic waters, with proper hurricane-named-storm deductibles for coastal moorage.',
     icon: 'anchor',
@@ -709,6 +716,7 @@ export const insurancePages: InsurancePage[] = [
     title: 'Auto Insurance in Greenville, NC',
     shortTitle: 'Auto (Greenville NC)',
     category: 'personal',
+    geoVariant: true,
     tagline: 'NC minimum limits, maximum carrier choice in Pitt County',
     description: 'Auto insurance for Greenville, NC drivers. BlackArrow Insurance is based at 905 Conference Drive in Greenville and shops 20+ carriers to match Pitt County drivers — ECU commuters, healthcare workers, families, and retirees — to the right liability limits, collision, and comprehensive coverage for NC roads.',
     icon: 'car',
@@ -777,9 +785,9 @@ export function getInsuranceByCategory(category: InsurancePage['category']): Ins
   return insurancePages.filter(p => p.category === category);
 }
 
-export const personalInsurance = insurancePages.filter(p => p.category === 'personal');
-export const commercialInsurance = insurancePages.filter(p => p.category === 'commercial');
-export const propertyInsurance = insurancePages.filter(p => p.category === 'property');
+export const personalInsurance = insurancePages.filter(p => p.category === 'personal' && !p.geoVariant);
+export const commercialInsurance = insurancePages.filter(p => p.category === 'commercial' && !p.geoVariant);
+export const propertyInsurance = insurancePages.filter(p => p.category === 'property' && !p.geoVariant);
 
 export const carriers = [
   'Progressive', 'Travelers', 'Hartford', 'Liberty Mutual', 'Safeco',
