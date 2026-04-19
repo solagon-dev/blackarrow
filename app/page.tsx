@@ -136,7 +136,7 @@ export default async function Home() {
               </div>
             </div>
           </ScrollReveal>
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-gray-200">
             {personalInsurance.map((ins, idx) => (
               <ScrollReveal key={ins.slug} delay={idx * 50}>
                 <Link href={`/insurance/${ins.slug}`} className="bg-white p-5 sm:p-8 group block h-full hover:bg-gray-50 transition-colors duration-200">
