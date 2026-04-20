@@ -129,7 +129,7 @@ export default async function Home() {
           </ScrollReveal>
           <ScrollReveal>
             <div className="relative overflow-hidden mb-10 sm:mb-16 h-48 sm:h-72 lg:h-96">
-              <img src="/images/AdobeStock_300395016.jpeg" alt="Family at home" className="w-full h-full object-cover" loading="lazy" />
+              <img src="/images/AdobeStock_300395016.jpeg" alt="North Carolina family protected by BlackArrow Insurance home and auto coverage" className="w-full h-full object-cover" loading="lazy" />
               <div className="absolute inset-0 bg-gradient-to-r from-navy-900/50 to-transparent" />
               <div className="absolute bottom-8 left-8 sm:bottom-12 sm:left-12">
                 <p className="text-white text-xl sm:text-2xl font-display font-semibold max-w-md leading-snug">Protecting families across Eastern North Carolina</p>
@@ -169,7 +169,7 @@ export default async function Home() {
                   We work with businesses of all sizes to develop insurance programs that address real operational risks — not just check boxes.
                 </p>
                 <div className="overflow-hidden mb-10 h-44 sm:h-56 lg:h-64">
-                  <img src="/images/AdobeStock_415962919.jpeg" alt="Small business owners" className="w-full h-full object-cover" loading="lazy" />
+                  <img src="/images/AdobeStock_415962919.jpeg" alt="North Carolina small business owners protected by BlackArrow commercial insurance" className="w-full h-full object-cover" loading="lazy" />
                 </div>
                 <Link href="/quote" className="btn-primary">
                   Request a Business Quote
@@ -261,7 +261,7 @@ export default async function Home() {
             </ScrollReveal>
             <ScrollReveal className="lg:col-span-7" delay={100}>
               <div className="overflow-hidden">
-                <img src="/images/blackarrow-whiteville.jpg" alt="BlackArrow Insurance Whiteville office" className="w-full h-56 sm:h-80 lg:h-[28rem] object-cover" loading="lazy" />
+                <img src="/images/blackarrow-whiteville.jpg" alt="BlackArrow Insurance Whiteville, NC office at 301 Liberty Street" className="w-full h-56 sm:h-80 lg:h-[28rem] object-cover" loading="lazy" />
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-gray-200">
                 {[

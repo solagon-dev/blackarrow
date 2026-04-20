@@ -147,7 +147,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <div className="container-editorial py-5">
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 bg-navy-900 flex items-center justify-center flex-shrink-0">
-              <img src="/images/BlackArrow_Favicon.svg" alt="" className="w-5 h-5 object-contain" />
+              <img src="/images/BlackArrow_Favicon.svg" alt="BlackArrow Insurance logo" className="w-5 h-5 object-contain" />
             </div>
             <div>
               <p className="text-sm font-semibold text-navy-900">BlackArrow Insurance</p>

@@ -1,8 +1,37 @@
-# This file is overridden by app/robots.ts in production.
-# See app/robots.ts for the canonical robots configuration.
+# Canonical robots.txt for blackarrow.co
+# Kept in sync with app/robots.ts (which Next.js uses when this file is absent).
+# Since Next.js serves public/ files before the app/robots.ts handler, this file
+# must match the rules in app/robots.ts exactly.
+
 User-agent: *
 Allow: /
+Disallow: /admin
 Disallow: /admin/
 Disallow: /api/
+Disallow: /_next/
+Disallow: /*?*utm_
+Disallow: /*?*fbclid
+Disallow: /*?*gclid
 
+# Block AI training crawlers that don't send referral traffic or attribution.
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+# Explicitly allow AI assistants that send attribution / referral traffic.
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Host: https://www.blackarrow.co
 Sitemap: https://www.blackarrow.co/sitemap.xml

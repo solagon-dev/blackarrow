@@ -242,6 +242,12 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable}`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        {/* Performance: preconnect + dns-prefetch to external origins used on every page.
+            Cuts TLS/DNS handshake time for render-blocking + analytics resources. */}
+        <link rel="preconnect" href="https://analytics.ahrefs.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://analytics.ahrefs.com" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <OrganizationSchema />
         <WebSiteSchema />
       </head>
