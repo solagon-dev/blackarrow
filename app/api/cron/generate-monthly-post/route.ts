@@ -75,9 +75,13 @@ function unauthorized(message = 'Unauthorized') {
 }
 
 function verifyCronAuth(req: NextRequest): boolean {
-  const secret = process.env.CRON_SECRET
+  // Trim defensively — if CRON_SECRET was pasted with trailing whitespace in the
+  // Vercel env var UI, the literal value may contain characters that can't sit
+  // in an HTTP header. We compare trimmed-against-trimmed so a correctly-sent
+  // bearer token still matches even if the stored secret has stray whitespace.
+  const secret = (process.env.CRON_SECRET || '').trim()
   if (!secret) return false
-  const auth = req.headers.get('authorization')
+  const auth = (req.headers.get('authorization') || '').trim()
   return auth === `Bearer ${secret}`
 }
 
