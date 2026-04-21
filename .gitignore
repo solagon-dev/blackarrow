@@ -37,3 +37,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# FUSE filesystem artifacts (appear when files are renamed under a FUSE mount)
+.fuse_hidden*
