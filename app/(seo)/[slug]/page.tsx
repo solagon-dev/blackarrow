@@ -131,6 +131,8 @@ const serviceIcons: Record<string, string> = {
   'dump-straight-truck': 'cube',
   'commercial-property': 'building2',
   equipment: 'wrench',
+  flood: 'shield',
+  renters: 'home',
 }
 
 export default async function ServiceLocationPage({ params }: { params: Promise<{ slug: string }> }) {

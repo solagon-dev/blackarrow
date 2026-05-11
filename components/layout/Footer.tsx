@@ -1,7 +1,25 @@
 import Link from 'next/link'
 import { personalInsurance, commercialInsurance, propertyInsurance } from '@/lib/insurance-data'
 import { locationPages } from '@/lib/location-data'
+import { serviceLocationPages } from '@/lib/service-location-data'
 import { offices } from '@/lib/team-data'
+
+// Highest-traffic-potential city × service combinations. Hand-picked from
+// keyword volume + difficulty data (Ahrefs/GSC) so the footer concentrates
+// internal link equity on the most valuable landing pages, not all of them.
+const topCityServiceSlugs = [
+  'business-insurance-wilmington-nc',
+  'car-insurance-greenville-nc', // graceful no-op if slug doesn't exist
+  'home-insurance-wilmington-nc',
+  'flood-insurance-wilmington-nc',
+  'renters-insurance-wilmington-nc',
+  'workers-comp-greenville-nc',
+  'auto-insurance-greenville-nc',
+  'short-term-rental-insurance-wilmington-nc',
+]
+const topCityServicePages = topCityServiceSlugs
+  .map(s => serviceLocationPages.find(p => p.slug === s))
+  .filter((p): p is NonNullable<typeof p> => Boolean(p))
 
 const companyLinks = [
   { label: 'Our Story', href: '/our-story' },
@@ -129,6 +147,24 @@ export default function Footer() {
             </ul>
           </div>
         </div>
+
+        {/* By City × Service — internal link equity to highest-value local landing pages */}
+        {topCityServicePages.length > 0 && (
+          <div className="mt-12 sm:mt-16 pt-10 border-t border-white/10">
+            <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-6">By City &amp; Coverage</h4>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-3">
+              {topCityServicePages.map(p => (
+                <Link
+                  key={p.slug}
+                  href={`/${p.slug}`}
+                  className="text-sm text-navy-400 hover:text-white transition-colors"
+                >
+                  {p.serviceType} in {p.city}, {p.stateAbbr}
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Bottom Bar */}

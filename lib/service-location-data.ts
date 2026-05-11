@@ -45,8 +45,8 @@ export const serviceLocationPages: ServiceLocationPage[] = [
     serviceType: 'Home Insurance',
     insuranceSlug: 'homeowners',
     locationSlug: 'whiteville-nc',
-    seoTitle: 'Home Insurance in Whiteville, NC | BlackArrow Insurance',
-    seoDescription: 'Get homeowners insurance in Whiteville, NC from BlackArrow Insurance. We compare rates from 20+ carriers to protect your Columbus County home. Free quote available.',
+    seoTitle: 'Home Insurance in Whiteville, NC — Compare 20+ Carriers',
+    seoDescription: 'Home insurance in Whiteville, NC from a local independent agency. Compare quotes from 20+ carriers for Columbus County homes. Free quote in minutes.',
     heroHeading: 'Home Insurance in Whiteville, NC',
     heroDescription: 'Protect your Whiteville home with coverage tailored to Columbus County. BlackArrow Insurance compares homeowners policies from 20+ carriers to find the right protection at the right price for your property.',
     sections: [
@@ -99,8 +99,8 @@ export const serviceLocationPages: ServiceLocationPage[] = [
     serviceType: 'Auto Insurance',
     insuranceSlug: 'auto',
     locationSlug: 'whiteville-nc',
-    seoTitle: 'Auto Insurance in Whiteville, NC | BlackArrow Insurance',
-    seoDescription: 'Compare auto insurance rates in Whiteville, NC with BlackArrow Insurance. Independent agency with 20+ carriers. Get liability, collision, and comprehensive coverage. Free quote.',
+    seoTitle: 'Car Insurance in Whiteville, NC — Compare 20+ Carriers',
+    seoDescription: 'Car & auto insurance in Whiteville, NC. Compare liability, collision, and comprehensive quotes from 20+ carriers with a local independent agent. Free quote.',
     heroHeading: 'Auto Insurance in Whiteville, NC',
     heroDescription: 'BlackArrow Insurance helps Whiteville drivers find the right auto coverage at a competitive rate. We compare policies from 20+ carriers so you get the liability, collision, and comprehensive protection your situation requires.',
     sections: [
@@ -203,7 +203,7 @@ export const serviceLocationPages: ServiceLocationPage[] = [
     serviceType: 'Rental Property Insurance',
     insuranceSlug: 'rental-dwelling',
     locationSlug: 'whiteville-nc',
-    seoTitle: 'Rental Property Insurance in Whiteville, NC | BlackArrow Insurance',
+    seoTitle: 'Rental Property Insurance in Whiteville, NC — Landlord Coverage',
     seoDescription: 'Rental property insurance for Whiteville, NC landlords. BlackArrow Insurance covers rental dwellings, liability, and lost income. Compare rates from 20+ carriers.',
     heroHeading: 'Rental Property Insurance in Whiteville, NC',
     heroDescription: 'Protect your Whiteville rental properties with coverage designed for landlords. BlackArrow Insurance compares rental dwelling policies from 20+ carriers to cover your investment property, liability exposure, and rental income.',
@@ -259,8 +259,8 @@ export const serviceLocationPages: ServiceLocationPage[] = [
     serviceType: 'Home Insurance',
     insuranceSlug: 'homeowners',
     locationSlug: 'greenville-nc',
-    seoTitle: 'Home Insurance in Greenville, NC | BlackArrow Insurance',
-    seoDescription: 'Homeowners insurance in Greenville, NC from BlackArrow Insurance. Compare rates from 20+ carriers for homes in Pitt County. Get your free quote today.',
+    seoTitle: 'Home Insurance in Greenville, NC — Compare 20+ Carriers',
+    seoDescription: 'Home insurance in Greenville, NC from a local independent agency. Compare quotes from 20+ carriers — including flood and wind coverage for Pitt County homes. Free quote.',
     heroHeading: 'Home Insurance in Greenville, NC',
     heroDescription: 'BlackArrow Insurance has been helping Greenville homeowners find the right coverage since 2002. We compare homeowners policies from 20+ carriers to protect homes across Pitt County — from historic Uptown residences to new construction in Winterville.',
     sections: [
@@ -313,8 +313,8 @@ export const serviceLocationPages: ServiceLocationPage[] = [
     serviceType: 'Auto Insurance',
     insuranceSlug: 'auto',
     locationSlug: 'greenville-nc',
-    seoTitle: 'Auto Insurance in Greenville, NC | BlackArrow Insurance',
-    seoDescription: 'Compare auto insurance rates in Greenville, NC. BlackArrow Insurance shops 20+ carriers for the best coverage and price. Liability, collision, comprehensive. Free quote.',
+    seoTitle: 'Car Insurance in Greenville, NC — Compare 20+ Carriers',
+    seoDescription: 'Car & auto insurance in Greenville, NC. Compare liability, collision, and comprehensive quotes from 20+ carriers. Local agency, free quote in minutes.',
     heroHeading: 'Auto Insurance in Greenville, NC',
     heroDescription: 'Find the right auto insurance for Greenville driving conditions. BlackArrow Insurance compares policies from 20+ carriers to deliver coverage that protects you on campus corridors, the Greenville Boulevard corridor, and everywhere in between.',
     sections: [
@@ -364,8 +364,8 @@ export const serviceLocationPages: ServiceLocationPage[] = [
     serviceType: 'Commercial Insurance',
     insuranceSlug: 'general-liability',
     locationSlug: 'greenville-nc',
-    seoTitle: 'Commercial Insurance in Greenville, NC | BlackArrow Insurance',
-    seoDescription: 'Commercial insurance for Greenville, NC businesses. General liability, commercial property, workers comp, and cyber liability from 20+ carriers. Free business insurance quote.',
+    seoTitle: 'Business Insurance in Greenville, NC — General Liability, BOP & More',
+    seoDescription: 'Business insurance in Greenville, NC. General liability, commercial property, workers comp, and cyber from 20+ carriers. Compare quotes with a local independent agent.',
     heroHeading: 'Commercial Insurance in Greenville, NC',
     heroDescription: 'BlackArrow Insurance builds commercial coverage programs for Greenville businesses — from restaurants and retail on Evans Street to medical practices near ECU Health. We compare options from 20+ carriers to protect your operation.',
     sections: [
@@ -416,7 +416,7 @@ export const serviceLocationPages: ServiceLocationPage[] = [
     serviceType: 'Rental Property Insurance',
     insuranceSlug: 'rental-dwelling',
     locationSlug: 'greenville-nc',
-    seoTitle: 'Rental Property Insurance in Greenville, NC | BlackArrow Insurance',
+    seoTitle: 'Rental Property Insurance in Greenville, NC — Landlord Coverage',
     seoDescription: 'Rental property insurance for Greenville, NC landlords. Protect student housing, single-family rentals, and investment properties. Compare rates from 20+ carriers.',
     heroHeading: 'Rental Property Insurance in Greenville, NC',
     heroDescription: 'Greenville\'s strong rental market — fueled by ECU and a growing professional workforce — demands insurance built for landlords. BlackArrow Insurance compares rental dwelling policies from 20+ carriers to protect your investment.',
@@ -473,7 +473,7 @@ export const serviceLocationPages: ServiceLocationPage[] = [
     serviceType: 'Home Insurance',
     insuranceSlug: 'homeowners',
     locationSlug: 'wilmington-nc',
-    seoTitle: 'Home Insurance in Wilmington, NC | BlackArrow Insurance',
+    seoTitle: 'Home Insurance in Wilmington, NC — Coastal Coverage from 20+ Carriers',
     seoDescription: 'Home insurance in Wilmington, NC for coastal properties. BlackArrow Insurance compares rates from 20+ carriers including wind, hail, and flood coverage options. Free quote.',
     heroHeading: 'Home Insurance in Wilmington, NC',
     heroDescription: 'Coastal homeowners insurance requires specialized knowledge. BlackArrow Insurance helps Wilmington homeowners navigate wind pools, flood zones, and percentage deductibles by comparing coverage from 20+ carriers familiar with the New Hanover County market.',
@@ -527,7 +527,7 @@ export const serviceLocationPages: ServiceLocationPage[] = [
     serviceType: 'Auto Insurance',
     insuranceSlug: 'auto',
     locationSlug: 'wilmington-nc',
-    seoTitle: 'Auto Insurance in Wilmington, NC | BlackArrow Insurance',
+    seoTitle: 'Car Insurance in Wilmington, NC — Compare 20+ Carriers',
     seoDescription: 'Auto insurance in Wilmington, NC. BlackArrow Insurance compares rates from 20+ carriers. Liability, collision, comprehensive coverage for coastal drivers. Get a free quote.',
     heroHeading: 'Auto Insurance in Wilmington, NC',
     heroDescription: 'Wilmington\'s growing population and coastal weather create unique auto insurance needs. BlackArrow Insurance compares policies from 20+ carriers to find coverage that protects you on Market Street, the I-140 bypass, and throughout New Hanover County.',
@@ -578,8 +578,8 @@ export const serviceLocationPages: ServiceLocationPage[] = [
     serviceType: 'Commercial Insurance',
     insuranceSlug: 'general-liability',
     locationSlug: 'wilmington-nc',
-    seoTitle: 'Commercial Insurance in Wilmington, NC | BlackArrow Insurance',
-    seoDescription: 'Commercial insurance for Wilmington, NC businesses. General liability, commercial property, workers comp, and coastal business coverage. Compare 20+ carriers. Free quote.',
+    seoTitle: 'Business Insurance in Wilmington, NC — Compare 20+ Carriers',
+    seoDescription: 'Business insurance in Wilmington, NC. General liability, commercial property, workers comp, and coastal business coverage from 20+ carriers. Local independent agent.',
     heroHeading: 'Commercial Insurance in Wilmington, NC',
     heroDescription: 'BlackArrow Insurance provides commercial coverage for Wilmington businesses navigating the unique risks of operating in a coastal market. We compare options from 20+ carriers to protect your business, your team, and your assets.',
     sections: [
@@ -630,7 +630,7 @@ export const serviceLocationPages: ServiceLocationPage[] = [
     serviceType: 'Rental Property Insurance',
     insuranceSlug: 'rental-dwelling',
     locationSlug: 'wilmington-nc',
-    seoTitle: 'Rental Property Insurance in Wilmington, NC | BlackArrow Insurance',
+    seoTitle: 'Landlord Insurance in Wilmington, NC — Rental Property Coverage',
     seoDescription: 'Rental property insurance for Wilmington, NC landlords and coastal investors. Coverage for long-term rentals, beach properties, and investment portfolios. 20+ carriers.',
     heroHeading: 'Rental Property Insurance in Wilmington, NC',
     heroDescription: 'Protect your Wilmington rental investment with coverage designed for coastal landlords. BlackArrow Insurance compares rental property policies from 20+ carriers to cover your property, your liability, and your rental income.',
@@ -683,7 +683,7 @@ export const serviceLocationPages: ServiceLocationPage[] = [
     serviceType: 'Short-Term Rental Insurance',
     insuranceSlug: 'short-term-rental',
     locationSlug: 'wilmington-nc',
-    seoTitle: 'Short-Term Rental Insurance in Wilmington, NC | BlackArrow Insurance',
+    seoTitle: 'Airbnb & Short-Term Rental Insurance in Wilmington, NC',
     seoDescription: 'Short-term rental insurance for Wilmington vacation properties. Coverage for Airbnb, VRBO, and beach rentals. Protect your coastal investment. 20+ carriers compared.',
     heroHeading: 'Short-Term Rental Insurance in Wilmington, NC',
     heroDescription: 'Wilmington\'s vacation rental market demands insurance built for short-term stays. BlackArrow Insurance provides specialized coverage for Airbnb, VRBO, and independently managed beach and coastal vacation properties.',
@@ -942,6 +942,513 @@ export const serviceLocationPages: ServiceLocationPage[] = [
       { question: 'Do I need separate insurance for each rental property?', answer: 'Yes. Each rental property should carry its own policy with coverage limits appropriate to that specific property\'s replacement cost, location, and tenant type.' },
       { question: 'Does rental property insurance cover tenant damage?', answer: 'Coverage varies by policy. Some policies cover damage beyond normal wear and tear. Our agents help you find policies that provide the level of tenant damage protection your properties need.' },
       { question: 'Can I insure multiple Raleigh rental properties with one agency?', answer: 'Absolutely. We manage rental property insurance programs for investors with single properties and large portfolios alike. Managing all your properties through one agency simplifies administration and may unlock multi-policy pricing advantages.' },
+    ],
+  },
+
+  // ============================================================
+  // BUSINESS INSURANCE — WILMINGTON (sister to commercial-, targets
+  // "business insurance wilmington nc" — 900 vol, KD 12, CPC $30)
+  // ============================================================
+  {
+    slug: 'business-insurance-wilmington-nc',
+    city: 'Wilmington',
+    stateAbbr: 'NC',
+    serviceType: 'Business Insurance',
+    insuranceSlug: 'general-liability',
+    locationSlug: 'wilmington-nc',
+    seoTitle: 'Business Insurance in Wilmington, NC — Compare 20+ Carriers',
+    seoDescription: 'Business insurance in Wilmington, NC: general liability, BOP, workers comp, commercial property, and cyber. Compare 20+ carriers with a local independent agent. Free quote.',
+    heroHeading: 'Business Insurance in Wilmington, NC',
+    heroDescription: 'From Wrightsville Beach restaurants to Mayfaire medical practices to downtown professional services firms, Wilmington businesses need coverage that addresses both standard business risks and coastal exposures. BlackArrow Insurance compares business insurance programs from 20+ carriers to protect your operation, employees, and assets.',
+    sections: [
+      {
+        heading: 'Why Wilmington Businesses Need a Custom Insurance Program',
+        label: 'Local Business Coverage',
+        content: [
+          'Wilmington\'s economy spans tourism and hospitality, film production, healthcare, technology, restaurants, retail, and maritime industries — each with distinct insurance needs. A Carolina Beach surf shop and a Mayfaire orthopedic clinic both need general liability, but the right combination of property, business interruption, professional liability, and workers compensation coverage looks completely different.',
+          'Layer on coastal risk — hurricanes, flooding, salt air corrosion, and seasonal revenue swings — and "off-the-shelf" business insurance leaves dangerous gaps. The right Wilmington business insurance program addresses both your standard operating risks and the coastal exposures that inland businesses do not face.',
+        ],
+      },
+      {
+        heading: 'Why Local Wilmington Businesses Choose BlackArrow',
+        label: 'Our Advantage',
+        content: [
+          'We compare quotes across 20+ business insurance carriers — including coastal specialists that many single-carrier agencies don\'t represent. This means better pricing on commercial property in storm-exposed ZIP codes, more flexible business interruption coverage, and access to specialty markets for higher-risk industries.',
+          'Our agents take the time to understand your operation before quoting coverage. We map your specific risks — guest injuries, employee claims, cyber exposure, business income loss — to the right combination of policies, then shop the program annually to keep premiums in check.',
+        ],
+      },
+    ],
+    coverageItems: [
+      { title: 'General Liability ($1M / $2M Aggregate)', description: 'Covers third-party injury and property damage claims. The starting point for most Wilmington businesses — restaurants, retail, professional services, contractors, and hospitality all need GL.' },
+      { title: 'Business Owner\'s Policy (BOP)', description: 'Bundles general liability, commercial property, and business interruption into one policy. Ideal for small businesses with a physical location and under ~100 employees.' },
+      { title: 'Workers\' Compensation', description: 'Required by NC for most businesses with 3+ employees. Covers medical bills and lost wages for employees injured on the job — protects your business from related lawsuits.' },
+      { title: 'Commercial Property (Coastal-Rated)', description: 'Protects your buildings, equipment, and inventory from fire, theft, vandalism, and weather. Coastal Wilmington policies require careful attention to wind deductibles and flood exclusions.' },
+      { title: 'Business Interruption', description: 'Replaces lost revenue and covers ongoing expenses (rent, payroll, utilities) if a covered event — like a hurricane — forces a temporary closure.' },
+      { title: 'Cyber Liability', description: 'Covers data breach response, ransomware, and regulatory fines. Increasingly essential for any Wilmington business handling customer data or payment information.' },
+    ],
+    tips: [
+      { title: 'Don\'t Assume Your Property Policy Covers Floods', description: 'Standard commercial property insurance excludes flood damage. If your Wilmington business is in or near a FEMA-designated flood zone, a separate commercial flood policy is critical. Hurricane Florence proved how widespread coastal flooding can be.' },
+      { title: 'Review Wind Deductibles Before Hurricane Season', description: 'Coastal commercial policies often have percentage-based wind deductibles (1–5% of building coverage). On a $500,000 building, a 2% deductible means $10,000 out of pocket. Know your exposure before a storm forms.' },
+      { title: 'Bundle GL + Property into a BOP', description: 'Most Wilmington small businesses save 10–20% by bundling general liability and commercial property into a single Business Owner\'s Policy versus carrying separate policies. We quote both ways to show you the savings.' },
+    ],
+    relatedServices: [
+      { label: 'Commercial Insurance in Wilmington', insuranceSlug: 'general-liability', serviceLocationSlug: 'commercial-insurance-wilmington-nc' },
+      { label: 'Commercial Auto Insurance', insuranceSlug: 'commercial-auto' },
+      { label: 'Workers\' Compensation', insuranceSlug: 'workers-compensation' },
+      { label: 'Cyber Liability Insurance', insuranceSlug: 'cyber-liability' },
+    ],
+    surroundingAreas: ['Wrightsville Beach', 'Carolina Beach', 'Kure Beach', 'Leland', 'Hampstead', 'Porters Neck', 'Ogden', 'Monkey Junction', 'Castle Hayne'],
+    faqItems: [
+      { question: 'How much does business insurance cost in Wilmington, NC?', answer: 'Business insurance costs in Wilmington vary widely by industry, size, and risk profile. A small retail or professional services BOP typically runs $600–$1,500/year; a contractor with employees can range $3,000–$10,000+/year combining GL and workers comp. We compare quotes from 20+ carriers to find competitive pricing for your specific operation.' },
+      { question: 'What insurance do Wilmington restaurants need?', answer: 'Wilmington restaurants typically need a Business Owner\'s Policy (GL + commercial property), workers compensation, liquor liability if serving alcohol, food contamination/spoilage coverage, and commercial auto if offering delivery. We build customized programs for the Wilmington restaurant scene.' },
+      { question: 'Is business insurance required by law in NC?', answer: 'Workers\' compensation is required by NC for most employers with 3+ employees. General liability is not legally mandated but is typically required by commercial leases, client contracts, and licensing requirements. We help businesses meet both statutory and contractual insurance requirements.' },
+      { question: 'Does business insurance cover hurricane damage in Wilmington?', answer: 'Commercial property insurance covers wind and storm damage, but flood damage typically requires a separate flood policy. Business interruption coverage can replace lost revenue during a storm-related closure. We layer wind, flood, and business interruption coverage to provide comprehensive storm protection.' },
+    ],
+  },
+
+  // ============================================================
+  // RENTERS INSURANCE — WILMINGTON
+  // ("renters insurance wilmington nc" — 300 vol, KD 3, CPC $9)
+  // ============================================================
+  {
+    slug: 'renters-insurance-wilmington-nc',
+    city: 'Wilmington',
+    stateAbbr: 'NC',
+    serviceType: 'Renters Insurance',
+    insuranceSlug: 'renters',
+    locationSlug: 'wilmington-nc',
+    seoTitle: 'Renters Insurance in Wilmington, NC — From $12/month',
+    seoDescription: 'Renters insurance in Wilmington, NC starting around $12/month. Personal property, liability, and additional living expenses for UNCW students and Wilmington tenants. Free quote.',
+    heroHeading: 'Renters Insurance in Wilmington, NC',
+    heroDescription: 'Whether you rent near UNCW, downtown, Mayfaire, or along the beach, renters insurance protects your belongings and shields you from liability — usually for less than $25 per month. BlackArrow Insurance compares renters quotes from 20+ carriers for Wilmington tenants.',
+    sections: [
+      {
+        heading: 'Why Renters Insurance Matters in Wilmington',
+        label: 'Local Considerations',
+        content: [
+          'Your landlord\'s insurance covers their building — not your stuff. If a kitchen fire ruins your laptop, a burst pipe destroys your bedroom furniture, or a thief breaks in and steals your bike, your landlord\'s policy will not pay you a dime. Renters insurance fills that gap.',
+          'Wilmington adds a few specific concerns. Hurricane-force winds and tropical storms can damage your personal property even when the building remains structurally intact. UNCW-area apartments see seasonal turnover and elevated theft risk during break periods. And liability exposure is real — if your dog bites a guest, you accidentally cause a fire, or someone slips in your apartment, your policy pays.',
+          'Most renters policies in Wilmington cost between $12 and $25 per month, and bundling with auto insurance often saves another 10–15%.',
+        ],
+      },
+      {
+        heading: 'Why Wilmington Renters Choose BlackArrow',
+        label: 'Our Advantage',
+        content: [
+          'We compare renters insurance from 20+ carriers — many you can\'t get from a single-carrier agent or a national direct-to-consumer brand. The right policy depends on your belongings, your building type, and your bundled auto insurance carrier. We do the comparison work so you get the right coverage at the right price.',
+          'Our agents help Wilmington tenants understand what\'s covered, what\'s NOT covered (most importantly, flooding), and which optional endorsements actually matter for renters in coastal NC.',
+        ],
+      },
+    ],
+    coverageItems: [
+      { title: 'Personal Property Coverage', description: 'Replaces your belongings if they\'re damaged or stolen — furniture, electronics, clothing, kitchen items. Coverage extends to belongings outside your apartment, including items in your car or while traveling.' },
+      { title: 'Personal Liability ($100k+)', description: 'Pays legal and medical costs if a guest is injured in your apartment, or if you accidentally damage another tenant\'s property (think: bathtub overflow into the unit below).' },
+      { title: 'Additional Living Expenses', description: 'Covers hotel bills, restaurant meals, and extra costs if a covered event — fire, water damage — forces you to live elsewhere temporarily.' },
+      { title: 'Medical Payments to Others', description: 'Pays minor guest medical bills regardless of fault. Useful for small claims that don\'t rise to the level of a liability lawsuit.' },
+    ],
+    tips: [
+      { title: 'Bundle With Auto for 10–15% Off', description: 'Combining renters and auto insurance through the same carrier almost always saves money on both policies. If you have auto insurance, ask us to quote renters with your current carrier as a baseline.' },
+      { title: 'Get Flood Insurance Separately If You\'re Near the Coast', description: 'Renters insurance does NOT cover flood damage to your belongings. If you rent in a coastal area, near the Cape Fear River, or in a flood-prone neighborhood, ask about NFIP contents-only flood coverage — typically $50–$150/year for renters.' },
+      { title: 'Document Your Stuff With Photos', description: 'After signing the policy, walk through your apartment and photograph everything — closets, electronics, furniture, kitchen drawers. Email the photos to yourself. If you ever file a claim, the documentation makes the process dramatically faster.' },
+    ],
+    relatedServices: [
+      { label: 'Renters Insurance Coverage Details', insuranceSlug: 'renters' },
+      { label: 'Auto Insurance in Wilmington', insuranceSlug: 'auto', serviceLocationSlug: 'auto-insurance-wilmington-nc' },
+      { label: 'Home Insurance in Wilmington', insuranceSlug: 'homeowners', serviceLocationSlug: 'home-insurance-wilmington-nc' },
+      { label: 'Life Insurance', insuranceSlug: 'life' },
+    ],
+    surroundingAreas: ['Wrightsville Beach', 'Carolina Beach', 'Kure Beach', 'Leland', 'Hampstead', 'Porters Neck', 'Ogden', 'Castle Hayne'],
+    faqItems: [
+      { question: 'How much does renters insurance cost in Wilmington?', answer: 'Most renters insurance policies in Wilmington cost $12–$25 per month for standard coverage ($25,000–$50,000 personal property, $100,000 liability). Bundling with auto insurance can cut the cost further. Apartments in higher-theft ZIP codes price slightly higher.' },
+      { question: 'Is renters insurance required in NC?', answer: 'NC law does not require renters insurance, but most Wilmington landlords require it as a lease condition — especially apartments near UNCW, downtown, and Mayfaire. Even when not required, it\'s strongly recommended.' },
+      { question: 'Does renters insurance cover hurricane damage to my belongings?', answer: 'Renters insurance typically covers personal property damaged by wind (e.g., a tree falls through the roof and damages your stuff) but does NOT cover flood damage. For comprehensive hurricane coverage, layer renters insurance with a contents-only NFIP flood policy.' },
+      { question: 'Will my renters insurance cover my bike or laptop stolen from my car?', answer: 'Yes — personal property coverage typically extends to belongings stolen from your car, with some sub-limits. High-value items like expensive bikes, cameras, or jewelry may exceed standard sub-limits and benefit from a scheduled personal property endorsement.' },
+    ],
+  },
+
+  // ============================================================
+  // FLOOD INSURANCE — 4 city pages
+  // ============================================================
+  {
+    slug: 'flood-insurance-wilmington-nc',
+    city: 'Wilmington',
+    stateAbbr: 'NC',
+    serviceType: 'Flood Insurance',
+    insuranceSlug: 'flood',
+    locationSlug: 'wilmington-nc',
+    seoTitle: 'Flood Insurance in Wilmington, NC — NFIP & Private Flood',
+    seoDescription: 'Flood insurance in Wilmington, NC. Coastal flood zones, NFIP policies, and private flood alternatives. Get coverage before hurricane season. Free quote from a local agent.',
+    heroHeading: 'Flood Insurance in Wilmington, NC',
+    heroDescription: 'Wilmington\'s coastal location, intracoastal waterway, and Cape Fear River basin create extensive flood exposure that standard homeowners insurance does not cover. BlackArrow Insurance writes both NFIP (federal) and private flood policies for Wilmington homes, rentals, and businesses.',
+    sections: [
+      {
+        heading: 'Why Wilmington Properties Need Flood Insurance',
+        label: 'Coastal Flood Risk',
+        content: [
+          'Wilmington and the surrounding New Hanover, Brunswick, and Pender counties contain extensive FEMA-designated flood zones. Properties in AE and VE zones are required by federally-backed lenders to carry flood insurance. But the bigger story is the un-mapped risk: Hurricane Florence (2018) caused billions in flood damage across the region, and many of the worst-hit properties were outside designated high-risk zones.',
+          'Standard homeowners insurance explicitly excludes flood damage. Without a separate flood policy, your home\'s structure, your belongings, and your finances are completely exposed to the most common natural disaster in coastal North Carolina.',
+        ],
+      },
+      {
+        heading: 'NFIP vs. Private Flood — What\'s Right for Your Wilmington Property?',
+        label: 'Coverage Options',
+        content: [
+          'For decades, the National Flood Insurance Program (NFIP) was the only option for most NC homeowners. It still works well — but it has limits: $250,000 maximum building coverage, $100,000 maximum contents, a 30-day waiting period, and limited additional living expenses coverage.',
+          'Private flood insurance has expanded dramatically. For newer construction, higher-elevation properties, and homes in mapped flood zones with strong elevation certificates, private flood often costs less than NFIP — and frequently includes broader coverage like temporary living expenses, higher contents limits, and faster effective dates.',
+          'We compare both NFIP and private flood quotes to find the right fit for your Wilmington property.',
+        ],
+      },
+    ],
+    coverageItems: [
+      { title: 'Building Property Coverage', description: 'Pays to repair or replace your home\'s structure after flood damage. NFIP caps building coverage at $250,000; private flood often goes higher — important given Wilmington\'s coastal construction costs.' },
+      { title: 'Personal Contents Coverage', description: 'Covers furniture, electronics, and personal belongings damaged by flooding. NFIP caps at $100,000; private flood often offers higher limits with replacement cost (rather than actual cash value).' },
+      { title: 'Hurricane Storm Surge Coverage', description: 'Hurricane Florence drove storm surge well inland of mapped V-zones. Both NFIP and private flood cover storm surge — wind alone does not.' },
+      { title: 'Additional Living Expenses (Private Flood)', description: 'NFIP does not cover temporary housing if your home is uninhabitable. Most private flood policies include ALE coverage — critical for major storm displacement.' },
+    ],
+    tips: [
+      { title: 'Don\'t Wait Until Hurricane Season', description: 'NFIP policies have a 30-day waiting period before coverage starts. Bind your flood insurance well before June 1 each year. Private flood policies often start within 14 days but get expensive in the days before a named storm.' },
+      { title: 'Get an Elevation Certificate', description: 'For properties in mapped flood zones, an elevation certificate from a licensed surveyor can dramatically reduce your premium — often by hundreds or thousands of dollars per year. The certificate is a one-time cost; the savings recur annually.' },
+      { title: 'Check Your Map Designation Annually', description: 'FEMA flood maps update. Your property may move into or out of a high-risk zone, and the policy implications are significant. Our agents help Wilmington homeowners stay on top of these changes.' },
+    ],
+    relatedServices: [
+      { label: 'Flood Insurance Coverage Details', insuranceSlug: 'flood' },
+      { label: 'Home Insurance in Wilmington', insuranceSlug: 'homeowners', serviceLocationSlug: 'home-insurance-wilmington-nc' },
+      { label: 'Landlord Insurance in Wilmington', insuranceSlug: 'rental-dwelling', serviceLocationSlug: 'rental-property-insurance-wilmington-nc' },
+      { label: 'Vacant Property Insurance', insuranceSlug: 'vacant-unoccupied' },
+    ],
+    surroundingAreas: ['Wrightsville Beach', 'Carolina Beach', 'Kure Beach', 'Leland', 'Hampstead', 'Porters Neck', 'Ogden', 'Castle Hayne'],
+    faqItems: [
+      { question: 'How much is flood insurance in Wilmington, NC?', answer: 'Flood insurance costs in Wilmington range widely. Low-risk X-zone homes can cost $400–$700/year through NFIP. Mid-risk AE-zone homes typically run $1,200–$2,500/year. High-risk VE-zone beachfront properties can range $4,000–$10,000+. Private flood is often less expensive for newer, higher-elevation properties — we compare both to find your best option.' },
+      { question: 'Do I need flood insurance if I\'m not in a flood zone?', answer: 'Federal law does not require flood insurance for properties outside FEMA-designated high-risk zones — but Hurricane Florence flooded many properties that were technically outside the mapped zones. If your Wilmington property is near the coast, the Cape Fear River, or in a low-lying area, flood coverage is strongly recommended regardless of zone.' },
+      { question: 'Does flood insurance cover hurricane damage?', answer: 'Flood insurance covers water damage from rising water — including storm surge during hurricanes. Wind damage from hurricanes is covered by your homeowners or commercial property policy. The two policies work together to provide complete hurricane coverage.' },
+      { question: 'How long does it take to get flood insurance in NC?', answer: 'NFIP policies have a 30-day waiting period before coverage takes effect (with some exceptions for new home purchases). Private flood policies typically take effect within 14 days, sometimes sooner. Bind your policy well before a named storm threatens — coverage cannot be added in the days before a hurricane.' },
+    ],
+  },
+  {
+    slug: 'flood-insurance-greenville-nc',
+    city: 'Greenville',
+    stateAbbr: 'NC',
+    serviceType: 'Flood Insurance',
+    insuranceSlug: 'flood',
+    locationSlug: 'greenville-nc',
+    seoTitle: 'Flood Insurance in Greenville, NC — Tar River & Pitt County',
+    seoDescription: 'Flood insurance in Greenville, NC for the Tar River basin and Pitt County. NFIP and private flood policies. Hurricane Floyd and Matthew flood lessons. Free quote.',
+    heroHeading: 'Flood Insurance in Greenville, NC',
+    heroDescription: 'Greenville and Pitt County have been hit hard by past flood events — Hurricane Floyd (1999), Matthew (2016), and Florence (2018) all caused widespread Tar River flooding well outside mapped high-risk zones. BlackArrow Insurance writes NFIP and private flood policies for Greenville homeowners and landlords.',
+    sections: [
+      {
+        heading: 'Why Greenville Properties Need Flood Insurance',
+        label: 'Tar River Flood Risk',
+        content: [
+          'The Tar River runs through the heart of Greenville and has repeatedly flooded the city and surrounding neighborhoods after tropical storm events. Hurricane Floyd in 1999 caused historic flooding that displaced thousands of Pitt County residents — many of them outside the FEMA-mapped high-risk flood zones at the time.',
+          'Standard homeowners insurance explicitly excludes flood damage. A separate flood policy — either NFIP or private — is the only way to protect your Greenville home, rental property, or business from this very real risk.',
+        ],
+      },
+      {
+        heading: 'NFIP vs. Private Flood for Greenville Homeowners',
+        label: 'Coverage Options',
+        content: [
+          'The National Flood Insurance Program (NFIP) provides a baseline of flood coverage backed by the federal government. It caps building coverage at $250,000 and contents at $100,000, with a 30-day waiting period before coverage starts.',
+          'Private flood insurance has expanded significantly in NC. For Greenville homes outside the highest-risk zones — and especially newer construction at elevation — private flood often costs less than NFIP while offering higher limits, faster effective dates, and additional living expense coverage. We compare both to find the right fit.',
+        ],
+      },
+    ],
+    coverageItems: [
+      { title: 'Building Property Coverage', description: 'Pays to repair or replace your home\'s structure after flood damage. NFIP caps at $250,000; private flood often offers higher limits.' },
+      { title: 'Personal Contents Coverage', description: 'Covers furniture, electronics, and belongings damaged by flooding. NFIP caps at $100,000.' },
+      { title: 'Coverage for Riverine Flooding', description: 'Tar River overbank flooding from tropical systems is a covered cause of loss under both NFIP and private flood policies — but only if you have a flood policy in force before the event.' },
+      { title: 'Additional Living Expenses (Private Flood)', description: 'NFIP does not cover temporary housing while your home is uninhabitable. Private flood typically does.' },
+    ],
+    tips: [
+      { title: 'Map Updates Have Shifted Many Greenville Properties', description: 'FEMA flood maps for Pitt County have been revised multiple times since Hurricane Floyd. Your property\'s designation may have changed. Get a current zone determination before assuming you don\'t need coverage.' },
+      { title: 'Bind Coverage Before Hurricane Season', description: 'NFIP\'s 30-day waiting period means a policy bought in late August offers no coverage for a September hurricane. Bind by May 1 each year for full hurricane-season protection.' },
+      { title: 'Document Your Pre-Storm Property Value', description: 'Photograph and inventory your home and belongings annually. Greenville flood claims often involve disputes over pre-loss condition and value — documentation accelerates claims.' },
+    ],
+    relatedServices: [
+      { label: 'Flood Insurance Coverage Details', insuranceSlug: 'flood' },
+      { label: 'Home Insurance in Greenville', insuranceSlug: 'homeowners', serviceLocationSlug: 'home-insurance-greenville-nc' },
+      { label: 'Rental Property Insurance in Greenville', insuranceSlug: 'rental-dwelling', serviceLocationSlug: 'rental-property-insurance-greenville-nc' },
+      { label: 'Business Insurance in Greenville', insuranceSlug: 'general-liability', serviceLocationSlug: 'commercial-insurance-greenville-nc' },
+    ],
+    surroundingAreas: ['Winterville', 'Ayden', 'Farmville', 'Bethel', 'Grimesland', 'Simpson', 'Stokes', 'Pactolus'],
+    faqItems: [
+      { question: 'Is flood insurance required in Greenville, NC?', answer: 'Flood insurance is required for homes in FEMA-designated high-risk flood zones (AE, A, VE) with federally-backed mortgages. Properties outside high-risk zones are not legally required to carry flood coverage, but past Tar River flood events have made it advisable for many Greenville homeowners.' },
+      { question: 'Does flood insurance cover damage from Tar River flooding?', answer: 'Yes — both NFIP and private flood policies cover riverine flood damage, including overbank flooding from the Tar River during tropical storms or heavy rainfall. The key requirement is that your policy must be in force before the flood event — including the 30-day NFIP waiting period.' },
+      { question: 'How much does flood insurance cost in Greenville?', answer: 'Flood insurance costs in Greenville vary by zone, elevation, and construction. Low-risk X zones can cost $400–$700/year through NFIP. Mid-risk AE zones near the Tar River typically range $1,200–$2,500/year. We compare NFIP and private quotes to find the best price for your property.' },
+    ],
+  },
+  {
+    slug: 'flood-insurance-whiteville-nc',
+    city: 'Whiteville',
+    stateAbbr: 'NC',
+    serviceType: 'Flood Insurance',
+    insuranceSlug: 'flood',
+    locationSlug: 'whiteville-nc',
+    seoTitle: 'Flood Insurance in Whiteville, NC — Columbus County Coverage',
+    seoDescription: 'Flood insurance in Whiteville, NC and Columbus County. NFIP and private flood policies for properties near the Waccamaw River and Lake Waccamaw. Free quote.',
+    heroHeading: 'Flood Insurance in Whiteville, NC',
+    heroDescription: 'Whiteville and Columbus County properties — particularly those near the Waccamaw River, Lake Waccamaw, and the low-lying southeastern NC landscape — face flood exposure that standard homeowners insurance does not cover. BlackArrow Insurance writes both NFIP and private flood policies for the Whiteville area.',
+    sections: [
+      {
+        heading: 'Why Columbus County Properties Need Flood Insurance',
+        label: 'Local Flood Risk',
+        content: [
+          'Columbus County\'s landscape — characterized by low elevation, the Waccamaw River basin, Lake Waccamaw, and proximity to coastal weather systems — creates significant flood exposure. Hurricane Florence in 2018 caused historic flooding across Columbus County, including in Fair Bluff, Tabor City, and rural Whiteville-area properties.',
+          'Standard homeowners insurance explicitly excludes flood damage. For Whiteville homeowners, landlords, and property investors, a separate flood policy is the only way to protect against rising water from rivers, lakes, or storm runoff.',
+        ],
+      },
+      {
+        heading: 'NFIP vs. Private Flood for Whiteville Homeowners',
+        label: 'Coverage Options',
+        content: [
+          'The National Flood Insurance Program (NFIP) provides federal-backed flood coverage with standardized pricing. It works well for properties in mapped high-risk zones but has limits — $250,000 maximum building coverage, $100,000 maximum contents, and a 30-day waiting period.',
+          'Private flood insurance has expanded in NC and is often a better fit for newer Whiteville construction or properties at elevation. Private flood can offer higher limits, additional living expense coverage, faster effective dates, and sometimes lower premiums than NFIP. We compare both for every Whiteville client.',
+        ],
+      },
+    ],
+    coverageItems: [
+      { title: 'Building Property Coverage', description: 'Pays to repair or replace your home\'s structure after flood damage. Essential for properties near the Waccamaw River or in low-lying Columbus County areas.' },
+      { title: 'Personal Contents Coverage', description: 'Covers furniture, appliances, and belongings damaged by flooding. NFIP caps contents at $100,000; private flood often offers more.' },
+      { title: 'Coverage for River and Lake Flooding', description: 'Waccamaw River overbank flooding and Lake Waccamaw shoreline flooding are both covered causes of loss — provided you have an active flood policy.' },
+      { title: 'Additional Living Expenses (Private Flood)', description: 'NFIP does not cover temporary housing while your home is uninhabitable. Private flood typically does.' },
+    ],
+    tips: [
+      { title: 'Don\'t Skip Coverage Just Because You\'re Not Riverfront', description: 'Hurricane Florence flooded properties in Columbus County that were nowhere near the Waccamaw River — overland runoff and tropical storm rain can flood low-lying properties miles from any waterway. Coverage is affordable for low-risk zones; the cost-benefit is strongly in favor of carrying it.' },
+      { title: 'Get an Elevation Certificate If You\'re in a Mapped Zone', description: 'If your Whiteville property is in an AE or VE zone, a licensed surveyor\'s elevation certificate can substantially lower your NFIP premium — often paying for itself in the first year.' },
+      { title: 'Bind Coverage Before Hurricane Season', description: 'NFIP\'s 30-day waiting period means a policy bound on August 1 offers no protection against an August 30 hurricane. Bind by May 1 each year.' },
+    ],
+    relatedServices: [
+      { label: 'Flood Insurance Coverage Details', insuranceSlug: 'flood' },
+      { label: 'Home Insurance in Whiteville', insuranceSlug: 'homeowners', serviceLocationSlug: 'home-insurance-whiteville-nc' },
+      { label: 'Rental Property Insurance in Whiteville', insuranceSlug: 'rental-dwelling', serviceLocationSlug: 'rental-property-insurance-whiteville-nc' },
+      { label: 'Vacant Property Insurance', insuranceSlug: 'vacant-unoccupied' },
+    ],
+    surroundingAreas: ['Tabor City', 'Chadbourn', 'Fair Bluff', 'Lake Waccamaw', 'Clarkton', 'Bladenboro', 'Bolton', 'Cerro Gordo'],
+    faqItems: [
+      { question: 'How much does flood insurance cost in Whiteville?', answer: 'Whiteville flood insurance costs range widely. Low-risk X-zone properties can cost $400–$700/year through NFIP. Properties near the Waccamaw River in AE zones typically run $1,200–$2,800/year. Lake Waccamaw shoreline properties often price higher. We compare NFIP and private flood quotes to find competitive options.' },
+      { question: 'Was Whiteville affected by Hurricane Florence flooding?', answer: 'Yes — Columbus County was one of the most heavily flooded counties in NC during Hurricane Florence. Whiteville, Fair Bluff, and rural areas across the county saw widespread water damage, much of it outside mapped flood zones at the time. Many of those affected did not have flood insurance.' },
+      { question: 'Does flood insurance cover Lake Waccamaw shoreline properties?', answer: 'Yes — flood insurance covers water damage to structures and contents regardless of the water source (lake, river, ocean, or rainfall runoff), as long as the cause meets NFIP\'s definition of flooding. Lake Waccamaw shoreline properties typically benefit from carrying flood coverage given their elevated exposure.' },
+    ],
+  },
+  {
+    slug: 'flood-insurance-raleigh-nc',
+    city: 'Raleigh',
+    stateAbbr: 'NC',
+    serviceType: 'Flood Insurance',
+    insuranceSlug: 'flood',
+    locationSlug: 'raleigh-nc',
+    seoTitle: 'Flood Insurance in Raleigh, NC — NFIP & Private Flood Coverage',
+    seoDescription: 'Flood insurance in Raleigh, NC and the Triangle. NFIP and private flood coverage for properties in Wake County flood zones. Coverage you can\'t get from your homeowners policy.',
+    heroHeading: 'Flood Insurance in Raleigh, NC',
+    heroDescription: 'Raleigh and the Triangle are not coastal, but flood risk is real — Crabtree Creek, the Neuse River, and Walnut Creek have all caused property damage during heavy rainfall and tropical storm events. BlackArrow Insurance writes both NFIP and private flood policies for Raleigh-area properties.',
+    sections: [
+      {
+        heading: 'Why Triangle Properties Need Flood Insurance',
+        label: 'Inland Flood Risk',
+        content: [
+          'The Triangle\'s flood risk is often underestimated. Raleigh and the surrounding Wake County have FEMA-mapped flood zones along Crabtree Creek, Walnut Creek, the Neuse River, and tributaries throughout the metro. Tropical storm remnants pushing inland — including Florence, Matthew, and Fran — have all caused notable flooding well outside coastal NC.',
+          'Standard homeowners insurance explicitly excludes flood damage. A Raleigh homeowner who experiences flood damage without a separate flood policy has no insurance recovery for the loss.',
+        ],
+      },
+      {
+        heading: 'NFIP vs. Private Flood for Raleigh Properties',
+        label: 'Coverage Options',
+        content: [
+          'NFIP is widely available and the right product for many Raleigh-area properties in mapped high-risk zones. It works well, but it has limits: $250,000 building coverage cap, $100,000 contents cap, 30-day waiting period, and limited additional living expenses.',
+          'Private flood insurance is increasingly competitive in NC, especially for newer construction at higher elevation. For many Wake County homes — particularly those just outside mapped flood zones or in X zones — private flood is affordable and offers broader coverage. We compare both for every client.',
+        ],
+      },
+    ],
+    coverageItems: [
+      { title: 'Building Property Coverage', description: 'Pays to repair or replace your home\'s structure after flood damage. Important for properties near Crabtree Creek, Walnut Creek, or other Wake County waterways.' },
+      { title: 'Personal Contents Coverage', description: 'Covers furniture, electronics, and belongings damaged by flooding. Standard limits range $50,000–$100,000.' },
+      { title: 'Coverage for Tributary and Tropical Storm Flooding', description: 'Tropical storm remnants pushing into the Triangle have caused inland flooding. Both NFIP and private flood policies cover these events.' },
+      { title: 'Additional Living Expenses (Private Flood)', description: 'NFIP does not cover temporary housing. Private flood typically does — important for major flooding that displaces a household for weeks.' },
+    ],
+    tips: [
+      { title: 'Check Your Property\'s Flood Zone Designation', description: 'Wake County FEMA maps have been updated multiple times. Confirm your current designation — your property may have moved into (or out of) a mapped zone since you purchased it.' },
+      { title: 'Don\'t Wait for a Storm to Buy Coverage', description: 'NFIP\'s 30-day waiting period means coverage cannot be added in the days before a named tropical storm threatens. Bind your policy at least 30 days before hurricane season — by May 1 each year.' },
+      { title: 'Bundle with Home Insurance for Coordination', description: 'Working with one agency for both your homeowners and flood policies ensures coverage gaps don\'t open up. We coordinate both policies for Raleigh clients.' },
+    ],
+    relatedServices: [
+      { label: 'Flood Insurance Coverage Details', insuranceSlug: 'flood' },
+      { label: 'Home Insurance in Raleigh', insuranceSlug: 'homeowners', serviceLocationSlug: 'home-insurance-raleigh-nc' },
+      { label: 'Rental Property Insurance in Raleigh', insuranceSlug: 'rental-dwelling', serviceLocationSlug: 'rental-property-insurance-raleigh-nc' },
+      { label: 'Builders Risk Insurance', insuranceSlug: 'builders-risk' },
+    ],
+    surroundingAreas: ['Cary', 'Apex', 'Holly Springs', 'Fuquay-Varina', 'Wake Forest', 'Garner', 'Knightdale', 'Durham', 'Chapel Hill'],
+    faqItems: [
+      { question: 'Do I need flood insurance if I live in Raleigh?', answer: 'It depends on your specific property\'s flood zone designation, elevation, and proximity to Wake County waterways like Crabtree Creek and the Neuse River. Mapped high-risk-zone properties with federally-backed mortgages are legally required to carry flood insurance. Outside mapped zones, it remains advisable for many Triangle homeowners given the history of tropical storm flooding.' },
+      { question: 'How much does flood insurance cost in Raleigh?', answer: 'Raleigh-area flood insurance costs are generally lower than coastal NC because most of Wake County is in lower-risk zones. Low-risk X-zone homes can cost $300–$600/year through NFIP. Mid-risk AE-zone properties typically run $1,000–$2,000/year. Private flood is often less expensive for higher-elevation properties.' },
+      { question: 'Does flood insurance cover Triangle stormwater backup?', answer: 'Standard flood insurance covers rising water from external sources (rivers, creeks, runoff). Damage from indoor plumbing backups is typically covered by a "water backup" endorsement on your homeowners policy rather than by flood insurance. We coordinate both coverages so there are no gaps.' },
+    ],
+  },
+
+  // ============================================================
+  // WORKERS COMP — 3 city pages (Greenville, Wilmington, Jacksonville)
+  // ============================================================
+  {
+    slug: 'workers-comp-greenville-nc',
+    city: 'Greenville',
+    stateAbbr: 'NC',
+    serviceType: 'Workers Compensation',
+    insuranceSlug: 'workers-compensation',
+    locationSlug: 'greenville-nc',
+    seoTitle: 'Workers Compensation Insurance in Greenville, NC',
+    seoDescription: 'Workers comp insurance for Greenville, NC employers. Required by NC for businesses with 3+ employees. Compare 20+ carriers with a local independent agent. Same-day quotes.',
+    heroHeading: 'Workers Compensation Insurance in Greenville, NC',
+    heroDescription: 'North Carolina requires workers compensation insurance for most employers with 3 or more employees — and any contractor with even one employee. BlackArrow Insurance, based in Greenville since 2002, shops 20+ carriers to find Pitt County employers compliant, cost-effective workers comp coverage.',
+    sections: [
+      {
+        heading: 'NC Workers Comp Requirements for Greenville Employers',
+        label: 'Compliance Basics',
+        content: [
+          'The North Carolina Workers\' Compensation Act requires most NC employers with three or more employees (including part-time) to carry workers comp insurance. Construction contractors and subcontractors must carry coverage if they have even one employee. Non-compliance carries serious penalties: fines of $50–$100 per employee per day, stop-work orders, and personal liability for owners.',
+          'For Greenville businesses, workers comp insurance covers employee medical expenses, lost wages during recovery, and disability benefits for work-related injuries and illnesses — across industries from ECU Health-adjacent medical practices to construction crews to retail and hospitality.',
+        ],
+      },
+      {
+        heading: 'Why Greenville Employers Choose BlackArrow',
+        label: 'Our Advantage',
+        content: [
+          'We\'ve been in Greenville since 2002 and understand Pitt County\'s diverse business mix. Our agents shop workers comp across 20+ carriers, matching your employee classifications and payroll to the right-priced policy — and re-shopping at renewal to keep your rate competitive as your experience modification rate (e-mod) improves.',
+          'For higher-risk industries like construction, roofing, and trucking, we know which carriers offer the most competitive rates and which can write coverage that competing agencies cannot.',
+        ],
+      },
+    ],
+    coverageItems: [
+      { title: 'Medical Expense Coverage', description: 'Pays for all reasonable and necessary medical treatment for work-related injuries — including emergency care, surgery, hospital stays, physical therapy, and prescriptions.' },
+      { title: 'Lost Wages Replacement', description: 'Replaces a portion of an injured employee\'s wages during recovery, per NC Industrial Commission rules. Typically two-thirds of the employee\'s average weekly wage.' },
+      { title: 'Disability Benefits', description: 'Temporary total, temporary partial, permanent partial, and permanent total disability benefits per NC statute.' },
+      { title: 'Employer Liability', description: 'Protects your business against lawsuits alleging negligence by the employer, gross negligence, or third-party-over claims arising from workplace injuries.' },
+      { title: 'Return-to-Work Programs', description: 'Many policies include vocational rehabilitation and modified-duty support to help injured employees return to work — reducing both claim costs and your e-mod over time.' },
+    ],
+    tips: [
+      { title: 'Classify Employees Accurately', description: 'Workers comp premiums are calculated based on employee classifications (e.g., clerical vs. roofer). Misclassification — even unintentional — triggers audit adjustments and can hurt your e-mod. We help Greenville employers classify correctly from day one.' },
+      { title: 'Don\'t Misclassify Workers as Contractors', description: 'NC uses a multi-factor test to determine true independent contractor status. If the NC Industrial Commission reclassifies your contractors as employees, you may owe retroactive premiums, penalties, and back claims. When in doubt, classify as an employee.' },
+      { title: 'Invest in Safety Programs', description: 'Documented safety programs, return-to-work policies, and OSHA-compliant training programs reduce claims, lower your e-mod, and unlock additional carrier discounts. Many programs pay for themselves within the first policy year.' },
+    ],
+    relatedServices: [
+      { label: 'Workers Compensation Coverage Details', insuranceSlug: 'workers-compensation' },
+      { label: 'NC Workers Comp Statewide', insuranceSlug: 'workers-compensation-north-carolina' },
+      { label: 'General Liability Insurance', insuranceSlug: 'general-liability' },
+      { label: 'Business Insurance in Greenville', insuranceSlug: 'general-liability', serviceLocationSlug: 'commercial-insurance-greenville-nc' },
+    ],
+    surroundingAreas: ['Winterville', 'Ayden', 'Farmville', 'Bethel', 'Grimesland', 'Simpson', 'Stokes', 'Pactolus'],
+    faqItems: [
+      { question: 'Do Greenville businesses need workers compensation insurance?', answer: 'Yes — NC requires workers comp for employers with 3 or more employees (including part-time and seasonal). Construction contractors must carry coverage with even one employee. Sole proprietors and partners are not required to cover themselves but can elect to.' },
+      { question: 'How much does workers comp cost in Greenville, NC?', answer: 'Workers comp premiums vary based on employee classifications, total payroll, and your experience modification rate. Low-risk clerical operations typically cost $0.30–$0.50 per $100 of payroll. Higher-risk classifications like roofing can run $15–$30 per $100 of payroll. We shop 20+ carriers to find the right rate for your specific operation.' },
+      { question: 'What happens if I don\'t have workers comp in NC?', answer: 'NC penalties include daily fines of $50–$100 per employee, criminal charges for willful noncompliance, stop-work orders, and personal liability for any employee injuries that occur during the non-coverage period. The NC Industrial Commission actively audits coverage.' },
+      { question: 'How fast can BlackArrow get me workers comp quotes?', answer: 'Most workers comp quotes are back within 24–48 hours for standard classifications. Higher-risk industries may take 3–5 business days. We use our 20+ carrier relationships to fast-track quotes for Greenville businesses needing immediate coverage.' },
+    ],
+  },
+  {
+    slug: 'workers-comp-wilmington-nc',
+    city: 'Wilmington',
+    stateAbbr: 'NC',
+    serviceType: 'Workers Compensation',
+    insuranceSlug: 'workers-compensation',
+    locationSlug: 'wilmington-nc',
+    seoTitle: 'Workers Compensation Insurance in Wilmington, NC',
+    seoDescription: 'Workers comp insurance for Wilmington, NC employers — hospitality, construction, healthcare, film, and tourism. Required for 3+ employees in NC. Compare 20+ carriers.',
+    heroHeading: 'Workers Compensation Insurance in Wilmington, NC',
+    heroDescription: 'Wilmington\'s economy — restaurants, hotels, healthcare, film production, construction, retail — touches some of the highest-risk workers comp classifications in NC. BlackArrow Insurance shops 20+ carriers to find Wilmington employers compliant, cost-effective workers comp coverage.',
+    sections: [
+      {
+        heading: 'Why Wilmington Employers Need the Right Workers Comp Program',
+        label: 'Coastal Business Workforce',
+        content: [
+          'NC law requires workers compensation insurance for most employers with three or more employees, and for any construction contractor or subcontractor with even one employee. Wilmington\'s economy concentrates in industries with elevated injury rates — hospitality (slips and falls, kitchen burns), construction (especially coastal roofing and siding), healthcare (lifting injuries, needle sticks), and film production (set accidents, long hours).',
+          'For these industries, the right workers comp program is not just about compliance — it\'s about controlling claim costs, managing your experience modification rate (e-mod), and protecting your business from the financial impact of major injuries.',
+        ],
+      },
+      {
+        heading: 'How BlackArrow Helps Wilmington Employers Control Workers Comp Costs',
+        label: 'Our Advantage',
+        content: [
+          'We compare workers comp quotes across 20+ carriers, including specialty markets that write coverage many single-carrier agencies cannot. For higher-risk Wilmington industries — coastal roofing, restaurant operations, healthcare, trucking — this carrier diversity translates directly into lower premiums.',
+          'We also help Wilmington employers implement return-to-work programs, safety documentation, and claims management practices that systematically reduce your e-mod over time — often saving thousands of dollars per policy year.',
+        ],
+      },
+    ],
+    coverageItems: [
+      { title: 'Medical Expense Coverage', description: 'Pays for emergency care, hospitalization, surgery, prescriptions, and physical therapy for work-related injuries — without out-of-pocket cost to the employee or you.' },
+      { title: 'Lost Wages Benefits', description: 'Replaces approximately two-thirds of an injured employee\'s average weekly wage during recovery, per NC Industrial Commission schedule.' },
+      { title: 'Disability Benefits', description: 'Temporary total, temporary partial, and permanent disability benefits per NC statute — including specific dollar amounts for specific injuries (e.g., loss of a finger, loss of hearing).' },
+      { title: 'Employer Liability', description: 'Defends and indemnifies the employer in workers comp-related lawsuits — including third-party-over claims that bypass standard workers comp protection.' },
+      { title: 'Loss-Sensitive Programs', description: 'For Wilmington employers with experience and stable losses, dividend plans and loss-sensitive policies can return premium dollars if your claims experience is better than projected.' },
+    ],
+    tips: [
+      { title: 'Classify Hospitality Roles Correctly', description: 'A Wilmington restaurant\'s servers, bartenders, line cooks, and dishwashers all have different classification codes — and meaningfully different premium rates. We help restaurants and hotels classify accurately to avoid both underpayment and overpayment.' },
+      { title: 'Document Safety Training for Coastal Construction Crews', description: 'Roofing, siding, and exterior work on coastal Wilmington properties carries some of the highest workers comp rates in NC. Documented safety training, OSHA compliance, and fall protection programs can earn meaningful credits.' },
+      { title: 'Plan for Seasonal Workforce Audits', description: 'If your Wilmington business has seasonal payroll spikes — tourism peaks, holiday retail, event seasons — your workers comp audit will catch them. Budget for audit adjustments rather than being surprised at renewal.' },
+    ],
+    relatedServices: [
+      { label: 'Workers Compensation Coverage Details', insuranceSlug: 'workers-compensation' },
+      { label: 'NC Workers Comp Statewide', insuranceSlug: 'workers-compensation-north-carolina' },
+      { label: 'Business Insurance in Wilmington', insuranceSlug: 'general-liability', serviceLocationSlug: 'business-insurance-wilmington-nc' },
+      { label: 'Commercial Insurance in Wilmington', insuranceSlug: 'general-liability', serviceLocationSlug: 'commercial-insurance-wilmington-nc' },
+    ],
+    surroundingAreas: ['Wrightsville Beach', 'Carolina Beach', 'Kure Beach', 'Leland', 'Hampstead', 'Porters Neck', 'Ogden', 'Monkey Junction'],
+    faqItems: [
+      { question: 'Is workers comp required for Wilmington restaurants and hotels?', answer: 'Yes — NC law requires workers comp for all employers with three or more employees, including part-time and seasonal staff. Hospitality businesses in Wilmington — restaurants, hotels, tour operators, bars — almost universally meet this threshold during their operating season.' },
+      { question: 'How much does workers comp cost for a Wilmington construction company?', answer: 'Construction workers comp in Wilmington varies significantly by trade. General carpentry might run $5–$10 per $100 of payroll. Roofing and exterior work in coastal NC can range $15–$30 per $100 of payroll. We shop 20+ carriers including construction specialty markets to find competitive rates.' },
+      { question: 'Does workers comp cover film production crews in Wilmington?', answer: 'Yes — Wilmington\'s film industry is a covered class under NC workers comp. Coverage handles set injuries, transportation-related incidents, and stunt-related injuries within standard exclusions. We work with carriers experienced in entertainment production.' },
+      { question: 'Are independent contractors covered under workers comp?', answer: 'Generally no — but NC uses a strict multi-factor test to determine true contractor status. If your "contractors" work primarily for your business, you control their work methods, and they don\'t carry their own coverage, NC may reclassify them as employees and assess back premiums. We help Wilmington employers stay on the right side of this line.' },
+    ],
+  },
+  {
+    slug: 'workers-comp-jacksonville-nc',
+    city: 'Jacksonville',
+    stateAbbr: 'NC',
+    serviceType: 'Workers Compensation',
+    insuranceSlug: 'workers-compensation',
+    locationSlug: 'wilmington-nc', // Closest BlackArrow office; Jacksonville is served from Wilmington
+    seoTitle: 'Workers Compensation Insurance in Jacksonville, NC',
+    seoDescription: 'Workers comp insurance for Jacksonville, NC employers — construction, military contracting, retail, hospitality. Required for 3+ employees in NC. Compare 20+ carriers.',
+    heroHeading: 'Workers Compensation Insurance in Jacksonville, NC',
+    heroDescription: 'Jacksonville, Onslow County, and the Camp Lejeune corridor host a concentrated mix of military contracting, construction, retail, and hospitality businesses — all of which need NC-compliant workers compensation insurance. BlackArrow Insurance shops 20+ carriers for Jacksonville-area employers.',
+    sections: [
+      {
+        heading: 'NC Workers Comp Requirements for Jacksonville Employers',
+        label: 'Compliance Basics',
+        content: [
+          'North Carolina requires workers compensation insurance for most employers with three or more employees (including part-time), and any construction contractor or subcontractor with even one employee. The Jacksonville and Camp Lejeune corridor has a heavy concentration of construction, defense contracting, and service businesses — many of which serve military families or operate on federal contracts that explicitly require workers comp coverage.',
+          'For these businesses, workers comp is both a legal requirement and a contractual requirement of doing business with the federal government, the Marine Corps, or major prime contractors. Non-compliance can void contracts in addition to the standard NC penalties.',
+        ],
+      },
+      {
+        heading: 'Why Jacksonville Employers Choose BlackArrow',
+        label: 'Our Advantage',
+        content: [
+          'We work with Jacksonville-area employers across the full risk spectrum — from low-risk professional services to high-risk construction, security contracting, and trades work. Our 20+ carrier relationships let us shop your specific classifications, payroll, and e-mod across multiple markets to find the right combination of price and policy terms.',
+          'For employers serving federal or defense contracts, we ensure your coverage meets federal contracting requirements as well as NC statutory minimums.',
+        ],
+      },
+    ],
+    coverageItems: [
+      { title: 'Medical Expense Coverage', description: 'Pays for all reasonable and necessary medical treatment for work-related injuries — no out-of-pocket cost to the injured employee or to the employer.' },
+      { title: 'Lost Wages Replacement', description: 'Replaces approximately two-thirds of average weekly wages while an injured employee recovers, per NC Industrial Commission schedule.' },
+      { title: 'Disability Benefits', description: 'Temporary total, temporary partial, permanent partial, and permanent total disability benefits per NC statute.' },
+      { title: 'Federal Contract Compliance', description: 'For employers on federal or defense contracts, we ensure coverage meets contracting officer requirements — including specific endorsements for federal jobsites.' },
+      { title: 'Employer Liability', description: 'Defends the employer against negligence claims, gross negligence claims, and third-party-over actions arising from workplace injuries.' },
+    ],
+    tips: [
+      { title: 'Verify Subcontractor Coverage', description: 'Many Jacksonville construction projects rely on subcontractors. If a subcontractor lacks workers comp coverage, your general liability and workers comp policies can both be drawn into a claim. We help GCs verify and track subcontractor certificates.' },
+      { title: 'Understand Federal Jobsite Requirements', description: 'Federal contracts often require specific workers comp endorsements and waivers of subrogation. We make sure your policy meets these requirements before you start the job — not after a claim reveals a gap.' },
+      { title: 'Maintain a Documented Return-to-Work Program', description: 'Documented return-to-work programs reduce claim costs, lower your e-mod, and earn carrier credits. For Jacksonville employers with seasonal payroll or transient workforces, a clear return-to-work policy is especially valuable.' },
+    ],
+    relatedServices: [
+      { label: 'Workers Compensation Coverage Details', insuranceSlug: 'workers-compensation' },
+      { label: 'NC Workers Comp Statewide', insuranceSlug: 'workers-compensation-north-carolina' },
+      { label: 'General Liability Insurance', insuranceSlug: 'general-liability' },
+      { label: 'Business Insurance', insuranceSlug: 'business-owners-package' },
+    ],
+    surroundingAreas: ['Camp Lejeune', 'Sneads Ferry', 'Holly Ridge', 'Swansboro', 'Richlands', 'Hubert', 'Cape Carteret', 'New River'],
+    faqItems: [
+      { question: 'Is workers comp required for federal contracting in Jacksonville?', answer: 'Yes — virtually all federal contracts, especially those associated with Camp Lejeune or Marine Corps facilities, require contractors to carry workers compensation insurance meeting both NC statutory minimums and any federal contracting officer requirements. Coverage gaps can void contracts and result in immediate work stoppage.' },
+      { question: 'How much does workers comp cost in Jacksonville, NC?', answer: 'Jacksonville workers comp costs depend on employee classifications and payroll. Construction trades typically run $5–$30 per $100 of payroll depending on the trade. Lower-risk classifications like clerical and retail run $0.30–$1.00 per $100. We compare 20+ carriers to find the right rate for your operation.' },
+      { question: 'Does workers comp cover security and defense contractors?', answer: 'Yes — security and defense contracting are covered classifications under NC workers comp. Specific endorsements may be required depending on the nature of the work, whether employees work overseas, and the contracting party. We ensure coverage meets both NC requirements and contract-specific requirements.' },
     ],
   },
 ]

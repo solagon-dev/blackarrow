@@ -24,6 +24,9 @@ const serviceIcons: Record<string, string> = {
   'general-liability': 'shield',
   'rental-dwelling': 'building',
   'short-term-rental': 'key',
+  'workers-compensation': 'users',
+  flood: 'shield',
+  renters: 'home',
 }
 
 export function generateStaticParams() {

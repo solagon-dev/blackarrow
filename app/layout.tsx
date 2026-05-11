@@ -15,10 +15,10 @@ const ogImage = '/images/blackarrow-whiteville.jpg'
 
 export const metadata: Metadata = {
   title: {
-    default: 'BlackArrow Insurance | Independent Insurance Agency in NC',
+    default: 'BlackArrow Insurance — Independent Insurance Agency in Eastern NC',
     template: '%s | BlackArrow Insurance',
   },
-  description: 'BlackArrow Insurance is an independent insurance agency serving North Carolina. We compare coverage from 20+ carriers for home, auto, commercial, and property insurance. Offices in Greenville & Whiteville, NC.',
+  description: 'Independent insurance agency in Eastern NC comparing home, auto, business, workers compensation, and flood insurance from 20+ carriers. Offices in Greenville & Whiteville, NC. Free quote.',
   keywords: [
     'insurance agency North Carolina',
     'independent insurance agent NC',
@@ -45,8 +45,8 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'BlackArrow Insurance | Independent Insurance Agency in NC',
-    description: 'Independent insurance agency comparing coverage from 20+ carriers. Home, auto, commercial, and property insurance across North Carolina.',
+    title: 'BlackArrow Insurance — Independent Insurance Agency in Eastern NC',
+    description: 'Independent insurance agency comparing home, auto, business, workers comp, and flood insurance from 20+ carriers. Offices in Greenville and Whiteville, NC.',
     url: 'https://www.blackarrow.co',
     type: 'website',
     locale: 'en_US',
@@ -55,8 +55,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'BlackArrow Insurance | Independent Agency in NC',
-    description: 'We compare coverage from 20+ carriers across North Carolina. Home, auto, commercial, and property insurance.',
+    title: 'BlackArrow Insurance — Independent Agency in Eastern NC',
+    description: 'Independent insurance agency comparing 20+ carriers for home, auto, business, workers comp, and flood insurance across North Carolina.',
     images: [ogImage],
   },
   icons: {

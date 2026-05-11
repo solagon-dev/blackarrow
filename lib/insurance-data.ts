@@ -56,8 +56,8 @@ export const insurancePages: InsurancePage[] = [
       { question: 'Do I need insurance if my home is paid off?', answer: "While it's not legally required if you don't have a mortgage, homeowner's insurance is strongly recommended to protect your investment and provide liability coverage." },
     ],
     relatedSlugs: ['rental-dwelling', 'short-term-rental', 'builders-risk'],
-    seoTitle: "Homeowners Insurance in North Carolina — Get a Free Quote",
-    seoDescription: "Homeowners insurance in North Carolina from BlackArrow Insurance. We compare rates from 20+ carriers to protect your NC home, including coastal and wind/hail coverage. Free quote.",
+    seoTitle: "Homeowners Insurance in NC — Compare 20+ Carriers",
+    seoDescription: "Homeowners insurance in North Carolina. Compare quotes from 20+ carriers — including coastal, flood, and wind/hail options — with a local independent agent. Free quote.",
   },
   {
     slug: 'auto',
@@ -95,8 +95,8 @@ export const insurancePages: InsurancePage[] = [
       { question: 'How are premiums calculated?', answer: 'Premiums are based on factors including your driving record, vehicle type, location, coverage levels, and deductible choices.' },
     ],
     relatedSlugs: ['auto-insurance-greenville-nc', 'commercial-auto', 'dump-straight-truck', 'boat'],
-    seoTitle: 'Auto Insurance in North Carolina — Compare NC Car Insurance Rates',
-    seoDescription: 'Affordable auto insurance in North Carolina from BlackArrow Insurance. Compare NC car insurance rates from 20+ carriers for liability, collision, and full coverage. Free quote.',
+    seoTitle: 'Car Insurance in North Carolina — Compare 20+ NC Carriers',
+    seoDescription: 'Car & auto insurance in NC. Compare liability, collision, and comprehensive quotes from 20+ carriers with a local independent agent. Free NC car insurance quote.',
   },
   {
     slug: 'life',
@@ -207,8 +207,8 @@ export const insurancePages: InsurancePage[] = [
       { question: 'How can I lower my premiums?', answer: 'You can lower premiums by choosing higher deductibles, installing safety features (especially storm-resilient roofing in coastal NC), bundling policies, and maintaining a good claims history.' },
     ],
     relatedSlugs: ['short-term-rental', 'long-term-rental', 'homeowners'],
-    seoTitle: 'Rental Dwelling Insurance in North Carolina — Landlord Coverage',
-    seoDescription: 'Rental property insurance for North Carolina landlords. BlackArrow Insurance serves Eastern NC — Greenville, Whiteville, Wilmington, Raleigh. Protection against storm damage, liability, and lost rental income.',
+    seoTitle: 'Rental Dwelling Insurance NC — Landlord Coverage from 20+ Carriers',
+    seoDescription: 'What is rental dwelling insurance? Coverage for NC landlords including storm damage, tenant liability, and lost rental income. Compare quotes from 20+ carriers.',
   },
   {
     slug: 'dump-straight-truck',
@@ -316,8 +316,8 @@ export const insurancePages: InsurancePage[] = [
       { question: 'How much coverage does my business need?', answer: 'Coverage needs vary by industry and risk level. Most small businesses start with $1 million per occurrence. Your agent can help determine the right amount.' },
     ],
     relatedSlugs: ['business-owners-package', 'workers-compensation', 'cyber-liability'],
-    seoTitle: 'General Liability Insurance in North Carolina for Small Business',
-    seoDescription: 'Protect your business from third-party claims with general liability insurance from BlackArrow Insurance. Get a quote today.',
+    seoTitle: 'General Liability Insurance in NC — Compare 20+ Carriers',
+    seoDescription: 'General liability insurance for NC small businesses. Compare coverage limits ($1M, $2M, $5M aggregate) from 20+ carriers with a local independent agent. Free quote.',
   },
   {
     slug: 'cyber-liability',
@@ -458,8 +458,8 @@ export const insurancePages: InsurancePage[] = [
       { question: 'What happens if I don\'t have coverage?', answer: 'Businesses without required coverage may face penalties, fines, legal action, and direct liability for all employee medical costs.' },
     ],
     relatedSlugs: ['general-liability', 'business-owners-package', 'commercial-property'],
-    seoTitle: "Workers Compensation Insurance in North Carolina",
-    seoDescription: "Protect your employees with worker's compensation insurance from BlackArrow Insurance. Coverage for injuries, lost wages, and rehabilitation.",
+    seoTitle: "Workers Compensation Insurance NC — Required Coverage Near Me",
+    seoDescription: "Workers compensation insurance for NC businesses. Required for employers with 3+ employees. Compare quotes from 20+ NC carriers with a local independent agent.",
   },
   {
     slug: 'commercial-property',
@@ -751,6 +751,84 @@ export const insurancePages: InsurancePage[] = [
     seoTitle: 'Auto Insurance in Greenville, NC — Car Insurance for Pitt County',
     seoDescription: 'Greenville NC auto insurance from BlackArrow Insurance at 905 Conference Drive. We shop 20+ carriers for ECU students, healthcare workers, and Pitt County families. Same-day quotes.',
   },
+  // ── Flood Insurance (standalone product, NFIP + private market) ──
+  {
+    slug: 'flood',
+    title: 'Flood Insurance in North Carolina',
+    shortTitle: 'Flood',
+    category: 'property',
+    tagline: 'NFIP + private flood for NC homeowners and landlords',
+    description: 'Flood insurance for North Carolina homes and rental properties. Standard homeowners insurance does NOT cover flood damage. BlackArrow Insurance writes both NFIP (National Flood Insurance Program) policies and private flood alternatives — often with broader coverage and competitive rates — for properties across Eastern NC, the coastal counties, and the Tar River basin.',
+    icon: 'building',
+    coverageTypes: [
+      { title: 'Building Property Coverage', description: 'Pays to repair or replace your home\'s structure after flood damage. NFIP caps building coverage at $250,000; private flood can go higher.' },
+      { title: 'Personal Contents Coverage', description: 'Covers furniture, electronics, and personal belongings damaged by flooding. NFIP caps contents at $100,000; private flood often offers higher limits.' },
+      { title: 'Loss-Avoidance Measures', description: 'Reimburses costs for protecting your property as a flood is imminent — sandbags, temporary barriers, and removal of contents.' },
+      { title: 'Replacement Cost vs. Actual Cash Value', description: 'For your primary residence, NFIP pays replacement cost on the building. Contents are typically actual cash value unless upgraded. Private flood can offer replacement cost on both.' },
+      { title: 'Optional Additional Living Expenses', description: 'Private flood policies often include ALE coverage if your home is uninhabitable — NFIP does not.' },
+    ],
+    whoNeeds: [
+      { title: 'Homeowners in FEMA Flood Zones', description: 'Required by federally-backed lenders for homes in AE, A, V, or VE zones. Coastal NC (Wilmington, New Bern, Carolina Beach) has extensive mapped flood zones.' },
+      { title: 'Properties Near the Tar River or Cape Fear River', description: 'Hurricane Florence and Matthew caused widespread inland flooding. Many affected properties were outside mapped zones.' },
+      { title: 'Coastal NC Property Investors', description: 'Rental dwellings, vacation homes, and short-term rentals in coastal counties typically need flood coverage independent of dwelling policies.' },
+    ],
+    costFactors: [
+      'FEMA flood zone designation (AE, VE, X, etc.)',
+      'Elevation of the lowest floor relative to base flood elevation',
+      'Building construction type and foundation',
+      'Coverage limits and deductible selection',
+      'NFIP vs. private flood (private often costs less for high-elevation properties)',
+    ],
+    faqs: [
+      { question: 'Does my homeowners insurance cover flood damage?', answer: 'No. Standard homeowners insurance policies explicitly exclude flood damage. You need a separate flood insurance policy — either NFIP or private flood — to cover rising water from storms, hurricanes, or river overflow.' },
+      { question: 'How much is flood insurance in NC?', answer: 'NC flood insurance costs vary widely by zone and elevation. Properties in low-risk X zones can cost as little as $400/year. High-risk AE or VE zones can range $1,500–$4,000+ annually. We compare NFIP and private flood quotes to find the best rate for your property.' },
+      { question: 'What\'s the difference between NFIP and private flood insurance?', answer: 'NFIP is the federal program — uniform pricing nationwide, capped coverage limits ($250k building / $100k contents), and a 30-day waiting period. Private flood offers higher limits, sometimes broader coverage, faster effective dates, and can be cheaper for newer construction or higher-elevation properties.' },
+      { question: 'Is flood insurance required in NC?', answer: 'Federal law requires flood insurance for homes in FEMA-designated high-risk zones (Special Flood Hazard Areas) with federally-backed mortgages. Even outside required zones, we recommend coverage for properties in coastal NC, near rivers, or in low-lying areas.' },
+      { question: 'How long does it take for flood insurance to take effect?', answer: 'NFIP policies have a 30-day waiting period before coverage starts (with some exceptions for new home purchases). Private flood policies can often start within 14 days or sooner — important if a storm is approaching.' },
+    ],
+    relatedSlugs: ['homeowners', 'rental-dwelling', 'vacant-unoccupied'],
+    seoTitle: 'Flood Insurance in North Carolina — NFIP & Private Flood',
+    seoDescription: 'Flood insurance in NC. Standard homeowners doesn\'t cover flood — get NFIP or private flood coverage from BlackArrow Insurance. Coastal, river, and inland NC. Free quote.',
+  },
+  // ── Renters Insurance (standalone product) ──
+  {
+    slug: 'renters',
+    title: 'Renters Insurance in North Carolina',
+    shortTitle: 'Renters',
+    category: 'personal',
+    tagline: 'Affordable protection for NC renters and tenants',
+    description: 'Renters insurance for North Carolina tenants. Most NC renters insurance policies cost between $12 and $25 per month and protect your personal belongings, liability exposure, and additional living expenses if a covered event displaces you. BlackArrow Insurance compares renters quotes across 20+ carriers for tenants in Wilmington, Greenville, Raleigh, Whiteville, and across Eastern NC.',
+    icon: 'home',
+    coverageTypes: [
+      { title: 'Personal Property Coverage', description: 'Replaces your belongings — furniture, electronics, clothing, kitchenware — if they\'re damaged or stolen. Coverage extends beyond your apartment, including items in your car or while traveling.' },
+      { title: 'Personal Liability Coverage', description: 'Pays legal and medical costs if someone is injured in your apartment, or if you accidentally damage someone else\'s property. Standard limits start at $100,000.' },
+      { title: 'Additional Living Expenses (Loss of Use)', description: 'Covers hotel bills, restaurant meals, and other costs if a covered event (fire, water damage, etc.) forces you to live elsewhere while repairs happen.' },
+      { title: 'Medical Payments to Others', description: 'Pays minor guest medical bills regardless of fault — typically up to $1,000–$5,000 per incident.' },
+      { title: 'Theft & Vandalism Coverage', description: 'Covers stolen belongings, including bikes, electronics, and items stolen from your car. NC apartment break-ins are most common in college towns and dense urban areas.' },
+    ],
+    whoNeeds: [
+      { title: 'Apartment Renters in NC College Towns', description: 'ECU, NC State, UNC Wilmington students and young professionals — often required by landlords.' },
+      { title: 'Tenants in Wilmington, Raleigh, Greenville', description: 'Standard liability protection plus theft coverage for urban and college-adjacent rentals.' },
+      { title: 'Tenants with Valuable Belongings', description: 'Anyone with electronics, jewelry, instruments, or furnishings worth more than $10,000–$20,000.' },
+    ],
+    costFactors: [
+      'Coverage limits — personal property and liability',
+      'Deductible selection ($250–$2,500 typical)',
+      'Building security and construction',
+      'ZIP code and theft/loss claim history',
+      'Bundling with auto insurance (10–15% discount typical)',
+    ],
+    faqs: [
+      { question: 'How much does renters insurance cost in NC?', answer: 'Most renters insurance policies in NC cost between $12 and $25 per month for standard coverage. Bundling with an auto policy can reduce the cost further. Apartments in urban areas like Wilmington and Raleigh tend to price slightly higher than smaller markets like Whiteville.' },
+      { question: 'Is renters insurance required in North Carolina?', answer: 'NC law does not require renters insurance, but most landlords require tenants to carry it as a lease condition. Even when not required, it\'s strongly recommended — your landlord\'s insurance covers the building, not your belongings or liability.' },
+      { question: 'Does renters insurance cover roommates?', answer: 'Generally, no — each roommate should carry their own policy. Coverage typically applies only to the named insured and immediate family members (children, spouse) listed on the policy. Roommates need their own policies for their own belongings and liability.' },
+      { question: 'Will renters insurance cover my laptop and electronics?', answer: 'Yes — personal property coverage extends to electronics, but high-value items may exceed the standard sub-limit. If you have a laptop, camera equipment, or gaming setup worth more than $1,500–$2,500, ask your agent about a scheduled personal property endorsement for full replacement value.' },
+      { question: 'Does renters insurance cover flood or hurricane damage?', answer: 'Renters insurance does not cover flood damage — you would need a separate flood insurance policy. Wind damage from hurricanes is typically covered for your personal property if a covered event (like a tree falling through the roof) causes the damage.' },
+    ],
+    relatedSlugs: ['homeowners', 'auto', 'life'],
+    seoTitle: 'Renters Insurance in NC — Affordable Coverage for NC Tenants',
+    seoDescription: 'Renters insurance in North Carolina from $12/month. Personal property, liability, and additional living expenses for NC tenants. Compare 20+ carriers. Free quote.',
+  },
 ];
 
 export const insuranceHeroImages: Record<string, string> = {
@@ -771,6 +849,8 @@ export const insuranceHeroImages: Record<string, string> = {
   'long-term-rental': '/images/insights/do-you-need-long-term-rental-insurance-if-youre-renting-out-a-single-unit.png',
   'builders-risk': '/images/insights/how-builders-risk-insurance-can-protect-your-construction-site-from-unexpected-risks.png',
   'vacant-unoccupied': '/images/insights/5-risks-of-leaving-your-property-vacant-without-insurance-coverage.png',
+  flood: '/images/blackarrow-whiteville.jpg',
+  renters: '/images/insights/first-time-homebuyers-guide-to-homeowners-insurance.png',
 };
 
 export function getInsuranceHeroImage(slug: string): string {
