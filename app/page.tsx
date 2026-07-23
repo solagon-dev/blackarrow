@@ -97,7 +97,7 @@ export default async function Home() {
               <div className="grid sm:grid-cols-3 gap-6 sm:gap-8 pt-6 sm:pt-8 border-t border-gray-200">
                 {[
                   { title: 'Tailored Coverage', desc: 'We build strategies around your specific needs, not one-size-fits-all products.' },
-                  { title: 'Competitive Pricing', desc: 'We compare options across 20+ carriers to secure the most favorable terms.' },
+                  { title: 'Competitive Pricing', desc: 'We compare options across 20+ carriers to find competitive coverage and pricing for your needs.' },
                   { title: 'Ongoing Advisory', desc: 'Dedicated guidance from policy inception through claims resolution.' },
                 ].map((item) => (
                   <div key={item.title}>

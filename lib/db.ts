@@ -133,9 +133,27 @@ async function initializeDb(sql: Sql): Promise<void> {
       id TEXT PRIMARY KEY,
       form_type TEXT NOT NULL,
       data TEXT NOT NULL,
-      created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+      idempotency_key TEXT,
+      content_hash TEXT,
+      notification_status TEXT NOT NULL DEFAULT 'pending',
+      notification_id TEXT,
+      notification_error TEXT,
+      notification_attempts INTEGER NOT NULL DEFAULT 0,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+      updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
     )
   `;
+
+  // Migrate pre-existing form_submissions tables (Plan §4.6 reconciliation).
+  await sql`ALTER TABLE form_submissions ADD COLUMN IF NOT EXISTS idempotency_key TEXT`;
+  await sql`ALTER TABLE form_submissions ADD COLUMN IF NOT EXISTS content_hash TEXT`;
+  await sql`ALTER TABLE form_submissions ADD COLUMN IF NOT EXISTS notification_status TEXT NOT NULL DEFAULT 'pending'`;
+  await sql`ALTER TABLE form_submissions ADD COLUMN IF NOT EXISTS notification_id TEXT`;
+  await sql`ALTER TABLE form_submissions ADD COLUMN IF NOT EXISTS notification_error TEXT`;
+  await sql`ALTER TABLE form_submissions ADD COLUMN IF NOT EXISTS notification_attempts INTEGER NOT NULL DEFAULT 0`;
+  await sql`ALTER TABLE form_submissions ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()`;
+  await sql`CREATE UNIQUE INDEX IF NOT EXISTS idx_form_submissions_idempotency ON form_submissions(idempotency_key) WHERE idempotency_key IS NOT NULL`;
+  await sql`CREATE INDEX IF NOT EXISTS idx_form_submissions_notif_status ON form_submissions(notification_status)`;
 
   await sql`
     CREATE TABLE IF NOT EXISTS sessions (
@@ -377,10 +395,131 @@ export async function deleteExpiredSessions(): Promise<void> {
 }
 
 // Form submissions
-export async function createFormSubmission(submission: { id: string; form_type: string; data: string }): Promise<void> {
+export type NotificationStatus = 'pending' | 'sent' | 'failed';
+
+export interface FormSubmissionRecord {
+  id: string;
+  form_type: string;
+  idempotency_key: string | null;
+  notification_status: NotificationStatus;
+  notification_id: string | null;
+  notification_attempts: number;
+  created_at: string;
+}
+
+type FormSubmissionRow = {
+  id: string;
+  form_type: string;
+  idempotency_key: string | null;
+  notification_status: string;
+  notification_id: string | null;
+  notification_attempts: number;
+  created_at: Date | string;
+};
+
+function mapFormSubmission(row: FormSubmissionRow): FormSubmissionRecord {
+  return {
+    id: row.id,
+    form_type: row.form_type,
+    idempotency_key: row.idempotency_key,
+    notification_status: row.notification_status as NotificationStatus,
+    notification_id: row.notification_id,
+    notification_attempts: row.notification_attempts,
+    created_at: toISOString(row.created_at),
+  };
+}
+
+/**
+ * Durable storage of a submission (Plan §4.5.4). Stored as `pending` for the
+ * notification; the caller updates the notification status afterward. Returns
+ * the persisted record so the caller has proof of durable storage.
+ */
+export async function createFormSubmission(submission: {
+  id: string;
+  form_type: string;
+  data: string;
+  idempotency_key?: string | null;
+  content_hash?: string | null;
+}): Promise<FormSubmissionRecord> {
+  const sql = await ensureInitialized();
+  const [row] = await sql<FormSubmissionRow[]>`
+    INSERT INTO form_submissions (id, form_type, data, idempotency_key, content_hash, notification_status)
+    VALUES (
+      ${submission.id}, ${submission.form_type}, ${submission.data},
+      ${submission.idempotency_key ?? null}, ${submission.content_hash ?? null}, 'pending'
+    )
+    RETURNING id, form_type, idempotency_key, notification_status, notification_id, notification_attempts, created_at
+  `;
+  return mapFormSubmission(row);
+}
+
+/** Idempotency lookup (Plan §4.5.13). Returns an existing submission, if any. */
+export async function findFormSubmissionByIdempotencyKey(
+  key: string
+): Promise<FormSubmissionRecord | undefined> {
+  const sql = await ensureInitialized();
+  const [row] = await sql<FormSubmissionRow[]>`
+    SELECT id, form_type, idempotency_key, notification_status, notification_id, notification_attempts, created_at
+    FROM form_submissions
+    WHERE idempotency_key = ${key}
+    LIMIT 1
+  `;
+  return row ? mapFormSubmission(row) : undefined;
+}
+
+/** Record the outcome of a notification attempt (Plan §4.5.8, §4.6). */
+export async function updateFormSubmissionNotification(
+  id: string,
+  update: { status: NotificationStatus; notificationId?: string | null; error?: string | null }
+): Promise<void> {
   const sql = await ensureInitialized();
   await sql`
-    INSERT INTO form_submissions (id, form_type, data)
-    VALUES (${submission.id}, ${submission.form_type}, ${submission.data})
+    UPDATE form_submissions
+    SET notification_status = ${update.status},
+        notification_id = ${update.notificationId ?? null},
+        notification_error = ${update.error ?? null},
+        notification_attempts = notification_attempts + 1,
+        updated_at = NOW()
+    WHERE id = ${id}
   `;
+}
+
+/**
+ * Reconciliation query (Plan §4.6): submissions stored but whose notification
+ * has not been delivered (pending or failed), oldest first, for retry/alerting.
+ */
+export async function getUndeliveredFormSubmissions(limit = 100): Promise<FormSubmissionRecord[]> {
+  const sql = await ensureInitialized();
+  const rows = await sql<FormSubmissionRow[]>`
+    SELECT id, form_type, idempotency_key, notification_status, notification_id, notification_attempts, created_at
+    FROM form_submissions
+    WHERE notification_status IN ('pending', 'failed')
+    ORDER BY created_at ASC
+    LIMIT ${limit}
+  `;
+  return rows.map(mapFormSubmission);
+}
+
+/**
+ * Reconciliation retry source (Plan §4.6): undelivered submissions WITH their
+ * stored payload so the notification can be rebuilt and re-sent. Server-only
+ * (never exposed publicly). A cap on attempts avoids retrying permanently-dead
+ * notifications forever.
+ */
+export async function getUndeliveredFormSubmissionsForRetry(
+  maxAttempts = 8,
+  limit = 50
+): Promise<Array<{ id: string; form_type: string; data: string; notification_attempts: number }>> {
+  const sql = await ensureInitialized();
+  const rows = await sql<
+    { id: string; form_type: string; data: string; notification_attempts: number }[]
+  >`
+    SELECT id, form_type, data, notification_attempts
+    FROM form_submissions
+    WHERE notification_status IN ('pending', 'failed')
+      AND notification_attempts < ${maxAttempts}
+    ORDER BY created_at ASC
+    LIMIT ${limit}
+  `;
+  return rows;
 }

@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { insurancePages } from '@/lib/insurance-data'
-import { getRecaptchaToken } from '@/lib/recaptcha'
+import { useFormSubmit } from '@/lib/use-form-submit'
 
 const insuranceTypes = insurancePages.map(p => ({ value: p.slug, label: p.title }))
 
@@ -21,26 +21,11 @@ export default function QuotePage() {
     insuranceType: '', currentInsurance: '', address: '',
     city: '', state: 'NC', zip: '', message: '',
   })
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const { status, errorMessage, submit } = useFormSubmit('quote', 'quote')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setStatus('loading')
-    try {
-      const recaptcha_token = await getRecaptchaToken('quote')
-      const res = await fetch('/api/forms', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ form_type: 'quote', data: form, recaptcha_token }),
-      })
-      if (res.ok) {
-        setStatus('success')
-      } else {
-        setStatus('error')
-      }
-    } catch {
-      setStatus('error')
-    }
+    await submit(form)
   }
 
   const update = (field: string, value: string) => setForm(f => ({ ...f, [field]: value }))
@@ -62,7 +47,7 @@ export default function QuotePage() {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-4 sm:mb-5">No Obligation</p>
             <h1 className="text-white mb-4 sm:mb-5">Get Your Free Quote</h1>
             <p className="text-base sm:text-lg text-navy-300 leading-relaxed max-w-xl">
-              Compare rates from 20+ carriers in minutes. One of our licensed agents will review your needs and find the right coverage at the best price.
+              Compare coverage across 20+ carriers with a licensed local agent. Tell us about your needs and we&rsquo;ll help you find coverage that fits, with competitive pricing from multiple carriers.
             </p>
           </div>
         </div>
@@ -82,7 +67,7 @@ export default function QuotePage() {
                     </svg>
                   </div>
                   <h2 className="text-2xl sm:text-3xl font-display font-bold text-navy-900 mb-3">Quote Request Received</h2>
-                  <p className="text-navy-500 mb-2 max-w-md mx-auto">Thank you, {form.firstName}. One of our licensed agents will review your request and reach out within one business day.</p>
+                  <p className="text-navy-500 mb-2 max-w-md mx-auto">Thank you, {form.firstName}. One of our licensed agents will review your request and reach out to discuss your options. If you&rsquo;d like to talk sooner, call one of our offices.</p>
                   <p className="text-sm text-navy-400 mb-8">Need immediate assistance? Call <a href="tel:2529555898" className="text-navy-900 font-medium">(252) 955-5898</a></p>
                   <Link href="/" className="inline-flex items-center gap-2 text-sm font-medium text-navy-900 hover:text-navy-700 transition-colors">
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -252,14 +237,16 @@ export default function QuotePage() {
                           ))}
                         </div>
 
-                        {status === 'error' && (
-                          <div className="flex items-start gap-3 p-4 bg-red-50 border border-red-100 mt-6">
-                            <svg className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
-                            </svg>
-                            <p className="text-sm text-red-700">Something went wrong. Please try again or call us directly at (910) 914-6074.</p>
-                          </div>
-                        )}
+                        <div aria-live="assertive">
+                          {status === 'error' && (
+                            <div className="flex items-start gap-3 p-4 bg-red-50 border border-red-100 mt-6">
+                              <svg className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                              </svg>
+                              <p className="text-sm text-red-700">{errorMessage || 'Something went wrong. Please try again or call one of our offices.'}</p>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     )}
 
@@ -325,7 +312,7 @@ export default function QuotePage() {
                   <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-6">Why BlackArrow</h3>
                   <div className="space-y-5">
                     {[
-                      { icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z', title: '20+ Years Experience', desc: 'Trusted by Eastern NC since 2003' },
+                      { icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z', title: '20+ Years Experience', desc: 'Trusted by Eastern NC since 2002' },
                       { icon: 'M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3', title: '20+ Carriers Compared', desc: 'We shop the market so you don\'t have to' },
                       { icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z', title: 'Licensed Local Agents', desc: 'Real people at two NC offices' },
                       { icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z', title: 'No Obligation', desc: 'Free quotes with zero pressure' },
@@ -367,7 +354,7 @@ export default function QuotePage() {
                   <svg className="w-4 h-4 text-navy-300 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                   </svg>
-                  <p className="text-xs text-navy-400 leading-relaxed">Your information is encrypted and secure. We never sell your data to third parties.</p>
+                  <p className="text-xs text-navy-400 leading-relaxed">Your information is submitted over a secure connection and used only to prepare your quote and respond to your request. See our <Link href="/legal/privacy-policy" className="underline hover:text-white">Privacy Policy</Link> for how we handle your data.</p>
                 </div>
               </div>
             </div>

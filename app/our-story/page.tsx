@@ -53,7 +53,7 @@ export default function OurStoryPage() {
                   We have been serving the Eastern North Carolina community for over 20 years. We are a locally-owned and operated insurance company, committed to providing our customers with the highest level of service and protection.
                 </p>
                 <p>
-                  Founded in 2002 by Scott Baldwin, originally under the name Iventure, the company has grown into one of the largest insurance agencies in Greenville, NC, and has expanded to serve clients from our Whiteville office as well.
+                  Founded in 2002 by Scott Baldwin, originally under the name Iventure, the company has grown into an established independent agency in Greenville, NC, and has expanded to serve clients from our Whiteville office as well.
                 </p>
               </div>
             </ScrollReveal>
@@ -117,7 +117,7 @@ export default function OurStoryPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-200">
             {[
               { title: 'Local Expertise', desc: 'Deep roots in Eastern NC with knowledge of local risks and coverage needs.', icon: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z' },
-              { title: 'Multi-Carrier Access', desc: 'We compare rates from 20+ carriers to find you the best coverage at the best price.', icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z' },
+              { title: 'Multi-Carrier Access', desc: 'We compare rates from 20+ carriers to help you find coverage that fits your needs and budget.', icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z' },
               { title: 'Personalized Service', desc: 'Every client gets dedicated attention and a policy tailored to their specific needs.', icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z' },
               { title: 'Full-Service Agency', desc: 'From personal to commercial to property insurance — we handle it all under one roof.', icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4' },
             ].map((item, i) => (

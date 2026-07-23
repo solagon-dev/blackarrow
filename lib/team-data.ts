@@ -25,7 +25,7 @@ export const teamMembers: TeamMember[] = [
   {
     name: 'Scott Baldwin',
     role: 'Co-Owner',
-    bio: 'Founded BlackArrow in 2002, originally called Iventure, and has since built it into the largest insurance agency in Greenville, NC, with expansion to Whiteville. Scott\'s vision and leadership have driven the company\'s growth and commitment to client service.',
+    bio: 'Founded BlackArrow in 2002, originally called Iventure, and has grown it into an established independent agency serving Greenville and, later, Whiteville. Scott\'s vision and leadership have driven the company\'s growth and commitment to client service.',
     image: '/images/staff/scott-baldwin.jpg',
     imagePosition: 'center 32%',
     isLeadership: true,

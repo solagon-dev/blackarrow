@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Get a Free Insurance Quote | BlackArrow Insurance',
-    description: 'Compare rates from 20+ carriers in minutes.',
+    description: 'Compare rates from 20+ carriers with a licensed local agent.',
   },
 }
 

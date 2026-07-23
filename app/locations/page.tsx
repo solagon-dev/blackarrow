@@ -87,7 +87,7 @@ export default function LocationsPage() {
           <ScrollReveal>
             <h2 className="text-white mb-4 sm:mb-6">Ready to Get Started?</h2>
             <p className="text-base sm:text-lg text-navy-300 mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed">
-              No matter where you are in North Carolina, our licensed agents are ready to help you find the right coverage at the best rate.
+              No matter where you are in North Carolina, our licensed agents are ready to help you find the right coverage at a competitive rate.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Link href="/quote" className="btn-secondary px-8 py-4">

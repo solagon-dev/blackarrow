@@ -115,6 +115,118 @@ chain); to be reviewed but non-blocking for local work.
 
 ---
 
+## Checkpoint 2 — Phase 0: Accuracy & lead-safety remediation
+
+### What changed & why
+
+**§4.1 NC auto minimums (regulated).** Corrected every obsolete 30/60/25 statement
+to the current **$50,000 / $100,000 / $50,000** limits, stating the *effective date*
+(policies issued/renewed on or after **July 1, 2025**) so pages stay historically
+intelligible, and noting UM/UIM is now included. Verified figures against NCDOI.
+The universal "we recommend 100/300/100" advice was reframed as a discussion point
+("many drivers choose higher limits… an agent can help you weigh"), not individualized
+advice. 5 statements fixed across `lib/insurance-data.ts` and
+`lib/service-location-data.ts`. Legitimate non-auto uses of these numbers (ECU's
+~30,000 students; renters $25k–$50k contents) were deliberately left untouched.
+
+**§4.2 Workers' compensation (regulated).** Verified rules against the NC Industrial
+Commission. Removed the recurring overstatement that "any construction contractor
+with even one employee must carry coverage" — the real rule is the **three-employee
+threshold applies to construction too**, plus a separate *liability* exposure when a
+business uses an uninsured subcontractor. Softened specific penalty figures
+("$50–$100/employee/day") to general penalty language, added "general information,
+not legal advice" + NCIC referral. Fixed the Greenville/Wilmington/Jacksonville WC
+service pages, the statewide WC page FAQs, and the AI blog-topic brief that would
+have propagated the error into future posts.
+
+**§4.3 Claims-and-facts registry.** New `lib/business-facts.ts` is the single source
+of truth: founding year (standardized on **2002**; fixed the lone "2003" in the quote
+sidebar), offices (NAP/hours), carrier count (flagged `verified:false`), service
+areas, location-aware phone helper, and the NC auto/WC regulated facts with source
+URLs and `lastReviewed` dates. Prohibited-claims checklist included.
+
+**§4.4 Unsupported claims.** Removed/qualified: "largest insurance agency in
+Greenville" (×2), "serving thousands of clients", "best rate/price/most favorable
+terms" (×9 across pages, components, data), "same-day quotes / free quote in minutes"
+(×6), "encrypted and secure / we never sell your data" (now an accurate secure-
+connection statement linking the Privacy Policy), and precise premium ranges
+(×11 flood/renters/business/WC FAQs → factor-based guidance + "we'll give you an
+accurate quote"). Response-time promise on the quote success screen softened
+(no unverified SLA).
+
+**§4.5 Form-delivery semantics (lead safety) — the critical fix.** `app/api/forms/route.ts`
+rewritten. Previously it **always returned `success:true`** even when storage AND
+email both failed. Now:
+- typed **zod** schema validation (`lib/forms-schema.ts`) with per-field length caps,
+  a 100 KB body cap, and a required contactable identity (email or phone);
+- **reCAPTCHA** verified;
+- **per-IP rate limiting** (`lib/rate-limit.ts`, in-memory — caveat documented);
+- **idempotency** via client key (`lib/use-form-submit.ts` generates a stable key,
+  reset only after success) + a unique index; unique-violation races treated as
+  duplicates, not failures;
+- durable **storage** attempted first (source of truth), then **notification**;
+- response contract: **200** stored+notified · **202** exactly one durable path
+  (stored-not-notified or notified-not-stored) · **503** both failed (no false
+  success) · 400/403/429/413 for validation/recaptcha/rate/oversize;
+- **PII-safe structured logs** (submission id, form type, statuses, timestamps — never
+  form contents); `alert`-level logs for stored-not-notified, notified-not-stored,
+  and lost leads.
+
+**§4.6 Lead reconciliation.** `form_submissions` extended with
+`notification_status / notification_id / notification_error / notification_attempts /
+idempotency_key / content_hash / updated_at` (safe `ADD COLUMN IF NOT EXISTS`
+migration). New reconciliation queries + a CRON_SECRET-protected retry job
+(`app/api/cron/retry-notifications`) that re-sends undelivered notifications and
+updates status — so a lead is never lost because email was down at submit time.
+
+### Files affected
+
+- Data/content: `lib/insurance-data.ts`, `lib/service-location-data.ts`,
+  `lib/location-data.ts`, `lib/team-data.ts`, `lib/auto-post-topics.ts`,
+  `app/page.tsx`, `app/our-story/page.tsx`, `app/locations/page.tsx`,
+  `app/insurance/[slug]/page.tsx`, `components/layout/Footer.tsx`.
+- New: `lib/business-facts.ts`, `lib/forms-schema.ts`, `lib/rate-limit.ts`,
+  `lib/use-form-submit.ts`, `app/api/cron/retry-notifications/route.ts`,
+  `test/forms-route.test.ts`.
+- Changed: `app/api/forms/route.ts` (rewrite), `lib/db.ts` (schema + functions),
+  `app/contact/page.tsx`, `app/quote/page.tsx` (+layout), `app/change-mortgagee/page.tsx`,
+  `app/loan-number-change/page.tsx` (hook + accessible error regions).
+
+### Tests performed & results
+
+- `vitest run` → **14 passing** (13 lead-delivery + 1 baseline). Covers every
+  storage×notification outcome, idempotency (client key + race), schema rejection,
+  reCAPTCHA fail, rate-limit 429, and the **no-PII-in-logs** guarantee.
+- `tsc --noEmit` clean · `eslint` 0 errors · `next build` succeeds.
+
+### Acceptance criteria (§4.7) — met
+
+- ✅ DB failure + email failure no longer produces a false success (→ 503).
+- ✅ Email failure preserves the stored lead and records an observable `failed` status.
+- ✅ A duplicate retry (same idempotency key) creates no second notification.
+- ✅ Client success copy is accurate (2xx = received; 503 = try again / call us).
+- ✅ Errors announced accessibly (aria-live regions on all four forms).
+- ✅ No secret/policy/loan number or full payload in ordinary logs (tested).
+
+### Remaining risks / follow-ups
+
+- Rate limiter is per-instance on serverless — fine as a first line with reCAPTCHA;
+  a global limiter (Upstash/Redis) is a documented future enhancement.
+- The retry cron endpoint exists but is **not yet wired to a Vercel Cron schedule**
+  (`vercel.json` crons are intentionally empty per prior build-unblock commit) — add a
+  schedule when ready, or invoke manually.
+- "20+ carriers" retained (business-supplied) but flagged `verified:false` — needs an
+  exact count + verification date.
+
+### Business input required (surfaced, not invented)
+
+- Confirm founding year **2002**. Confirm exact **carrier count**. Approve a
+  **response-time** promise (currently no SLA stated). Confirm whether any
+  client-count/size claims can be substantiated. Name the **reviewer** for regulated
+  (insurance/legal) content.
+
+---
+
 ## Pending business inputs (running list — Plan §18)
 
 These will be filled in as phases surface them. None block Checkpoint 1.

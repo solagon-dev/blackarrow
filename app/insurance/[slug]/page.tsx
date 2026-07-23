@@ -340,7 +340,7 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
           <ScrollReveal>
             <h2 className="text-white mb-4 sm:mb-6">Get Your {page.shortTitle} Quote Today</h2>
             <p className="text-base sm:text-lg text-navy-300 mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed">
-              Our licensed agents will help you find the right {page.shortTitle.toLowerCase()} coverage at the best rate. No obligation, no hassle.
+              Our licensed agents will help you find the right {page.shortTitle.toLowerCase()} coverage at a competitive rate. No obligation, no hassle.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Link href="/quote" className="btn-secondary px-8 py-4">

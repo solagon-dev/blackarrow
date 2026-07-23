@@ -54,7 +54,7 @@ export default function Footer() {
                 Ready to discuss your coverage?
               </h2>
               <p className="text-navy-300 text-base sm:text-lg leading-relaxed max-w-lg">
-                Our licensed agents compare rates from 20+ carriers to find the right coverage at the best rate.
+                Our licensed agents compare rates from 20+ carriers to find the right coverage at a competitive rate.
               </p>
             </div>
             <div className="lg:col-span-5 flex flex-col sm:flex-row gap-3 sm:gap-4 lg:justify-end">
