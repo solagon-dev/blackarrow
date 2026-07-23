@@ -2,6 +2,16 @@
 
 import { useRef, useState } from 'react'
 import { getRecaptchaToken } from './recaptcha'
+import { analytics } from './analytics'
+
+/** Map a form type to its conversion analytics event (no PII sent). */
+function trackConversion(formType: string) {
+  if (formType === 'quote') analytics.quoteSubmit()
+  else if (formType === 'contact') analytics.contactSubmit()
+  else if (formType === 'change-mortgagee' || formType === 'loan-number-change') {
+    analytics.policyManagementSubmit(formType)
+  }
+}
 
 /**
  * Shared client submit hook for website forms (Plan §4.5, §4.7).
@@ -52,6 +62,7 @@ export function useFormSubmit(formType: string, recaptchaAction: string) {
 
       if (res.ok) {
         keyRef.current = null // allow a fresh submission next time
+        trackConversion(formType) // fires once per successful submit (no PII)
         setStatus('success')
         return true
       }

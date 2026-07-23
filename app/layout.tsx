@@ -3,6 +3,9 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import AnalyticsProvider from '@/components/analytics/AnalyticsProvider'
+import ConsentBanner from '@/components/analytics/ConsentBanner'
+import { analyticsConfig, isAhrefsEnabled } from '@/lib/analytics-config'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -76,8 +79,13 @@ export const metadata: Metadata = {
     },
   },
   metadataBase: new URL('https://www.blackarrow.co'),
+  // Env-driven site verification (Plan §5.3). Set GOOGLE_SITE_VERIFICATION and/or
+  // BING_SITE_VERIFICATION in the environment — no hardcoded tokens.
   verification: {
-    // Placeholder — Stone should add the Search Console verification string here once verified.
+    google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
+    other: process.env.BING_SITE_VERIFICATION
+      ? { 'msvalidate.01': process.env.BING_SITE_VERIFICATION }
+      : {},
   },
 }
 
@@ -252,15 +260,22 @@ export default function RootLayout({
         <WebSiteSchema />
       </head>
       <body className="font-sans antialiased overflow-x-hidden">
-        {/* Ahrefs Web Analytics — raw <script> so the tag renders in initial HTML
-            with data-key intact, avoiding issues with next/script client-side injection
-            dropping custom data-* attributes in some Next.js versions. */}
-        <script async src="https://analytics.ahrefs.com/analytics.js" data-key="V5dSlzHbIFvtNMzCtxKCGA"></script>
+        <a href="#main-content" className="skip-to-content">Skip to content</a>
+        {/* Ahrefs Web Analytics (cookieless) — env-driven key, only in production
+            so dev/preview don't pollute production data (Plan §5.2, §5.5). Raw
+            <script> keeps data-key intact in the initial HTML. */}
+        {isAhrefsEnabled() && (
+          // eslint-disable-next-line @next/next/no-sync-scripts
+          <script async src="https://analytics.ahrefs.com/analytics.js" data-key={analyticsConfig.ahrefsKey}></script>
+        )}
+        {/* GA4 (consent-gated) + attribution capture + pageview tracking. */}
+        <AnalyticsProvider />
         <div id="site-header"><Header /></div>
-        <main className="min-h-screen">
+        <main id="main-content" className="min-h-screen">
           {children}
         </main>
         <div id="site-footer"><Footer /></div>
+        <ConsentBanner />
       </body>
     </html>
   )

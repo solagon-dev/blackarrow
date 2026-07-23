@@ -227,6 +227,83 @@ updates status — so a lead is never lost because email was down at submit time
 
 ---
 
+## Checkpoint 3 — Phase 1: Measurement & attribution
+
+### What changed & why
+
+**§5.1 Stop destroying attribution.** `middleware.ts` previously 301-redirected to
+strip `utm_*`/click-ID params *before* any analytics could see them — destroying
+campaign attribution. Removed that block entirely. The apex→www 301 remains and
+**preserves the full query string**. Duplicate-content for parametered URLs is left
+to the per-page canonical tags (already present) — the correct mechanism per §5.1.
+
+**§5.2 Typed, consent-aware analytics layer.** New `lib/analytics.ts` exposes typed
+`analytics.*` helpers over a `dataLayer`/`gtag` dispatcher that **never throws** and
+**never sends PII** (values matching email/phone patterns are dropped; strings
+truncated). Env-driven config (`lib/analytics-config.ts`) — no hardcoded creds;
+the previously hardcoded Ahrefs key is now an env var (live key as default). GA4 is
+optional and disabled unless `NEXT_PUBLIC_GA_MEASUREMENT_ID` is set. Dev/preview
+never emit to production (`isProductionAnalyticsEnv`). First-party attribution
+(`lib/attribution.ts`) captured first-touch into a `ba_attribution` cookie; the
+visible URL is then cleaned via `replaceState`. Conversions carry source/medium/
+campaign. Delegated click tracking covers all phone/email/directions links.
+
+**§5.3 Verification hooks.** `app/layout.tsx` `verification` is now env-driven
+(`GOOGLE_SITE_VERIFICATION`, `BING_SITE_VERIFICATION`) — no hardcoded tokens.
+
+**§5.4 Privacy alignment.** Added privacy-policy sections that accurately describe
+form storage + email delivery, cookies/analytics/attribution, reCAPTCHA, and data
+retention. Consent banner (`ConsentBanner.tsx`) shows **only** when GA is configured
++ consent unset, so we never display a banner that controls nothing. Consent state
+read via `useSyncExternalStore` (no setState-in-effect, no hydration mismatch).
+
+**Also:** added a skip-to-content link + `prefers-reduced-motion` guard in
+`globals.css` (early Phase 8 wins), and wired form conversions through the shared
+`useFormSubmit` hook.
+
+### Files affected
+
+- New: `lib/analytics.ts`, `lib/analytics-config.ts`, `lib/attribution.ts`,
+  `lib/consent.ts`, `components/analytics/AnalyticsProvider.tsx`,
+  `components/analytics/ConsentBanner.tsx`, `test/analytics.test.ts`,
+  `docs/ANALYTICS.md`.
+- Changed: `middleware.ts`, `app/layout.tsx`, `app/legal/privacy-policy/page.tsx`,
+  `app/globals.css`, `lib/use-form-submit.ts`, `.env.example`.
+
+### Tests performed & results
+
+- `vitest run` → **20 passing** (6 new: param sanitization drops PII, keeps
+  scalars, truncates; attribution parsing + first-touch + value caps).
+- **Browser verification** (local prod build): a `?utm_source=google&utm_medium=cpc&
+  utm_campaign=nc-auto-2025&gclid=TESTCLICK123` visit recorded full attribution in
+  the `ba_attribution` cookie AND cleaned the URL to `/`; `page_view` fired to the
+  dataLayer; GA correctly not loaded (no id); page rendered fully (analytics
+  non-blocking).
+- `tsc` clean · `eslint` 0 errors · `next build` succeeds.
+
+### Acceptance criteria (§5.5) — met
+
+- ✅ A test campaign URL durably records its attribution (verified).
+- ✅ Form/conversion events fire once with no PII (tested).
+- ✅ Phone clicks attributable to page + office (delegated listener).
+- ✅ Analytics failure never blocks navigation or form submission (try/catch + verified render).
+- ✅ Dev/preview don't pollute production analytics (env gating).
+- ✅ Event names + payloads documented (`docs/ANALYTICS.md`).
+
+### Remaining risks / follow-ups
+
+- GA4 is wired but not configured (no measurement id) — add the id + a real GA
+  property when the business is ready; the consent banner then activates.
+- `NEXT_PUBLIC_VERCEL_ENV` must be set to `$VERCEL_ENV` in Vercel so preview
+  correctly suppresses production analytics.
+
+### Business input required
+
+- Analytics/Search Console/Bing IDs; desired consent model (currently
+  consent-gated GA); lead-data retention period to state precisely in the policy.
+
+---
+
 ## Pending business inputs (running list — Plan §18)
 
 These will be filled in as phases surface them. None block Checkpoint 1.

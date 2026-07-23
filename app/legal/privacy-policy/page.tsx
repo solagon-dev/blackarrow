@@ -31,6 +31,37 @@ const sections = [
     ],
   },
   {
+    id: 'form-submissions',
+    title: 'How Your Form Submissions Are Handled',
+    intro: 'When you submit a quote request, contact message, or policy-service request through this website:',
+    items: [
+      'Your submission is stored in our secure database and emailed to our team so an agent can follow up.',
+      'We use trusted service providers to host that database and deliver the email. They process the data only to provide these services to us.',
+      'We use the information solely to respond to your request and service your insurance needs. We do not sell your personal information.',
+    ],
+  },
+  {
+    id: 'cookies-analytics',
+    title: 'Cookies, Analytics & Campaign Attribution',
+    intro: 'We use a limited set of cookies and analytics tools to understand how the site is used and where visitors come from:',
+    items: [
+      'Privacy-friendly, cookieless web analytics that measures aggregate traffic without tracking you across other sites.',
+      'A first-party cookie that records how you arrived (for example, a marketing campaign link) so we can measure which efforts help people find us. This information is not sold or shared for cross-site advertising.',
+      'If we enable Google Analytics, which uses cookies, we ask for your consent first through an on-site notice, and you can decline.',
+      'You can control cookies through your browser settings; declining analytics cookies does not affect your ability to use the site or request a quote.',
+    ],
+  },
+  {
+    id: 'recaptcha',
+    title: 'Spam Protection (reCAPTCHA)',
+    content: 'To protect our forms from spam and abuse, we use Google reCAPTCHA. reCAPTCHA collects hardware and software information and sends it to Google for analysis. Your use of reCAPTCHA is subject to Google’s Privacy Policy and Terms of Service.',
+  },
+  {
+    id: 'data-retention',
+    title: 'Data Retention',
+    content: 'We keep the information you submit for as long as needed to respond to your request, service your policies, and meet our legal and recordkeeping obligations, after which it is deleted or de-identified. You may contact us to ask about or request deletion of your information, subject to any legal requirements.',
+  },
+  {
     id: 'text-messaging',
     title: 'Text Messaging Consent & Privacy',
     content: 'If you opt in to receive text messages from BlackArrow Insurance, your opt-in data and consent will not be shared, sold, or transferred to any third parties under any circumstances. We maintain strict privacy compliance with all text messaging communications.',
@@ -81,7 +112,7 @@ export default function PrivacyPolicyPage() {
               Black Arrow Financial Group (&ldquo;BlackArrow Insurance,&rdquo; &ldquo;we,&rdquo; &ldquo;our,&rdquo; or &ldquo;us&rdquo;) is committed to protecting the privacy of our customers and website visitors.
             </p>
             <div className="flex items-center gap-4 mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-white/10">
-              <p className="text-xs text-navy-400">Last updated: January 1, 2025</p>
+              <p className="text-xs text-navy-400">Last updated: July 23, 2026</p>
               <span className="w-1 h-1 rounded-full bg-navy-500" />
               <Link href="/legal/terms-of-use" className="text-xs text-navy-400 hover:text-white transition-colors">
                 Terms of Service
