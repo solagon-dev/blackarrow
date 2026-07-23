@@ -73,9 +73,17 @@ const nextConfig = {
       { source: '/autoinsurance', destination: '/insurance/auto', permanent: true },
       { source: '/businessinsurance', destination: '/insurance/business-owners-package', permanent: true },
       { source: '/lifeinsurance', destination: '/insurance/life', permanent: true },
-      { source: '/renters-insurance', destination: '/insurance/rental-dwelling', permanent: true },
-      { source: '/renter-insurance', destination: '/insurance/rental-dwelling', permanent: true },
-      { source: '/flood-insurance', destination: '/insurance/homeowners', permanent: true },
+      // Renters insurance is tenant contents/liability coverage — route to the
+      // dedicated renters page, NOT landlord/rental-dwelling coverage (Plan §6.2).
+      { source: '/renters-insurance', destination: '/insurance/renters', permanent: true },
+      { source: '/renter-insurance', destination: '/insurance/renters', permanent: true },
+      // A dedicated flood page exists — route flood queries there, not homeowners
+      // (standard homeowners excludes flood) (Plan §6.2).
+      { source: '/flood-insurance', destination: '/insurance/flood', permanent: true },
+      // No dedicated windstorm/hurricane page yet. Wind is a homeowners peril, so
+      // homeowners is the most relevant destination; the homeowners page cross-links
+      // flood for the water side of storm risk. Revisit if a wind/hurricane guide
+      // is published (Plan §6.2, §11.3).
       { source: '/hurricane-insurance', destination: '/insurance/homeowners', permanent: true },
       { source: '/windstorm-insurance', destination: '/insurance/homeowners', permanent: true },
       // Content paths that shifted

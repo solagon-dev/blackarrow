@@ -304,6 +304,75 @@ read via `useSyncExternalStore` (no setState-in-effect, no hydration mismatch).
 
 ---
 
+## Checkpoint 4 — Phase 2: SEO architecture (redirects, schema, sitemap, consolidation)
+
+### What changed & why
+
+**§6.2 Legacy redirect corrections** (`next.config.js`): `/renters-insurance` and
+`/renter-insurance` now → `/insurance/renters` (were wrongly → rental-dwelling);
+`/flood-insurance` → `/insurance/flood` (was → homeowners). Hurricane/windstorm kept
+→ homeowners (wind is a homeowners peril; no dedicated page) with a documented note
+to revisit once a wind/hurricane guide exists. Runtime-verified.
+
+**§6.1 Consolidation — evidence-based, executed responsibly.** Pulled real GSC data
+(Ahrefs project *Blackarrow* 9710012). Findings: the site is nascent (home 17
+clicks; most pages 0) and the competing city/service pages are **new** (commit
+`a10a54f`), so their zero impressions mean "too new," not "worthless." Per
+instruction #15 I did **not** destroy pages on that assumption. Instead:
+`docs/SEO-CONSOLIDATION.md` records each overlap group with evidence, a leaning
+winner, and exact deferred-execution steps; `app/sitemap.ts` gained a
+`CONSOLIDATED_SLUGS` filter (currently empty) so future consolidations are one-line.
+
+**§6.3 Old-domain migration** (`docs/DOMAIN-MIGRATION.md`): Ahrefs shows
+`blackarrowfg.com` has **no indexed pages**, so the migration is low-risk. Wrote the
+domain-admin handoff (permanent one-hop HTTPS 301, path preservation, explicit
+mappings, GSC change-of-address). External — not executed (needs DNS access).
+
+**§6.4/§6.5 Structured data.** Remote service-area pages no longer emit an
+addressless `InsuranceAgency`/LocalBusiness (which implied a storefront) — they now
+emit `Service` schema with `areaServed` + `OfferCatalog`. The real NAP lives only in
+the global Organization schema's two office `location` entries. Fixed the broken
+`SearchAction`: `/insights?q=` now actually initializes the article filter (the
+`InsightsFilter` reads `?q=`), so the sitelinks searchbox is accurate. `sameAs`
+remains empty (no unverified profiles); no aggregate review stars added.
+
+**§6.6 Sitemap.** Dropped build-time `lastmod` from pages with no reliable
+per-page timestamp (kept real `updated_at`/`published_at` for posts); added the
+`/insurance` hub; only canonical `www` 200-URLs; `CONSOLIDATED_SLUGS` excluded.
+
+### Files affected
+
+- `next.config.js`, `app/sitemap.ts`, `app/(seo)/[slug]/page.tsx`,
+  `components/insights/InsightsFilter.tsx`.
+- New: `docs/SEO-CONSOLIDATION.md`, `docs/DOMAIN-MIGRATION.md`, `test/seo.test.ts`.
+
+### Tests & results
+
+- `vitest run` → **25 passing** (5 new: renters/flood redirect targets, no
+  self-loops, sitemap includes hub + omits build-time lastmod + only-canonical-www).
+- Runtime-verified redirects resolve to the corrected destinations and remote
+  service pages emit `Service` (not addressless `InsuranceAgency`).
+- `tsc` clean · `eslint` 0 errors · `next build` succeeds.
+
+### Acceptance criteria (§6.7)
+
+- ✅ Physical-office schema has complete address (global org, unchanged).
+- ✅ Remote service-area pages no longer impersonate physical offices.
+- ✅ Representative structured data builds without the addressless-LocalBusiness issue.
+- ✅ Mistaken renters/flood redirects corrected; no sitemap URL is a redirect/duplicate.
+- ⏸ One-canonical-per-intent: infrastructure + evidence-based plan in place;
+  execution deferred (new pages need time) — documented, nothing destroyed.
+- ⏸ Old-domain direct redirect: external action plan complete (needs DNS access).
+
+### Business input required
+
+- Access to (or a pull from) the **old GSC property** to finish the
+  blackarrowfg.com URL inventory. Decision on preferred URL structure
+  (`/insurance/{svc}-{city}-nc` vs top-level `/{svc}-{city}-nc`) before executing
+  the deferred consolidations.
+
+---
+
 ## Pending business inputs (running list — Plan §18)
 
 These will be filled in as phases surface them. None block Checkpoint 1.

@@ -4,58 +4,64 @@ import { locationPages } from '@/lib/location-data'
 import { serviceLocationPages } from '@/lib/service-location-data'
 import { getAllPosts } from '@/lib/db'
 
+/**
+ * Slugs consolidated away to a canonical winner (Plan §6.1). These are excluded
+ * from the sitemap and 301-redirected in next.config.js. A slug belongs here
+ * ONLY after an evidence-based decision (Search Console / Ahrefs) — never on an
+ * assumption. See docs/SEO-CONSOLIDATION.md for the decision record. Currently
+ * empty: consolidation is pending SEO-data access, so no page is destroyed.
+ */
+const CONSOLIDATED_SLUGS = {
+  insurance: new Set<string>([]),
+  serviceLocation: new Set<string>([]),
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.blackarrow.co'
-  const now = new Date()
 
-  // Priorities follow SEO best practice: money pages (quote) rank highest under the home page;
-  // service + location pages sit at 0.8; informational pages lower.
+  // Plan §6.6: Google ignores priority/changefreq, and stamping every page's
+  // lastmod with the build time is a false signal. We therefore OMIT lastmod on
+  // pages that have no reliable per-page modification timestamp, and set it only
+  // for blog posts (which carry real updated_at/published_at values). Only
+  // canonical, indexable, 200-status URLs are included; consolidated/redirected
+  // URLs are filtered out via CONSOLIDATED_SLUGS.
   const staticPages: MetadataRoute.Sitemap = [
-    { url: baseUrl, lastModified: now, changeFrequency: 'weekly', priority: 1.0 },
-    { url: `${baseUrl}/quote`, lastModified: now, changeFrequency: 'weekly', priority: 0.95 },
-    { url: `${baseUrl}/contact`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${baseUrl}/locations`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${baseUrl}/our-story`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/insights`, lastModified: now, changeFrequency: 'daily', priority: 0.8 },
-    { url: `${baseUrl}/file-a-claim`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/change-mortgagee`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${baseUrl}/loan-number-change`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${baseUrl}/legal/privacy-policy`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
-    { url: `${baseUrl}/legal/terms-of-use`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
+    { url: baseUrl },
+    { url: `${baseUrl}/insurance` },
+    { url: `${baseUrl}/quote` },
+    { url: `${baseUrl}/contact` },
+    { url: `${baseUrl}/locations` },
+    { url: `${baseUrl}/our-story` },
+    { url: `${baseUrl}/insights` },
+    { url: `${baseUrl}/file-a-claim` },
+    { url: `${baseUrl}/change-mortgagee` },
+    { url: `${baseUrl}/loan-number-change` },
+    { url: `${baseUrl}/legal/privacy-policy` },
+    { url: `${baseUrl}/legal/terms-of-use` },
   ]
 
-  const insurancePageUrls: MetadataRoute.Sitemap = insurancePages.map(page => ({
-    url: `${baseUrl}/insurance/${page.slug}`,
-    lastModified: now,
-    changeFrequency: 'monthly',
-    priority: 0.85,
-  }))
+  const insurancePageUrls: MetadataRoute.Sitemap = insurancePages
+    .filter(page => !CONSOLIDATED_SLUGS.insurance.has(page.slug))
+    .map(page => ({ url: `${baseUrl}/insurance/${page.slug}` }))
 
   const locationPageUrls: MetadataRoute.Sitemap = locationPages.map(page => ({
     url: `${baseUrl}/locations/${page.slug}`,
-    lastModified: now,
-    changeFrequency: 'monthly',
-    priority: 0.85,
   }))
 
-  const serviceLocationUrls: MetadataRoute.Sitemap = serviceLocationPages.map(page => ({
-    url: `${baseUrl}/${page.slug}`,
-    lastModified: now,
-    changeFrequency: 'monthly',
-    priority: 0.8,
-  }))
+  const serviceLocationUrls: MetadataRoute.Sitemap = serviceLocationPages
+    .filter(page => !CONSOLIDATED_SLUGS.serviceLocation.has(page.slug))
+    .map(page => ({ url: `${baseUrl}/${page.slug}` }))
 
   let blogUrls: MetadataRoute.Sitemap = []
   try {
     const posts = await getAllPosts('published')
-    blogUrls = posts.map(post => ({
-      url: `${baseUrl}/post/${post.slug}`,
-      lastModified: post.updated_at
-        ? new Date(post.updated_at)
-        : (post.published_at ? new Date(post.published_at) : now),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    }))
+    blogUrls = posts
+      .filter(post => post.updated_at || post.published_at)
+      .map(post => ({
+        url: `${baseUrl}/post/${post.slug}`,
+        // Real content timestamp — the one reliable lastmod we have.
+        lastModified: new Date(post.updated_at || (post.published_at as string)),
+      }))
   } catch {}
 
   return [...staticPages, ...insurancePageUrls, ...locationPageUrls, ...serviceLocationUrls, ...blogUrls]
