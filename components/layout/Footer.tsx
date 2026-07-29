@@ -78,7 +78,7 @@ export default function Footer() {
               <img src="/images/BlackArrowLogo.svg" alt="BlackArrow Insurance" width={115} height={28} className="h-7 w-auto brightness-0 invert" />
             </Link>
             <p className="text-navy-400 text-sm leading-relaxed mb-10 max-w-xs">
-              Proudly serving Eastern North Carolina for over 20 years with personalized insurance solutions.
+              An independent agency serving Eastern North Carolina since 2002 — home, auto, business, and property coverage from 20+ carriers.
             </p>
             {offices.map(office => (
               <div key={office.name} className="mb-6">

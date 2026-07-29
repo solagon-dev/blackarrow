@@ -93,13 +93,13 @@ export default async function Home() {
             </ScrollReveal>
             <ScrollReveal className="lg:col-span-7" delay={100}>
               <p className="text-base sm:text-lg text-navy-600 leading-relaxed mb-8 max-w-2xl">
-                As an independent agency, we work for you — not for any single carrier. We analyze your risk profile and match you with the right coverage from a curated panel of top-rated insurers.
+                Because we don&rsquo;t work for any one insurance company, we work for you. We look at what you actually need to protect, then bring you options from the carriers that fit — instead of the one policy a captive agent happens to sell.
               </p>
               <div className="grid sm:grid-cols-3 gap-6 sm:gap-8 pt-6 sm:pt-8 border-t border-gray-200">
                 {[
-                  { title: 'Tailored Coverage', desc: 'We build strategies around your specific needs, not one-size-fits-all products.' },
-                  { title: 'Competitive Pricing', desc: 'We compare options across 20+ carriers to find competitive coverage and pricing for your needs.' },
-                  { title: 'Ongoing Advisory', desc: 'Dedicated guidance from policy inception through claims resolution.' },
+                  { title: 'Coverage that fits', desc: 'We build the policy around what you own and do — not a template with your name dropped in.' },
+                  { title: 'Shopped every renewal', desc: 'We run the same coverage past 20+ carriers, so you see who&rsquo;s actually competitive this year.' },
+                  { title: 'A person to call', desc: 'The same agent from the day you sign through the day you file a claim.' },
                 ].map((item) => (
                   <div key={item.title}>
                     <h3 className="text-base font-semibold text-navy-900 mb-2">{item.title}</h3>

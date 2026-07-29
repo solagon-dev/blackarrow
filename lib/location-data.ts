@@ -79,7 +79,7 @@ export const locationPages: LocationPage[] = [
     seoTitle: 'Insurance Companies in Greenville, NC — Compare 20+ Carriers',
     seoDescription: 'Looking for insurance in Greenville, NC? BlackArrow Insurance compares home, auto, and business insurance from 20+ carriers. Locally founded in 2002. Get a free quote.',
     heroHeading: 'Insurance Agency in Greenville, NC',
-    heroDescription: 'BlackArrow Insurance has been a trusted insurance partner in Greenville and Pitt County for over 20 years. We provide personalized insurance solutions for homeowners, renters, property investors, and businesses across the region.',
+    heroDescription: 'BlackArrow Insurance has been a trusted insurance partner in Greenville and Pitt County for over 20 years. We write coverage for homeowners, renters, property investors, and businesses across Pitt County and the surrounding area.',
     aboutHeading: 'Serving the Greenville Community Since 2002',
     aboutContent: [
       'BlackArrow Insurance was founded in Greenville, North Carolina, in 2002. What started as a small independent agency has grown into an established independent brokerage serving clients across Eastern North Carolina.',
@@ -165,7 +165,7 @@ export const locationPages: LocationPage[] = [
     seoTitle: 'Insurance Broker in Raleigh, NC — Compare 20+ Carriers',
     seoDescription: 'Insurance in Raleigh, NC: BlackArrow Insurance compares home, auto, business, and rental property insurance from 20+ carriers. Independent agency, free quote.',
     heroHeading: 'Insurance Agency in Raleigh, NC',
-    heroDescription: 'BlackArrow Insurance brings over 20 years of independent brokerage expertise to the Raleigh metro. We compare coverage from 20+ carriers to deliver personalized insurance solutions for homeowners, property investors, and businesses across the Triangle.',
+    heroDescription: 'BlackArrow Insurance brings over 20 years of independent brokerage expertise to the Raleigh metro. We compare coverage from 20+ carriers for homeowners, property investors, and businesses across the Triangle.',
     aboutHeading: 'Bringing Eastern NC Expertise to the Triangle',
     aboutContent: [
       'BlackArrow Insurance extends our independent insurance services to the Raleigh-Durham metropolitan area, bringing the same personalized, multi-carrier approach that has made us a trusted name in Eastern North Carolina since 2002.',

@@ -28,7 +28,7 @@ export const insurancePages: InsurancePage[] = [
     shortTitle: "Homeowner's",
     category: 'personal',
     tagline: 'Bring the right coverage under your roof',
-    description: "Homeowner's insurance provides financial protection for your home and personal belongings against risks like fire, theft, or natural disasters. It also covers liability if someone is injured on your property.",
+    description: "Your home is the biggest thing most people ever insure. A homeowner's policy covers the structure, everything you keep inside, and your liability if someone is hurt on the property \u2014 plus somewhere to stay if a fire or storm makes the house unlivable. In Eastern NC, how a policy handles wind and water is where the real differences show up.",
     icon: 'home',
     coverageTypes: [
       { title: 'Dwelling Coverage', description: 'Protects your home structure from covered perils including fire, vandalism, and severe weather.' },
@@ -65,7 +65,7 @@ export const insurancePages: InsurancePage[] = [
     shortTitle: 'Auto',
     category: 'personal',
     tagline: 'The right coverage to seize the road ahead',
-    description: 'Auto insurance provides financial protection for your vehicle and covers damages from accidents, theft, or natural events. It also includes liability coverage to protect you financially if you cause injury or damage to others.',
+    description: "Auto coverage pays for the wreck you cause, the wreck someone causes you, and the damage that has nothing to do with driving \u2014 theft, a fallen limb, a hailstorm. North Carolina sets minimum liability limits, but the minimum is rarely the right number, and we help you land on limits that actually protect what you own.",
     icon: 'car',
     coverageTypes: [
       { title: 'Liability Coverage', description: 'Covers bodily injury and property damage you cause to others in an accident.' },
@@ -103,8 +103,8 @@ export const insurancePages: InsurancePage[] = [
     title: 'Life Insurance',
     shortTitle: 'Life',
     category: 'personal',
-    tagline: 'Personalized plans for more peace of mind',
-    description: 'Life insurance provides financial protection for your loved ones by offering a death benefit to help cover expenses, replace lost income, or secure their financial future.',
+    tagline: "Income protection for the people who count on you",
+    description: "Life insurance is really about the people who depend on your income. A policy replaces that income if you're gone, covering a mortgage, tuition, or everyday bills so your family isn't making hard financial decisions at the worst possible time. We'll talk through term versus whole and what fits where you are now.",
     icon: 'heart',
     coverageTypes: [
       { title: 'Term Life Insurance', description: 'Provides coverage for a specified period, such as 10, 20, or 30 years, with lower premiums. Ideal for temporary coverage needs.' },
@@ -143,7 +143,7 @@ export const insurancePages: InsurancePage[] = [
     // Was a verbatim copy of the Life tagline, so the two cards read
     // identically wherever they appeared side by side.
     tagline: 'Cover your vessel on inland waters and the coast',
-    description: 'Boat insurance provides financial protection for your vessel, covering damages from accidents, theft, or natural events. It also includes liability coverage to protect you on the water.',
+    description: "From a bass boat on the Tar River to a center console running offshore, boat coverage handles the hull, the motor, and your liability on the water \u2014 the parts a homeowner's policy drops the moment you leave the dock. Coastal moorage carries its own named-storm rules, and we make sure yours read correctly.",
     icon: 'anchor',
     coverageTypes: [
       { title: 'Liability Coverage', description: 'Covers injuries or property damage caused to others while operating your boat.' },
@@ -218,7 +218,7 @@ export const insurancePages: InsurancePage[] = [
     shortTitle: 'Dump & Straight Truck',
     category: 'commercial',
     tagline: 'Specialized coverage for your heavy-duty fleet',
-    description: 'Dump and straight truck insurance provides financial protection for your commercial vehicles, covering damages from accidents, theft, or unexpected events on the road.',
+    description: "Dump trucks and straight trucks earn their keep under heavy loads, and off-the-shelf commercial auto rarely accounts for that. This coverage is built around how these trucks actually run \u2014 the weight they carry, the sites they work, and the downtime a serious claim causes \u2014 so one bad day doesn't stall the business.",
     icon: 'cube',
     coverageTypes: [
       { title: 'Liability Coverage', description: 'Covers injury and property damage you cause to others while operating your truck.' },
@@ -254,8 +254,8 @@ export const insurancePages: InsurancePage[] = [
     title: 'Commercial Auto Insurance',
     shortTitle: 'Commercial Auto',
     category: 'commercial',
-    tagline: 'Keep your business moving with confidence',
-    description: 'Commercial auto insurance provides financial protection for your business vehicles, covering damages from accidents, theft, or unexpected incidents on the road.',
+    tagline: "Coverage for vehicles on the clock",
+    description: "Once a vehicle is working for the business, a personal auto policy won't answer a claim. Commercial auto covers the trucks, vans, and cars your operation depends on \u2014 the drivers behind the wheel, whatever's in back, and the liability that follows a company vehicle down the road.",
     icon: 'clipboard-check',
     coverageTypes: [
       { title: 'Liability Coverage', description: 'Covers bodily injury and property damage you cause to others with your business vehicle.' },
@@ -291,8 +291,8 @@ export const insurancePages: InsurancePage[] = [
     title: 'General Liability Insurance',
     shortTitle: 'General Liability',
     category: 'commercial',
-    tagline: 'Essential protection for every business',
-    description: 'General liability insurance provides essential financial protection for your business, covering expenses related to third-party injuries, property damage, and legal claims.',
+    tagline: "The first policy most businesses buy",
+    description: "General liability is what responds when a customer slips, your work damages someone's property, or a job turns into a dispute. It's the first policy most NC businesses buy and the one clients and landlords ask to see \u2014 the line between a routine accident and a bill you pay yourself.",
     icon: 'shield',
     coverageTypes: [
       { title: 'Bodily Injury Liability', description: 'Covers medical expenses and legal fees if someone is injured on your business premises or due to your operations.' },
@@ -326,8 +326,8 @@ export const insurancePages: InsurancePage[] = [
     title: 'Cyber Liability Insurance',
     shortTitle: 'Cyber Liability',
     category: 'commercial',
-    tagline: 'Defend your business in the digital age',
-    description: 'Cyber liability insurance covers expenses related to data loss, cyberattacks, and legal claims stemming from a security incident, helping you manage digital risks.',
+    tagline: "For breaches, downtime, and lost data",
+    description: "One breach can mean locked systems, exposed customer records, and legal notice to everyone affected. Cyber liability covers the response \u2014 forensics, notification, recovery, and the claims that follow \u2014 for the many small businesses that now run on software and store data they can't afford to lose.",
     icon: 'lock',
     coverageTypes: [
       { title: 'Data Breach Coverage', description: 'Covers notification costs, credit monitoring, and legal fees following a data breach.' },
@@ -362,7 +362,7 @@ export const insurancePages: InsurancePage[] = [
     shortTitle: 'Equipment',
     category: 'commercial',
     tagline: 'Protect the tools that power your business',
-    description: 'Equipment insurance provides essential coverage for your business assets, protecting against damages or losses due to accidents, theft, or unexpected events.',
+    description: "The tools and machines a business runs on are expensive to replace and hard to work without. Equipment coverage pays when they're stolen, damaged, or break down \u2014 a contractor's gear on a job site, a shop's machinery, or leased equipment you're contractually on the hook for.",
     icon: 'wrench',
     coverageTypes: [
       { title: 'Property Damage Coverage', description: 'Covers repair or replacement costs for damaged or stolen equipment.' },
@@ -396,8 +396,8 @@ export const insurancePages: InsurancePage[] = [
     title: "Business Owner's Package (BOP)",
     shortTitle: 'BOP',
     category: 'commercial',
-    tagline: 'Comprehensive coverage in one smart package',
-    description: "A Business Owner's Package combines essential coverages to protect small and medium-sized businesses from common risks, all in one convenient policy. This package typically includes general liability, property insurance, and business interruption coverage.",
+    tagline: "Liability, property, and income in one policy",
+    description: "A Business Owner's Package bundles the three things most small businesses need \u2014 liability, property, and lost-income coverage \u2014 into one policy that usually costs less than buying them separately. It's the practical starting point for a shop, office, or service business that wants real coverage without juggling contracts.",
     icon: 'briefcase',
     coverageTypes: [
       { title: 'General Liability Insurance', description: 'Protects against bodily injury, property damage, or personal injury claims occurring on your premises or during operations.' },
@@ -433,8 +433,8 @@ export const insurancePages: InsurancePage[] = [
     title: "Worker's Compensation Insurance",
     shortTitle: "Worker's Comp",
     category: 'commercial',
-    tagline: 'Protect your team and your business',
-    description: "Worker's compensation insurance provides essential coverage for your employees, protecting them in case of work-related injuries or illnesses. It covers medical expenses, lost wages, and rehabilitation costs.",
+    tagline: "Required in NC at three employees",
+    description: "Workers' comp pays an employee's medical bills and lost wages after a job-related injury, and North Carolina requires it once you reach three employees. It also keeps the business from being sued directly over that injury \u2014 so the coverage protects the people doing the work and the owner signing the checks.",
     icon: 'users',
     coverageTypes: [
       { title: 'Medical Expenses Coverage', description: 'Covers all treatment related to work injuries and illnesses, including hospital visits, surgeries, and medications.' },
@@ -468,8 +468,8 @@ export const insurancePages: InsurancePage[] = [
     title: 'Commercial Property Insurance',
     shortTitle: 'Commercial Property',
     category: 'commercial',
-    tagline: 'Safeguard your business assets',
-    description: 'Commercial property insurance protects your business\'s physical assets, including buildings, equipment, and inventory, against damage from events like fire, theft, and natural disasters.',
+    tagline: "Cover the building and everything in it",
+    description: "Commercial property insurance covers the physical side of a business \u2014 the building, the inventory, the equipment inside \u2014 against fire, theft, storms, and the other events that can empty a storefront overnight. Whether you own the space or lease it, this is what puts things back together after a loss.",
     icon: 'building2',
     coverageTypes: [
       { title: 'Building Coverage', description: 'Structural protection against fire, storms, vandalism, and other covered perils.' },
@@ -503,8 +503,8 @@ export const insurancePages: InsurancePage[] = [
     title: 'Short Term Rental Insurance',
     shortTitle: 'Short Term Rental',
     category: 'property',
-    tagline: 'Protect your rental income and property',
-    description: 'Short term rental insurance provides essential protection for property owners, covering potential damages, liability claims, and income loss that may arise from guest stays.',
+    tagline: "Built for Airbnb and VRBO hosts",
+    description: "Listing a place on Airbnb or VRBO puts it in a category a homeowner's policy was never written for. Short-term rental coverage handles the guest side \u2014 damage they cause, an injury during a stay, and the income you lose when a booking cancels or the unit can't be rented.",
     icon: 'key',
     coverageTypes: [
       { title: 'Property Damage Coverage', description: 'Covers repair or replacement costs for damage caused by guests, whether accidental or from negligence.' },
@@ -538,8 +538,8 @@ export const insurancePages: InsurancePage[] = [
     title: 'Long Term Rental Insurance',
     shortTitle: 'Long Term Rental',
     category: 'property',
-    tagline: 'Protect your long-term rental investment',
-    description: 'Long term rental insurance provides crucial protection for property owners, covering risks such as property damage, tenant-caused loss, and liability for residential rental properties.',
+    tagline: "Landlord coverage for year-round tenants",
+    description: "A year-long lease calls for coverage built for a rented home, not the one you live in. Long-term rental insurance covers the structure, tenant-caused damage, and your liability as a landlord \u2014 the exact exposures a standard homeowner's policy drops once you rent the place out.",
     icon: 'home',
     coverageTypes: [
       { title: 'Property Damage Coverage', description: 'Covers repairs or replacement from disasters, vandalism, and tenant-caused damage.' },
@@ -574,7 +574,7 @@ export const insurancePages: InsurancePage[] = [
     shortTitle: "Builder's Risk",
     category: 'property',
     tagline: 'Coverage for every stage of construction',
-    description: "Builder's risk insurance provides crucial coverage for construction projects, protecting against potential damages or losses due to accidents, theft, vandalism, or unforeseen events.",
+    description: "A project mid-construction is exposed in ways a finished building isn't \u2014 materials on site, work half-done, and no one there overnight. Builder's risk covers the structure and materials against fire, theft, vandalism, and weather while the job is underway, from foundation to final walkthrough.",
     icon: 'hardhat',
     coverageTypes: [
       { title: 'Property Damage Coverage', description: 'Covers physical damage from fire, storms, and vandalism during construction.' },
@@ -609,7 +609,7 @@ export const insurancePages: InsurancePage[] = [
     shortTitle: 'Vacant / Unoccupied',
     category: 'property',
     tagline: 'Protection for properties between occupants',
-    description: 'Vacant and unoccupied insurance provides crucial protection for properties that are temporarily uninhabited, covering risks such as theft, vandalism, and damage from unexpected events.',
+    description: "An empty house is where the slow problems hide \u2014 a burst pipe, a break-in, a small fire nobody's there to catch. Most standard policies pull back once a property sits vacant, so this covers the gap for homes between tenants, listings waiting to sell, or a place mid-renovation.",
     icon: 'building',
     coverageTypes: [
       { title: 'Property Damage Coverage', description: 'Covers damage from fire, storms, vandalism, and theft for unoccupied properties.' },
