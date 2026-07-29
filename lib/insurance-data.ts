@@ -651,8 +651,8 @@ export const insurancePages: InsurancePage[] = [
       { title: 'Employer Liability', description: 'Protects your business against lawsuits alleging negligence, gross negligence, or third-party-over claims.' },
     ],
     whoNeeds: [
-      { title: 'NC Employers with 3+ Employees', description: 'Required by North Carolina law — sole proprietors and partnerships with three or more employees must carry workers comp.' },
-      { title: 'Construction Contractors', description: 'Required regardless of employee count if you have even one employee. Certificates of insurance frequently requested by general contractors and clients.' },
+      { title: 'NC Employers with 3+ Employees', description: 'North Carolina generally requires businesses with three or more employees — corporations, sole proprietorships, LLCs, and partnerships — to carry workers\' compensation. Owners, partners, and LLC members are not automatically counted toward the threshold.' },
+      { title: 'Construction Contractors', description: 'The three-employee rule applies to construction businesses too. Separately, if you hire an uninsured subcontractor you can be held liable for injuries to that subcontractor\'s employees regardless of headcount — which is why general contractors so often request certificates of insurance.' },
       { title: 'Healthcare, Retail, Hospitality', description: 'Industries with elevated injury rates benefit from comprehensive coverage beyond the NC minimum.' },
     ],
     costFactors: [
@@ -663,14 +663,14 @@ export const insurancePages: InsurancePage[] = [
       'Safety programs and return-to-work policies',
     ],
     faqs: [
-      { question: 'Is workers comp required in North Carolina?', answer: 'Yes — NC law requires workers comp coverage for most employers with three or more employees (including part-time), or any number of employees if they are in construction-related work. Penalties for noncompliance can include fines, stop-work orders, and personal liability for owners.' },
-      { question: 'What are the penalties for not having workers comp in NC?', answer: 'Employers can face daily fines of $50–$100 per employee per day, criminal charges for willful noncompliance, and personal liability for injuries sustained by uninsured employees. The NC Industrial Commission actively audits coverage.' },
+      { question: 'Is workers comp required in North Carolina?', answer: 'North Carolina generally requires workers\' compensation coverage for businesses with three or more employees (including part-time), across corporations, sole proprietorships, LLCs, and partnerships; certain activities, such as work involving radiation, can trigger it at fewer employees. Requirements have exceptions and counting rules — confirm your specific obligation with a licensed agent and the NC Industrial Commission (ic.nc.gov). This is general information, not legal advice.' },
+      { question: 'What are the penalties for not having workers comp in NC?', answer: 'Failing to carry required coverage can lead to significant penalties, including fines, possible misdemeanor or felony charges, and personal liability for a business\'s owners for injuries to uninsured employees. The NC Industrial Commission enforces these requirements.' },
       { question: 'Does workers comp cover independent contractors?', answer: 'Generally no — but NC uses a multi-factor test to distinguish true independent contractors from misclassified employees. If the state reclassifies your contractors, you may owe retroactive premiums and penalties.' },
-      { question: 'How quickly can BlackArrow get me quotes?', answer: 'Most NC workers comp quotes are back within 24–48 hours. We use 20+ carriers to match your classification codes and payroll to the best-priced policy.' },
+      { question: 'How quickly can BlackArrow get me quotes?', answer: 'Turnaround depends on your classification codes, payroll, and carrier underwriting. We compare options across 20+ carriers to match your business to appropriate, competitively priced coverage, and we keep you posted on timing.' },
     ],
     relatedSlugs: ['business-owners-package', 'general-liability', 'commercial-property'],
     seoTitle: 'NC Workers Compensation Insurance — Required Coverage for 3+ Employees',
-    seoDescription: 'NC workers comp insurance for businesses with 3+ employees. BlackArrow Insurance shops 20+ carriers for contractors, healthcare, retail, and hospitality across Eastern North Carolina. Same-day quotes.',
+    seoDescription: 'NC workers comp insurance, generally required for businesses with 3+ employees. BlackArrow Insurance shops 20+ carriers for contractors, healthcare, retail, and hospitality across Eastern North Carolina. Request a quote today.',
   },
   {
     slug: 'boat-insurance-north-carolina',
@@ -742,14 +742,14 @@ export const insurancePages: InsurancePage[] = [
       'Deductible choices',
     ],
     faqs: [
-      { question: 'What are the NC minimum auto insurance requirements?', answer: 'North Carolina requires $30,000 bodily injury per person, $60,000 per accident, $25,000 property damage, plus uninsured motorist coverage. BlackArrow typically recommends 100/300/100 for most Greenville drivers for adequate protection.' },
+      { question: 'What are the NC minimum auto insurance requirements?', answer: 'For policies issued or renewed on or after July 1, 2025, North Carolina requires minimum auto liability limits of $50,000 bodily injury per person, $100,000 bodily injury per accident, and $50,000 property damage. New and renewed policies also include uninsured/underinsured motorist coverage. Many drivers choose higher limits (for example, 100/300/100) for stronger asset protection — a licensed agent can help you weigh the right limits for your situation.' },
       { question: 'Can I get SR-22 filings through BlackArrow?', answer: 'Yes — we work with carriers that file SR-22s with the NC DMV for drivers who\'ve had DWI convictions, license suspensions, or high-risk driving records.' },
       { question: 'Do you offer good-student or ECU-student discounts?', answer: 'Many of our carriers offer good-student discounts for full-time students (including ECU undergrads and graduate students) with a 3.0 GPA or higher. Ask us to check — the discount can be significant.' },
       { question: 'How fast can I get a Greenville quote?', answer: 'Most auto quotes are back same-day. Stop by 905 Conference Drive Suite 2B or request online.' },
     ],
     relatedSlugs: ['homeowners', 'life', 'boat'],
     seoTitle: 'Auto Insurance in Greenville, NC — Car Insurance for Pitt County',
-    seoDescription: 'Greenville NC auto insurance from BlackArrow Insurance at 905 Conference Drive. We shop 20+ carriers for ECU students, healthcare workers, and Pitt County families. Same-day quotes.',
+    seoDescription: 'Greenville NC auto insurance from BlackArrow Insurance at 905 Conference Drive. We shop 20+ carriers for ECU students, healthcare workers, and Pitt County families. Request a free quote.',
   },
   // ── Flood Insurance (standalone product, NFIP + private market) ──
   {
@@ -781,7 +781,7 @@ export const insurancePages: InsurancePage[] = [
     ],
     faqs: [
       { question: 'Does my homeowners insurance cover flood damage?', answer: 'No. Standard homeowners insurance policies explicitly exclude flood damage. You need a separate flood insurance policy — either NFIP or private flood — to cover rising water from storms, hurricanes, or river overflow.' },
-      { question: 'How much is flood insurance in NC?', answer: 'NC flood insurance costs vary widely by zone and elevation. Properties in low-risk X zones can cost as little as $400/year. High-risk AE or VE zones can range $1,500–$4,000+ annually. We compare NFIP and private flood quotes to find the best rate for your property.' },
+      { question: 'How much is flood insurance in NC?', answer: 'NC flood insurance costs vary widely by flood zone, elevation, coverage amount, and whether you use NFIP or a private insurer — lower-risk zones generally cost less than high-risk AE or VE zones. Rather than quote a figure that may not fit your property, we compare NFIP and private flood options and give you an accurate price for your specific situation.' },
       { question: 'What\'s the difference between NFIP and private flood insurance?', answer: 'NFIP is the federal program — uniform pricing nationwide, capped coverage limits ($250k building / $100k contents), and a 30-day waiting period. Private flood offers higher limits, sometimes broader coverage, faster effective dates, and can be cheaper for newer construction or higher-elevation properties.' },
       { question: 'Is flood insurance required in NC?', answer: 'Federal law requires flood insurance for homes in FEMA-designated high-risk zones (Special Flood Hazard Areas) with federally-backed mortgages. Even outside required zones, we recommend coverage for properties in coastal NC, near rivers, or in low-lying areas.' },
       { question: 'How long does it take for flood insurance to take effect?', answer: 'NFIP policies have a 30-day waiting period before coverage starts (with some exceptions for new home purchases). Private flood policies can often start within 14 days or sooner — important if a storm is approaching.' },

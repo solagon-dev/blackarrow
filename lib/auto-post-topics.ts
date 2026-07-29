@@ -87,7 +87,7 @@ export const autoPostTopics: AutoPostTopic[] = [
       'workers comp insurance wilmington nc',
       'nc industrial commission',
     ],
-    brief: 'Explain the 3-or-more-employees threshold under NC law, the construction-industry exception (any number of employees), penalties from the NC Industrial Commission, how premiums are calculated from payroll and classification codes, and how independent contractors are tested. Mention that rates in NC tend to be moderate compared to other coastal states.',
+    brief: 'Explain the general 3-or-more-employees threshold under NC law (applies to corporations, sole proprietorships, LLCs, and partnerships), how construction businesses are subject to the same threshold, and the separate liability exposure a business faces when it hires an uninsured subcontractor (liable for that subcontractor\'s employees\' injuries regardless of headcount). Do NOT state that every contractor with one employee must carry coverage — that is inaccurate. Cover penalties from the NC Industrial Commission in general terms (fines, possible criminal charges, personal liability), how premiums are calculated from payroll and classification codes, and how independent contractors are tested. Always direct readers to a licensed agent and the NC Industrial Commission (ic.nc.gov), and note this is general information, not legal advice.',
     internalLinks: ['workers-compensation', 'business-owners-package'],
   },
   {
@@ -268,7 +268,7 @@ export const autoPostTopics: AutoPostTopic[] = [
       'workers comp rates north carolina',
       'workers comp by industry nc',
     ],
-    brief: "Explain NC workers comp rate structure — base rate per $100 of payroll multiplied by classification code multiplied by experience modification rate. Provide typical rate ranges by industry (clerical, retail, hospitality, healthcare, construction, roofing, trucking). Include a sample-pricing table showing what a 5-employee NC business pays for workers comp by industry. Cover how the e-mod is calculated and how employers can lower it.",
+    brief: "Explain the NC workers comp rate structure — base rate per $100 of payroll multiplied by classification code multiplied by experience modification rate. Describe in relative terms how rates differ by industry (clerical, retail, hospitality, healthcare, construction, roofing, trucking) — e.g. that higher-risk trades cost substantially more per dollar of payroll — WITHOUT quoting specific dollar figures or a sample-pricing table that could be read as a guaranteed price. Cover how the e-mod is calculated and how employers can lower it, and direct readers to request an accurate quote for their operation.",
     internalLinks: ['workers-compensation', 'workers-compensation-north-carolina'],
   },
   {

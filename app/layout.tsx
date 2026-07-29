@@ -79,8 +79,13 @@ export const metadata: Metadata = {
     },
   },
   metadataBase: new URL('https://www.blackarrow.co'),
+  // Env-driven site verification (Plan §5.3). Set GOOGLE_SITE_VERIFICATION and/or
+  // BING_SITE_VERIFICATION in the environment — no hardcoded tokens.
   verification: {
-    // Placeholder — Stone should add the Search Console verification string here once verified.
+    google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
+    other: process.env.BING_SITE_VERIFICATION
+      ? { 'msvalidate.01': process.env.BING_SITE_VERIFICATION }
+      : {},
   },
 }
 
@@ -255,6 +260,7 @@ export default function RootLayout({
         <WebSiteSchema />
       </head>
       <body className="font-sans antialiased overflow-x-hidden">
+        <a href="#main-content" className="skip-to-content">Skip to content</a>
         {/* Ahrefs Web Analytics (cookieless) — env-driven key, production only so
             dev/preview don't pollute production data. Raw <script> so the tag renders
             in initial HTML with data-key intact, avoiding issues with next/script
@@ -265,7 +271,7 @@ export default function RootLayout({
         {/* GA4 (consent-gated) + attribution capture + pageview tracking. */}
         <AnalyticsProvider />
         <div id="site-header"><Header /></div>
-        <main className="min-h-screen">
+        <main id="main-content" className="min-h-screen">
           {children}
         </main>
         <div id="site-footer"><Footer /></div>

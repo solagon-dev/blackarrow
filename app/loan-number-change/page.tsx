@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { getRecaptchaToken } from '@/lib/recaptcha'
+import { useFormSubmit } from '@/lib/use-form-submit'
 
 export default function LoanNumberChangePage() {
   const [form, setForm] = useState({
@@ -9,22 +9,11 @@ export default function LoanNumberChangePage() {
     oldLoanNumber: '', newLoanNumber: '', mortgageeName: '',
     email: '', phone: '',
   })
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const { status, errorMessage, submit } = useFormSubmit('loan-number-change', 'loan_number_change')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setStatus('loading')
-    try {
-      const recaptcha_token = await getRecaptchaToken('loan_number_change')
-      const res = await fetch('/api/forms', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ form_type: 'loan-number-change', data: form, recaptcha_token }),
-      })
-      setStatus(res.ok ? 'success' : 'error')
-    } catch {
-      setStatus('error')
-    }
+    await submit(form)
   }
 
   const update = (field: string, value: string) => setForm(f => ({ ...f, [field]: value }))
@@ -83,7 +72,7 @@ export default function LoanNumberChangePage() {
                     <div><label className="input-label">Phone</label><input type="tel" className="input-field" value={form.phone} onChange={e => update('phone', e.target.value)} /></div>
                   </div>
                 </div>
-                {status === 'error' && <p className="text-red-600 text-sm">Something went wrong. Please try again.</p>}
+                <div aria-live="polite">{status === 'error' && <p className="text-red-600 text-sm">{errorMessage}</p>}</div>
                 <button type="submit" disabled={status === 'loading'} className="btn-primary">
                   {status === 'loading' ? 'Submitting...' : 'Submit Change Request'}
                 </button>

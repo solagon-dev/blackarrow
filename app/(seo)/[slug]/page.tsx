@@ -40,21 +40,25 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 function ServiceLocationSchema({ page }: { page: (typeof serviceLocationPages)[0] }) {
   const pageUrl = `https://www.blackarrow.co/${page.slug}`
 
-  const localBusiness = {
+  // Plan §6.4/§6.5: service-area pages describe a SERVICE offered in a city, not
+  // a physical office. We therefore emit Service schema with areaServed + an
+  // OfferCatalog, and DO NOT emit an addressless InsuranceAgency/LocalBusiness
+  // (which would imply a storefront). The real InsuranceAgency NAP lives on the
+  // office pages and in the global Organization schema (#organization).
+  const serviceSchema = {
     '@context': 'https://schema.org',
-    '@type': 'InsuranceAgency',
-    '@id': `${pageUrl}#localbusiness`,
-    name: `BlackArrow Insurance — ${page.serviceType} in ${page.city}, ${page.stateAbbr}`,
-    description: page.seoDescription,
-    url: pageUrl,
-    telephone: '+1-910-914-6074',
-    parentOrganization: { '@id': 'https://www.blackarrow.co/#organization' },
+    '@type': 'Service',
+    '@id': `${pageUrl}#service`,
+    name: `${page.serviceType} in ${page.city}, ${page.stateAbbr}`,
+    description: page.heroDescription,
+    serviceType: page.serviceType,
+    provider: { '@id': 'https://www.blackarrow.co/#organization' },
     areaServed: {
       '@type': 'City',
       name: page.city,
       containedInPlace: { '@type': 'State', name: page.stateAbbr === 'NC' ? 'North Carolina' : page.stateAbbr },
     },
-    priceRange: '$$',
+    url: pageUrl,
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: `${page.serviceType} in ${page.city}, ${page.stateAbbr}`,
@@ -67,18 +71,6 @@ function ServiceLocationSchema({ page }: { page: (typeof serviceLocationPages)[0
         },
       })),
     },
-  }
-
-  const serviceSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    '@id': `${pageUrl}#service`,
-    name: `${page.serviceType} in ${page.city}, ${page.stateAbbr}`,
-    description: page.heroDescription,
-    serviceType: page.serviceType,
-    provider: { '@id': 'https://www.blackarrow.co/#organization' },
-    areaServed: { '@type': 'City', name: page.city },
-    url: pageUrl,
   }
 
   const faqSchema = page.faqItems.length > 0 ? {
@@ -107,7 +99,6 @@ function ServiceLocationSchema({ page }: { page: (typeof serviceLocationPages)[0
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       {faqSchema && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />

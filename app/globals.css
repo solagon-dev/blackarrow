@@ -25,6 +25,36 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  /* Accessibility: honor reduced-motion preferences (Plan §12.1). */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Skip-to-content link — visible only when focused (Plan §12.1). */
+  .skip-to-content {
+    @apply sr-only;
+  }
+  .skip-to-content:focus {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 100;
+    width: auto;
+    height: auto;
+    margin: 0;
+    clip: auto;
+    clip-path: none;
+    @apply bg-navy-900 text-white px-4 py-2 rounded font-medium;
+  }
+
   body {
     @apply text-navy-900 bg-white;
     font-feature-settings: 'kern' 1, 'liga' 1;

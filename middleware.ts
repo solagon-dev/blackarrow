@@ -2,31 +2,25 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 /**
- * Edge middleware — SEO hygiene.
- *
- * Fixes three Ahrefs-flagged issues at the edge:
+ * Edge middleware — canonical host enforcement.
  *
  * 1. Apex → www in a single 301 hop. Vercel's default is a 308 chain
  *    (http://apex → https://apex → https://www), which Ahrefs counts as a
  *    "3XX page receives organic traffic" error for every backlink pointing at
  *    the apex domain. This middleware short-circuits that to one 301 hop for
- *    any non-preview hostname that isn't the canonical www host.
+ *    any non-preview hostname that isn't the canonical www host. The full query
+ *    string (including campaign parameters) is PRESERVED across the hop.
  *
- * 2. Strip tracking query params (utm_*, fbclid, gclid, mc_cid, mc_eid, msclkid)
- *    via 301 so Google doesn't index parametered variants as separate URLs.
- *
- * 3. Return 301 (not 308) for canonicalization redirects so older SEO tools
- *    that don't handle 308 correctly still pick up the permanent signal.
- *
- * The middleware is a no-op for Vercel preview URLs (*.vercel.app) and for
- * localhost so development and preview deploys work without redirect loops.
+ * CAMPAIGN ATTRIBUTION (Plan §5.1): this middleware no longer strips utm_ or
+ * click-ID parameters. Doing so previously destroyed attribution before any
+ * client analytics could record it. Duplicate-content for parametered URLs is
+ * handled by the canonical tags already present on every page (see each route's
+ * `alternates.canonical`), which is the correct mechanism — not redirects.
+ * The client analytics layer records attribution on first load and then cleans
+ * the visible URL via history.replaceState (see components/analytics).
  */
 
 const CANONICAL_HOST = 'www.blackarrow.co'
-const TRACKING_PARAMS = [
-  'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content',
-  'fbclid', 'gclid', 'msclkid', 'mc_cid', 'mc_eid', '_ga', 'yclid',
-]
 
 function isInternalOrPreviewHost(host: string): boolean {
   return (
@@ -46,23 +40,11 @@ export function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
-  // 1. Canonical-host enforcement. Anything that isn't the apex www host gets
-  //    redirected in a single 301 hop, preserving path + query.
+  // Canonical-host enforcement. Anything that isn't the apex www host gets
+  // redirected in a single 301 hop, preserving path + query (attribution intact).
   if (host !== CANONICAL_HOST) {
     url.host = CANONICAL_HOST
     url.protocol = 'https:'
-    return NextResponse.redirect(url, 301)
-  }
-
-  // 2. Strip tracking parameters before indexing.
-  let trackingParamFound = false
-  for (const param of TRACKING_PARAMS) {
-    if (url.searchParams.has(param)) {
-      url.searchParams.delete(param)
-      trackingParamFound = true
-    }
-  }
-  if (trackingParamFound) {
     return NextResponse.redirect(url, 301)
   }
 

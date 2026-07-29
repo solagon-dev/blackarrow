@@ -3,32 +3,17 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { offices } from '@/lib/team-data'
-import { getRecaptchaToken } from '@/lib/recaptcha'
+import { useFormSubmit } from '@/lib/use-form-submit'
 import { IconPhone, IconMail, IconMapPin, IconClock } from '@/components/ui/Icons'
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' })
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const { status, errorMessage, submit } = useFormSubmit('contact', 'contact')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setStatus('loading')
-    try {
-      const recaptcha_token = await getRecaptchaToken('contact')
-      const res = await fetch('/api/forms', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ form_type: 'contact', data: form, recaptcha_token }),
-      })
-      if (res.ok) {
-        setStatus('success')
-        setForm({ name: '', email: '', phone: '', subject: '', message: '' })
-      } else {
-        setStatus('error')
-      }
-    } catch {
-      setStatus('error')
-    }
+    const ok = await submit(form)
+    if (ok) setForm({ name: '', email: '', phone: '', subject: '', message: '' })
   }
 
   return (
@@ -132,9 +117,11 @@ export default function ContactPage() {
                       <label className="input-label">Message *</label>
                       <textarea required rows={5} className="input-field resize-none" value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} placeholder="Tell us about your insurance needs..." />
                     </div>
-                    {status === 'error' && (
-                      <p className="text-red-600 text-sm">Something went wrong. Please try again.</p>
-                    )}
+                    <div aria-live="polite">
+                      {status === 'error' && (
+                        <p className="text-red-600 text-sm">{errorMessage}</p>
+                      )}
+                    </div>
                     <button type="submit" disabled={status === 'loading'} className="btn-primary w-full sm:w-auto">
                       {status === 'loading' ? 'Sending...' : 'Send Message'}
                     </button>

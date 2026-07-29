@@ -82,7 +82,7 @@ export const locationPages: LocationPage[] = [
     heroDescription: 'BlackArrow Insurance has been a trusted insurance partner in Greenville and Pitt County for over 20 years. We provide personalized insurance solutions for homeowners, renters, property investors, and businesses across the region.',
     aboutHeading: 'Serving the Greenville Community Since 2002',
     aboutContent: [
-      'BlackArrow Insurance was founded in Greenville, North Carolina, in 2002. What started as a small independent agency has grown into one of the most established insurance brokerages in Pitt County, serving thousands of clients across Eastern North Carolina.',
+      'BlackArrow Insurance was founded in Greenville, North Carolina, in 2002. What started as a small independent agency has grown into an established independent brokerage serving clients across Eastern North Carolina.',
       'Greenville is the economic and cultural hub of Eastern North Carolina, anchored by East Carolina University and Vidant Medical Center (now ECU Health). The city\'s population growth, expanding medical district, and thriving small business community create diverse insurance needs that require local expertise to navigate effectively.',
       'Our Greenville office is staffed by licensed agents who live and work in this community. They understand the local real estate market, the unique risks of the region, and the coverage requirements that matter most to Greenville residents and business owners.',
     ],

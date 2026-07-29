@@ -21,7 +21,12 @@ interface InsightsFilterProps {
 
 export default function InsightsFilter({ posts, categories }: InsightsFilterProps) {
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
-  const [search, setSearch] = useState('')
+  // Initialize from the ?q= query param so the WebSite SearchAction
+  // (https://www.blackarrow.co/insights?q={term}) actually filters (Plan §6.5).
+  const [search, setSearch] = useState(() => {
+    if (typeof window === 'undefined') return ''
+    return new URLSearchParams(window.location.search).get('q') ?? ''
+  })
 
   const filtered = useMemo(() => {
     let result = posts
@@ -75,8 +80,10 @@ export default function InsightsFilter({ posts, categories }: InsightsFilterProp
           <svg className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-navy-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
+          <label htmlFor="insights-search" className="sr-only">Search articles</label>
           <input
-            type="text"
+            id="insights-search"
+            type="search"
             placeholder="Search articles..."
             value={search}
             onChange={e => setSearch(e.target.value)}
