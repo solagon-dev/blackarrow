@@ -32,6 +32,8 @@ function gaAllowedSnapshot(): boolean {
 export default function AnalyticsProvider() {
   const pathname = usePathname()
   const initialized = useRef(false)
+  const gaInitialized = useRef(false)
+  const lastPageView = useRef<string | null>(null)
   const gaAllowed = useSyncExternalStore(subscribeConsent, gaAllowedSnapshot, () => false)
 
   // First load: capture attribution, then strip campaign params from the URL.
@@ -57,11 +59,40 @@ export default function AnalyticsProvider() {
     }
   }, [])
 
-  // Track page views on navigation.
+  // Install gtag's queue shim and push js/config BEFORE any event is sent.
+  //
+  // Declared ahead of the page-view effect on purpose: effects run in
+  // declaration order, and gtag.js is afterInteractive, so on first paint
+  // window.gtag does not exist yet. Without the shim, track() falls back to
+  // dataLayer.push({event}) — GTM object syntax, which gtag.js never consumes —
+  // and with send_page_view:false the landing page view was silently dropped.
+  // The shim queues calls in gtag's arguments form so gtag.js replays them
+  // in order (js → config → event) once it loads.
+  useEffect(() => {
+    if (!gaAllowed) return
+    const id = analyticsConfig.ga4MeasurementId
+    if (!id) return
+    window.dataLayer = window.dataLayer || []
+    if (typeof window.gtag !== 'function') {
+      window.gtag = function () {
+        window.dataLayer?.push(arguments)
+      }
+    }
+    if (gaInitialized.current) return
+    gaInitialized.current = true
+    window.gtag('js', new Date())
+    window.gtag('config', id, { anonymize_ip: true, send_page_view: false })
+  }, [gaAllowed])
+
+  // Track page views on navigation, and once more when consent first flips GA
+  // on, so the page the visitor actually consented on is still recorded.
   useEffect(() => {
     if (!pathname) return
+    const key = `${pathname}|${gaAllowed}`
+    if (lastPageView.current === key) return
+    lastPageView.current = key
     analytics.pageView(pathname)
-  }, [pathname])
+  }, [pathname, gaAllowed])
 
   // Delegated tracking for phone / email / directions clicks site-wide (§5.2),
   // so we don't have to instrument every link. No PII is sent.
@@ -92,18 +123,9 @@ export default function AnalyticsProvider() {
   if (!gaAllowed) return null
 
   const id = analyticsConfig.ga4MeasurementId
-  return (
-    <>
-      <Script src={`https://www.googletagmanager.com/gtag/js?id=${id}`} strategy="afterInteractive" />
-      <Script id="ga4-init" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          window.gtag = gtag;
-          gtag('js', new Date());
-          gtag('config', '${id}', { anonymize_ip: true, send_page_view: false });
-        `}
-      </Script>
-    </>
-  )
+  // js/config are queued by the init effect above, not inlined here — an inline
+  // afterInteractive script would run after the first page-view effect and
+  // re-issue config on every consent change.
+  return <Script src={`https://www.googletagmanager.com/gtag/js?id=${id}`} strategy="afterInteractive" />
+
 }
