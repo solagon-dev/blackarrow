@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import GridFillers from '@/components/ui/GridFillers'
 import Image from 'next/image'
-import { personalInsurance, commercialInsurance, propertyInsurance } from '@/lib/insurance-data'
+import { personalInsurance, propertyInsurance } from '@/lib/insurance-data'
 import { locationPages } from '@/lib/location-data'
 import { getAllPosts } from '@/lib/db'
 import { getIconByName } from '@/components/ui/Icons'
@@ -9,6 +9,7 @@ import { ensureAdminUser } from '@/lib/auth'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import CarrierLogoCarousel from '@/components/ui/CarrierLogoCarousel'
 import HeroBackground from '@/components/ui/HeroBackground'
+import CommercialCoverageSection from '@/components/home/CommercialCoverageSection'
 import { InsightCard } from '@/components/insights/InsightCard'
 
 export default async function Home() {
@@ -142,7 +143,10 @@ export default async function Home() {
               </div>
             </div>
           </ScrollReveal>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-gray-200">
+          {/* 5 columns at lg so all five personal coverages sit on one row
+              (a 4-col grid left a single card orphaned on a second row). Below
+              lg it stays 2-up; GridFillers squares off that short mobile row. */}
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-px bg-gray-200">
             {personalInsurance.map((ins, idx) => (
               <ScrollReveal key={ins.slug} delay={idx * 50}>
                 <Link href={`/insurance/${ins.slug}`} className="bg-white p-5 sm:p-8 group block h-full hover:bg-gray-50 transition-colors duration-200">
@@ -159,63 +163,14 @@ export default async function Home() {
                 </Link>
               </ScrollReveal>
             ))}
-            <GridFillers count={personalInsurance.length} cols={{ base: 2, lg: 4 }} />
+            <GridFillers count={personalInsurance.length} cols={{ base: 2, lg: 5 }} />
           </div>
         </div>
       </section>
 
       {/* ============= COMMERCIAL INSURANCE ============= */}
-      <section className="section-padding bg-gray-50 border-y border-gray-200">
-        <div className="container-editorial">
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-            <ScrollReveal>
-              <div>
-                <p className="section-label">Commercial insurance</p>
-                <h2 className="mb-6">Coverage Built for Your Business</h2>
-                <p className="text-lg text-navy-600 leading-relaxed mb-10">
-                  We work with businesses of all sizes to develop insurance programs that address real operational risks — not just check boxes.
-                </p>
-                <div className="relative overflow-hidden mb-10 h-44 sm:h-56 lg:h-64">
-                  <Image
-                    src="/images/AdobeStock_415962919.jpeg"
-                    alt="North Carolina small business owners protected by BlackArrow commercial insurance"
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 600px"
-                    className="object-cover"
-                  />
-                </div>
-                <Link href="/quote" className="btn-primary">
-                  Request a Business Quote
-                </Link>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={100}>
-              <div className="space-y-px bg-gray-200">
-                {commercialInsurance.slice(0, 4).map((ins) => (
-                  <Link key={ins.slug} href={`/insurance/${ins.slug}`} className="bg-white p-6 group block hover:bg-gray-50 transition-colors duration-200">
-                    <div className="flex items-start gap-4">
-                      <div className="icon-box-navy w-10 h-10 flex-shrink-0">
-                        {getIconByName(ins.icon, 'w-5 h-5')}
-                      </div>
-                      <div>
-                        <h3 className="text-base font-semibold text-navy-900 mb-1 group-hover:text-navy-700 transition-colors">{ins.shortTitle}</h3>
-                        <p className="text-sm text-navy-600 leading-relaxed line-clamp-2">{ins.description.slice(0, 120)}...</p>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-              <div className="mt-8 flex flex-wrap gap-3">
-                {commercialInsurance.slice(4).map((ins) => (
-                  <Link key={ins.slug} href={`/insurance/${ins.slug}`} className="text-sm font-medium text-navy-600 hover:text-navy-900 transition-colors">
-                    {ins.shortTitle} →
-                  </Link>
-                ))}
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
+      {/* Client component: hovering a coverage swaps the section image. */}
+      <CommercialCoverageSection />
 
       {/* ============= PROPERTY INSURANCE ============= */}
       <section className="section-padding bg-navy-900 text-white">
