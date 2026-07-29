@@ -3,6 +3,9 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import AnalyticsProvider from '@/components/analytics/AnalyticsProvider'
+import ConsentBanner from '@/components/analytics/ConsentBanner'
+import { analyticsConfig, isAhrefsEnabled } from '@/lib/analytics-config'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -252,15 +255,21 @@ export default function RootLayout({
         <WebSiteSchema />
       </head>
       <body className="font-sans antialiased overflow-x-hidden">
-        {/* Ahrefs Web Analytics — raw <script> so the tag renders in initial HTML
-            with data-key intact, avoiding issues with next/script client-side injection
-            dropping custom data-* attributes in some Next.js versions. */}
-        <script async src="https://analytics.ahrefs.com/analytics.js" data-key="V5dSlzHbIFvtNMzCtxKCGA"></script>
+        {/* Ahrefs Web Analytics (cookieless) — env-driven key, production only so
+            dev/preview don't pollute production data. Raw <script> so the tag renders
+            in initial HTML with data-key intact, avoiding issues with next/script
+            client-side injection dropping custom data-* attributes. */}
+        {isAhrefsEnabled() && (
+          <script async src="https://analytics.ahrefs.com/analytics.js" data-key={analyticsConfig.ahrefsKey}></script>
+        )}
+        {/* GA4 (consent-gated) + attribution capture + pageview tracking. */}
+        <AnalyticsProvider />
         <div id="site-header"><Header /></div>
         <main className="min-h-screen">
           {children}
         </main>
         <div id="site-footer"><Footer /></div>
+        <ConsentBanner />
       </body>
     </html>
   )
