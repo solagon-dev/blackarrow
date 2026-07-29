@@ -77,8 +77,8 @@ export default function QuotePage() {
                     </svg>
                   </div>
                   <h2 className="text-2xl sm:text-3xl font-display font-bold text-navy-900 mb-3">Quote Request Received</h2>
-                  <p className="text-navy-500 mb-2 max-w-md mx-auto">Thank you, {form.firstName}. One of our licensed agents will review your request and reach out to discuss your options. If you&rsquo;d like to talk sooner, call one of our offices.</p>
-                  <p className="text-sm text-navy-400 mb-8">Need immediate assistance? Call <a href={`tel:${GREENVILLE_OFFICE.phone.replace(/\D/g, '')}`} className="text-navy-900 font-medium">{GREENVILLE_OFFICE.phone}</a></p>
+                  <p className="text-navy-600 mb-2 max-w-md mx-auto">Thank you, {form.firstName}. One of our licensed agents will review your request and reach out to discuss your options. If you&rsquo;d like to talk sooner, call one of our offices.</p>
+                  <p className="text-sm text-navy-600 mb-8">Need immediate assistance? Call <a href={`tel:${GREENVILLE_OFFICE.phone.replace(/\D/g, '')}`} className="text-navy-900 font-medium">{GREENVILLE_OFFICE.phone}</a></p>
                   <Link href="/" className="inline-flex items-center gap-2 text-sm font-medium text-navy-900 hover:text-navy-700 transition-colors">
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -108,7 +108,7 @@ export default function QuotePage() {
                               ? 'bg-navy-900 text-white'
                               : s.id === step
                               ? 'bg-navy-900 text-white'
-                              : 'bg-gray-100 text-navy-300'
+                              : 'bg-gray-100 text-navy-600'
                           }`}>
                             {s.id < step ? (
                               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -117,7 +117,7 @@ export default function QuotePage() {
                             ) : s.id}
                           </span>
                           <span aria-hidden="true" className={`text-sm font-medium hidden sm:block ${
-                            s.id <= step ? 'text-navy-900' : 'text-navy-300'
+                            s.id <= step ? 'text-navy-900' : 'text-navy-600'
                           }`}>
                             {s.label}
                           </span>
@@ -136,7 +136,7 @@ export default function QuotePage() {
                     {step === 1 && (
                       <div className="animate-fade-in">
                         <h2 className="text-xl sm:text-2xl font-display font-bold text-navy-900 mb-2">Personal Information</h2>
-                        <p className="text-sm text-navy-400 mb-8">Tell us about yourself so we can personalize your quote.</p>
+                        <p className="text-sm text-navy-600 mb-8">Tell us about yourself so we can personalize your quote.</p>
                         <div className="space-y-5">
                           <div className="grid sm:grid-cols-2 gap-5">
                             <div>
@@ -164,7 +164,7 @@ export default function QuotePage() {
                     {step === 2 && (
                       <div className="animate-fade-in">
                         <h2 className="text-xl sm:text-2xl font-display font-bold text-navy-900 mb-2">Coverage Details</h2>
-                        <p className="text-sm text-navy-400 mb-8">Select the type of insurance you&apos;re interested in.</p>
+                        <p className="text-sm text-navy-600 mb-8">Select the type of insurance you&apos;re interested in.</p>
                         <div className="space-y-6">
                           <div>
                             <label htmlFor="quote-type-of-insurance" className="input-label">Type of Insurance *</label>
@@ -214,7 +214,7 @@ export default function QuotePage() {
                     {step === 3 && (
                       <div className="animate-fade-in">
                         <h2 className="text-xl sm:text-2xl font-display font-bold text-navy-900 mb-2">Property Information</h2>
-                        <p className="text-sm text-navy-400 mb-8">Help us provide an accurate quote with your property details.</p>
+                        <p className="text-sm text-navy-600 mb-8">Help us provide an accurate quote with your property details.</p>
                         <div className="space-y-5">
                           <div>
                             <label htmlFor="quote-street-address" className="input-label">Street Address</label>
@@ -246,7 +246,7 @@ export default function QuotePage() {
                     {step === 4 && (
                       <div className="animate-fade-in">
                         <h2 className="text-xl sm:text-2xl font-display font-bold text-navy-900 mb-2">Review Your Information</h2>
-                        <p className="text-sm text-navy-400 mb-8">Please confirm everything looks correct before submitting.</p>
+                        <p className="text-sm text-navy-600 mb-8">Please confirm everything looks correct before submitting.</p>
 
                         <div className="space-y-0 border-t border-gray-200">
                           {[
@@ -259,7 +259,7 @@ export default function QuotePage() {
                             ...(form.message ? [{ label: 'Additional Info', value: form.message }] : []),
                           ].map(item => (
                             <div key={item.label} className="flex items-start justify-between gap-4 py-4 border-b border-gray-200">
-                              <span className="text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 w-32 sm:w-40 flex-shrink-0 pt-0.5">{item.label}</span>
+                              <span className="text-xs font-semibold uppercase tracking-[0.15em] text-navy-600 w-32 sm:w-40 flex-shrink-0 pt-0.5">{item.label}</span>
                               <span className="text-sm text-navy-700 text-right">{item.value}</span>
                             </div>
                           ))}
@@ -284,7 +284,7 @@ export default function QuotePage() {
                         <button
                           type="button"
                           onClick={() => setStep(s => s - 1)}
-                          className="inline-flex items-center gap-2 text-sm font-medium text-navy-500 hover:text-navy-900 transition-colors"
+                          className="inline-flex items-center gap-2 text-sm font-medium text-navy-600 hover:text-navy-900 transition-colors"
                         >
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -337,7 +337,7 @@ export default function QuotePage() {
               <div className="lg:sticky lg:top-28 space-y-6">
                 {/* Why BlackArrow */}
                 <div className="bg-gray-50 border border-gray-200 p-6 sm:p-8">
-                  <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-6">Why BlackArrow</h3>
+                  <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-600 mb-6">Why BlackArrow</h3>
                   <div className="space-y-5">
                     {[
                       { icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z', title: '20+ Years Experience', desc: 'Trusted by Eastern NC since 2002' },
@@ -353,7 +353,7 @@ export default function QuotePage() {
                         </div>
                         <div>
                           <p className="text-sm font-semibold text-navy-900">{item.title}</p>
-                          <p className="text-xs text-navy-400 mt-0.5">{item.desc}</p>
+                          <p className="text-xs text-navy-600 mt-0.5">{item.desc}</p>
                         </div>
                       </div>
                     ))}
@@ -362,13 +362,13 @@ export default function QuotePage() {
 
                 {/* Contact card */}
                 <div className="border border-gray-200 p-6 sm:p-8">
-                  <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-4">Prefer to Talk?</h3>
+                  <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-600 mb-4">Prefer to Talk?</h3>
                   {/* Both numbers, from team-data. This card previously showed
                       the Whiteville line while the confirmation screen gave the
                       Greenville one, and advertised 8:30am–5:00pm — hours that
                       matched neither office and contradicted the opening hours
                       in the Organization schema. */}
-                  <p className="text-sm text-navy-500 mb-5">
+                  <p className="text-sm text-navy-600 mb-5">
                     Reach a licensed agent at either office, Monday through Friday.
                   </p>
                   <div className="space-y-4">
@@ -385,7 +385,7 @@ export default function QuotePage() {
                         </span>
                         <div>
                           <p className="text-lg font-display font-bold text-navy-900 group-hover:text-navy-700 transition-colors">{office.phone}</p>
-                          <p className="text-xs text-navy-400">{office.city} &middot; {office.hours.replace('Monday–Friday ', '')}</p>
+                          <p className="text-xs text-navy-600">{office.city} &middot; {office.hours.replace('Monday–Friday ', '')}</p>
                         </div>
                       </a>
                     ))}
@@ -394,10 +394,10 @@ export default function QuotePage() {
 
                 {/* Security note */}
                 <div className="flex items-start gap-3 px-1">
-                  <svg className="w-4 h-4 text-navy-300 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-4 h-4 text-navy-600 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                   </svg>
-                  <p className="text-xs text-navy-400 leading-relaxed">Your information is submitted over a secure connection and used only to prepare your quote and respond to your request. See our <Link href="/legal/privacy-policy" className="underline hover:text-white">Privacy Policy</Link> for how we handle your data.</p>
+                  <p className="text-xs text-navy-600 leading-relaxed">Your information is submitted over a secure connection and used only to prepare your quote and respond to your request. See our <Link href="/legal/privacy-policy" className="underline hover:text-white">Privacy Policy</Link> for how we handle your data.</p>
                 </div>
               </div>
             </div>

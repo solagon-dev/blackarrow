@@ -44,18 +44,18 @@ export function InsightCard({ slug, title, excerpt, category, featuredImage, pub
           </div>
           <div className="lg:col-span-7 py-2">
             <div className="flex items-center gap-3 mb-4">
-              {category && <span className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400">{category}</span>}
+              {category && <span className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-600">{category}</span>}
               {category && formattedDate && <span className="w-1 h-1 rounded-full bg-navy-300" />}
-              {formattedDate && <span className="text-xs text-navy-400">{formattedDate}</span>}
+              {formattedDate && <span className="text-xs text-navy-600">{formattedDate}</span>}
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-navy-900 mb-4 sm:mb-5 group-hover:text-navy-700 transition-colors leading-tight">
               {title}
             </h2>
-            {excerpt && <p className="text-base sm:text-lg text-navy-500 leading-relaxed mb-5 sm:mb-6 max-w-xl">{excerpt}</p>}
+            {excerpt && <p className="text-base sm:text-lg text-navy-600 leading-relaxed mb-5 sm:mb-6 max-w-xl">{excerpt}</p>}
             <div className="flex items-center gap-4">
-              {author && <span className="text-sm text-navy-500">{author}</span>}
+              {author && <span className="text-sm text-navy-600">{author}</span>}
               {author && readingTime && <span className="w-1 h-1 rounded-full bg-navy-300" />}
-              {readingTime && <span className="text-sm text-navy-400">{readingTime} min read</span>}
+              {readingTime && <span className="text-sm text-navy-600">{readingTime} min read</span>}
             </div>
           </div>
         </div>
@@ -76,7 +76,7 @@ export function InsightCard({ slug, title, excerpt, category, featuredImage, pub
               className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
             />
           ) : (
-            <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-navy-400 px-3 text-center">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-navy-600 px-3 text-center">
               {category || 'Insight'}
             </span>
           )}
@@ -86,9 +86,9 @@ export function InsightCard({ slug, title, excerpt, category, featuredImage, pub
             {title}
           </h3>
           <div className="flex items-center gap-3">
-            {category && <span className="text-xs text-navy-400">{category}</span>}
+            {category && <span className="text-xs text-navy-600">{category}</span>}
             {category && readingTime && <span className="w-1 h-1 rounded-full bg-navy-300" />}
-            {readingTime && <span className="text-xs text-navy-400">{readingTime} min read</span>}
+            {readingTime && <span className="text-xs text-navy-600">{readingTime} min read</span>}
           </div>
         </div>
       </Link>
@@ -109,27 +109,27 @@ export function InsightCard({ slug, title, excerpt, category, featuredImage, pub
             className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           />
         ) : (
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 px-6 text-center">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-600 px-6 text-center">
             {category || 'Insurance'}
           </span>
         )}
       </div>
       <div className="p-5 sm:p-8 flex flex-1 flex-col">
         <div className="flex items-center gap-3 mb-4">
-          {category && <span className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400">{category}</span>}
+          {category && <span className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-600">{category}</span>}
           {category && formattedDate && <span className="w-1 h-1 rounded-full bg-navy-300" />}
-          {formattedDate && <span className="text-xs text-navy-400">{formattedDate}</span>}
+          {formattedDate && <span className="text-xs text-navy-600">{formattedDate}</span>}
         </div>
         <h3 className="text-lg font-semibold text-navy-900 mb-3 group-hover:text-navy-700 transition-colors line-clamp-2">
           {title}
         </h3>
         {excerpt && (
-          <p className="text-sm text-navy-500 line-clamp-3 leading-relaxed mb-4">{excerpt}</p>
+          <p className="text-sm text-navy-600 line-clamp-3 leading-relaxed mb-4">{excerpt}</p>
         )}
         <div className="flex items-center gap-3 mt-auto">
-          {author && <span className="text-xs text-navy-500">{author}</span>}
+          {author && <span className="text-xs text-navy-600">{author}</span>}
           {author && readingTime && <span className="w-1 h-1 rounded-full bg-navy-300" />}
-          {readingTime && <span className="text-xs text-navy-400">{readingTime} min read</span>}
+          {readingTime && <span className="text-xs text-navy-600">{readingTime} min read</span>}
         </div>
       </div>
     </Link>

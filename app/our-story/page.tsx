@@ -94,7 +94,7 @@ export default function OurStoryPage() {
               ].map(stat => (
                 <div key={stat.label}>
                   <p className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-navy-900 mb-1 sm:mb-2">{stat.value}</p>
-                  <p className="text-sm text-navy-400 tracking-wide">{stat.label}</p>
+                  <p className="text-sm text-navy-600 tracking-wide">{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -107,7 +107,7 @@ export default function OurStoryPage() {
       {/* Trust Bar */}
       <section className="py-10 bg-white">
         <div className="container-editorial">
-          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-sm font-medium text-navy-400">
+          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-sm font-medium text-navy-600">
             {['Licensed', 'Bonded', 'Insured', 'Locally Owned', '20+ Carrier Partners'].map((item, i) => (
               <span key={item} className="flex items-center gap-4">
                 {i > 0 && <span className="hidden sm:inline-block w-1 h-1 rounded-full bg-navy-300" />}
@@ -144,7 +144,7 @@ export default function OurStoryPage() {
                     </svg>
                   </div>
                   <h3 className="text-base font-semibold text-navy-900 mb-2">{item.title}</h3>
-                  <p className="text-sm text-navy-500 leading-relaxed">{item.desc}</p>
+                  <p className="text-sm text-navy-600 leading-relaxed">{item.desc}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -185,8 +185,8 @@ export default function OurStoryPage() {
                   </div>
                   <div className="p-6 sm:p-8">
                     <h3 className="text-lg font-semibold text-navy-900">{member.name}</h3>
-                    <p className="text-sm text-navy-400 mb-3 sm:mb-4">{member.role}</p>
-                    <p className="text-sm text-navy-500 leading-relaxed">{member.bio}</p>
+                    <p className="text-sm text-navy-600 mb-3 sm:mb-4">{member.role}</p>
+                    <p className="text-sm text-navy-600 leading-relaxed">{member.bio}</p>
                   </div>
                 </div>
               </ScrollReveal>
@@ -223,17 +223,17 @@ export default function OurStoryPage() {
                       />
                     ) : (
                       <div className="w-14 h-14 rounded-full bg-navy-100 flex items-center justify-center flex-shrink-0">
-                        <span className="text-lg font-display font-bold text-navy-400">
+                        <span className="text-lg font-display font-bold text-navy-600">
                           {member.name.split(' ').map(n => n[0]).join('')}
                         </span>
                       </div>
                     )}
                     <div>
                       <h3 className="font-semibold text-navy-900">{member.name}</h3>
-                      <p className="text-sm text-navy-400">{member.role}</p>
+                      <p className="text-sm text-navy-600">{member.role}</p>
                     </div>
                   </div>
-                  <p className="text-sm text-navy-500 leading-relaxed">{member.bio}</p>
+                  <p className="text-sm text-navy-600 leading-relaxed">{member.bio}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -265,7 +265,7 @@ export default function OurStoryPage() {
                   </div>
                   <div className="p-6 sm:p-8">
                     <h3 className="text-lg sm:text-xl font-semibold text-navy-900 mb-4 sm:mb-5">{office.name}</h3>
-                    <div className="space-y-4 text-sm text-navy-500">
+                    <div className="space-y-4 text-sm text-navy-600">
                       <p>{office.address}<br />{office.city}, {office.state} {office.zip}</p>
                       <a href={`tel:${office.phone.replace(/[^\d+]/g, '')}`} className="block font-medium text-navy-900 hover:text-navy-700 transition-colors">
                         {office.phone}
@@ -273,7 +273,7 @@ export default function OurStoryPage() {
                       <a href={`mailto:${office.email}`} className="block font-medium text-navy-900 hover:text-navy-700 transition-colors">
                         {office.email}
                       </a>
-                      <p className="text-navy-400">{office.hours}<br />{office.closed}</p>
+                      <p className="text-navy-600">{office.hours}<br />{office.closed}</p>
                     </div>
                   </div>
                 </div>

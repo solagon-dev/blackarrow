@@ -152,9 +152,9 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
             {page.coverageTypes.map((coverage, idx) => (
               <ScrollReveal key={idx} delay={idx * 60}>
                 <div className="bg-white p-6 sm:p-8 h-full">
-                  <span className="text-xs font-semibold text-navy-300 tracking-wide">{String(idx + 1).padStart(2, '0')}</span>
+                  <span className="text-xs font-semibold text-navy-600 tracking-wide">{String(idx + 1).padStart(2, '0')}</span>
                   <h3 className="text-lg font-semibold text-navy-900 mt-3 mb-3">{coverage.title}</h3>
-                  <p className="text-sm text-navy-500 leading-relaxed">{coverage.description}</p>
+                  <p className="text-sm text-navy-600 leading-relaxed">{coverage.description}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -171,7 +171,7 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
             <ScrollReveal className="lg:col-span-5">
               <p className="section-label">Who Benefits</p>
               <h2 className="mb-4 sm:mb-6">Who Needs {page.title}?</h2>
-              <p className="text-navy-500 leading-relaxed mb-8 sm:mb-10">
+              <p className="text-navy-600 leading-relaxed mb-8 sm:mb-10">
                 {page.title} is designed for a variety of individuals and organizations. Find out if this coverage is right for you.
               </p>
               <Link href="/quote" className="btn-primary">Get a Personalized Quote</Link>
@@ -185,7 +185,7 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
                     </div>
                     <div>
                       <h3 className="font-semibold text-navy-900 mb-1">{item.title}</h3>
-                      <p className="text-sm text-navy-500 leading-relaxed">{item.description}</p>
+                      <p className="text-sm text-navy-600 leading-relaxed">{item.description}</p>
                     </div>
                   </div>
                 </ScrollReveal>
@@ -207,7 +207,7 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
               {page.costFactors.map((factor, idx) => (
                 <ScrollReveal key={idx} delay={idx * 40}>
                   <div className="flex items-start gap-5 py-5 border-b border-gray-200">
-                    <span className="text-sm font-semibold text-navy-300 w-8 flex-shrink-0 pt-0.5">
+                    <span className="text-sm font-semibold text-navy-600 w-8 flex-shrink-0 pt-0.5">
                       {String(idx + 1).padStart(2, '0')}
                     </span>
                     <p className="text-navy-700">{factor}</p>
@@ -233,11 +233,11 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
                   <details className="group">
                     <summary className="flex items-center justify-between cursor-pointer py-6 hover:text-navy-700 transition-colors list-none">
                       <h3 className="text-base font-semibold text-navy-900 pr-8">{faq.question}</h3>
-                      <svg className="w-4 h-4 text-navy-400 group-open:rotate-45 transition-transform duration-200 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="w-4 h-4 text-navy-600 group-open:rotate-45 transition-transform duration-200 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                       </svg>
                     </summary>
-                    <div className="pb-6 text-navy-500 leading-relaxed max-w-2xl">
+                    <div className="pb-6 text-navy-600 leading-relaxed max-w-2xl">
                       {faq.answer}
                     </div>
                   </details>
@@ -295,7 +295,7 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
                     {getIconByName(rp.icon, 'w-5 h-5')}
                   </div>
                   <h3 className="font-semibold text-navy-900 mb-2 group-hover:text-navy-700 transition-colors">{rp.shortTitle}</h3>
-                  <p className="text-sm text-navy-500 line-clamp-2">{rp.tagline}</p>
+                  <p className="text-sm text-navy-600 line-clamp-2">{rp.tagline}</p>
                 </Link>
               </ScrollReveal>
             ))}
@@ -310,7 +310,7 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
         return (
           <section className="py-10 bg-white border-b border-gray-200">
             <div className="container-editorial">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-600 mb-5">
                 {page.shortTitle} by Location
               </p>
               <div className="flex flex-wrap gap-x-6 gap-y-3">
@@ -318,7 +318,7 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
                   <Link
                     key={sp.slug}
                     href={`/${sp.slug}`}
-                    className="text-sm font-medium text-navy-400 hover:text-navy-900 transition-colors"
+                    className="text-sm font-medium text-navy-600 hover:text-navy-900 transition-colors"
                   >
                     {sp.serviceType} in {sp.city}, {sp.stateAbbr} →
                   </Link>
@@ -332,12 +332,12 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
       {/* Carriers */}
       <section className="py-12 bg-white">
         <div className="container-editorial">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-6">
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-navy-600 mb-6">
             We compare {page.shortTitle} rates from leading carriers
           </p>
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-3">
             {carriers.map(name => (
-              <span key={name} className="text-sm font-medium text-navy-300">{name}</span>
+              <span key={name} className="text-sm font-medium text-navy-600">{name}</span>
             ))}
           </div>
         </div>

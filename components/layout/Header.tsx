@@ -111,14 +111,17 @@ export default function Header() {
     if (!policyRef.current?.contains(e.relatedTarget as Node)) setPolicyOpen(false)
   }, [])
 
-  // Dynamic color classes based on transparent state
+  // Dynamic color classes based on transparent state. The non-transparent
+  // branch renders on the white header bar — navy-500 measures 4.28:1 there,
+  // just under AA, which showed up on /legal and /admin where the header is
+  // opaque from the top. navy-600 clears it at 6.08:1.
   const navTextClass = isTransparent
     ? 'text-white/70 hover:text-white'
-    : 'text-navy-500 hover:text-navy-900'
+    : 'text-navy-600 hover:text-navy-900'
   const navTextActiveClass = isTransparent ? 'text-white' : 'text-navy-900'
   const phoneClass = isTransparent
     ? 'text-white/70 hover:text-white'
-    : 'text-navy-500 hover:text-navy-900'
+    : 'text-navy-600 hover:text-navy-900'
   const menuIconClass = isTransparent ? 'text-white' : 'text-navy-900'
 
   return (
@@ -176,7 +179,7 @@ export default function Header() {
                     <div className="grid grid-cols-3 gap-10">
                       {navInsurance.map(group => (
                         <div key={group.label}>
-                          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-navy-400 mb-4 pb-3 border-b border-gray-200">{group.label}</p>
+                          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-navy-600 mb-4 pb-3 border-b border-gray-200">{group.label}</p>
                           <ul className="space-y-1">
                             {group.items.map(item => (
                               <li key={item.href}>
@@ -194,7 +197,7 @@ export default function Header() {
                       ))}
                     </div>
                     <div className="mt-6 pt-5 border-t border-gray-200 flex items-center justify-between">
-                      <p className="text-sm text-navy-400">Not sure what you need?</p>
+                      <p className="text-sm text-navy-600">Not sure what you need?</p>
                       <Link href="/quote" onClick={closeDropdowns} className="link-arrow text-sm">
                         Request a quote
                       </Link>
@@ -237,7 +240,7 @@ export default function Header() {
                             className="block px-4 py-3 text-navy-600 hover:text-navy-900 hover:bg-gray-50 transition-all duration-200 group/item"
                           >
                             <span className="text-sm font-medium">{item.label}</span>
-                            <span className="block text-xs text-navy-400 mt-0.5">{item.desc}</span>
+                            <span className="block text-xs text-navy-600 mt-0.5">{item.desc}</span>
                           </Link>
                         </li>
                       ))}
@@ -317,7 +320,7 @@ export default function Header() {
                 className="flex items-center justify-between w-full py-4 text-left font-medium text-navy-900 border-b border-gray-100"
               >
                 Insurance
-                <svg aria-hidden="true" className={`w-4 h-4 text-navy-400 transition-transform duration-200 ${mobileInsuranceOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg aria-hidden="true" className={`w-4 h-4 text-navy-600 transition-transform duration-200 ${mobileInsuranceOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
@@ -325,7 +328,7 @@ export default function Header() {
                 <div id="mobile-insurance-panel" className="pb-4 space-y-6 pt-4 animate-fade-in">
                   {navInsurance.map(group => (
                     <div key={group.label}>
-                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-3">{group.label}</p>
+                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-600 mb-3">{group.label}</p>
                       <ul className="space-y-0.5">
                         {group.items.map(item => (
                           <li key={item.href}>
@@ -355,7 +358,7 @@ export default function Header() {
                 className="flex items-center justify-between w-full py-4 text-left font-medium text-navy-900 border-b border-gray-100 touch-manipulation"
               >
                 Policy Management
-                <svg aria-hidden="true" className={`w-4 h-4 text-navy-400 transition-transform duration-200 ${mobilePolicyOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg aria-hidden="true" className={`w-4 h-4 text-navy-600 transition-transform duration-200 ${mobilePolicyOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
@@ -390,7 +393,7 @@ export default function Header() {
 
             {/* Mobile CTA */}
             <div className="pt-8 space-y-4">
-              <a href={headerPhoneHref} className="block text-center text-sm font-medium text-navy-500 py-3">
+              <a href={headerPhoneHref} className="block text-center text-sm font-medium text-navy-600 py-3">
                 {headerPhoneNumber}
               </a>
               <Link href="/quote" onClick={closeMobile} className="btn-primary w-full text-center">

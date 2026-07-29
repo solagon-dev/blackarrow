@@ -68,7 +68,7 @@ export default function EditPostPage() {
     return (
       <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center">
         <div className="inline-block w-5 h-5 border-2 border-navy-200 border-t-navy-600 rounded-full animate-spin" />
-        <p className="text-sm text-navy-400 mt-3">Loading post...</p>
+        <p className="text-sm text-navy-600 mt-3">Loading post...</p>
       </div>
     )
   }
@@ -79,7 +79,7 @@ export default function EditPostPage() {
       <div className="bg-white border-b border-gray-200 sticky top-0 z-30">
         <div className="max-w-6xl mx-auto px-5 sm:px-8 py-3 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <Link href="/admin/dashboard" className="p-1.5 -ml-1.5 text-navy-400 hover:text-navy-900 transition-colors">
+            <Link href="/admin/dashboard" className="p-1.5 -ml-1.5 text-navy-600 hover:text-navy-900 transition-colors">
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
@@ -141,20 +141,20 @@ export default function EditPostPage() {
             <div className="bg-white border border-gray-200 p-5 sm:p-6">
               <div className="space-y-5">
                 <div>
-                  <label htmlFor="post-edit-title" className="block text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-2">Title</label>
-                  <input id="post-edit-title" type="text" className="w-full px-4 py-3 text-lg font-medium border border-gray-200 text-navy-900 placeholder:text-navy-300 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white" value={form.title} onChange={e => update('title', e.target.value)} />
+                  <label htmlFor="post-edit-title" className="block text-xs font-semibold uppercase tracking-[0.15em] text-navy-600 mb-2">Title</label>
+                  <input id="post-edit-title" type="text" className="w-full px-4 py-3 text-lg font-medium border border-gray-200 text-navy-900 placeholder:text-navy-600 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white" value={form.title} onChange={e => update('title', e.target.value)} />
                 </div>
                 <div>
-                  <label htmlFor="post-edit-slug" className="block text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-2">Slug</label>
-                  <input id="post-edit-slug" type="text" className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-300 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white font-mono" value={form.slug} onChange={e => update('slug', e.target.value)} />
+                  <label htmlFor="post-edit-slug" className="block text-xs font-semibold uppercase tracking-[0.15em] text-navy-600 mb-2">Slug</label>
+                  <input id="post-edit-slug" type="text" className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-600 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white font-mono" value={form.slug} onChange={e => update('slug', e.target.value)} />
                 </div>
                 <div>
-                  <label htmlFor="post-edit-excerpt" className="block text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-2">Excerpt</label>
-                  <textarea id="post-edit-excerpt" rows={2} className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-300 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white resize-none" value={form.excerpt} onChange={e => update('excerpt', e.target.value)} />
+                  <label htmlFor="post-edit-excerpt" className="block text-xs font-semibold uppercase tracking-[0.15em] text-navy-600 mb-2">Excerpt</label>
+                  <textarea id="post-edit-excerpt" rows={2} className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-600 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white resize-none" value={form.excerpt} onChange={e => update('excerpt', e.target.value)} />
                 </div>
                 <div>
-                  <label htmlFor="post-edit-content-html" className="block text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-2">Content (HTML)</label>
-                  <textarea id="post-edit-content-html" rows={20} className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-300 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white font-mono resize-y" value={form.content} onChange={e => update('content', e.target.value)} />
+                  <label htmlFor="post-edit-content-html" className="block text-xs font-semibold uppercase tracking-[0.15em] text-navy-600 mb-2">Content (HTML)</label>
+                  <textarea id="post-edit-content-html" rows={20} className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-600 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white font-mono resize-y" value={form.content} onChange={e => update('content', e.target.value)} />
                 </div>
               </div>
             </div>
@@ -162,25 +162,25 @@ export default function EditPostPage() {
 
           <div className="space-y-6">
             <div className="bg-white border border-gray-200 p-5 sm:p-6">
-              <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-4">Details</h3>
+              <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-navy-600 mb-4">Details</h3>
               <div className="space-y-4">
                 <div>
-                  <label htmlFor="post-edit-category" className="block text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-2">Category</label>
-                  <input id="post-edit-category" type="text" className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-300 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white" value={form.category} onChange={e => update('category', e.target.value)} />
+                  <label htmlFor="post-edit-category" className="block text-xs font-semibold uppercase tracking-[0.15em] text-navy-600 mb-2">Category</label>
+                  <input id="post-edit-category" type="text" className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-600 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white" value={form.category} onChange={e => update('category', e.target.value)} />
                 </div>
                 <FeaturedImageField value={form.featured_image} slugHint={form.slug || form.title} onChange={value => update('featured_image', value)} />
               </div>
             </div>
             <div className="bg-white border border-gray-200 p-5 sm:p-6">
-              <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-4">SEO</h3>
+              <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-navy-600 mb-4">SEO</h3>
               <div className="space-y-4">
                 <div>
-                  <label htmlFor="post-edit-seo-title" className="block text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-2">SEO Title</label>
-                  <input id="post-edit-seo-title" type="text" className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-300 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white" value={form.seo_title} onChange={e => update('seo_title', e.target.value)} />
+                  <label htmlFor="post-edit-seo-title" className="block text-xs font-semibold uppercase tracking-[0.15em] text-navy-600 mb-2">SEO Title</label>
+                  <input id="post-edit-seo-title" type="text" className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-600 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white" value={form.seo_title} onChange={e => update('seo_title', e.target.value)} />
                 </div>
                 <div>
-                  <label htmlFor="post-edit-meta-description" className="block text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-2">Meta Description</label>
-                  <textarea id="post-edit-meta-description" rows={3} className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-300 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white resize-none" value={form.seo_description} onChange={e => update('seo_description', e.target.value)} />
+                  <label htmlFor="post-edit-meta-description" className="block text-xs font-semibold uppercase tracking-[0.15em] text-navy-600 mb-2">Meta Description</label>
+                  <textarea id="post-edit-meta-description" rows={3} className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-600 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white resize-none" value={form.seo_description} onChange={e => update('seo_description', e.target.value)} />
                 </div>
               </div>
             </div>

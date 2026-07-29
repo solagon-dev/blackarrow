@@ -79,7 +79,7 @@ export default function FeaturedImageField({ value, slugHint, onChange }: Featur
         >
           {uploading ? 'Uploading...' : 'Upload with Blob'}
         </button>
-        <p className="text-xs text-navy-400">JPG, PNG, or WebP up to 4MB.</p>
+        <p className="text-xs text-navy-600">JPG, PNG, or WebP up to 4MB.</p>
       </div>
 
       {error && <p className="text-sm text-red-600">{error}</p>}

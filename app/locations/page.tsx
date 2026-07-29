@@ -50,28 +50,28 @@ export default function LocationsPage() {
                   href={`/locations/${location.slug}`}
                   className="bg-white p-8 sm:p-10 group block h-full hover:bg-gray-50 transition-colors duration-200"
                 >
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-3">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-600 mb-3">
                     {location.stateAbbr}
                   </p>
                   <h3 className="text-xl sm:text-2xl font-display font-bold text-navy-900 mb-3 group-hover:text-navy-700 transition-colors">
                     {location.city}
                   </h3>
-                  <p className="text-sm text-navy-500 leading-relaxed mb-6 line-clamp-3">
+                  <p className="text-sm text-navy-600 leading-relaxed mb-6 line-clamp-3">
                     {location.heroDescription}
                   </p>
                   <div className="flex flex-wrap gap-2 mb-6">
                     {location.surroundingAreas.slice(0, 4).map(area => (
-                      <span key={area} className="text-xs text-navy-400 bg-gray-100 px-2.5 py-1">
+                      <span key={area} className="text-xs text-navy-600 bg-gray-100 px-2.5 py-1">
                         {area}
                       </span>
                     ))}
                     {location.surroundingAreas.length > 4 && (
-                      <span className="text-xs text-navy-400 bg-gray-100 px-2.5 py-1">
+                      <span className="text-xs text-navy-600 bg-gray-100 px-2.5 py-1">
                         +{location.surroundingAreas.length - 4} more
                       </span>
                     )}
                   </div>
-                  <span className="text-sm font-medium text-navy-400 group-hover:text-navy-900 transition-colors">
+                  <span className="text-sm font-medium text-navy-600 group-hover:text-navy-900 transition-colors">
                     View {location.city} services →
                   </span>
                 </Link>

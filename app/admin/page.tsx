@@ -50,27 +50,27 @@ export default function AdminLoginPage() {
         <div className="bg-white p-8 sm:p-10">
           <div className="mb-8">
             <h1 className="text-xl font-display font-bold text-navy-900 mb-1">Sign in</h1>
-            <p className="text-sm text-navy-400">Access your admin dashboard</p>
+            <p className="text-sm text-navy-600">Access your admin dashboard</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label htmlFor="admin-email" className="block text-xs font-semibold uppercase tracking-wide text-navy-400 mb-2">Email</label>
+              <label htmlFor="admin-email" className="block text-xs font-semibold uppercase tracking-wide text-navy-600 mb-2">Email</label>
               <input id="admin-email"
                 type="email"
                 required
-                className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-300 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white"
+                className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-600 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 placeholder="admin@blackarrowfg.com"
               />
             </div>
             <div>
-              <label htmlFor="admin-password" className="block text-xs font-semibold uppercase tracking-wide text-navy-400 mb-2">Password</label>
+              <label htmlFor="admin-password" className="block text-xs font-semibold uppercase tracking-wide text-navy-600 mb-2">Password</label>
               <input id="admin-password"
                 type="password"
                 required
-                className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-300 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white"
+                className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-600 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 placeholder="Enter your password"

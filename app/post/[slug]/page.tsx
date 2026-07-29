@@ -160,7 +160,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </div>
             <div>
               <p className="text-sm font-semibold text-navy-900">BlackArrow Insurance</p>
-              <p className="text-xs text-navy-400">Insurance Advisory &middot; Eastern North Carolina</p>
+              <p className="text-xs text-navy-600">Insurance Advisory &middot; Eastern North Carolina</p>
             </div>
           </div>
         </div>
@@ -181,13 +181,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <div className="max-w-3xl flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               {post.category && (
-                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 border border-gray-200 px-3 py-1.5">
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-600 border border-gray-200 px-3 py-1.5">
                   {post.category}
                 </span>
               )}
-              <span className="text-xs text-navy-400">{formatReadingTime(readingTime)}</span>
+              <span className="text-xs text-navy-600">{formatReadingTime(readingTime)}</span>
             </div>
-            <Link href="/insights" className="text-sm font-medium text-navy-400 hover:text-navy-900 transition-colors">
+            <Link href="/insights" className="text-sm font-medium text-navy-600 hover:text-navy-900 transition-colors">
               More insights →
             </Link>
           </div>

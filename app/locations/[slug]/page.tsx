@@ -181,7 +181,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                   <h3 className="text-base font-semibold text-navy-900 mb-2 group-hover:text-navy-700 transition-colors">
                     {service.label}
                   </h3>
-                  <span className="text-sm font-medium text-navy-400 group-hover:text-navy-900 transition-colors">
+                  <span className="text-sm font-medium text-navy-600 group-hover:text-navy-900 transition-colors">
                     Learn more →
                   </span>
                 </Link>
@@ -196,7 +196,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                   <Link
                     key={ins.slug}
                     href={`/insurance/${ins.slug}`}
-                    className="text-sm font-medium text-navy-400 hover:text-navy-900 transition-colors"
+                    className="text-sm font-medium text-navy-600 hover:text-navy-900 transition-colors"
                   >
                     {ins.shortTitle} →
                   </Link>
@@ -226,7 +226,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                     <h3 className="font-semibold text-navy-900 mb-1 group-hover:text-navy-700 transition-colors">
                       {sp.serviceType} in {sp.city}
                     </h3>
-                    <span className="text-sm font-medium text-navy-400 group-hover:text-navy-900 transition-colors">
+                    <span className="text-sm font-medium text-navy-600 group-hover:text-navy-900 transition-colors">
                       Learn more →
                     </span>
                   </Link>
@@ -250,11 +250,11 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
             {page.whyChoose.map((item, idx) => (
               <ScrollReveal key={item.title} delay={idx * 80}>
                 <div className="bg-white p-6 sm:p-8 h-full">
-                  <span className="text-xs font-semibold text-navy-300 tracking-wide">
+                  <span className="text-xs font-semibold text-navy-600 tracking-wide">
                     {String(idx + 1).padStart(2, '0')}
                   </span>
                   <h3 className="text-base font-semibold text-navy-900 mt-3 mb-3">{item.title}</h3>
-                  <p className="text-sm text-navy-500 leading-relaxed">{item.description}</p>
+                  <p className="text-sm text-navy-600 leading-relaxed">{item.description}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -318,11 +318,11 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
             {page.guidanceItems.map((item, idx) => (
               <ScrollReveal key={item.title} delay={idx * 80}>
                 <div className="bg-white p-6 sm:p-8 h-full">
-                  <span className="text-xs font-semibold text-navy-300 tracking-wide">
+                  <span className="text-xs font-semibold text-navy-600 tracking-wide">
                     {String(idx + 1).padStart(2, '0')}
                   </span>
                   <h3 className="text-base font-semibold text-navy-900 mt-3 mb-3">{item.title}</h3>
-                  <p className="text-sm text-navy-500 leading-relaxed">{item.description}</p>
+                  <p className="text-sm text-navy-600 leading-relaxed">{item.description}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -345,17 +345,17 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-3 mb-10">
                 <p className="text-sm font-medium text-navy-900">{page.city}</p>
                 {page.surroundingAreas.map(area => (
-                  <p key={area} className="text-sm text-navy-500">{area}</p>
+                  <p key={area} className="text-sm text-navy-600">{area}</p>
                 ))}
               </div>
               <div className="pt-6 border-t border-gray-200">
-                <p className="text-sm text-navy-400 mb-4">We also serve clients in:</p>
+                <p className="text-sm text-navy-600 mb-4">We also serve clients in:</p>
                 <div className="flex flex-wrap gap-3">
                   {locationPages.filter(l => l.slug !== page.slug).map(location => (
                     <Link
                       key={location.slug}
                       href={`/locations/${location.slug}`}
-                      className="text-sm font-medium text-navy-400 hover:text-navy-900 transition-colors"
+                      className="text-sm font-medium text-navy-600 hover:text-navy-900 transition-colors"
                     >
                       {location.city}, {location.stateAbbr} →
                     </Link>
@@ -370,12 +370,12 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
       {/* ============= CARRIERS ============= */}
       <section className="py-12 bg-gray-50 border-y border-gray-200">
         <div className="container-editorial">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-6">
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-navy-600 mb-6">
             We compare rates from leading carriers for {page.city} clients
           </p>
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-3">
             {carriers.map(name => (
-              <span key={name} className="text-sm font-medium text-navy-300">{name}</span>
+              <span key={name} className="text-sm font-medium text-navy-600">{name}</span>
             ))}
           </div>
         </div>

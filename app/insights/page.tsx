@@ -95,11 +95,11 @@ export default async function InsightsPage() {
                       <div className="bg-gray-50 p-8 sm:p-10 lg:p-14 flex flex-col justify-center">
                         <div className="flex items-center gap-3 mb-5">
                           {featuredPost.category && (
-                            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400">{featuredPost.category}</span>
+                            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-600">{featuredPost.category}</span>
                           )}
                           {featuredPost.category && featuredPost.published_at && <span className="w-1 h-1 rounded-full bg-navy-300" />}
                           {featuredPost.published_at && (
-                            <span className="text-xs text-navy-400">
+                            <span className="text-xs text-navy-600">
                               {new Date(featuredPost.published_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                             </span>
                           )}
@@ -108,13 +108,13 @@ export default async function InsightsPage() {
                           {featuredPost.title}
                         </h2>
                         {featuredPost.excerpt && (
-                          <p className="text-base text-navy-500 leading-relaxed mb-6 line-clamp-3">{featuredPost.excerpt}</p>
+                          <p className="text-base text-navy-600 leading-relaxed mb-6 line-clamp-3">{featuredPost.excerpt}</p>
                         )}
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            {featuredPost.readingTime && <span className="text-xs text-navy-400">{featuredPost.readingTime} min read</span>}
+                            {featuredPost.readingTime && <span className="text-xs text-navy-600">{featuredPost.readingTime} min read</span>}
                           </div>
-                          <span className="text-sm font-medium text-navy-400 group-hover:text-navy-900 transition-colors">
+                          <span className="text-sm font-medium text-navy-600 group-hover:text-navy-900 transition-colors">
                             Read article →
                           </span>
                         </div>
@@ -170,7 +170,7 @@ export default async function InsightsPage() {
                     <p className="section-label">All Insights</p>
                     <h2 className="text-2xl sm:text-3xl">Browse by Topic</h2>
                   </div>
-                  <p className="text-sm text-navy-400">{enrichedPosts.length} {enrichedPosts.length === 1 ? 'article' : 'articles'} published</p>
+                  <p className="text-sm text-navy-600">{enrichedPosts.length} {enrichedPosts.length === 1 ? 'article' : 'articles'} published</p>
                 </div>
               </ScrollReveal>
               <InsightsFilter
@@ -213,7 +213,7 @@ export default async function InsightsPage() {
         <section className="section-padding bg-white">
           <div className="container-editorial text-center">
             <h2 className="text-3xl font-display font-bold text-navy-900 mb-5">Coming Soon</h2>
-            <p className="text-lg text-navy-500 mb-10 max-w-lg mx-auto">
+            <p className="text-lg text-navy-600 mb-10 max-w-lg mx-auto">
               We&apos;re preparing expert insurance insights and educational resources. Check back soon.
             </p>
             <Link href="/" className="btn-primary">Back to Home</Link>

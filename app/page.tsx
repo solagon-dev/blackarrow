@@ -97,7 +97,7 @@ export default async function Home() {
                 ].map((item) => (
                   <div key={item.title}>
                     <h3 className="text-base font-semibold text-navy-900 mb-2">{item.title}</h3>
-                    <p className="text-sm text-navy-500 leading-relaxed">{item.desc}</p>
+                    <p className="text-sm text-navy-600 leading-relaxed">{item.desc}</p>
                   </div>
                 ))}
               </div>
@@ -147,8 +147,8 @@ export default async function Home() {
                   <h3 className="text-sm sm:text-base font-semibold text-navy-900 mb-2 group-hover:text-navy-700 transition-colors">
                     {ins.shortTitle}
                   </h3>
-                  <p className="text-xs sm:text-sm text-navy-500 leading-relaxed mb-4 sm:mb-5">{ins.tagline}</p>
-                  <span className="text-xs sm:text-sm font-medium text-navy-400 group-hover:text-navy-900 transition-colors">
+                  <p className="text-xs sm:text-sm text-navy-600 leading-relaxed mb-4 sm:mb-5">{ins.tagline}</p>
+                  <span className="text-xs sm:text-sm font-medium text-navy-600 group-hover:text-navy-900 transition-colors">
                     Learn more →
                   </span>
                 </Link>
@@ -193,7 +193,7 @@ export default async function Home() {
                       </div>
                       <div>
                         <h3 className="text-base font-semibold text-navy-900 mb-1 group-hover:text-navy-700 transition-colors">{ins.shortTitle}</h3>
-                        <p className="text-sm text-navy-500 leading-relaxed line-clamp-2">{ins.description.slice(0, 120)}...</p>
+                        <p className="text-sm text-navy-600 leading-relaxed line-clamp-2">{ins.description.slice(0, 120)}...</p>
                       </div>
                     </div>
                   </Link>
@@ -201,7 +201,7 @@ export default async function Home() {
               </div>
               <div className="mt-8 flex flex-wrap gap-3">
                 {commercialInsurance.slice(4).map((ins) => (
-                  <Link key={ins.slug} href={`/insurance/${ins.slug}`} className="text-sm font-medium text-navy-400 hover:text-navy-900 transition-colors">
+                  <Link key={ins.slug} href={`/insurance/${ins.slug}`} className="text-sm font-medium text-navy-600 hover:text-navy-900 transition-colors">
                     {ins.shortTitle} →
                   </Link>
                 ))}
@@ -238,7 +238,7 @@ export default async function Home() {
             ))}
             <ScrollReveal delay={250}>
               <Link href="/quote" className="bg-white/[0.04] p-6 sm:p-8 hover:bg-white/[0.08] transition-colors duration-200 group block h-full flex flex-col items-start justify-center">
-                <p className="text-sm text-navy-400 mb-3">Not sure what you need?</p>
+                <p className="text-sm text-navy-600 mb-3">Not sure what you need?</p>
                 <span className="text-base font-semibold text-white group-hover:text-navy-200 transition-colors">
                   Request a property quote →
                 </span>
@@ -258,7 +258,7 @@ export default async function Home() {
               <p className="text-lg text-navy-600 leading-relaxed mb-6">
                 BlackArrow Insurance has served the Eastern North Carolina community since 2002. As a locally-owned independent agency, we provide the kind of attentive, consultative service that larger firms cannot.
               </p>
-              <p className="text-navy-500 leading-relaxed mb-10">
+              <p className="text-navy-600 leading-relaxed mb-10">
                 Our team of licensed professionals takes the time to understand your situation and build coverage strategies that evolve with your needs.
               </p>
               <div className="flex gap-6">
@@ -285,7 +285,7 @@ export default async function Home() {
                 ].map((item) => (
                   <div key={item.label}>
                     <p className="text-xl sm:text-2xl lg:text-3xl font-display font-bold text-navy-900">{item.value}</p>
-                    <p className="text-xs text-navy-400 mt-1 tracking-wide">{item.label}</p>
+                    <p className="text-xs text-navy-600 mt-1 tracking-wide">{item.label}</p>
                   </div>
                 ))}
               </div>
@@ -315,8 +315,8 @@ export default async function Home() {
                   <h3 className="text-base font-semibold text-navy-900 mb-2 group-hover:text-navy-700 transition-colors">
                     {location.city}, {location.stateAbbr}
                   </h3>
-                  <p className="text-sm text-navy-500 leading-relaxed mb-4 line-clamp-2">{location.heroDescription.slice(0, 120)}...</p>
-                  <span className="text-sm font-medium text-navy-400 group-hover:text-navy-900 transition-colors">
+                  <p className="text-sm text-navy-600 leading-relaxed mb-4 line-clamp-2">{location.heroDescription.slice(0, 120)}...</p>
+                  <span className="text-sm font-medium text-navy-600 group-hover:text-navy-900 transition-colors">
                     Learn more →
                   </span>
                 </Link>
@@ -366,7 +366,7 @@ export default async function Home() {
                     </svg>
                   </div>
                   <h3 className="text-base font-semibold text-navy-900 mb-2 group-hover:text-navy-700 transition-colors">{item.title}</h3>
-                  <p className="text-sm text-navy-500 leading-relaxed">{item.desc}</p>
+                  <p className="text-sm text-navy-600 leading-relaxed">{item.desc}</p>
                 </Link>
               </ScrollReveal>
             ))}

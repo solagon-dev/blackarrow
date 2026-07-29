@@ -212,7 +212,7 @@ export default async function ServiceLocationPage({ params }: { params: Promise<
                     </div>
                     <div>
                       <h3 className="text-base font-semibold text-navy-900 mb-2">{item.title}</h3>
-                      <p className="text-sm text-navy-500 leading-relaxed">{item.description}</p>
+                      <p className="text-sm text-navy-600 leading-relaxed">{item.description}</p>
                     </div>
                   </div>
                 </div>
@@ -235,11 +235,11 @@ export default async function ServiceLocationPage({ params }: { params: Promise<
             {page.tips.map((tip, idx) => (
               <ScrollReveal key={tip.title} delay={idx * 80}>
                 <div className="bg-white p-6 sm:p-8 h-full">
-                  <span className="text-xs font-semibold text-navy-300 tracking-wide">
+                  <span className="text-xs font-semibold text-navy-600 tracking-wide">
                     {String(idx + 1).padStart(2, '0')}
                   </span>
                   <h3 className="text-base font-semibold text-navy-900 mt-3 mb-3">{tip.title}</h3>
-                  <p className="text-sm text-navy-500 leading-relaxed">{tip.description}</p>
+                  <p className="text-sm text-navy-600 leading-relaxed">{tip.description}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -262,11 +262,11 @@ export default async function ServiceLocationPage({ params }: { params: Promise<
                     <details className="group">
                       <summary className="flex items-center justify-between cursor-pointer py-6 hover:text-navy-700 transition-colors list-none">
                         <h3 className="text-base font-semibold text-navy-900 pr-8">{faq.question}</h3>
-                        <svg className="w-4 h-4 text-navy-400 group-open:rotate-45 transition-transform duration-200 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="w-4 h-4 text-navy-600 group-open:rotate-45 transition-transform duration-200 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                         </svg>
                       </summary>
-                      <div className="pb-6 text-navy-500 leading-relaxed max-w-2xl">
+                      <div className="pb-6 text-navy-600 leading-relaxed max-w-2xl">
                         {faq.answer}
                       </div>
                     </details>
@@ -295,7 +295,7 @@ export default async function ServiceLocationPage({ params }: { params: Promise<
                     {getIconByName(serviceIcons[rs.insuranceSlug] || 'shield', 'w-5 h-5')}
                   </div>
                   <h3 className="font-semibold text-navy-900 mb-1 group-hover:text-navy-700 transition-colors">{rs.label}</h3>
-                  <span className="text-sm font-medium text-navy-400 group-hover:text-navy-900 transition-colors">
+                  <span className="text-sm font-medium text-navy-600 group-hover:text-navy-900 transition-colors">
                     Learn more →
                   </span>
                 </Link>
@@ -320,7 +320,7 @@ export default async function ServiceLocationPage({ params }: { params: Promise<
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-3 mb-10">
                 <p className="text-sm font-medium text-navy-900">{page.city}</p>
                 {page.surroundingAreas.map(area => (
-                  <p key={area} className="text-sm text-navy-500">{area}</p>
+                  <p key={area} className="text-sm text-navy-600">{area}</p>
                 ))}
               </div>
               {location && (
@@ -341,12 +341,12 @@ export default async function ServiceLocationPage({ params }: { params: Promise<
       {/* ============= CARRIERS ============= */}
       <section className="py-12 bg-gray-50 border-y border-gray-200">
         <div className="container-editorial">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-6">
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-navy-600 mb-6">
             We compare {page.serviceType.toLowerCase()} rates from leading carriers
           </p>
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-3">
             {carriers.map(name => (
-              <span key={name} className="text-sm font-medium text-navy-300">{name}</span>
+              <span key={name} className="text-sm font-medium text-navy-600">{name}</span>
             ))}
           </div>
         </div>

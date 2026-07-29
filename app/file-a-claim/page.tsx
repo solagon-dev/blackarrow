@@ -77,7 +77,7 @@ export default function FileAClaimPage() {
                     className="bg-white p-6 flex items-center justify-between group block hover:bg-gray-50 transition-colors duration-200"
                   >
                     <span className="font-semibold text-navy-900 group-hover:text-navy-700 transition-colors">{carrier.name}</span>
-                    <svg className="w-4 h-4 text-navy-400 group-hover:text-navy-900 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-4 h-4 text-navy-600 group-hover:text-navy-900 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
                   </a>

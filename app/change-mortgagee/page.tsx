@@ -59,7 +59,7 @@ export default function ChangeMortgageePage() {
             <div className="card-premium p-5 sm:p-8 md:p-10">
               <form onSubmit={handleSubmit} className="space-y-8">
                 <div>
-                  <h3 className="text-sm font-semibold uppercase tracking-wide text-navy-400 mb-4">Policy Information</h3>
+                  <h3 className="text-sm font-semibold uppercase tracking-wide text-navy-600 mb-4">Policy Information</h3>
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div><label htmlFor="mortgagee-policy-number" className="input-label">Policy Number *</label><input id="mortgagee-policy-number" type="text" required className="input-field" value={form.policyNumber} onChange={e => update('policyNumber', e.target.value)} /></div>
                     <div><label htmlFor="mortgagee-insured-name" className="input-label">Insured Name *</label><input id="mortgagee-insured-name" type="text" required className="input-field" value={form.insuredName} onChange={e => update('insuredName', e.target.value)} /></div>
@@ -67,7 +67,7 @@ export default function ChangeMortgageePage() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold uppercase tracking-wide text-navy-400 mb-4">New Mortgagee Information</h3>
+                  <h3 className="text-sm font-semibold uppercase tracking-wide text-navy-600 mb-4">New Mortgagee Information</h3>
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div className="sm:col-span-2"><label htmlFor="mortgagee-new-mortgagee-name" className="input-label">New Mortgagee Name *</label><input id="mortgagee-new-mortgagee-name" type="text" required className="input-field" value={form.newMortgageeName} onChange={e => update('newMortgageeName', e.target.value)} /></div>
                     <div className="sm:col-span-2"><label htmlFor="mortgagee-new-mortgagee-address" className="input-label">New Mortgagee Address *</label><input id="mortgagee-new-mortgagee-address" type="text" required className="input-field" value={form.newMortgageeAddress} onChange={e => update('newMortgageeAddress', e.target.value)} /></div>
@@ -75,7 +75,7 @@ export default function ChangeMortgageePage() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold uppercase tracking-wide text-navy-400 mb-4">Contact Information</h3>
+                  <h3 className="text-sm font-semibold uppercase tracking-wide text-navy-600 mb-4">Contact Information</h3>
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div><label htmlFor="mortgagee-email" className="input-label">Email *</label><input id="mortgagee-email" type="email" required className="input-field" value={form.email} onChange={e => update('email', e.target.value)} /></div>
                     <div><label htmlFor="mortgagee-phone" className="input-label">Phone</label><input id="mortgagee-phone" type="tel" className="input-field" value={form.phone} onChange={e => update('phone', e.target.value)} /></div>

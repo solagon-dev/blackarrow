@@ -89,7 +89,7 @@ export default function TermsOfUsePage() {
       <section className="py-8 sm:py-10 bg-gray-50 border-b border-gray-200">
         <div className="container-editorial">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-4">Contents</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-600 mb-4">Contents</p>
             <div className="grid sm:grid-cols-2 gap-x-8 gap-y-2">
               {sections.map((section, idx) => (
                 <a
@@ -97,7 +97,7 @@ export default function TermsOfUsePage() {
                   href={`#${section.id}`}
                   className="flex items-baseline gap-3 py-1.5 group"
                 >
-                  <span className="text-xs font-semibold text-navy-300 tabular-nums w-5 flex-shrink-0">
+                  <span className="text-xs font-semibold text-navy-600 tabular-nums w-5 flex-shrink-0">
                     {String(idx + 1).padStart(2, '0')}
                   </span>
                   <span className="text-sm text-navy-600 group-hover:text-navy-900 transition-colors">
@@ -121,7 +121,7 @@ export default function TermsOfUsePage() {
                 className={`${idx > 0 ? 'mt-12 sm:mt-16 pt-12 sm:pt-16 border-t border-gray-200' : ''}`}
               >
                 <div className="flex items-start gap-4 sm:gap-6 mb-4 sm:mb-5">
-                  <span className="text-xs font-semibold text-navy-300 tracking-wide tabular-nums pt-2 sm:pt-2.5 w-6 flex-shrink-0">
+                  <span className="text-xs font-semibold text-navy-600 tracking-wide tabular-nums pt-2 sm:pt-2.5 w-6 flex-shrink-0">
                     {String(idx + 1).padStart(2, '0')}
                   </span>
                   <h2 className="text-xl sm:text-2xl font-display font-bold text-navy-900">
@@ -145,7 +145,7 @@ export default function TermsOfUsePage() {
           <div className="max-w-3xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
             <div>
               <h3 className="text-lg font-semibold text-navy-900 mb-1">Have questions about these terms?</h3>
-              <p className="text-sm text-navy-500">
+              <p className="text-sm text-navy-600">
                 Contact us at{' '}
                 <a href="mailto:admin@blackarrowfg.com" className="text-navy-900 underline underline-offset-4 decoration-navy-300 hover:decoration-navy-900 transition-colors">
                   admin@blackarrowfg.com

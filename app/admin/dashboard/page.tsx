@@ -88,7 +88,7 @@ export default function DashboardPage() {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-8 sm:pt-10 pb-8">
           <div>
             <h1 className="text-2xl sm:text-3xl font-display font-bold text-navy-900">Content</h1>
-            <p className="text-sm text-navy-400 mt-1">Manage your blog posts and articles</p>
+            <p className="text-sm text-navy-600 mt-1">Manage your blog posts and articles</p>
           </div>
           <Link href="/admin/dashboard/posts/new" className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-navy-900 text-white text-sm font-medium tracking-wide hover:bg-navy-800 transition-colors">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -106,7 +106,7 @@ export default function DashboardPage() {
             { label: 'Drafts', value: drafts.length, color: 'text-amber-600' },
           ].map(stat => (
             <div key={stat.label} className="bg-white p-5 sm:p-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-2">{stat.label}</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-navy-600 mb-2">{stat.label}</p>
               <p className={`text-2xl sm:text-3xl font-display font-bold ${stat.color}`}>{stat.value}</p>
             </div>
           ))}
@@ -123,11 +123,11 @@ export default function DashboardPage() {
                 className={`px-5 py-3.5 text-sm font-medium transition-colors border-b-2 -mb-px ${
                   filter === tab
                     ? 'border-navy-900 text-navy-900'
-                    : 'border-transparent text-navy-400 hover:text-navy-700'
+                    : 'border-transparent text-navy-600 hover:text-navy-700'
                 }`}
               >
                 {tab === 'all' ? 'All' : tab === 'published' ? 'Published' : 'Drafts'}
-                <span className="ml-2 text-xs text-navy-300">
+                <span className="ml-2 text-xs text-navy-600">
                   {tab === 'all' ? posts.length : tab === 'published' ? published.length : drafts.length}
                 </span>
               </button>
@@ -138,16 +138,16 @@ export default function DashboardPage() {
           {loading ? (
             <div className="p-16 text-center">
               <div className="inline-block w-5 h-5 border-2 border-navy-200 border-t-navy-600 rounded-full animate-spin" />
-              <p className="text-sm text-navy-400 mt-3">Loading posts...</p>
+              <p className="text-sm text-navy-600 mt-3">Loading posts...</p>
             </div>
           ) : filteredPosts.length === 0 ? (
             <div className="p-16 text-center">
               <div className="w-12 h-12 bg-gray-100 flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6 text-navy-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-6 h-6 text-navy-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
                 </svg>
               </div>
-              <p className="text-sm text-navy-500 mb-1">
+              <p className="text-sm text-navy-600 mb-1">
                 {filter === 'all' ? 'No posts yet' : `No ${filter} posts`}
               </p>
               {filter === 'all' && (
@@ -159,7 +159,7 @@ export default function DashboardPage() {
           ) : (
             <div>
               {/* Table header */}
-              <div className="hidden sm:grid sm:grid-cols-12 gap-4 px-5 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 border-b border-gray-100 bg-gray-50/50">
+              <div className="hidden sm:grid sm:grid-cols-12 gap-4 px-5 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-navy-600 border-b border-gray-100 bg-gray-50/50">
                 <div className="col-span-5">Title</div>
                 <div className="col-span-2">Category</div>
                 <div className="col-span-2">Status</div>
@@ -177,13 +177,13 @@ export default function DashboardPage() {
                         <Link href={`/admin/dashboard/posts/${post.id}/edit`} className="font-medium text-navy-900 hover:text-navy-700 transition-colors truncate block">
                           {post.title || 'Untitled'}
                         </Link>
-                        <p className="text-xs text-navy-300 mt-0.5 truncate">/{post.slug}</p>
+                        <p className="text-xs text-navy-600 mt-0.5 truncate">/{post.slug}</p>
                       </div>
                       <div className="col-span-2">
                         {post.category ? (
-                          <span className="text-xs text-navy-500">{post.category}</span>
+                          <span className="text-xs text-navy-600">{post.category}</span>
                         ) : (
-                          <span className="text-xs text-navy-300">&mdash;</span>
+                          <span className="text-xs text-navy-600">&mdash;</span>
                         )}
                       </div>
                       <div className="col-span-2">
@@ -197,14 +197,14 @@ export default function DashboardPage() {
                         </span>
                       </div>
                       <div className="col-span-2">
-                        <span className="text-xs text-navy-400">
+                        <span className="text-xs text-navy-600">
                           {new Date(post.published_at || post.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                         </span>
                       </div>
                       <div className="col-span-1 flex justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                         <Link
                           href={`/admin/dashboard/posts/${post.id}/edit`}
-                          className="p-1.5 text-navy-400 hover:text-navy-900 transition-colors"
+                          className="p-1.5 text-navy-600 hover:text-navy-900 transition-colors"
                           title="Edit"
                         >
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -213,7 +213,7 @@ export default function DashboardPage() {
                         </Link>
                         <button
                           onClick={() => handleDelete(post.id)}
-                          className="p-1.5 text-navy-400 hover:text-red-600 transition-colors"
+                          className="p-1.5 text-navy-600 hover:text-red-600 transition-colors"
                           title="Delete"
                         >
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -239,8 +239,8 @@ export default function DashboardPage() {
                               }`} />
                               {post.status === 'published' ? 'Published' : 'Draft'}
                             </span>
-                            {post.category && <span className="text-xs text-navy-400">{post.category}</span>}
-                            <span className="text-xs text-navy-300">
+                            {post.category && <span className="text-xs text-navy-600">{post.category}</span>}
+                            <span className="text-xs text-navy-600">
                               {new Date(post.published_at || post.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                             </span>
                           </div>
@@ -248,7 +248,7 @@ export default function DashboardPage() {
                         <div className="flex items-center gap-1 flex-shrink-0">
                           <Link
                             href={`/admin/dashboard/posts/${post.id}/edit`}
-                            className="p-2 text-navy-400 hover:text-navy-900 transition-colors"
+                            className="p-2 text-navy-600 hover:text-navy-900 transition-colors"
                           >
                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -256,7 +256,7 @@ export default function DashboardPage() {
                           </Link>
                           <button
                             onClick={() => handleDelete(post.id)}
-                            className="p-2 text-navy-400 hover:text-red-600 transition-colors"
+                            className="p-2 text-navy-600 hover:text-red-600 transition-colors"
                           >
                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />

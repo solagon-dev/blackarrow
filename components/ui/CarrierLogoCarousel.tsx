@@ -23,7 +23,7 @@ export default function CarrierLogoCarousel() {
   return (
     <section className="py-6 sm:py-8 bg-white border-b border-gray-200 overflow-hidden">
       <div className="container-editorial mb-4 sm:mb-5">
-        <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 text-center">Trusted Carrier Partners</p>
+        <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-navy-600 text-center">Trusted Carrier Partners</p>
       </div>
       <div className="relative">
         <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-white to-transparent z-10" />

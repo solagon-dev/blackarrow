@@ -18,7 +18,7 @@ export default function NotFound() {
     <main className="bg-white">
       <section className="pt-36 pb-24 sm:pt-44 sm:pb-32">
         <div className="container-editorial max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-600 mb-4">
             404 — Page Not Found
           </p>
           <h1 className="text-4xl sm:text-5xl font-display font-semibold text-navy-900 mb-6">
@@ -46,7 +46,7 @@ export default function NotFound() {
           </div>
 
           <div className="border-t border-gray-200 pt-10">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-600 mb-5">
               Popular pages
             </p>
             <ul className="grid sm:grid-cols-2 gap-3 text-navy-600">

@@ -145,7 +145,7 @@ export default function InsuranceHubPage() {
                         <span className="block text-base font-semibold text-navy-900 group-hover:text-navy-700">
                           {cov.shortTitle}
                         </span>
-                        <span className="mt-2 block text-sm text-navy-500 leading-relaxed">{cov.tagline}</span>
+                        <span className="mt-2 block text-sm text-navy-600 leading-relaxed">{cov.tagline}</span>
                       </Link>
                     </li>
                   ))}
