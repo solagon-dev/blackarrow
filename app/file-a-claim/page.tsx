@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import GridFillers from '@/components/ui/GridFillers'
 import Image from 'next/image'
 import type { Metadata } from 'next'
 import ScrollReveal from '@/components/ui/ScrollReveal'
@@ -83,6 +84,7 @@ export default function FileAClaimPage() {
                   </a>
                 </ScrollReveal>
               ))}
+              <GridFillers count={carrierLinks.length} cols={{ sm: 2, lg: 3 }} />
             </div>
             <ScrollReveal>
               <div className="mt-12 text-center">

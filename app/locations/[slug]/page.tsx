@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import GridFillers from '@/components/ui/GridFillers'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { locationPages, getLocationBySlug } from '@/lib/location-data'
@@ -187,6 +188,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                 </Link>
               </ScrollReveal>
             ))}
+            <GridFillers count={featuredServices.length} cols={{ sm: 2, lg: 4 }} />
           </div>
           <ScrollReveal>
             <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
@@ -232,6 +234,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                   </Link>
                 </ScrollReveal>
               ))}
+              <GridFillers count={cityServicePages.length} cols={{ sm: 2, lg: 4 }} />
             </div>
           </div>
         </section>
@@ -258,6 +261,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                 </div>
               </ScrollReveal>
             ))}
+            <GridFillers count={page.whyChoose.length} cols={{ sm: 2, lg: 4 }} />
           </div>
         </div>
       </section>
@@ -326,6 +330,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                 </div>
               </ScrollReveal>
             ))}
+            <GridFillers count={page.guidanceItems.length} cols={{ sm: 3 }} />
           </div>
         </div>
       </section>

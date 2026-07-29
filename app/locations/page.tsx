@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import GridFillers from '@/components/ui/GridFillers'
 import type { Metadata } from 'next'
 import { locationPages } from '@/lib/location-data'
 import ScrollReveal from '@/components/ui/ScrollReveal'
@@ -77,6 +78,7 @@ export default function LocationsPage() {
                 </Link>
               </ScrollReveal>
             ))}
+            <GridFillers count={locationPages.length} cols={{ sm: 2 }} />
           </div>
         </div>
       </section>

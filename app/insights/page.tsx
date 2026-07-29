@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import GridFillers from '@/components/ui/GridFillers'
 import Image from 'next/image'
 import type { Metadata } from 'next'
 import { getAllPosts, getCategories } from '@/lib/db'
@@ -155,6 +156,7 @@ export default async function InsightsPage() {
                         />
                       </ScrollReveal>
                     ))}
+                    <GridFillers count={secondaryFeatured.length} cols={{ sm: 2, lg: 3 }} />
                   </div>
                 </div>
               </section>

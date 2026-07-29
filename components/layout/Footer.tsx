@@ -93,7 +93,7 @@ export default function Footer() {
 
           {/* Company Links */}
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-6">Company</h4>
+            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-6">Company</h3>
             <ul className="space-y-3">
               {companyLinks.map(link => (
                 <li key={link.href}>
@@ -107,7 +107,7 @@ export default function Footer() {
 
           {/* Policy Management */}
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-6">Policy Management</h4>
+            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-6">Policy Management</h3>
             <ul className="space-y-3">
               {policyLinks.map(link => (
                 <li key={link.href}>
@@ -121,7 +121,7 @@ export default function Footer() {
 
           {/* Locations */}
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-6">Locations</h4>
+            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-6">Locations</h3>
             <ul className="space-y-3">
               {locationPages.map(location => (
                 <li key={location.slug}>
@@ -135,7 +135,7 @@ export default function Footer() {
 
           {/* Coverages */}
           <div className="col-span-2">
-            <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-6">Coverages</h4>
+            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-6">Coverages</h3>
             <ul className="grid grid-cols-2 gap-x-6 gap-y-3">
               {allInsurance.map(ins => (
                 <li key={ins.slug}>
@@ -151,7 +151,7 @@ export default function Footer() {
         {/* By City × Service — internal link equity to highest-value local landing pages */}
         {topCityServicePages.length > 0 && (
           <div className="mt-12 sm:mt-16 pt-10 border-t border-white/10">
-            <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-6">By City &amp; Coverage</h4>
+            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-6">By City &amp; Coverage</h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-3">
               {topCityServicePages.map(p => (
                 <Link
@@ -171,18 +171,20 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="container-editorial py-6" style={{ paddingBottom: 'calc(1.5rem + env(safe-area-inset-bottom, 0px))' }}>
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs sm:text-sm text-navy-500 text-center sm:text-left">
+            {/* navy-400, not navy-500: on the navy-950 footer, navy-500 is
+                4.14:1 — under AA. navy-400 is 6.09:1. */}
+            <p className="text-xs sm:text-sm text-navy-400 text-center sm:text-left">
               &copy; {new Date().getFullYear()} BlackArrow Insurance Group. All Rights Reserved.
             </p>
             <div className="flex flex-wrap items-center justify-center sm:justify-end gap-4 sm:gap-6">
               {legalLinks.map(link => (
-                <Link key={link.href} href={link.href} className="text-xs sm:text-sm text-navy-500 hover:text-navy-300 transition-colors">
+                <Link key={link.href} href={link.href} className="text-xs sm:text-sm text-navy-400 hover:text-navy-300 transition-colors">
                   {link.label}
                 </Link>
               ))}
               <span className="text-xs sm:text-sm text-navy-600">
                 Website by{' '}
-                <a href="https://solagon.com" target="_blank" rel="noopener noreferrer" className="text-navy-500 hover:text-white transition-colors">
+                <a href="https://solagon.com" target="_blank" rel="noopener noreferrer" className="text-navy-400 hover:text-white transition-colors">
                   Solagon
                 </a>
               </span>

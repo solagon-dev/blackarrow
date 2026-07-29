@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import GridFillers from '@/components/ui/GridFillers'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { serviceLocationPages, getServiceLocationBySlug } from '@/lib/service-location-data'
@@ -218,6 +219,7 @@ export default async function ServiceLocationPage({ params }: { params: Promise<
                 </div>
               </ScrollReveal>
             ))}
+            <GridFillers count={page.coverageItems.length} cols={{ sm: 2 }} />
           </div>
         </div>
       </section>
@@ -243,6 +245,7 @@ export default async function ServiceLocationPage({ params }: { params: Promise<
                 </div>
               </ScrollReveal>
             ))}
+            <GridFillers count={page.tips.length} cols={{ sm: 3 }} />
           </div>
         </div>
       </section>
@@ -301,6 +304,7 @@ export default async function ServiceLocationPage({ params }: { params: Promise<
                 </Link>
               </ScrollReveal>
             ))}
+            <GridFillers count={page.relatedServices.length} cols={{ sm: 2, lg: 4 }} />
           </div>
         </div>
       </section>

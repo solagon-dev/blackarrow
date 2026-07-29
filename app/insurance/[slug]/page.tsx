@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import GridFillers from '@/components/ui/GridFillers'
 import Link from 'next/link'
 import Image from 'next/image'
 import type { Metadata } from 'next'
@@ -158,6 +159,7 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
                 </div>
               </ScrollReveal>
             ))}
+            <GridFillers count={page.coverageTypes.length} cols={{ sm: 2, lg: 3 }} />
           </div>
         </div>
       </section>
@@ -276,6 +278,7 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
                   />
                 </ScrollReveal>
               ))}
+              <GridFillers count={relatedPosts.length} cols={{ sm: 2, lg: 3 }} />
             </div>
           </div>
         </section>
@@ -299,6 +302,7 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
                 </Link>
               </ScrollReveal>
             ))}
+            <GridFillers count={relatedPages.length} cols={{ sm: 3 }} />
           </div>
         </div>
       </section>

@@ -140,7 +140,9 @@ export const insurancePages: InsurancePage[] = [
     title: 'Boat Insurance',
     shortTitle: 'Boat',
     category: 'personal',
-    tagline: 'Personalized plans for more peace of mind',
+    // Was a verbatim copy of the Life tagline, so the two cards read
+    // identically wherever they appeared side by side.
+    tagline: 'Cover your vessel on inland waters and the coast',
     description: 'Boat insurance provides financial protection for your vessel, covering damages from accidents, theft, or natural events. It also includes liability coverage to protect you on the water.',
     icon: 'anchor',
     coverageTypes: [

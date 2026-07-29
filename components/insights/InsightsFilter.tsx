@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
+import GridFillers from '@/components/ui/GridFillers'
 import { InsightCard } from './InsightCard'
 
 interface Post {
@@ -135,6 +136,7 @@ export default function InsightsFilter({ posts, categories }: InsightsFilterProp
               author={post.author}
             />
           ))}
+          <GridFillers count={filtered.length} cols={{ sm: 2, lg: 3 }} />
         </div>
       )}
     </div>

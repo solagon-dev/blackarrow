@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getInsuranceBySlug } from '@/lib/insurance-data'
 import { GREENVILLE_OFFICE, WHITEVILLE_OFFICE } from '@/lib/business-facts'
+import GridFillers from '@/components/ui/GridFillers'
 
 export const metadata: Metadata = {
   title: 'Insurance Coverage — Find the Right Policy',
@@ -149,6 +150,7 @@ export default function InsuranceHubPage() {
                       </Link>
                     </li>
                   ))}
+                  <GridFillers count={coverages.length} cols={{ sm: 2, lg: 3 }} as="li" />
                 </ul>
               </div>
             )

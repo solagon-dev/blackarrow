@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import GridFillers from '@/components/ui/GridFillers'
 import Image from 'next/image'
 import { personalInsurance, commercialInsurance, propertyInsurance } from '@/lib/insurance-data'
 import { locationPages } from '@/lib/location-data'
@@ -31,7 +32,11 @@ export default async function Home() {
             <div className="lg:col-span-7">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-4 sm:mb-5 lg:hidden">Independent Insurance Brokerage</p>
               <h1 className="text-white text-[1.75rem] sm:text-[2.75rem] md:text-[3.5rem] lg:text-[4.25rem] leading-[1.1] sm:leading-[1.05] font-display font-bold tracking-tight">
-                Protecting Your Tomorrow,<br className="hidden sm:block" />
+                {/* Explicit space: JSX drops the newline adjacent to the <br>,
+                    so with the break hidden below sm the words rendered as
+                    "Tomorrow,Today" on every phone. */}
+                Protecting Your Tomorrow,{' '}
+                <br className="hidden sm:block" />
                 Today
               </h1>
             </div>
@@ -154,6 +159,7 @@ export default async function Home() {
                 </Link>
               </ScrollReveal>
             ))}
+            <GridFillers count={personalInsurance.length} cols={{ base: 2, lg: 4 }} />
           </div>
         </div>
       </section>
@@ -236,9 +242,14 @@ export default async function Home() {
                 </Link>
               </ScrollReveal>
             ))}
+            {/* +1 for the "Request a property quote" card rendered after the map. */}
+            <GridFillers count={propertyInsurance.length + 1} cols={{ sm: 2, lg: 3 }} fill="bg-navy-900" />
             <ScrollReveal delay={250}>
               <Link href="/quote" className="bg-white/[0.04] p-6 sm:p-8 hover:bg-white/[0.08] transition-colors duration-200 group block h-full flex flex-col items-start justify-center">
-                <p className="text-sm text-navy-600 mb-3">Not sure what you need?</p>
+                {/* navy-400, not navy-600: bg-white/[0.04] is 4% white over the
+                    navy-900 section, so this card is dark despite the "bg-white"
+                    in its class name. */}
+                <p className="text-sm text-navy-400 mb-3">Not sure what you need?</p>
                 <span className="text-base font-semibold text-white group-hover:text-navy-200 transition-colors">
                   Request a property quote →
                 </span>
@@ -322,6 +333,7 @@ export default async function Home() {
                 </Link>
               </ScrollReveal>
             ))}
+            <GridFillers count={locationPages.length} cols={{ sm: 2, lg: 4 }} />
           </div>
         </div>
       </section>
@@ -404,6 +416,7 @@ export default async function Home() {
                     />
                   </ScrollReveal>
                 ))}
+                <GridFillers count={recentPosts.length} cols={{ sm: 2, lg: 3 }} />
               </div>
             </div>
           </section>

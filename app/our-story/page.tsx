@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import GridFillers from '@/components/ui/GridFillers'
 import Image from 'next/image'
 import type { Metadata } from 'next'
 import { teamMembers, offices } from '@/lib/team-data'
@@ -191,6 +192,7 @@ export default function OurStoryPage() {
                 </div>
               </ScrollReveal>
             ))}
+            <GridFillers count={leadership.length} cols={{ sm: 2, lg: 3 }} />
           </div>
         </div>
       </section>
@@ -237,6 +239,7 @@ export default function OurStoryPage() {
                 </div>
               </ScrollReveal>
             ))}
+            <GridFillers count={staff.length} cols={{ sm: 2, lg: 3 }} />
           </div>
         </div>
       </section>
@@ -279,6 +282,7 @@ export default function OurStoryPage() {
                 </div>
               </ScrollReveal>
             ))}
+            <GridFillers count={offices.length} cols={{ sm: 2 }} />
           </div>
         </div>
       </section>

@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import GridFillers from '@/components/ui/GridFillers'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
@@ -236,6 +237,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                   />
                 </ScrollReveal>
               ))}
+              <GridFillers count={related.length} cols={{ sm: 2, lg: 4 }} />
             </div>
           </div>
         </section>
