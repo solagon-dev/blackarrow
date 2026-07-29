@@ -122,8 +122,13 @@
     @apply w-full h-px bg-white/10;
   }
 
+  /* navy-600 rather than navy-400: at 12px on white, navy-400 measures 2.91:1
+     against a 4.5:1 requirement. Every one of the ~38 usages of this class
+     renders on white or gray-50 (verified against the built pages), so there's
+     no dark-background case to preserve here. navy-600 is the lightest shade
+     on the scale that clears AA on white, at 6.08:1. */
   .section-label {
-    @apply text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-4;
+    @apply text-xs font-semibold uppercase tracking-[0.2em] text-navy-600 mb-4;
   }
 
   .section-divider {
