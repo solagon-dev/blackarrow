@@ -61,24 +61,24 @@ export default function LoanNumberChangePage() {
                 <div>
                   <h3 className="text-sm font-semibold uppercase tracking-wide text-navy-400 mb-4">Policy Information</h3>
                   <div className="grid sm:grid-cols-2 gap-5">
-                    <div><label className="input-label">Policy Number *</label><input type="text" required className="input-field" value={form.policyNumber} onChange={e => update('policyNumber', e.target.value)} /></div>
-                    <div><label className="input-label">Insured Name *</label><input type="text" required className="input-field" value={form.insuredName} onChange={e => update('insuredName', e.target.value)} /></div>
-                    <div className="sm:col-span-2"><label className="input-label">Property Address *</label><input type="text" required className="input-field" value={form.propertyAddress} onChange={e => update('propertyAddress', e.target.value)} /></div>
+                    <div><label htmlFor="loan-policy-number" className="input-label">Policy Number *</label><input id="loan-policy-number" type="text" required className="input-field" value={form.policyNumber} onChange={e => update('policyNumber', e.target.value)} /></div>
+                    <div><label htmlFor="loan-insured-name" className="input-label">Insured Name *</label><input id="loan-insured-name" type="text" required className="input-field" value={form.insuredName} onChange={e => update('insuredName', e.target.value)} /></div>
+                    <div className="sm:col-span-2"><label htmlFor="loan-property-address" className="input-label">Property Address *</label><input id="loan-property-address" type="text" required className="input-field" value={form.propertyAddress} onChange={e => update('propertyAddress', e.target.value)} /></div>
                   </div>
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold uppercase tracking-wide text-navy-400 mb-4">Loan Number Details</h3>
                   <div className="grid sm:grid-cols-2 gap-5">
-                    <div><label className="input-label">Current Loan Number</label><input type="text" className="input-field" value={form.oldLoanNumber} onChange={e => update('oldLoanNumber', e.target.value)} /></div>
-                    <div><label className="input-label">New Loan Number *</label><input type="text" required className="input-field" value={form.newLoanNumber} onChange={e => update('newLoanNumber', e.target.value)} /></div>
-                    <div className="sm:col-span-2"><label className="input-label">Mortgagee Name</label><input type="text" className="input-field" value={form.mortgageeName} onChange={e => update('mortgageeName', e.target.value)} /></div>
+                    <div><label htmlFor="loan-current-loan-number" className="input-label">Current Loan Number</label><input id="loan-current-loan-number" type="text" className="input-field" value={form.oldLoanNumber} onChange={e => update('oldLoanNumber', e.target.value)} /></div>
+                    <div><label htmlFor="loan-new-loan-number" className="input-label">New Loan Number *</label><input id="loan-new-loan-number" type="text" required className="input-field" value={form.newLoanNumber} onChange={e => update('newLoanNumber', e.target.value)} /></div>
+                    <div className="sm:col-span-2"><label htmlFor="loan-mortgagee-name" className="input-label">Mortgagee Name</label><input id="loan-mortgagee-name" type="text" className="input-field" value={form.mortgageeName} onChange={e => update('mortgageeName', e.target.value)} /></div>
                   </div>
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold uppercase tracking-wide text-navy-400 mb-4">Contact Information</h3>
                   <div className="grid sm:grid-cols-2 gap-5">
-                    <div><label className="input-label">Email *</label><input type="email" required className="input-field" value={form.email} onChange={e => update('email', e.target.value)} /></div>
-                    <div><label className="input-label">Phone</label><input type="tel" className="input-field" value={form.phone} onChange={e => update('phone', e.target.value)} /></div>
+                    <div><label htmlFor="loan-email" className="input-label">Email *</label><input id="loan-email" type="email" required className="input-field" value={form.email} onChange={e => update('email', e.target.value)} /></div>
+                    <div><label htmlFor="loan-phone" className="input-label">Phone</label><input id="loan-phone" type="tel" className="input-field" value={form.phone} onChange={e => update('phone', e.target.value)} /></div>
                   </div>
                 </div>
                 <div aria-live="polite">{status === 'error' && <p className="text-red-600 text-sm">{errorMessage}</p>}</div>

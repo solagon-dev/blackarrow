@@ -55,8 +55,8 @@ export default function AdminLoginPage() {
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wide text-navy-400 mb-2">Email</label>
-              <input
+              <label htmlFor="admin-email" className="block text-xs font-semibold uppercase tracking-wide text-navy-400 mb-2">Email</label>
+              <input id="admin-email"
                 type="email"
                 required
                 className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-300 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white"
@@ -66,8 +66,8 @@ export default function AdminLoginPage() {
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wide text-navy-400 mb-2">Password</label>
-              <input
+              <label htmlFor="admin-password" className="block text-xs font-semibold uppercase tracking-wide text-navy-400 mb-2">Password</label>
+              <input id="admin-password"
                 type="password"
                 required
                 className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-300 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white"

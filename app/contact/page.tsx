@@ -110,27 +110,27 @@ export default function ContactPage() {
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
-                        <label className="input-label">Full Name *</label>
-                        <input type="text" required className="input-field" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="John Smith" />
+                        <label htmlFor="contact-full-name" className="input-label">Full Name *</label>
+                        <input id="contact-full-name" type="text" required className="input-field" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="John Smith" />
                       </div>
                       <div>
-                        <label className="input-label">Email Address *</label>
-                        <input type="email" required className="input-field" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} placeholder="john@example.com" />
+                        <label htmlFor="contact-email-address" className="input-label">Email Address *</label>
+                        <input id="contact-email-address" type="email" required className="input-field" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} placeholder="john@example.com" />
                       </div>
                     </div>
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
-                        <label className="input-label">Phone Number</label>
-                        <input type="tel" className="input-field" value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} placeholder="(555) 123-4567" />
+                        <label htmlFor="contact-phone-number" className="input-label">Phone Number</label>
+                        <input id="contact-phone-number" type="tel" className="input-field" value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} placeholder="(555) 123-4567" />
                       </div>
                       <div>
-                        <label className="input-label">Subject</label>
-                        <input type="text" className="input-field" value={form.subject} onChange={e => setForm({ ...form, subject: e.target.value })} placeholder="How can we help?" />
+                        <label htmlFor="contact-subject" className="input-label">Subject</label>
+                        <input id="contact-subject" type="text" className="input-field" value={form.subject} onChange={e => setForm({ ...form, subject: e.target.value })} placeholder="How can we help?" />
                       </div>
                     </div>
                     <div>
-                      <label className="input-label">Message *</label>
-                      <textarea required rows={5} className="input-field resize-none" value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} placeholder="Tell us about your insurance needs..." />
+                      <label htmlFor="contact-message" className="input-label">Message *</label>
+                      <textarea id="contact-message" required rows={5} className="input-field resize-none" value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} placeholder="Tell us about your insurance needs..." />
                     </div>
                     <div aria-live="polite">
                       {status === 'error' && (

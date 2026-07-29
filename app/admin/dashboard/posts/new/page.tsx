@@ -91,20 +91,20 @@ export default function NewPostPage() {
             <div className="bg-white border border-gray-200 p-5 sm:p-6">
               <div className="space-y-5">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-2">Title</label>
-                  <input type="text" className="w-full px-4 py-3 text-lg font-medium border border-gray-200 text-navy-900 placeholder:text-navy-300 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white" value={form.title} onChange={e => update('title', e.target.value)} placeholder="Post title" />
+                  <label htmlFor="post-new-title" className="block text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-2">Title</label>
+                  <input id="post-new-title" type="text" className="w-full px-4 py-3 text-lg font-medium border border-gray-200 text-navy-900 placeholder:text-navy-300 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white" value={form.title} onChange={e => update('title', e.target.value)} placeholder="Post title" />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-2">Slug</label>
-                  <input type="text" className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-300 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white font-mono" value={form.slug} onChange={e => update('slug', e.target.value)} placeholder="post-url-slug" />
+                  <label htmlFor="post-new-slug" className="block text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-2">Slug</label>
+                  <input id="post-new-slug" type="text" className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-300 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white font-mono" value={form.slug} onChange={e => update('slug', e.target.value)} placeholder="post-url-slug" />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-2">Excerpt</label>
-                  <textarea rows={2} className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-300 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white resize-none" value={form.excerpt} onChange={e => update('excerpt', e.target.value)} placeholder="Brief summary for listings and SEO" />
+                  <label htmlFor="post-new-excerpt" className="block text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-2">Excerpt</label>
+                  <textarea id="post-new-excerpt" rows={2} className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-300 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white resize-none" value={form.excerpt} onChange={e => update('excerpt', e.target.value)} placeholder="Brief summary for listings and SEO" />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-2">Content (HTML)</label>
-                  <textarea rows={20} className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-300 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white font-mono resize-y" value={form.content} onChange={e => update('content', e.target.value)} placeholder="<p>Write your article content here...</p>" />
+                  <label htmlFor="post-new-content-html" className="block text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-2">Content (HTML)</label>
+                  <textarea id="post-new-content-html" rows={20} className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-300 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white font-mono resize-y" value={form.content} onChange={e => update('content', e.target.value)} placeholder="<p>Write your article content here...</p>" />
                 </div>
               </div>
             </div>
@@ -116,8 +116,8 @@ export default function NewPostPage() {
               <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-4">Details</h3>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-2">Category</label>
-                  <input type="text" className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-300 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white" value={form.category} onChange={e => update('category', e.target.value)} placeholder="e.g., Homeowner's, Auto" />
+                  <label htmlFor="post-new-category" className="block text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-2">Category</label>
+                  <input id="post-new-category" type="text" className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-300 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white" value={form.category} onChange={e => update('category', e.target.value)} placeholder="e.g., Homeowner's, Auto" />
                 </div>
                 <FeaturedImageField value={form.featured_image} slugHint={form.slug || form.title} onChange={value => update('featured_image', value)} />
               </div>
@@ -127,12 +127,12 @@ export default function NewPostPage() {
               <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-4">SEO</h3>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-2">SEO Title</label>
-                  <input type="text" className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-300 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white" value={form.seo_title} onChange={e => update('seo_title', e.target.value)} placeholder="Custom title for search engines" />
+                  <label htmlFor="post-new-seo-title" className="block text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-2">SEO Title</label>
+                  <input id="post-new-seo-title" type="text" className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-300 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white" value={form.seo_title} onChange={e => update('seo_title', e.target.value)} placeholder="Custom title for search engines" />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-2">Meta Description</label>
-                  <textarea rows={3} className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-300 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white resize-none" value={form.seo_description} onChange={e => update('seo_description', e.target.value)} placeholder="Description for search engine results" />
+                  <label htmlFor="post-new-meta-description" className="block text-xs font-semibold uppercase tracking-[0.15em] text-navy-400 mb-2">Meta Description</label>
+                  <textarea id="post-new-meta-description" rows={3} className="w-full px-4 py-3 text-sm border border-gray-200 text-navy-900 placeholder:text-navy-300 focus:border-navy-900 focus:ring-0 focus:outline-none transition-colors bg-white resize-none" value={form.seo_description} onChange={e => update('seo_description', e.target.value)} placeholder="Description for search engine results" />
                 </div>
               </div>
             </div>

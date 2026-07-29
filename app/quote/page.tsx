@@ -87,16 +87,22 @@ export default function QuotePage() {
                 </div>
               ) : (
                 <>
-                  {/* Step indicator */}
-                  <div className="flex items-center gap-0 mb-10 sm:mb-12">
+                  {/* Step indicator. Only completed steps are actually
+                      clickable, so steps at or ahead of the current one are
+                      disabled rather than silently inert — otherwise keyboard
+                      users tab onto four buttons and three do nothing. */}
+                  <nav aria-label="Quote progress" className="flex items-center gap-0 mb-10 sm:mb-12">
                     {steps.map((s, i) => (
                       <div key={s.id} className="flex items-center flex-1 last:flex-none">
                         <button
                           type="button"
+                          disabled={s.id >= step}
+                          aria-current={s.id === step ? 'step' : undefined}
+                          aria-label={`Step ${s.id} of ${steps.length}: ${s.label}${s.id < step ? ' (completed)' : s.id === step ? ' (current)' : ''}`}
                           onClick={() => { if (s.id < step) setStep(s.id) }}
-                          className={`flex items-center gap-2.5 group ${s.id <= step ? 'cursor-pointer' : 'cursor-default'}`}
+                          className={`flex items-center gap-2.5 group ${s.id < step ? 'cursor-pointer' : 'cursor-default'}`}
                         >
-                          <span className={`w-8 h-8 flex items-center justify-center text-xs font-semibold transition-colors ${
+                          <span aria-hidden="true" className={`w-8 h-8 flex items-center justify-center text-xs font-semibold transition-colors ${
                             s.id < step
                               ? 'bg-navy-900 text-white'
                               : s.id === step
@@ -109,20 +115,20 @@ export default function QuotePage() {
                               </svg>
                             ) : s.id}
                           </span>
-                          <span className={`text-sm font-medium hidden sm:block ${
+                          <span aria-hidden="true" className={`text-sm font-medium hidden sm:block ${
                             s.id <= step ? 'text-navy-900' : 'text-navy-300'
                           }`}>
                             {s.label}
                           </span>
                         </button>
                         {i < steps.length - 1 && (
-                          <div className={`flex-1 h-px mx-3 sm:mx-4 ${
+                          <div aria-hidden="true" className={`flex-1 h-px mx-3 sm:mx-4 ${
                             s.id < step ? 'bg-navy-900' : 'bg-gray-200'
                           }`} />
                         )}
                       </div>
                     ))}
-                  </div>
+                  </nav>
 
                   <form onSubmit={handleSubmit}>
                     {/* Step 1: Personal Info */}
@@ -133,21 +139,21 @@ export default function QuotePage() {
                         <div className="space-y-5">
                           <div className="grid sm:grid-cols-2 gap-5">
                             <div>
-                              <label className="input-label">First Name *</label>
-                              <input type="text" required className="input-field" value={form.firstName} onChange={e => update('firstName', e.target.value)} placeholder="John" />
+                              <label htmlFor="quote-first-name" className="input-label">First Name *</label>
+                              <input id="quote-first-name" type="text" required className="input-field" value={form.firstName} onChange={e => update('firstName', e.target.value)} placeholder="John" />
                             </div>
                             <div>
-                              <label className="input-label">Last Name *</label>
-                              <input type="text" required className="input-field" value={form.lastName} onChange={e => update('lastName', e.target.value)} placeholder="Smith" />
+                              <label htmlFor="quote-last-name" className="input-label">Last Name *</label>
+                              <input id="quote-last-name" type="text" required className="input-field" value={form.lastName} onChange={e => update('lastName', e.target.value)} placeholder="Smith" />
                             </div>
                           </div>
                           <div>
-                            <label className="input-label">Email Address *</label>
-                            <input type="email" required className="input-field" value={form.email} onChange={e => update('email', e.target.value)} placeholder="john@example.com" />
+                            <label htmlFor="quote-email-address" className="input-label">Email Address *</label>
+                            <input id="quote-email-address" type="email" required className="input-field" value={form.email} onChange={e => update('email', e.target.value)} placeholder="john@example.com" />
                           </div>
                           <div>
-                            <label className="input-label">Phone Number *</label>
-                            <input type="tel" required className="input-field" value={form.phone} onChange={e => update('phone', e.target.value)} placeholder="(555) 123-4567" />
+                            <label htmlFor="quote-phone-number" className="input-label">Phone Number *</label>
+                            <input id="quote-phone-number" type="tel" required className="input-field" value={form.phone} onChange={e => update('phone', e.target.value)} placeholder="(555) 123-4567" />
                           </div>
                         </div>
                       </div>
@@ -160,8 +166,8 @@ export default function QuotePage() {
                         <p className="text-sm text-navy-400 mb-8">Select the type of insurance you&apos;re interested in.</p>
                         <div className="space-y-6">
                           <div>
-                            <label className="input-label">Type of Insurance *</label>
-                            <select required className="input-field" value={form.insuranceType} onChange={e => update('insuranceType', e.target.value)}>
+                            <label htmlFor="quote-type-of-insurance" className="input-label">Type of Insurance *</label>
+                            <select id="quote-type-of-insurance" required className="input-field" value={form.insuranceType} onChange={e => update('insuranceType', e.target.value)}>
                               <option value="">Select a coverage type</option>
                               {insuranceTypes.map(t => (
                                 <option key={t.value} value={t.value}>{t.label}</option>
@@ -169,12 +175,24 @@ export default function QuotePage() {
                             </select>
                           </div>
                           <div>
-                            <label className="input-label">Do you currently have insurance?</label>
-                            <div className="grid grid-cols-2 gap-3 mt-2">
+                            {/* Not a real form control, so this is a labelled
+                                group rather than a <label>: two toggle buttons
+                                whose pressed state is the answer. Without
+                                aria-pressed a screen reader reads "Yes" and
+                                "No" with no indication which is selected. */}
+                            <p id="quote-current-insurance-label" className="input-label">
+                              Do you currently have insurance?
+                            </p>
+                            <div
+                              role="group"
+                              aria-labelledby="quote-current-insurance-label"
+                              className="grid grid-cols-2 gap-3 mt-2"
+                            >
                               {['Yes', 'No'].map(opt => (
                                 <button
                                   key={opt}
                                   type="button"
+                                  aria-pressed={form.currentInsurance === opt}
                                   onClick={() => update('currentInsurance', opt)}
                                   className={`py-3.5 text-sm font-medium border transition-colors ${
                                     form.currentInsurance === opt
@@ -198,26 +216,26 @@ export default function QuotePage() {
                         <p className="text-sm text-navy-400 mb-8">Help us provide an accurate quote with your property details.</p>
                         <div className="space-y-5">
                           <div>
-                            <label className="input-label">Street Address</label>
-                            <input type="text" className="input-field" value={form.address} onChange={e => update('address', e.target.value)} placeholder="123 Main Street" />
+                            <label htmlFor="quote-street-address" className="input-label">Street Address</label>
+                            <input id="quote-street-address" type="text" className="input-field" value={form.address} onChange={e => update('address', e.target.value)} placeholder="123 Main Street" />
                           </div>
                           <div className="grid sm:grid-cols-3 gap-5">
                             <div className="sm:col-span-1">
-                              <label className="input-label">City</label>
-                              <input type="text" className="input-field" value={form.city} onChange={e => update('city', e.target.value)} placeholder="Greenville" />
+                              <label htmlFor="quote-city" className="input-label">City</label>
+                              <input id="quote-city" type="text" className="input-field" value={form.city} onChange={e => update('city', e.target.value)} placeholder="Greenville" />
                             </div>
                             <div>
-                              <label className="input-label">State</label>
-                              <input type="text" className="input-field" value={form.state} onChange={e => update('state', e.target.value)} />
+                              <label htmlFor="quote-state" className="input-label">State</label>
+                              <input id="quote-state" type="text" className="input-field" value={form.state} onChange={e => update('state', e.target.value)} />
                             </div>
                             <div>
-                              <label className="input-label">ZIP Code</label>
-                              <input type="text" className="input-field" value={form.zip} onChange={e => update('zip', e.target.value)} placeholder="27858" />
+                              <label htmlFor="quote-zip-code" className="input-label">ZIP Code</label>
+                              <input id="quote-zip-code" type="text" className="input-field" value={form.zip} onChange={e => update('zip', e.target.value)} placeholder="27858" />
                             </div>
                           </div>
                           <div>
-                            <label className="input-label">Additional Information</label>
-                            <textarea rows={4} className="input-field resize-none" value={form.message} onChange={e => update('message', e.target.value)} placeholder="Any details about your insurance needs, current coverage, or specific concerns..." />
+                            <label htmlFor="quote-additional-information" className="input-label">Additional Information</label>
+                            <textarea id="quote-additional-information" rows={4} className="input-field resize-none" value={form.message} onChange={e => update('message', e.target.value)} placeholder="Any details about your insurance needs, current coverage, or specific concerns..." />
                           </div>
                         </div>
                       </div>
