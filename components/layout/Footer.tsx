@@ -93,7 +93,7 @@ export default function Footer() {
 
           {/* Company Links */}
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-6">Company</h3>
+            <h3 className="text-xs font-semibold tracking-[0.08em] text-navy-400 mb-6">Company</h3>
             <ul className="space-y-3">
               {companyLinks.map(link => (
                 <li key={link.href}>
@@ -107,7 +107,7 @@ export default function Footer() {
 
           {/* Policy Management */}
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-6">Policy Management</h3>
+            <h3 className="text-xs font-semibold tracking-[0.08em] text-navy-400 mb-6">Policy management</h3>
             <ul className="space-y-3">
               {policyLinks.map(link => (
                 <li key={link.href}>
@@ -121,7 +121,7 @@ export default function Footer() {
 
           {/* Locations */}
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-6">Locations</h3>
+            <h3 className="text-xs font-semibold tracking-[0.08em] text-navy-400 mb-6">Locations</h3>
             <ul className="space-y-3">
               {locationPages.map(location => (
                 <li key={location.slug}>
@@ -135,7 +135,7 @@ export default function Footer() {
 
           {/* Coverages */}
           <div className="col-span-2">
-            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-6">Coverages</h3>
+            <h3 className="text-xs font-semibold tracking-[0.08em] text-navy-400 mb-6">Coverages</h3>
             <ul className="grid grid-cols-2 gap-x-6 gap-y-3">
               {allInsurance.map(ins => (
                 <li key={ins.slug}>
@@ -151,7 +151,7 @@ export default function Footer() {
         {/* By City × Service — internal link equity to highest-value local landing pages */}
         {topCityServicePages.length > 0 && (
           <div className="mt-12 sm:mt-16 pt-10 border-t border-white/10">
-            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-6">By City &amp; Coverage</h3>
+            <h3 className="text-xs font-semibold tracking-[0.08em] text-navy-400 mb-6">By city &amp; coverage</h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-3">
               {topCityServicePages.map(p => (
                 <Link

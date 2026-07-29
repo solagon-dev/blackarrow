@@ -136,7 +136,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
             {/* Article Metadata */}
             <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-5 sm:mb-6">
-              {post.category && <span className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400">{post.category}</span>}
+              {post.category && <span className="text-xs font-semibold tracking-[0.08em] text-navy-400">{post.category}</span>}
               {post.category && formattedDate && <span className="w-1 h-1 rounded-full bg-navy-500" />}
               {formattedDate && <span className="text-xs text-navy-400">{formattedDate}</span>}
               <span className="w-1 h-1 rounded-full bg-navy-500" />
@@ -182,7 +182,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <div className="max-w-3xl flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               {post.category && (
-                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-600 border border-gray-200 px-3 py-1.5">
+                <span className="text-xs font-semibold tracking-[0.08em] text-navy-600 border border-gray-200 px-3 py-1.5">
                   {post.category}
                 </span>
               )}
@@ -215,7 +215,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <div className="container-editorial">
             <div className="flex items-end justify-between mb-8 sm:mb-12">
               <div>
-                <p className="section-label">Continue Reading</p>
+                <p className="section-label">Continue reading</p>
                 <h2 className="text-2xl sm:text-3xl">Related Articles</h2>
               </div>
               <Link href="/insights" className="link-arrow hidden sm:flex flex-shrink-0">

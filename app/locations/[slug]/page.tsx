@@ -115,7 +115,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         <div className="absolute inset-0 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800" />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-4 sm:mb-5">
+            <p className="text-xs font-semibold tracking-[0.08em] text-navy-400 mb-4 sm:mb-5">
               {page.city}, {page.stateAbbr}
             </p>
             <h1 className="text-white mb-4 sm:mb-6">{page.heroHeading}</h1>
@@ -161,7 +161,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
           <ScrollReveal>
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-16">
               <div>
-                <p className="section-label">Insurance Services</p>
+                <p className="section-label">Insurance services</p>
                 <h2>Insurance Services in {page.city}</h2>
               </div>
               <Link href="/quote" className="link-arrow flex-shrink-0">
@@ -213,7 +213,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         <section className="section-padding-sm bg-white border-b border-gray-200">
           <div className="container-editorial">
             <ScrollReveal>
-              <p className="section-label mb-8">Coverage Guides for {page.city}</p>
+              <p className="section-label mb-8">Coverage guides for {page.city}</p>
             </ScrollReveal>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-200">
               {cityServicePages.map((sp, idx) => (
@@ -271,7 +271,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         <div className="container-editorial">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-24 items-start">
             <ScrollReveal className="lg:col-span-5">
-              <p className="section-label">Local Expertise</p>
+              <p className="section-label">Local expertise</p>
               <h2>{page.localInsights.heading}</h2>
             </ScrollReveal>
             <ScrollReveal className="lg:col-span-7" delay={100}>
@@ -292,7 +292,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         <div className="container-editorial">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-24 items-start">
             <ScrollReveal className="lg:col-span-5">
-              <p className="section-label">Property Coverage</p>
+              <p className="section-label">Property coverage</p>
               <h2>{page.propertyOwnerHeading}</h2>
               <div className="mt-8">
                 <Link href="/quote" className="btn-primary">Get a Property Quote</Link>
@@ -314,7 +314,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         <div className="container-editorial">
           <ScrollReveal>
             <div className="max-w-3xl mb-10 sm:mb-16">
-              <p className="section-label">Coverage Guidance</p>
+              <p className="section-label">Coverage guidance</p>
               <h2>{page.guidanceHeading}</h2>
             </div>
           </ScrollReveal>
@@ -340,7 +340,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         <div className="container-editorial">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-24 items-start">
             <ScrollReveal className="lg:col-span-5">
-              <p className="section-label">Service Area</p>
+              <p className="section-label">Service area</p>
               <h2>Serving {page.city} &amp; Surrounding Communities</h2>
             </ScrollReveal>
             <ScrollReveal className="lg:col-span-7" delay={100}>
@@ -375,7 +375,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
       {/* ============= CARRIERS ============= */}
       <section className="py-12 bg-gray-50 border-y border-gray-200">
         <div className="container-editorial">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-navy-600 mb-6">
+          <p className="text-center text-xs font-semibold tracking-[0.08em] text-navy-600 mb-6">
             We compare rates from leading carriers for {page.city} clients
           </p>
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-3">

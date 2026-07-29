@@ -34,7 +34,7 @@ export default function LoanNumberChangePage() {
         <div className="absolute inset-0 bg-navy-950/80" />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-4 sm:mb-5">Policy Management</p>
+            <p className="text-xs font-semibold tracking-[0.08em] text-navy-400 mb-4 sm:mb-5">Policy management</p>
             <h1 className="text-white mb-4 sm:mb-6">Loan Number Change</h1>
             <p className="text-base sm:text-lg text-navy-300 leading-relaxed">
               Updating your loan number is quick and simple. Ensure your insurance policy reflects your current financial details by filling out our form.
@@ -59,7 +59,7 @@ export default function LoanNumberChangePage() {
             <div className="card-premium p-5 sm:p-8 md:p-10">
               <form onSubmit={handleSubmit} className="space-y-8">
                 <div>
-                  <h3 className="text-sm font-semibold uppercase tracking-wide text-navy-600 mb-4">Policy Information</h3>
+                  <h3 className="text-sm font-semibold tracking-[0.04em] text-navy-600 mb-4">Policy information</h3>
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div><label htmlFor="loan-policy-number" className="input-label">Policy Number *</label><input id="loan-policy-number" type="text" required className="input-field" value={form.policyNumber} onChange={e => update('policyNumber', e.target.value)} /></div>
                     <div><label htmlFor="loan-insured-name" className="input-label">Insured Name *</label><input id="loan-insured-name" type="text" required className="input-field" value={form.insuredName} onChange={e => update('insuredName', e.target.value)} /></div>
@@ -67,7 +67,7 @@ export default function LoanNumberChangePage() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold uppercase tracking-wide text-navy-600 mb-4">Loan Number Details</h3>
+                  <h3 className="text-sm font-semibold tracking-[0.04em] text-navy-600 mb-4">Loan number details</h3>
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div><label htmlFor="loan-current-loan-number" className="input-label">Current Loan Number</label><input id="loan-current-loan-number" type="text" className="input-field" value={form.oldLoanNumber} onChange={e => update('oldLoanNumber', e.target.value)} /></div>
                     <div><label htmlFor="loan-new-loan-number" className="input-label">New Loan Number *</label><input id="loan-new-loan-number" type="text" required className="input-field" value={form.newLoanNumber} onChange={e => update('newLoanNumber', e.target.value)} /></div>
@@ -75,7 +75,7 @@ export default function LoanNumberChangePage() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold uppercase tracking-wide text-navy-600 mb-4">Contact Information</h3>
+                  <h3 className="text-sm font-semibold tracking-[0.04em] text-navy-600 mb-4">Contact information</h3>
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div><label htmlFor="loan-email" className="input-label">Email *</label><input id="loan-email" type="email" required className="input-field" value={form.email} onChange={e => update('email', e.target.value)} /></div>
                     <div><label htmlFor="loan-phone" className="input-label">Phone</label><input id="loan-phone" type="tel" className="input-field" value={form.phone} onChange={e => update('phone', e.target.value)} /></div>

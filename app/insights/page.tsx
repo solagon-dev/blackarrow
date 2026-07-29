@@ -56,7 +56,7 @@ export default async function InsightsPage() {
         <div className="absolute inset-0 bg-navy-950/80" />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-4 sm:mb-5">Knowledge Center</p>
+            <p className="text-xs font-semibold tracking-[0.08em] text-navy-400 mb-4 sm:mb-5">Knowledge center</p>
             <h1 className="text-white mb-4 sm:mb-6">Insights &amp; Resources</h1>
             <p className="text-base sm:text-lg text-navy-300 leading-relaxed max-w-2xl">
               Expert guidance on insurance coverage, risk management, and property protection — helping you make informed decisions about what matters most.
@@ -72,7 +72,7 @@ export default async function InsightsPage() {
             <section className="section-padding bg-white">
               <div className="container-editorial">
                 <ScrollReveal>
-                  <p className="section-label mb-10 sm:mb-12">Featured Article</p>
+                  <p className="section-label mb-10 sm:mb-12">Featured article</p>
                 </ScrollReveal>
                 <ScrollReveal>
                   <Link href={`/post/${featuredPost.slug}`} className="group block">
@@ -89,14 +89,14 @@ export default async function InsightsPage() {
                           />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center">
-                            <span className="text-navy-500 text-sm uppercase tracking-[0.2em]">{featuredPost.category || 'Insurance'}</span>
+                            <span className="text-navy-500 text-sm tracking-[0.08em]">{featuredPost.category || 'Insurance'}</span>
                           </div>
                         )}
                       </div>
                       <div className="bg-gray-50 p-8 sm:p-10 lg:p-14 flex flex-col justify-center">
                         <div className="flex items-center gap-3 mb-5">
                           {featuredPost.category && (
-                            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-600">{featuredPost.category}</span>
+                            <span className="text-xs font-semibold tracking-[0.08em] text-navy-600">{featuredPost.category}</span>
                           )}
                           {featuredPost.category && featuredPost.published_at && <span className="w-1 h-1 rounded-full bg-navy-300" />}
                           {featuredPost.published_at && (
@@ -169,7 +169,7 @@ export default async function InsightsPage() {
               <ScrollReveal>
                 <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-12">
                   <div>
-                    <p className="section-label">All Insights</p>
+                    <p className="section-label">All insights</p>
                     <h2 className="text-2xl sm:text-3xl">Browse by Topic</h2>
                   </div>
                   <p className="text-sm text-navy-600">{enrichedPosts.length} {enrichedPosts.length === 1 ? 'article' : 'articles'} published</p>

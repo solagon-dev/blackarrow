@@ -179,7 +179,7 @@ export default function Header() {
                     <div className="grid grid-cols-3 gap-10">
                       {navInsurance.map(group => (
                         <div key={group.label}>
-                          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-navy-600 mb-4 pb-3 border-b border-gray-200">{group.label}</p>
+                          <p className="text-[11px] font-semibold tracking-[0.08em] text-navy-600 mb-4 pb-3 border-b border-gray-200">{group.label}</p>
                           <ul className="space-y-1">
                             {group.items.map(item => (
                               <li key={item.href}>
@@ -328,7 +328,7 @@ export default function Header() {
                 <div id="mobile-insurance-panel" className="pb-4 space-y-6 pt-4 animate-fade-in">
                   {navInsurance.map(group => (
                     <div key={group.label}>
-                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-600 mb-3">{group.label}</p>
+                      <p className="text-xs font-semibold tracking-[0.08em] text-navy-600 mb-3">{group.label}</p>
                       <ul className="space-y-0.5">
                         {group.items.map(item => (
                           <li key={item.href}>

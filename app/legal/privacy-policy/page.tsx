@@ -106,7 +106,7 @@ export default function PrivacyPolicyPage() {
         <div className="absolute inset-0 bg-navy-950/90" />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-4 sm:mb-5">Legal</p>
+            <p className="text-xs font-semibold tracking-[0.08em] text-navy-400 mb-4 sm:mb-5">Legal</p>
             <h1 className="text-white mb-4 sm:mb-6">Privacy Policy</h1>
             <p className="text-base sm:text-lg text-navy-300 leading-relaxed">
               Black Arrow Financial Group (&ldquo;BlackArrow Insurance,&rdquo; &ldquo;we,&rdquo; &ldquo;our,&rdquo; or &ldquo;us&rdquo;) is committed to protecting the privacy of our customers and website visitors.
@@ -126,7 +126,7 @@ export default function PrivacyPolicyPage() {
       <section className="py-8 sm:py-10 bg-gray-50 border-b border-gray-200">
         <div className="container-editorial">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-600 mb-4">Contents</p>
+            <p className="text-xs font-semibold tracking-[0.08em] text-navy-600 mb-4">Contents</p>
             <div className="grid sm:grid-cols-2 gap-x-8 gap-y-2">
               {sections.map((section, idx) => (
                 <a

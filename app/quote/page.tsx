@@ -54,7 +54,7 @@ export default function QuotePage() {
         <div className="absolute inset-0 bg-navy-950/85" />
         <div className="container-editorial relative">
           <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-4 sm:mb-5">No Obligation</p>
+            <p className="text-xs font-semibold tracking-[0.08em] text-navy-400 mb-4 sm:mb-5">No obligation</p>
             <h1 className="text-white mb-4 sm:mb-5">Get Your Free Quote</h1>
             <p className="text-base sm:text-lg text-navy-300 leading-relaxed max-w-xl">
               Compare coverage across 20+ carriers with a licensed local agent. Tell us about your needs and we&rsquo;ll help you find coverage that fits, with competitive pricing from multiple carriers.
@@ -259,7 +259,7 @@ export default function QuotePage() {
                             ...(form.message ? [{ label: 'Additional Info', value: form.message }] : []),
                           ].map(item => (
                             <div key={item.label} className="flex items-start justify-between gap-4 py-4 border-b border-gray-200">
-                              <span className="text-xs font-semibold uppercase tracking-[0.15em] text-navy-600 w-32 sm:w-40 flex-shrink-0 pt-0.5">{item.label}</span>
+                              <span className="text-xs font-semibold tracking-[0.06em] text-navy-600 w-32 sm:w-40 flex-shrink-0 pt-0.5">{item.label}</span>
                               <span className="text-sm text-navy-700 text-right">{item.value}</span>
                             </div>
                           ))}
@@ -337,7 +337,7 @@ export default function QuotePage() {
               <div className="lg:sticky lg:top-28 space-y-6">
                 {/* Why BlackArrow */}
                 <div className="bg-gray-50 border border-gray-200 p-6 sm:p-8">
-                  <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-600 mb-6">Why BlackArrow</h3>
+                  <h3 className="text-xs font-semibold tracking-[0.08em] text-navy-600 mb-6">Why BlackArrow</h3>
                   <div className="space-y-5">
                     {[
                       { icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z', title: '20+ Years Experience', desc: 'Trusted by Eastern NC since 2002' },
@@ -362,7 +362,7 @@ export default function QuotePage() {
 
                 {/* Contact card */}
                 <div className="border border-gray-200 p-6 sm:p-8">
-                  <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-600 mb-4">Prefer to Talk?</h3>
+                  <h3 className="text-xs font-semibold tracking-[0.08em] text-navy-600 mb-4">Prefer to talk?</h3>
                   {/* Both numbers, from team-data. This card previously showed
                       the Whiteville line while the confirmation screen gave the
                       Greenville one, and advertised 8:30am–5:00pm — hours that

@@ -24,8 +24,8 @@ export default function LocationsPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800" />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-4 sm:mb-5">
-              Our Locations
+            <p className="text-xs font-semibold tracking-[0.08em] text-navy-400 mb-4 sm:mb-5">
+              our locations
             </p>
             <h1 className="text-white mb-4 sm:mb-6">Insurance Services Across North Carolina</h1>
             <p className="text-base sm:text-lg text-navy-300 leading-relaxed max-w-2xl">
@@ -40,7 +40,7 @@ export default function LocationsPage() {
         <div className="container-editorial">
           <ScrollReveal>
             <div className="mb-10 sm:mb-16">
-              <p className="section-label">Markets We Serve</p>
+              <p className="section-label">Markets we serve</p>
               <h2>Find Insurance Services Near You</h2>
             </div>
           </ScrollReveal>
@@ -51,7 +51,7 @@ export default function LocationsPage() {
                   href={`/locations/${location.slug}`}
                   className="bg-white p-8 sm:p-10 group block h-full hover:bg-gray-50 transition-colors duration-200"
                 >
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-600 mb-3">
+                  <p className="text-xs font-semibold tracking-[0.08em] text-navy-600 mb-3">
                     {location.stateAbbr}
                   </p>
                   <h3 className="text-xl sm:text-2xl font-display font-bold text-navy-900 mb-3 group-hover:text-navy-700 transition-colors">

@@ -53,7 +53,7 @@ export default function FileAClaimPage() {
         <div className="absolute inset-0 bg-navy-950/80" />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-4 sm:mb-5">Policy Management</p>
+            <p className="text-xs font-semibold tracking-[0.08em] text-navy-400 mb-4 sm:mb-5">Policy management</p>
             <h1 className="text-white mb-4 sm:mb-6">File a Claim</h1>
             <p className="text-base sm:text-lg text-navy-300 leading-relaxed">
               Click on one of the carriers below to file an insurance claim directly with your insurance company.

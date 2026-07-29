@@ -128,7 +128,7 @@
      no dark-background case to preserve here. navy-600 is the lightest shade
      on the scale that clears AA on white, at 6.08:1. */
   .section-label {
-    @apply text-xs font-semibold uppercase tracking-[0.2em] text-navy-600 mb-4;
+    @apply text-xs font-semibold tracking-[0.08em] text-navy-600 mb-4;
   }
 
   .section-divider {

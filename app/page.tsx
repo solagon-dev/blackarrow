@@ -30,7 +30,7 @@ export default async function Home() {
           {/* Mobile: single-column stacked layout / Desktop: 12-col grid */}
           <div className="flex flex-col gap-6 pb-10 sm:pb-12 lg:grid lg:grid-cols-12 lg:gap-16 lg:items-end lg:pb-20">
             <div className="lg:col-span-7">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-4 sm:mb-5 lg:hidden">Independent Insurance Brokerage</p>
+              <p className="text-xs font-semibold tracking-[0.08em] text-navy-400 mb-4 sm:mb-5 lg:hidden">Independent insurance brokerage</p>
               <h1 className="text-white text-[1.75rem] sm:text-[2.75rem] md:text-[3.5rem] lg:text-[4.25rem] leading-[1.1] sm:leading-[1.05] font-display font-bold tracking-tight">
                 {/* Explicit space: JSX drops the newline adjacent to the <br>,
                     so with the break hidden below sm the words rendered as
@@ -87,7 +87,7 @@ export default async function Home() {
         <div className="container-editorial">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-20">
             <ScrollReveal className="lg:col-span-5">
-              <p className="section-label">Our Approach</p>
+              <p className="section-label">Our approach</p>
               <h2>Independent Advice.<br />Better Outcomes.</h2>
             </ScrollReveal>
             <ScrollReveal className="lg:col-span-7" delay={100}>
@@ -119,7 +119,7 @@ export default async function Home() {
           <ScrollReveal>
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-16">
               <div>
-                <p className="section-label">Personal Insurance</p>
+                <p className="section-label">Personal insurance</p>
                 <h2>Protection for Individuals &amp; Families</h2>
               </div>
               <Link href="/quote" className="link-arrow flex-shrink-0">
@@ -170,7 +170,7 @@ export default async function Home() {
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             <ScrollReveal>
               <div>
-                <p className="section-label">Commercial Insurance</p>
+                <p className="section-label">Commercial insurance</p>
                 <h2 className="mb-6">Coverage Built for Your Business</h2>
                 <p className="text-lg text-navy-600 leading-relaxed mb-10">
                   We work with businesses of all sizes to develop insurance programs that address real operational risks — not just check boxes.
@@ -221,7 +221,7 @@ export default async function Home() {
       <section className="section-padding bg-navy-900 text-white">
         <div className="container-editorial">
           <ScrollReveal className="max-w-2xl mb-16">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-4">Property Insurance</p>
+            <p className="text-xs font-semibold tracking-[0.08em] text-navy-400 mb-4">Property insurance</p>
             <h2 className="text-white mb-6">Specialized Property Coverage</h2>
             <p className="text-lg text-navy-300 leading-relaxed">
               From rental units to vacant properties and construction projects — we provide coverage for every stage of property ownership.
@@ -311,7 +311,7 @@ export default async function Home() {
           <ScrollReveal>
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-12">
               <div>
-                <p className="section-label">Service Areas</p>
+                <p className="section-label">Service areas</p>
                 <h2 className="text-2xl sm:text-3xl">Serving Communities Across North Carolina</h2>
               </div>
               <Link href="/locations" className="link-arrow flex-shrink-0">
@@ -345,7 +345,7 @@ export default async function Home() {
         <div className="container-editorial">
           <ScrollReveal>
             <div className="mb-8 sm:mb-12">
-              <p className="section-label">Policy Management</p>
+              <p className="section-label">Policy management</p>
               <h2 className="text-2xl sm:text-3xl">Manage Your Policy</h2>
             </div>
           </ScrollReveal>

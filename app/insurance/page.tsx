@@ -97,7 +97,7 @@ export default function InsuranceHubPage() {
             </ol>
           </nav>
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-4">Coverage</p>
+            <p className="text-xs font-semibold tracking-[0.08em] text-navy-400 mb-4">Coverage</p>
             <h1 className="text-white mb-4 sm:mb-6">What are you protecting?</h1>
             <p className="text-base sm:text-lg text-navy-300 leading-relaxed">
               We&rsquo;re an independent agency, so we compare coverage across many carriers instead of

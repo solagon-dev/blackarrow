@@ -125,8 +125,8 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
         <div className="absolute inset-0 bg-navy-950/80" />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-4 sm:mb-5">
-                {page.category === 'personal' ? 'Personal Insurance' : page.category === 'commercial' ? 'Commercial Insurance' : 'Property Insurance'}
+            <p className="text-xs font-semibold tracking-[0.08em] text-navy-400 mb-4 sm:mb-5">
+                {page.category === 'personal' ? 'Personal insurance' : page.category === 'commercial' ? 'Commercial insurance' : 'Property insurance'}
             </p>
             <h1 className="text-white mb-4 sm:mb-6">{page.title}</h1>
             <p className="text-base sm:text-lg text-navy-300 leading-relaxed mb-8 sm:mb-10 max-w-2xl">{page.description}</p>
@@ -146,7 +146,7 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
       <section className="section-padding bg-white">
         <div className="container-editorial">
           <ScrollReveal className="max-w-3xl mb-10 sm:mb-16">
-            <p className="section-label">What&apos;s Covered</p>
+            <p className="section-label">What&apos;s covered</p>
             <h2>Coverage Types</h2>
           </ScrollReveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200">
@@ -171,7 +171,7 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
         <div className="container-editorial">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
             <ScrollReveal className="lg:col-span-5">
-              <p className="section-label">Who Benefits</p>
+              <p className="section-label">Who benefits</p>
               <h2 className="mb-4 sm:mb-6">Who Needs {page.title}?</h2>
               <p className="text-navy-600 leading-relaxed mb-8 sm:mb-10">
                 {page.title} is designed for a variety of individuals and organizations. Find out if this coverage is right for you.
@@ -202,7 +202,7 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
         <div className="container-editorial">
           <div className="max-w-3xl mx-auto">
             <ScrollReveal className="text-center mb-16">
-              <p className="section-label">Pricing Factors</p>
+              <p className="section-label">Pricing factors</p>
               <h2>What Affects Your Premium</h2>
             </ScrollReveal>
             <div className="space-y-0 border-t border-gray-200">
@@ -257,7 +257,7 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
             <ScrollReveal>
               <div className="flex items-end justify-between mb-12">
                 <div>
-                  <p className="section-label">Related Insights</p>
+                  <p className="section-label">Related insights</p>
                   <h2 className="text-3xl">{page.shortTitle} Articles</h2>
                 </div>
                 <Link href="/insights" className="link-arrow hidden sm:flex flex-shrink-0">
@@ -288,7 +288,7 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
       <section className="section-padding-sm bg-white border-b border-gray-200">
         <div className="container-editorial">
           <ScrollReveal>
-            <p className="section-label mb-8">Related Coverages</p>
+            <p className="section-label mb-8">Related coverages</p>
           </ScrollReveal>
           <div className="grid sm:grid-cols-3 gap-px bg-gray-200">
             {relatedPages.map((rp, idx) => rp && (
@@ -314,8 +314,8 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
         return (
           <section className="py-10 bg-white border-b border-gray-200">
             <div className="container-editorial">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-600 mb-5">
-                {page.shortTitle} by Location
+              <p className="text-xs font-semibold tracking-[0.08em] text-navy-600 mb-5">
+                {page.shortTitle} by location
               </p>
               <div className="flex flex-wrap gap-x-6 gap-y-3">
                 {locationVariants.map(sp => (
@@ -336,7 +336,7 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
       {/* Carriers */}
       <section className="py-12 bg-white">
         <div className="container-editorial">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-navy-600 mb-6">
+          <p className="text-center text-xs font-semibold tracking-[0.08em] text-navy-600 mb-6">
             We compare {page.shortTitle} rates from leading carriers
           </p>
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-3">
