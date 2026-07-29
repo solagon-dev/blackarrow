@@ -12,7 +12,9 @@ export function isProductionAnalyticsEnv(): boolean {
   if (process.env.NODE_ENV !== 'production') return false
   // Vercel sets VERCEL_ENV to 'production' | 'preview' | 'development'.
   // NEXT_PUBLIC_VERCEL_ENV is the client-readable mirror (set it in project env).
-  const vercelEnv = process.env.NEXT_PUBLIC_VERCEL_ENV || process.env.VERCEL_ENV
+  // Trimmed: a stray newline in the stored value would otherwise compare
+  // unequal to 'production' and silently disable analytics in production.
+  const vercelEnv = (process.env.NEXT_PUBLIC_VERCEL_ENV || process.env.VERCEL_ENV)?.trim()
   if (vercelEnv && vercelEnv !== 'production') return false
   return true
 }
