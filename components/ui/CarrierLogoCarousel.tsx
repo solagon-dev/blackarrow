@@ -1,5 +1,7 @@
 'use client'
 
+import Image from 'next/image'
+
 const logos = [
   { name: 'Progressive', src: '/images/carrier-logos/progressive.jpg' },
   { name: 'Safeco', src: '/images/carrier-logos/safeco.png' },
@@ -34,12 +36,21 @@ export default function CarrierLogoCarousel() {
                   key={`${copyIndex}-${logo.name}`}
                   className="flex-shrink-0 w-28 sm:w-36 h-12 sm:h-14 mx-5 sm:mx-8 flex items-center justify-center grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
                 >
-                  <img
-                    src={logo.src}
-                    alt={logo.name}
-                    className="max-h-7 sm:max-h-9 max-w-full object-contain"
-                    loading="lazy"
-                  />
+                  {/* Sized wrapper rather than max-h on the image itself: `fill`
+                      needs a positioned box, and this keeps the rendered cap at
+                      the same 28/36px the old max-h classes produced. The
+                      sources are wildly oversized for this box (safeco.png is
+                      236 KB at 1024px wide for a 144px slot) — `sizes` is what
+                      makes the optimizer hand back a logo-sized file. */}
+                  <div className="relative w-full h-7 sm:h-9">
+                    <Image
+                      src={logo.src}
+                      alt={logo.name}
+                      fill
+                      sizes="144px"
+                      className="object-contain"
+                    />
+                  </div>
                 </div>
               ))}
             </div>

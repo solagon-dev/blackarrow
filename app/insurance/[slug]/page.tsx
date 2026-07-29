@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import type { Metadata } from 'next'
 import { insurancePages, getInsuranceBySlug, getInsuranceHeroImage, carriers } from '@/lib/insurance-data'
 import { serviceLocationPages } from '@/lib/service-location-data'
@@ -111,7 +112,15 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
       <InsurancePageSchema page={page} heroImage={heroImage} />
       {/* Hero */}
       <section className="bg-navy-900 relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-28">
-        <img src={heroImage} alt={`${page.title} coverage in North Carolina from BlackArrow Insurance`} className="absolute inset-0 w-full h-full object-cover" />
+        <Image
+          src={heroImage}
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          priority
+          className="object-cover"
+        />
         <div className="absolute inset-0 bg-navy-950/80" />
         <div className="container-editorial relative">
           <div className="max-w-3xl">

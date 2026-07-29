@@ -1,8 +1,23 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [],
-    unoptimized: true,
+    // Optimization was previously disabled outright, which meant every visitor
+    // downloaded the full-size source: 1024x1024 PNG article art (375–770 KB
+    // each) and uncompressed carrier logos. /insights alone shipped ~25 MB.
+    // With the optimizer on, Next serves AVIF/WebP at the requested size and
+    // caches the result, so the same art lands in tens of kilobytes.
+    formats: ['image/avif', 'image/webp'],
+    // Article art is square and never rendered wider than ~800 CSS px; the
+    // small end of imageSizes covers card thumbnails and carrier logos.
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [64, 96, 128, 200, 256, 384],
+    // Optimized derivatives are immutable — cache them for a year.
+    minimumCacheTTL: 31536000,
+    // Admin-uploaded featured images land in Vercel Blob; local art is served
+    // from /public. Anything else is rejected rather than silently proxied.
+    remotePatterns: [
+      { protocol: 'https', hostname: '*.public.blob.vercel-storage.com' },
+    ],
   },
   serverExternalPackages: ['better-sqlite3'],
   // Normalize trailing slash behavior to prevent canonical/redirect duplicate-content signals.

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import type { Metadata } from 'next'
 import { getAllPosts, getCategories } from '@/lib/db'
 import { estimateReadingTime } from '@/lib/reading-time'
@@ -42,7 +43,15 @@ export default async function InsightsPage() {
     <>
       {/* Hero */}
       <section className="bg-navy-900 relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-28">
-        <img src="/images/AdobeStock_220240507.jpeg" alt="BlackArrow Insurance insights and educational resources" className="absolute inset-0 w-full h-full object-cover" />
+        <Image
+          src="/images/AdobeStock_220240507.jpeg"
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          priority
+          className="object-cover"
+        />
         <div className="absolute inset-0 bg-navy-950/80" />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
@@ -67,12 +76,15 @@ export default async function InsightsPage() {
                 <ScrollReveal>
                   <Link href={`/post/${featuredPost.slug}`} className="group block">
                     <div className="grid lg:grid-cols-2 gap-0">
-                      <div className="h-56 sm:h-72 lg:h-[26rem] bg-navy-900 overflow-hidden">
+                      <div className="relative h-56 sm:h-72 lg:h-[26rem] bg-navy-900 overflow-hidden">
                         {featuredPost.featured_image ? (
-                          <img
+                          <Image
                             src={featuredPost.featured_image}
                             alt={featuredPost.title}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                            fill
+                            sizes="(max-width: 1024px) 100vw, 50vw"
+                            priority
+                            className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                           />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center">

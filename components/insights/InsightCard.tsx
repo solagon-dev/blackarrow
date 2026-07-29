@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 interface InsightCardProps {
   slug: string
@@ -10,9 +11,15 @@ interface InsightCardProps {
   readingTime?: number
   author?: string | null
   variant?: 'default' | 'featured' | 'compact'
+  /**
+   * Set on the one card that renders above the fold (the lead article on
+   * /insights). Everything else stays lazy — this listing renders 50+ cards,
+   * and eagerly loading them is what made the page multi-megabyte.
+   */
+  priority?: boolean
 }
 
-export function InsightCard({ slug, title, excerpt, category, featuredImage, publishedAt, readingTime, author, variant = 'default' }: InsightCardProps) {
+export function InsightCard({ slug, title, excerpt, category, featuredImage, publishedAt, readingTime, author, variant = 'default', priority = false }: InsightCardProps) {
   const formattedDate = publishedAt
     ? new Date(publishedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
     : null
@@ -21,12 +28,15 @@ export function InsightCard({ slug, title, excerpt, category, featuredImage, pub
     return (
       <Link href={`/post/${slug}`} className="group block">
         <div className="grid lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-16 items-start">
-          <div className="lg:col-span-5 h-48 sm:h-56 lg:h-80 bg-navy-900 flex items-center justify-center overflow-hidden">
+          <div className="relative lg:col-span-5 h-48 sm:h-56 lg:h-80 bg-navy-900 flex items-center justify-center overflow-hidden">
             {featuredImage ? (
-              <img
+              <Image
                 src={featuredImage}
                 alt={title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                fill
+                sizes="(max-width: 1024px) 100vw, 42vw"
+                priority={priority}
+                className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               />
             ) : (
               <span className="text-navy-500 text-sm uppercase tracking-[0.2em]">{category || 'Insurance'}</span>
@@ -56,12 +66,14 @@ export function InsightCard({ slug, title, excerpt, category, featuredImage, pub
   if (variant === 'compact') {
     return (
       <Link href={`/post/${slug}`} className="group flex gap-5 py-5 border-b border-gray-200 last:border-b-0">
-        <div className="w-24 h-24 bg-navy-50 overflow-hidden flex items-center justify-center flex-shrink-0">
+        <div className="relative w-24 h-24 bg-navy-50 overflow-hidden flex items-center justify-center flex-shrink-0">
           {featuredImage ? (
-            <img
+            <Image
               src={featuredImage}
               alt={title}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+              fill
+              sizes="96px"
+              className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
             />
           ) : (
             <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-navy-400 px-3 text-center">
@@ -86,12 +98,15 @@ export function InsightCard({ slug, title, excerpt, category, featuredImage, pub
   // Default variant
   return (
     <Link href={`/post/${slug}`} className="bg-white group flex flex-col h-full hover:bg-gray-50 transition-colors duration-200">
-      <div className="h-40 sm:h-52 bg-navy-50 overflow-hidden flex items-center justify-center">
+      <div className="relative h-40 sm:h-52 bg-navy-50 overflow-hidden flex items-center justify-center">
         {featuredImage ? (
-          <img
+          <Image
             src={featuredImage}
             alt={title}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            priority={priority}
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           />
         ) : (
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 px-6 text-center">

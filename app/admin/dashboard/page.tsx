@@ -69,7 +69,7 @@ export default function DashboardPage() {
       <div className="bg-navy-950">
         <div className="max-w-6xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center gap-6">
-            <img src="/images/BlackArrowLogo.svg" alt="BlackArrow" className="h-5 brightness-0 invert opacity-70" />
+            <img src="/images/BlackArrowLogo.svg" alt="BlackArrow" width={82} height={20} className="h-5 w-auto brightness-0 invert opacity-70" />
             <span className="hidden sm:block text-xs text-navy-400 uppercase tracking-[0.15em] font-semibold">Dashboard</span>
           </div>
           <div className="flex items-center gap-4">

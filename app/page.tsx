@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { personalInsurance, commercialInsurance, propertyInsurance } from '@/lib/insurance-data'
 import { locationPages } from '@/lib/location-data'
 import { getAllPosts } from '@/lib/db'
@@ -6,6 +7,7 @@ import { getIconByName } from '@/components/ui/Icons'
 import { ensureAdminUser } from '@/lib/auth'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import CarrierLogoCarousel from '@/components/ui/CarrierLogoCarousel'
+import HeroBackground from '@/components/ui/HeroBackground'
 import { InsightCard } from '@/components/insights/InsightCard'
 
 export default async function Home() {
@@ -19,14 +21,7 @@ export default async function Home() {
     <>
       {/* ============= HERO ============= */}
       <section className="relative bg-navy-950 overflow-hidden min-h-svh sm:min-h-[92vh] flex flex-col">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          src="/images/hero-bg-video.mp4"
-        />
+        <HeroBackground />
         <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/60 to-navy-950/30" />
 
         {/* Main hero content */}
@@ -129,7 +124,13 @@ export default async function Home() {
           </ScrollReveal>
           <ScrollReveal>
             <div className="relative overflow-hidden mb-10 sm:mb-16 h-48 sm:h-72 lg:h-96">
-              <img src="/images/AdobeStock_300395016.jpeg" alt="North Carolina family protected by BlackArrow Insurance home and auto coverage" className="w-full h-full object-cover" loading="lazy" />
+              <Image
+                src="/images/AdobeStock_300395016.jpeg"
+                alt="North Carolina family protected by BlackArrow Insurance home and auto coverage"
+                fill
+                sizes="(max-width: 1024px) 100vw, 1100px"
+                className="object-cover"
+              />
               <div className="absolute inset-0 bg-gradient-to-r from-navy-900/50 to-transparent" />
               <div className="absolute bottom-8 left-8 sm:bottom-12 sm:left-12">
                 <p className="text-white text-xl sm:text-2xl font-display font-semibold max-w-md leading-snug">Protecting families across Eastern North Carolina</p>
@@ -168,8 +169,14 @@ export default async function Home() {
                 <p className="text-lg text-navy-600 leading-relaxed mb-10">
                   We work with businesses of all sizes to develop insurance programs that address real operational risks — not just check boxes.
                 </p>
-                <div className="overflow-hidden mb-10 h-44 sm:h-56 lg:h-64">
-                  <img src="/images/AdobeStock_415962919.jpeg" alt="North Carolina small business owners protected by BlackArrow commercial insurance" className="w-full h-full object-cover" loading="lazy" />
+                <div className="relative overflow-hidden mb-10 h-44 sm:h-56 lg:h-64">
+                  <Image
+                    src="/images/AdobeStock_415962919.jpeg"
+                    alt="North Carolina small business owners protected by BlackArrow commercial insurance"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 600px"
+                    className="object-cover"
+                  />
                 </div>
                 <Link href="/quote" className="btn-primary">
                   Request a Business Quote
@@ -260,8 +267,14 @@ export default async function Home() {
               </div>
             </ScrollReveal>
             <ScrollReveal className="lg:col-span-7" delay={100}>
-              <div className="overflow-hidden">
-                <img src="/images/blackarrow-whiteville.jpg" alt="BlackArrow Insurance Whiteville, NC office at 301 Liberty Street" className="w-full h-56 sm:h-80 lg:h-[28rem] object-cover" loading="lazy" />
+              <div className="relative overflow-hidden h-56 sm:h-80 lg:h-[28rem]">
+                <Image
+                  src="/images/blackarrow-whiteville.jpg"
+                  alt="BlackArrow Insurance Whiteville, NC office at 301 Liberty Street"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 750px"
+                  className="object-cover"
+                />
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-gray-200">
                 {[

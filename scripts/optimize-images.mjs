@@ -17,10 +17,39 @@ import { dirname } from 'node:path'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const IMAGES_ROOT = join(__dirname, '..', 'public', 'images')
 
-const SIZE_THRESHOLD = 500 * 1024 // 500 KB — anything larger gets processed
-const MAX_WIDTH = 1920
+/**
+ * Per-directory rules. Sources feed next/image, which re-encodes to AVIF/WebP
+ * on demand — so this pass exists to stop us committing (and deploying, and
+ * re-optimizing) files far larger than anything we ever render.
+ *
+ * Ordered most-specific first; the first matching prefix wins.
+ */
+const RULES = [
+  {
+    // Article art: square illustrations, rendered at most ~800 CSS px, but
+    // committed as 1024px PNGs of 375–770 KB each. Palette-quantized PNG holds
+    // up well for flat illustration and cuts them by roughly 4x.
+    match: 'insights/',
+    maxWidth: 1024,
+    threshold: 200 * 1024,
+  },
+  {
+    // Carrier logos render in a 144px slot. Several were shipping at 1024–3301px
+    // wide (safeco.png: 236 KB; orchid.png: 3301px). 2x the slot is plenty.
+    match: 'carrier-logos/',
+    maxWidth: 400,
+    threshold: 15 * 1024,
+  },
+  {
+    // Photography used for page heroes and section art.
+    match: '',
+    maxWidth: 1920,
+    threshold: 250 * 1024,
+  },
+]
+
 const JPEG_QUALITY = 82
-const PNG_QUALITY = 85
+const PNG_QUALITY = 80
 
 // Require sharp at runtime so we fail cleanly with install instructions if it's missing.
 let sharp
@@ -51,16 +80,21 @@ async function walk(dir) {
   return files
 }
 
-async function optimize(file) {
+/** First matching rule wins; `match: ''` is the catch-all and must stay last. */
+function ruleFor(relativePath) {
+  return RULES.find(r => relativePath.startsWith(r.match)) ?? RULES[RULES.length - 1]
+}
+
+async function optimize(file, rule) {
   const ext = extname(file).toLowerCase()
   if (!['.jpg', '.jpeg', '.png'].includes(ext)) return null
   const before = (await stat(file)).size
-  if (before < SIZE_THRESHOLD) return null
+  if (before < rule.threshold) return null
 
   const pipeline = sharp(file, { failOn: 'error' }).rotate() // respect EXIF orientation
   const metadata = await pipeline.metadata()
-  const resized = metadata.width > MAX_WIDTH
-    ? pipeline.resize({ width: MAX_WIDTH, withoutEnlargement: true })
+  const resized = metadata.width > rule.maxWidth
+    ? pipeline.resize({ width: rule.maxWidth, withoutEnlargement: true })
     : pipeline
 
   const temp = `${file}.optimizing`
@@ -90,20 +124,22 @@ async function main() {
   for (const f of files) {
     const ext = extname(f).toLowerCase()
     if (!['.jpg', '.jpeg', '.png'].includes(ext)) continue
+    const relative = f.replace(IMAGES_ROOT + '/', '')
+    const rule = ruleFor(relative)
     const size = (await stat(f)).size
-    if (size >= SIZE_THRESHOLD) candidates.push({ file: f, size })
+    if (size >= rule.threshold) candidates.push({ file: f, size, rule })
   }
 
   candidates.sort((a, b) => b.size - a.size)
-  console.log(`Found ${candidates.length} images > ${formatBytes(SIZE_THRESHOLD)} to process\n`)
+  console.log(`Found ${candidates.length} images over their per-directory threshold\n`)
 
   let totalBefore = 0
   let totalAfter = 0
   let processed = 0
-  for (const { file } of candidates) {
+  for (const { file, rule } of candidates) {
     const relative = file.replace(IMAGES_ROOT + '/', '')
     try {
-      const result = await optimize(file)
+      const result = await optimize(file, rule)
       if (!result) continue
       totalBefore += result.before
       totalAfter += result.after

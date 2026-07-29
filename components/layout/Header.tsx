@@ -77,9 +77,14 @@ export default function Header() {
         <nav className="flex items-center justify-between h-[4.5rem]">
           {/* Logo */}
           <Link href="/" className="flex items-center" onClick={closeMobile}>
+            {/* Left as a plain <img>: the logo is an SVG, so next/image has no
+                raster work to do. width/height carry the 836x204 intrinsic
+                ratio so the browser reserves the box before paint. */}
             <img
               src="/images/BlackArrowLogo.svg"
               alt="BlackArrow Insurance"
+              width={131}
+              height={32}
               className={`h-8 w-auto transition-all duration-300 ${isTransparent ? 'brightness-0 invert' : ''}`}
             />
           </Link>

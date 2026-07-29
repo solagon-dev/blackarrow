@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { getPostBySlug, getRelatedPosts, getAllPosts } from '@/lib/db'
@@ -113,7 +114,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       {/* Hero */}
       <section className="bg-navy-900 relative overflow-hidden pt-28 pb-12 sm:pt-36 sm:pb-16 lg:pt-44 lg:pb-24">
-        <img src={heroImage} alt={post.title} className="absolute inset-0 w-full h-full object-cover" />
+        <Image
+          src={heroImage}
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          priority
+          className="object-cover"
+        />
         <div className="absolute inset-0 bg-navy-950/85" />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
@@ -147,7 +156,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <div className="container-editorial py-5">
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 bg-navy-900 flex items-center justify-center flex-shrink-0">
-              <img src="/images/BlackArrow_Favicon.svg" alt="BlackArrow Insurance logo" className="w-5 h-5 object-contain" />
+              <img src="/images/BlackArrow_Favicon.svg" alt="" aria-hidden="true" width={20} height={20} className="w-5 h-5 object-contain" />
             </div>
             <div>
               <p className="text-sm font-semibold text-navy-900">BlackArrow Insurance</p>

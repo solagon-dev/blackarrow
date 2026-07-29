@@ -43,7 +43,7 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-sm relative z-10">
         {/* Logo */}
         <div className="flex justify-center mb-10">
-          <img src="/images/BlackArrowLogo.svg" alt="BlackArrow Insurance" className="h-8 brightness-0 invert opacity-80" />
+          <img src="/images/BlackArrowLogo.svg" alt="BlackArrow Insurance" width={131} height={32} className="h-8 w-auto brightness-0 invert opacity-80" />
         </div>
 
         {/* Login card */}

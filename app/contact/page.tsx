@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { offices } from '@/lib/team-data'
 import { useFormSubmit } from '@/lib/use-form-submit'
@@ -19,7 +20,15 @@ export default function ContactPage() {
   return (
     <>
       <section className="bg-navy-900 relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-28">
-        <img src="/images/blackarrow_greenville.webp" alt="BlackArrow Insurance Greenville NC office exterior" className="absolute inset-0 w-full h-full object-cover" />
+        <Image
+          src="/images/blackarrow_greenville.webp"
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          priority
+          className="object-cover"
+        />
         <div className="absolute inset-0 bg-navy-950/80" />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
@@ -39,8 +48,14 @@ export default function ContactPage() {
             <div className="lg:col-span-2 space-y-8 order-2 lg:order-1">
               {offices.map(office => (
                 <div key={office.name} className="card-premium overflow-hidden">
-                  <div className="h-48 bg-navy-100">
-                    <img src={office.image} alt={office.imageAlt} className="w-full h-full object-cover" />
+                  <div className="relative h-48 bg-navy-100">
+                    <Image
+                      src={office.image}
+                      alt={office.imageAlt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                      className="object-cover"
+                    />
                   </div>
                   <div className="p-6">
                     <h3 className="text-xl font-semibold text-navy-900 mb-1">{office.name}</h3>

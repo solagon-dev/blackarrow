@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import type { Metadata } from 'next'
 import { teamMembers, offices } from '@/lib/team-data'
 import ScrollReveal from '@/components/ui/ScrollReveal'
@@ -23,7 +24,15 @@ export default function OurStoryPage() {
     <>
       {/* Hero */}
       <section className="bg-navy-900 relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-28">
-        <img src="/images/blackarrow_greenville.webp" alt="Exterior of BlackArrow Insurance's Greenville, NC office" className="absolute inset-0 w-full h-full object-cover object-center" />
+        <Image
+          src="/images/blackarrow_greenville.webp"
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          priority
+          className="object-cover object-center"
+        />
         <div className="absolute inset-0 bg-navy-950/80" />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
@@ -65,8 +74,14 @@ export default function OurStoryPage() {
       <section className="bg-white pb-16 sm:pb-24 lg:pb-36">
         <div className="container-editorial">
           <ScrollReveal>
-            <div className="overflow-hidden mb-8 sm:mb-12">
-              <img src="/images/AdobeStock_530165977.jpeg" alt="BlackArrow Insurance team serving Eastern North Carolina clients" className="w-full h-48 sm:h-64 lg:h-80 object-cover" loading="lazy" />
+            <div className="relative overflow-hidden mb-8 sm:mb-12 h-48 sm:h-64 lg:h-80">
+              <Image
+                src="/images/AdobeStock_530165977.jpeg"
+                alt="BlackArrow Insurance team serving Eastern North Carolina clients"
+                fill
+                sizes="(max-width: 1024px) 100vw, 1100px"
+                className="object-cover"
+              />
             </div>
           </ScrollReveal>
           <ScrollReveal>
@@ -152,10 +167,12 @@ export default function OurStoryPage() {
                 <div className="bg-white h-full">
                   <div className="h-56 sm:h-72 lg:h-80 bg-navy-900 relative overflow-hidden">
                     {member.image ? (
-                      <img
+                      <Image
                         src={member.image}
                         alt={member.name}
-                        className="w-full h-full object-cover"
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover"
                         style={{ objectPosition: member.imagePosition || 'center center' }}
                       />
                     ) : (
@@ -195,9 +212,12 @@ export default function OurStoryPage() {
                 <div className="bg-white p-6 sm:p-8 h-full">
                   <div className="flex items-center gap-5 mb-5">
                     {member.image ? (
-                      <img
+                      <Image
                         src={member.image}
                         alt={member.name}
+                        width={56}
+                        height={56}
+                        sizes="56px"
                         className="w-14 h-14 rounded-full object-cover flex-shrink-0"
                         style={{ objectPosition: member.imagePosition || 'center center' }}
                       />
@@ -234,8 +254,14 @@ export default function OurStoryPage() {
             {offices.map((office, i) => (
               <ScrollReveal key={office.name} delay={i * 100}>
                 <div className="bg-white h-full">
-                  <div className="h-44 sm:h-56 overflow-hidden bg-navy-100">
-                    <img src={office.image} alt={office.imageAlt} className="w-full h-full object-cover" />
+                  <div className="relative h-44 sm:h-56 overflow-hidden bg-navy-100">
+                    <Image
+                      src={office.image}
+                      alt={office.imageAlt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                      className="object-cover"
+                    />
                   </div>
                   <div className="p-6 sm:p-8">
                     <h3 className="text-lg sm:text-xl font-semibold text-navy-900 mb-4 sm:mb-5">{office.name}</h3>

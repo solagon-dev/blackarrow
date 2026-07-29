@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import type { Metadata } from 'next'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 
@@ -39,7 +40,15 @@ export default function FileAClaimPage() {
   return (
     <>
       <section className="bg-navy-900 relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-28">
-        <img src="/images/AdobeStock_45348884.jpeg" alt="Homeowner filing an insurance claim after property damage" className="absolute inset-0 w-full h-full object-cover" />
+        <Image
+          src="/images/AdobeStock_45348884.jpeg"
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          priority
+          className="object-cover"
+        />
         <div className="absolute inset-0 bg-navy-950/80" />
         <div className="container-editorial relative">
           <div className="max-w-3xl">

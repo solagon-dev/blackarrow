@@ -75,7 +75,7 @@ export default function Footer() {
           {/* Company Info */}
           <div className="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-2">
             <Link href="/" className="block mb-8">
-              <img src="/images/BlackArrowLogo.svg" alt="BlackArrow Insurance" className="h-7 w-auto brightness-0 invert" />
+              <img src="/images/BlackArrowLogo.svg" alt="BlackArrow Insurance" width={115} height={28} className="h-7 w-auto brightness-0 invert" />
             </Link>
             <p className="text-navy-400 text-sm leading-relaxed mb-10 max-w-xs">
               Proudly serving Eastern North Carolina for over 20 years with personalized insurance solutions.
