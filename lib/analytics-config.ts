@@ -18,8 +18,12 @@ export function isProductionAnalyticsEnv(): boolean {
 }
 
 export const analyticsConfig = {
-  /** GA4 measurement id, e.g. "G-XXXXXXX". Unset → GA not loaded. */
-  ga4MeasurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim() || '',
+  /**
+   * GA4 measurement id, e.g. "G-XXXXXXX". Defaults to the live property. A
+   * measurement id is a public identifier (it ships in the page source of every
+   * GA-instrumented site), not a secret — same rationale as the Ahrefs key below.
+   */
+  ga4MeasurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim() || 'G-FF5X5ZBL4E',
   /** Ahrefs Web Analytics key (public, cookieless). Defaults to the live key. */
   ahrefsKey: process.env.NEXT_PUBLIC_AHREFS_ANALYTICS_KEY?.trim() || 'V5dSlzHbIFvtNMzCtxKCGA',
   /**
