@@ -1,9 +1,10 @@
 'use client'
 
 import Link from 'next/link'
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 import { personalInsurance, commercialInsurance, propertyInsurance } from '@/lib/insurance-data'
+import { GREENVILLE_OFFICE } from '@/lib/business-facts'
 
 const navInsurance = [
   { label: 'Personal', items: personalInsurance.map(i => ({ label: i.shortTitle, href: `/insurance/${i.slug}` })) },
@@ -17,8 +18,14 @@ const policyManagement = [
   { label: 'File a Claim', href: '/file-a-claim', desc: 'Submit to your carrier' },
 ]
 
-const headerPhoneNumber = '(910) 914-6074'
-const headerPhoneHref = 'tel:9109146074'
+/**
+ * Greenville is the primary line: it's the founding office, it's listed first
+ * in the Organization schema, and business-facts' primaryPhoneFor() falls back
+ * to it. The header previously hardcoded the Whiteville number, so the site's
+ * most prominent phone number disagreed with its own structured data.
+ */
+const headerPhoneNumber = GREENVILLE_OFFICE.phone
+const headerPhoneHref = `tel:${GREENVILLE_OFFICE.phone.replace(/\D/g, '')}`
 
 // Pages that do NOT have a dark hero (admin pages, legal, etc.)
 const LIGHT_HERO_PAGES = ['/admin', '/legal']
@@ -31,6 +38,8 @@ export default function Header() {
   const [mobileInsuranceOpen, setMobileInsuranceOpen] = useState(false)
   const [mobilePolicyOpen, setMobilePolicyOpen] = useState(false)
   const pathname = usePathname()
+  const insuranceRef = useRef<HTMLDivElement>(null)
+  const policyRef = useRef<HTMLDivElement>(null)
 
   // Determine if current page has a dark hero
   const hasDarkHero = !LIGHT_HERO_PAGES.some(p => pathname.startsWith(p))
@@ -52,6 +61,55 @@ export default function Header() {
   }, [mobileOpen])
 
   const closeMobile = useCallback(() => setMobileOpen(false), [])
+
+  /**
+   * The desktop dropdowns used to open on hover only — the trigger was a
+   * <button> with no onClick, so keyboard and touch users could focus it and
+   * press Enter to no effect, leaving every coverage page unreachable from the
+   * nav. They now toggle on click (hover still works for mouse users), close on
+   * Escape with focus returned to the trigger, and close when focus or the
+   * pointer leaves the group.
+   */
+  const closeDropdowns = useCallback(() => {
+    setInsuranceOpen(false)
+    setPolicyOpen(false)
+  }, [])
+
+  useEffect(() => {
+    if (!insuranceOpen && !policyOpen) return
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return
+      const openRef = insuranceOpen ? insuranceRef : policyRef
+      closeDropdowns()
+      openRef.current?.querySelector('button')?.focus()
+    }
+    const onPointerDown = (e: PointerEvent) => {
+      const target = e.target as Node
+      if (insuranceRef.current?.contains(target) || policyRef.current?.contains(target)) return
+      closeDropdowns()
+    }
+
+    document.addEventListener('keydown', onKeyDown)
+    document.addEventListener('pointerdown', onPointerDown)
+    return () => {
+      document.removeEventListener('keydown', onKeyDown)
+      document.removeEventListener('pointerdown', onPointerDown)
+    }
+  }, [insuranceOpen, policyOpen, closeDropdowns])
+
+  /**
+   * Collapse a dropdown once focus moves outside its group entirely — tabbing
+   * off the last link should close the menu, but moving between links inside
+   * it should not. Written as two handlers rather than one curried helper so
+   * the ref is only ever read inside the event, not passed during render.
+   */
+  const handleInsuranceBlur = useCallback((e: React.FocusEvent) => {
+    if (!insuranceRef.current?.contains(e.relatedTarget as Node)) setInsuranceOpen(false)
+  }, [])
+  const handlePolicyBlur = useCallback((e: React.FocusEvent) => {
+    if (!policyRef.current?.contains(e.relatedTarget as Node)) setPolicyOpen(false)
+  }, [])
 
   // Dynamic color classes based on transparent state
   const navTextClass = isTransparent
@@ -93,18 +151,27 @@ export default function Header() {
           <div className="hidden lg:flex items-center gap-1">
             {/* Insurance Dropdown */}
             <div
+              ref={insuranceRef}
               className="relative"
               onMouseEnter={() => setInsuranceOpen(true)}
               onMouseLeave={() => setInsuranceOpen(false)}
+              onBlur={handleInsuranceBlur}
             >
-              <button className={`px-4 py-2 text-sm font-medium transition-colors duration-200 flex items-center gap-1.5 ${insuranceOpen ? navTextActiveClass : navTextClass}`}>
+              <button
+                type="button"
+                aria-expanded={insuranceOpen}
+                aria-haspopup="true"
+                aria-controls="nav-insurance-menu"
+                onClick={() => { setInsuranceOpen(v => !v); setPolicyOpen(false) }}
+                className={`px-4 py-2 text-sm font-medium transition-colors duration-200 flex items-center gap-1.5 ${insuranceOpen ? navTextActiveClass : navTextClass}`}
+              >
                 Insurance
-                <svg className={`w-3 h-3 transition-transform duration-200 ${insuranceOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg aria-hidden="true" className={`w-3 h-3 transition-transform duration-200 ${insuranceOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
               {insuranceOpen && (
-                <div className="absolute top-full left-0 pt-2">
+                <div id="nav-insurance-menu" className="absolute top-full left-0 pt-2">
                   <div className="bg-white border border-gray-200 shadow-lg p-8 w-[640px]">
                     <div className="grid grid-cols-3 gap-10">
                       {navInsurance.map(group => (
@@ -115,6 +182,7 @@ export default function Header() {
                               <li key={item.href}>
                                 <Link
                                   href={item.href}
+                                  onClick={closeDropdowns}
                                   className="block py-1.5 text-sm text-navy-600 hover:text-navy-900 transition-colors duration-200"
                                 >
                                   {item.label}
@@ -127,7 +195,7 @@ export default function Header() {
                     </div>
                     <div className="mt-6 pt-5 border-t border-gray-200 flex items-center justify-between">
                       <p className="text-sm text-navy-400">Not sure what you need?</p>
-                      <Link href="/quote" className="link-arrow text-sm">
+                      <Link href="/quote" onClick={closeDropdowns} className="link-arrow text-sm">
                         Request a quote
                       </Link>
                     </div>
@@ -138,24 +206,34 @@ export default function Header() {
 
             {/* Policy Management Dropdown */}
             <div
+              ref={policyRef}
               className="relative"
               onMouseEnter={() => setPolicyOpen(true)}
               onMouseLeave={() => setPolicyOpen(false)}
+              onBlur={handlePolicyBlur}
             >
-              <button className={`px-4 py-2 text-sm font-medium transition-colors duration-200 flex items-center gap-1.5 ${policyOpen ? navTextActiveClass : navTextClass}`}>
+              <button
+                type="button"
+                aria-expanded={policyOpen}
+                aria-haspopup="true"
+                aria-controls="nav-policy-menu"
+                onClick={() => { setPolicyOpen(v => !v); setInsuranceOpen(false) }}
+                className={`px-4 py-2 text-sm font-medium transition-colors duration-200 flex items-center gap-1.5 ${policyOpen ? navTextActiveClass : navTextClass}`}
+              >
                 Policy Management
-                <svg className={`w-3 h-3 transition-transform duration-200 ${policyOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg aria-hidden="true" className={`w-3 h-3 transition-transform duration-200 ${policyOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
               {policyOpen && (
-                <div className="absolute top-full left-0 pt-2">
+                <div id="nav-policy-menu" className="absolute top-full left-0 pt-2">
                   <div className="bg-white border border-gray-200 shadow-lg p-2 w-60">
                     <ul>
                       {policyManagement.map(item => (
                         <li key={item.href}>
                           <Link
                             href={item.href}
+                            onClick={closeDropdowns}
                             className="block px-4 py-3 text-navy-600 hover:text-navy-900 hover:bg-gray-50 transition-all duration-200 group/item"
                           >
                             <span className="text-sm font-medium">{item.label}</span>
@@ -174,9 +252,10 @@ export default function Header() {
             <Link href="/contact" className={`px-4 py-2 text-sm font-medium transition-colors duration-200 ${navTextClass}`}>Contact</Link>
           </div>
 
-          {/* Desktop CTA */}
+          {/* Desktop CTA. The number was previously hidden below xl, so laptops
+              and tablets in the 1024–1279px range saw no phone number at all. */}
           <div className="hidden lg:flex items-center gap-5">
-            <a href={headerPhoneHref} className={`text-sm font-medium transition-colors hidden xl:block ${phoneClass}`}>
+            <a href={headerPhoneHref} className={`text-sm font-medium transition-colors ${phoneClass}`}>
               {headerPhoneNumber}
             </a>
             <Link href="/quote" className={`inline-flex items-center justify-center text-center text-sm py-2.5 px-6 font-medium tracking-wide transition-colors duration-200 ${
@@ -188,42 +267,62 @@ export default function Header() {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden p-3 -mr-1.5 touch-manipulation"
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? (
-              <svg className="w-5 h-5 text-navy-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          {/* Mobile actions */}
+          <div className="flex items-center lg:hidden">
+            {/* Persistent tap-to-call. Calling is the highest-intent action a
+                mobile visitor to a local agency takes, and it previously
+                required opening the menu and scrolling to the bottom. */}
+            <a
+              href={headerPhoneHref}
+              aria-label={`Call BlackArrow Insurance at ${headerPhoneNumber}`}
+              className={`p-3 touch-manipulation transition-colors ${menuIconClass}`}
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
-            ) : (
-              <svg className={`w-5 h-5 ${menuIconClass}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
-          </button>
+            </a>
+            <button
+              type="button"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="p-3 -mr-1.5 touch-manipulation"
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-menu"
+              aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+            >
+              {mobileOpen ? (
+                <svg className="w-5 h-5 text-navy-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg className={`w-5 h-5 ${menuIconClass}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
+            </button>
+          </div>
         </nav>
       </div>
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="lg:hidden fixed inset-0 top-[4.5rem] bg-white z-40 overflow-y-auto overscroll-contain animate-fade-in">
+        <div id="mobile-menu" className="lg:hidden fixed inset-0 top-[4.5rem] bg-white z-40 overflow-y-auto overscroll-contain animate-fade-in">
           <div className="container-editorial py-6 sm:py-8 space-y-1 pb-[calc(1.5rem+env(safe-area-inset-bottom,0px))]">
             {/* Insurance Accordion */}
             <div>
               <button
+                type="button"
                 onClick={() => setMobileInsuranceOpen(!mobileInsuranceOpen)}
+                aria-expanded={mobileInsuranceOpen}
+                aria-controls="mobile-insurance-panel"
                 className="flex items-center justify-between w-full py-4 text-left font-medium text-navy-900 border-b border-gray-100"
               >
                 Insurance
-                <svg className={`w-4 h-4 text-navy-400 transition-transform duration-200 ${mobileInsuranceOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg aria-hidden="true" className={`w-4 h-4 text-navy-400 transition-transform duration-200 ${mobileInsuranceOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
               {mobileInsuranceOpen && (
-                <div className="pb-4 space-y-6 pt-4 animate-fade-in">
+                <div id="mobile-insurance-panel" className="pb-4 space-y-6 pt-4 animate-fade-in">
                   {navInsurance.map(group => (
                     <div key={group.label}>
                       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-3">{group.label}</p>
@@ -249,16 +348,19 @@ export default function Header() {
             {/* Policy Management Accordion */}
             <div>
               <button
+                type="button"
                 onClick={() => setMobilePolicyOpen(!mobilePolicyOpen)}
+                aria-expanded={mobilePolicyOpen}
+                aria-controls="mobile-policy-panel"
                 className="flex items-center justify-between w-full py-4 text-left font-medium text-navy-900 border-b border-gray-100 touch-manipulation"
               >
                 Policy Management
-                <svg className={`w-4 h-4 text-navy-400 transition-transform duration-200 ${mobilePolicyOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg aria-hidden="true" className={`w-4 h-4 text-navy-400 transition-transform duration-200 ${mobilePolicyOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
               {mobilePolicyOpen && (
-                <div className="pb-4 pt-4 animate-fade-in">
+                <div id="mobile-policy-panel" className="pb-4 pt-4 animate-fade-in">
                   <ul className="space-y-0.5">
                     {policyManagement.map(item => (
                       <li key={item.href}>

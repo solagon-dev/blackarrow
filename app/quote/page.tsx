@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
 import { insurancePages } from '@/lib/insurance-data'
+import { GREENVILLE_OFFICE, offices } from '@/lib/business-facts'
 import { useFormSubmit } from '@/lib/use-form-submit'
 
 const insuranceTypes = insurancePages.map(p => ({ value: p.slug, label: p.title }))
@@ -77,7 +78,7 @@ export default function QuotePage() {
                   </div>
                   <h2 className="text-2xl sm:text-3xl font-display font-bold text-navy-900 mb-3">Quote Request Received</h2>
                   <p className="text-navy-500 mb-2 max-w-md mx-auto">Thank you, {form.firstName}. One of our licensed agents will review your request and reach out to discuss your options. If you&rsquo;d like to talk sooner, call one of our offices.</p>
-                  <p className="text-sm text-navy-400 mb-8">Need immediate assistance? Call <a href="tel:2529555898" className="text-navy-900 font-medium">(252) 955-5898</a></p>
+                  <p className="text-sm text-navy-400 mb-8">Need immediate assistance? Call <a href={`tel:${GREENVILLE_OFFICE.phone.replace(/\D/g, '')}`} className="text-navy-900 font-medium">{GREENVILLE_OFFICE.phone}</a></p>
                   <Link href="/" className="inline-flex items-center gap-2 text-sm font-medium text-navy-900 hover:text-navy-700 transition-colors">
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -362,18 +363,33 @@ export default function QuotePage() {
                 {/* Contact card */}
                 <div className="border border-gray-200 p-6 sm:p-8">
                   <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 mb-4">Prefer to Talk?</h3>
-                  <p className="text-sm text-navy-500 mb-5">Our agents are available Monday through Friday, 8:30 AM to 5:00 PM.</p>
-                  <a href="tel:9109146074" className="flex items-center gap-3 group">
-                    <span className="w-10 h-10 bg-navy-900 flex items-center justify-center flex-shrink-0">
-                      <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                      </svg>
-                    </span>
-                    <div>
-                      <p className="text-lg font-display font-bold text-navy-900 group-hover:text-navy-700 transition-colors">(910) 914-6074</p>
-                      <p className="text-xs text-navy-400">Call for immediate assistance</p>
-                    </div>
-                  </a>
+                  {/* Both numbers, from team-data. This card previously showed
+                      the Whiteville line while the confirmation screen gave the
+                      Greenville one, and advertised 8:30am–5:00pm — hours that
+                      matched neither office and contradicted the opening hours
+                      in the Organization schema. */}
+                  <p className="text-sm text-navy-500 mb-5">
+                    Reach a licensed agent at either office, Monday through Friday.
+                  </p>
+                  <div className="space-y-4">
+                    {offices.map(office => (
+                      <a
+                        key={office.name}
+                        href={`tel:${office.phone.replace(/\D/g, '')}`}
+                        className="flex items-center gap-3 group"
+                      >
+                        <span className="w-10 h-10 bg-navy-900 flex items-center justify-center flex-shrink-0">
+                          <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                          </svg>
+                        </span>
+                        <div>
+                          <p className="text-lg font-display font-bold text-navy-900 group-hover:text-navy-700 transition-colors">{office.phone}</p>
+                          <p className="text-xs text-navy-400">{office.city} &middot; {office.hours.replace('Monday–Friday ', '')}</p>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Security note */}
