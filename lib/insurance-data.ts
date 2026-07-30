@@ -833,26 +833,30 @@ export const insurancePages: InsurancePage[] = [
   },
 ];
 
+// Real licensed stock photography (Pexels, free for commercial use, no
+// attribution required) replacing the earlier AI-generated illustrations.
+// One topically-matched photo per coverage; these feed both the product-page
+// hero and the homepage commercial-section hover.
 export const insuranceHeroImages: Record<string, string> = {
-  homeowners: '/images/insights/first-time-homebuyers-guide-to-homeowners-insurance.png',
-  auto: '/images/insights/do-you-need-gap-insurance-when-its-essential-and-when-to-skip-it.png',
-  life: '/images/insights/term-life-vs-whole-life-a-comprehensive-comparison.png',
-  boat: '/images/insights/boat-insurance-for-new-boat-owners-what-you-need-to-know-before-hitting-the-water.png',
-  'rental-dwelling': '/images/insights/how-rental-dwelling-insurance-differs-from-homeowners-insurance.png',
-  'dump-straight-truck': '/images/insights/collision-vs-comprehensive-which-coverage-do-you-need-for-your-dump-truck.png',
-  'commercial-auto': '/images/insights/how-your-commercial-auto-insurance-can-protect-against-lawsuits.png',
-  'general-liability': '/images/insights/how-much-general-liability-insurance-coverage-does-your-business-really-need.png',
-  'cyber-liability': '/images/insights/the-top-5-cybersecurity-threats-and-how-cyber-liability-insurance-can-protect-you.png',
-  equipment: '/images/insights/how-equipment-breakdown-coverage-can-save-your-business-money.png',
-  'business-owners-package': '/images/insights/what-types-of-businesses-benefit-most-from-business-owners-package-insurance.png',
-  'workers-compensation': '/images/insights/how-workers-compensation-insurance-benefits-both-employers-and-employees.png',
-  'commercial-property': '/images/insights/whats-covered-under-a-commercial-property-insurance-policy-a-detailed-breakdown.png',
-  'short-term-rental': '/images/insights/homeowners-insurance-vs-short-term-rental-insurance-why-you-need-both.png',
-  'long-term-rental': '/images/insights/do-you-need-long-term-rental-insurance-if-youre-renting-out-a-single-unit.png',
-  'builders-risk': '/images/insights/how-builders-risk-insurance-can-protect-your-construction-site-from-unexpected-risks.png',
-  'vacant-unoccupied': '/images/insights/5-risks-of-leaving-your-property-vacant-without-insurance-coverage.png',
-  flood: '/images/blackarrow-whiteville.jpg',
-  renters: '/images/insights/first-time-homebuyers-guide-to-homeowners-insurance.png',
+  homeowners: '/images/stock/homeowners.jpg',
+  auto: '/images/stock/auto.jpg',
+  life: '/images/stock/life.jpg',
+  boat: '/images/stock/boat.jpg',
+  'rental-dwelling': '/images/stock/rental-dwelling.jpg',
+  'dump-straight-truck': '/images/stock/dump-straight-truck.jpg',
+  'commercial-auto': '/images/stock/commercial-auto.jpg',
+  'general-liability': '/images/stock/general-liability.jpg',
+  'cyber-liability': '/images/stock/cyber-liability.jpg',
+  equipment: '/images/stock/equipment.jpg',
+  'business-owners-package': '/images/stock/business-owners-package.jpg',
+  'workers-compensation': '/images/stock/workers-compensation.jpg',
+  'commercial-property': '/images/stock/commercial-property.jpg',
+  'short-term-rental': '/images/stock/short-term-rental.jpg',
+  'long-term-rental': '/images/stock/long-term-rental.jpg',
+  'builders-risk': '/images/stock/builders-risk.jpg',
+  'vacant-unoccupied': '/images/stock/vacant-unoccupied.jpg',
+  flood: '/images/stock/flood.jpg',
+  renters: '/images/stock/renters.jpg',
 };
 
 export function getInsuranceHeroImage(slug: string): string {
