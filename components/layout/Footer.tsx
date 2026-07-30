@@ -21,6 +21,16 @@ const topCityServicePages = topCityServiceSlugs
   .map(s => serviceLocationPages.find(p => p.slug === s))
   .filter((p): p is NonNullable<typeof p> => Boolean(p))
 
+// Statewide NC landing pages that live under /insurance/ as geo variants, so
+// they don't appear in the nav/Coverages lists. Surfacing them in the footer
+// gives these pages site-wide internal links (they were otherwise reachable
+// only from a couple of related-coverage links).
+const statewideNcPages = [
+  { label: 'Boat Insurance in North Carolina', href: '/insurance/boat-insurance-north-carolina' },
+  { label: 'Commercial Auto Insurance in NC', href: '/insurance/commercial-auto-insurance-north-carolina' },
+  { label: 'Workers Comp Insurance in NC', href: '/insurance/workers-compensation-north-carolina' },
+]
+
 const companyLinks = [
   { label: 'Our Story', href: '/our-story' },
   { label: 'Locations', href: '/locations' },
@@ -160,6 +170,15 @@ export default function Footer() {
                   className="text-sm text-navy-400 hover:text-white transition-colors"
                 >
                   {p.serviceType} in {p.city}, {p.stateAbbr}
+                </Link>
+              ))}
+              {statewideNcPages.map(p => (
+                <Link
+                  key={p.href}
+                  href={p.href}
+                  className="text-sm text-navy-400 hover:text-white transition-colors"
+                >
+                  {p.label}
                 </Link>
               ))}
             </div>
