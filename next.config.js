@@ -101,6 +101,11 @@ const nextConfig = {
       // is published (Plan §6.2, §11.3).
       { source: '/hurricane-insurance', destination: '/insurance/homeowners', permanent: true },
       { source: '/windstorm-insurance', destination: '/insurance/homeowners', permanent: true },
+      // Consolidation: "auto insurance greenville nc" was split across two pages
+      // (this /insurance/ geo-variant, which Google indexed, and the richer
+      // city-service page at the clean root URL). Point the retired variant at
+      // the survivor so the ranking signal consolidates onto one URL.
+      { source: '/insurance/auto-insurance-greenville-nc', destination: '/auto-insurance-greenville-nc', permanent: true },
       // Content paths that shifted
       { source: '/news', destination: '/insights', permanent: true },
       { source: '/news/:slug', destination: '/post/:slug', permanent: true },
