@@ -7,6 +7,7 @@ import { getPostBySlug, getRelatedPosts, getAllPosts } from '@/lib/db'
 import { estimateReadingTime, formatReadingTime } from '@/lib/reading-time'
 import { InsightCard } from '@/components/insights/InsightCard'
 import ScrollReveal from '@/components/ui/ScrollReveal'
+import { resolvePostImage } from '@/lib/post-image'
 
 function resolveArticleImageUrl(imageUrl: string | null) {
   if (!imageUrl) return undefined
@@ -21,6 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const cleanTitle = rawTitle.replace(/\s*\|\s*BlackArrow Insurance\s*$/i, '')
   const description = post.seo_description || post.excerpt || ''
   const canonical = `/post/${post.slug}`
+  const ogImage = resolvePostImage(post.featured_image)
   return {
     title: cleanTitle,
     description,
@@ -34,13 +36,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       modifiedTime: post.updated_at || undefined,
       authors: ['BlackArrow Insurance'],
       section: post.category || undefined,
-      images: post.featured_image ? [post.featured_image] : undefined,
+      images: ogImage ? [ogImage] : undefined,
     },
     twitter: {
       card: 'summary_large_image',
       title: cleanTitle,
       description,
-      images: post.featured_image ? [post.featured_image] : undefined,
+      images: ogImage ? [ogImage] : undefined,
     },
   }
 }
@@ -64,7 +66,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const formattedDate = post.published_at
     ? new Date(post.published_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
     : null
-  const heroImage = post.featured_image || '/images/AdobeStock_315458621.jpeg'
+  const heroImage = resolvePostImage(post.featured_image) || '/images/AdobeStock_315458621.jpeg'
 
   const postUrl = `https://www.blackarrow.co/post/${post.slug}`
 
@@ -87,7 +89,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       url: 'https://www.blackarrow.co',
     },
     publisher: { '@id': 'https://www.blackarrow.co/#organization' },
-    image: post.featured_image ? [resolveArticleImageUrl(post.featured_image)] : undefined,
+    image: post.featured_image ? [resolveArticleImageUrl(resolvePostImage(post.featured_image))] : undefined,
     mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
   }
 

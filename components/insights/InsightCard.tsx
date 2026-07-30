@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { resolvePostImage } from '@/lib/post-image'
 
 interface InsightCardProps {
   slug: string
@@ -19,7 +20,8 @@ interface InsightCardProps {
   priority?: boolean
 }
 
-export function InsightCard({ slug, title, excerpt, category, featuredImage, publishedAt, readingTime, author, variant = 'default', priority = false }: InsightCardProps) {
+export function InsightCard({ slug, title, excerpt, category, featuredImage: rawFeaturedImage, publishedAt, readingTime, author, variant = 'default', priority = false }: InsightCardProps) {
+  const featuredImage = resolvePostImage(rawFeaturedImage)
   const formattedDate = publishedAt
     ? new Date(publishedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
     : null

@@ -34,7 +34,7 @@ export const autoPostTopics: AutoPostTopic[] = [
     title: 'NC Hurricane Deductibles Explained: What Coastal Homeowners Need to Know',
     slug: 'nc-hurricane-deductibles-explained-coastal-homeowners',
     category: 'Homeowners Insurance',
-    featuredImage: '/images/insights/first-time-homebuyers-guide-to-homeowners-insurance.png',
+    featuredImage: '/images/blog/first-time-homebuyers-guide-to-homeowners-insurance.jpg',
     primaryKeyword: 'hurricane insurance nc',
     secondaryKeywords: [
       'coastal home insurance nc',
@@ -49,7 +49,7 @@ export const autoPostTopics: AutoPostTopic[] = [
     title: 'NC Flood Zones 101: Who Needs Flood Insurance in Eastern North Carolina?',
     slug: 'nc-flood-zones-who-needs-flood-insurance-eastern-north-carolina',
     category: 'Homeowners Insurance',
-    featuredImage: '/images/insights/first-time-homebuyers-guide-to-homeowners-insurance.png',
+    featuredImage: '/images/blog/first-time-homebuyers-guide-to-homeowners-insurance.jpg',
     primaryKeyword: 'flood insurance nc',
     secondaryKeywords: [
       'north carolina flood zones',
@@ -64,7 +64,7 @@ export const autoPostTopics: AutoPostTopic[] = [
     title: 'Short-Term Rental Insurance in NC: What Airbnb and VRBO Hosts Must Know',
     slug: 'short-term-rental-insurance-nc-airbnb-vrbo-hosts',
     category: 'Short-Term Rental',
-    featuredImage: '/images/insights/homeowners-insurance-vs-short-term-rental-insurance-why-you-need-both.png',
+    featuredImage: '/images/blog/homeowners-insurance-vs-short-term-rental-insurance-why-you-need-both.jpg',
     primaryKeyword: 'short term rental insurance nc',
     secondaryKeywords: [
       'airbnb insurance nc',
@@ -79,7 +79,7 @@ export const autoPostTopics: AutoPostTopic[] = [
     title: 'NC Workers Compensation Requirements: A 2026 Guide for Small Business Owners',
     slug: 'nc-workers-compensation-requirements-small-business-owners',
     category: 'Workers Compensation',
-    featuredImage: '/images/insights/how-workers-compensation-insurance-benefits-both-employers-and-employees.png',
+    featuredImage: '/images/blog/how-workers-compensation-insurance-benefits-both-employers-and-employees.jpg',
     primaryKeyword: 'workers comp insurance nc',
     secondaryKeywords: [
       'nc workers compensation requirements',
@@ -94,7 +94,7 @@ export const autoPostTopics: AutoPostTopic[] = [
     title: 'General Liability Insurance for NC Small Businesses: What You Need and Why',
     slug: 'general-liability-insurance-nc-small-business',
     category: 'General Liability',
-    featuredImage: '/images/insights/how-much-general-liability-insurance-coverage-does-your-business-really-need.png',
+    featuredImage: '/images/blog/how-much-general-liability-insurance-coverage-does-your-business-really-need.jpg',
     primaryKeyword: 'general liability insurance nc',
     secondaryKeywords: [
       'bop insurance nc',
@@ -109,7 +109,7 @@ export const autoPostTopics: AutoPostTopic[] = [
     title: 'Builder\'s Risk Insurance in North Carolina: Coverage for Every Stage of Construction',
     slug: 'builders-risk-insurance-north-carolina-construction-coverage',
     category: 'Builders Risk',
-    featuredImage: '/images/insights/how-builders-risk-insurance-can-protect-your-construction-site-from-unexpected-risks.png',
+    featuredImage: '/images/blog/how-builders-risk-insurance-can-protect-your-construction-site-from-unexpected-risks.jpg',
     primaryKeyword: 'builders risk insurance nc',
     secondaryKeywords: [
       'contractor insurance nc',
@@ -124,7 +124,7 @@ export const autoPostTopics: AutoPostTopic[] = [
     title: 'Commercial Auto Insurance for NC Fleets: What Wilmington and Raleigh Businesses Need',
     slug: 'commercial-auto-insurance-nc-fleets-wilmington-raleigh',
     category: 'Commercial Auto',
-    featuredImage: '/images/insights/how-your-commercial-auto-insurance-can-protect-against-lawsuits.png',
+    featuredImage: '/images/blog/how-your-commercial-auto-insurance-can-protect-against-lawsuits.jpg',
     primaryKeyword: 'commercial auto insurance nc',
     secondaryKeywords: [
       'fleet insurance nc',
@@ -139,7 +139,7 @@ export const autoPostTopics: AutoPostTopic[] = [
     title: 'Cyber Liability Insurance for NC Businesses: Why Small and Mid-Sized Firms Need It',
     slug: 'cyber-liability-insurance-nc-small-mid-sized-business',
     category: 'Cyber Liability',
-    featuredImage: '/images/insights/cyber-liability-insurance-vs-general-liability-insurance-whats-the-difference.png',
+    featuredImage: '/images/blog/cyber-liability-insurance-vs-general-liability-insurance-whats-the-difference.jpg',
     primaryKeyword: 'cyber liability insurance nc',
     secondaryKeywords: [
       'data breach insurance nc',
@@ -154,7 +154,7 @@ export const autoPostTopics: AutoPostTopic[] = [
     title: 'Vacant Property Insurance in NC: Why Your Homeowners Policy Won\'t Cut It',
     slug: 'vacant-property-insurance-nc-homeowners-policy-gap',
     category: 'Property',
-    featuredImage: '/images/insights/5-risks-of-leaving-your-property-vacant-without-insurance-coverage.png',
+    featuredImage: '/images/blog/5-risks-of-leaving-your-property-vacant-without-insurance-coverage.jpg',
     primaryKeyword: 'vacant home insurance nc',
     secondaryKeywords: [
       'unoccupied property insurance nc',
@@ -169,7 +169,7 @@ export const autoPostTopics: AutoPostTopic[] = [
     title: 'Landlord Insurance in NC: What Rental Property Owners Need to Know',
     slug: 'landlord-insurance-nc-rental-property-owners',
     category: 'Rental Dwelling',
-    featuredImage: '/images/insights/how-rental-dwelling-insurance-differs-from-homeowners-insurance.png',
+    featuredImage: '/images/blog/how-rental-dwelling-insurance-differs-from-homeowners-insurance.jpg',
     primaryKeyword: 'landlord insurance nc',
     secondaryKeywords: [
       'rental property insurance nc',
@@ -184,7 +184,7 @@ export const autoPostTopics: AutoPostTopic[] = [
     title: 'Boat Insurance for NC Waters: Coverage for Intracoastal, Pamlico, and Offshore',
     slug: 'boat-insurance-nc-intracoastal-pamlico-offshore',
     category: 'Boat Insurance',
-    featuredImage: '/images/insights/boat-insurance-for-new-boat-owners-what-you-need-to-know-before-hitting-the-water.png',
+    featuredImage: '/images/blog/boat-insurance-for-new-boat-owners-what-you-need-to-know-before-hitting-the-water.jpg',
     primaryKeyword: 'boat insurance wilmington nc',
     secondaryKeywords: [
       'boat insurance nc',
@@ -199,7 +199,7 @@ export const autoPostTopics: AutoPostTopic[] = [
     title: 'Equipment Breakdown Insurance for NC Businesses: Protecting Tools, Machinery, and Tech',
     slug: 'equipment-breakdown-insurance-nc-business-tools-machinery',
     category: 'Equipment',
-    featuredImage: '/images/insights/how-equipment-breakdown-coverage-can-save-your-business-money.png',
+    featuredImage: '/images/blog/how-equipment-breakdown-coverage-can-save-your-business-money.jpg',
     primaryKeyword: 'equipment insurance nc',
     secondaryKeywords: [
       'equipment breakdown insurance nc',
@@ -215,7 +215,7 @@ export const autoPostTopics: AutoPostTopic[] = [
     title: 'How Much Does Homeowners Insurance Cost in Eastern NC? 2026 Price Guide',
     slug: 'how-much-does-homeowners-insurance-cost-eastern-nc-2026',
     category: 'Homeowners Insurance',
-    featuredImage: '/images/insights/first-time-homebuyers-guide-to-homeowners-insurance.png',
+    featuredImage: '/images/blog/first-time-homebuyers-guide-to-homeowners-insurance.jpg',
     primaryKeyword: 'how much does homeowners insurance cost nc',
     secondaryKeywords: [
       'home insurance cost greenville nc',
@@ -230,7 +230,7 @@ export const autoPostTopics: AutoPostTopic[] = [
     title: 'How Much Does Flood Insurance Cost in North Carolina? NFIP vs. Private Flood Pricing',
     slug: 'how-much-does-flood-insurance-cost-north-carolina',
     category: 'Homeowners Insurance',
-    featuredImage: '/images/insights/first-time-homebuyers-guide-to-homeowners-insurance.png',
+    featuredImage: '/images/blog/first-time-homebuyers-guide-to-homeowners-insurance.jpg',
     primaryKeyword: 'how much is flood insurance in nc',
     secondaryKeywords: [
       'flood insurance cost nc',
@@ -245,7 +245,7 @@ export const autoPostTopics: AutoPostTopic[] = [
     title: 'Builders Risk Insurance Cost in NC: What Contractors Actually Pay (2026)',
     slug: 'builders-risk-insurance-cost-nc-what-contractors-pay-2026',
     category: 'Builders Risk',
-    featuredImage: '/images/insights/how-builders-risk-insurance-can-protect-your-construction-site-from-unexpected-risks.png',
+    featuredImage: '/images/blog/how-builders-risk-insurance-can-protect-your-construction-site-from-unexpected-risks.jpg',
     primaryKeyword: 'builders risk insurance cost',
     secondaryKeywords: [
       'builders risk insurance nc',
@@ -260,7 +260,7 @@ export const autoPostTopics: AutoPostTopic[] = [
     title: 'How Much Does Workers Compensation Cost in North Carolina? Industry Rates Explained',
     slug: 'how-much-does-workers-compensation-cost-north-carolina',
     category: 'Workers Compensation',
-    featuredImage: '/images/insights/how-workers-compensation-insurance-benefits-both-employers-and-employees.png',
+    featuredImage: '/images/blog/how-workers-compensation-insurance-benefits-both-employers-and-employees.jpg',
     primaryKeyword: 'workers comp cost nc',
     secondaryKeywords: [
       'nc workers compensation cost',
@@ -275,7 +275,7 @@ export const autoPostTopics: AutoPostTopic[] = [
     title: 'Short-Term Rental Insurance Cost: What Airbnb & VRBO Hosts Pay in Coastal NC',
     slug: 'short-term-rental-insurance-cost-airbnb-vrbo-coastal-nc',
     category: 'Short-Term Rental',
-    featuredImage: '/images/insights/homeowners-insurance-vs-short-term-rental-insurance-why-you-need-both.png',
+    featuredImage: '/images/blog/homeowners-insurance-vs-short-term-rental-insurance-why-you-need-both.jpg',
     primaryKeyword: 'short term rental insurance cost',
     secondaryKeywords: [
       'airbnb insurance cost nc',
@@ -290,7 +290,7 @@ export const autoPostTopics: AutoPostTopic[] = [
     title: 'How Much Does Business Insurance Cost in NC? 2026 Pricing by Industry',
     slug: 'how-much-does-business-insurance-cost-nc-2026',
     category: 'Business Insurance',
-    featuredImage: '/images/insights/what-types-of-businesses-benefit-most-from-business-owners-package-insurance.png',
+    featuredImage: '/images/blog/what-types-of-businesses-benefit-most-from-business-owners-package-insurance.jpg',
     primaryKeyword: 'business insurance cost nc',
     secondaryKeywords: [
       'how much does business insurance cost',

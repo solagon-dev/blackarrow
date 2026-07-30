@@ -4,6 +4,7 @@ import Image from 'next/image'
 import type { Metadata } from 'next'
 import { getAllPosts, getCategories } from '@/lib/db'
 import { estimateReadingTime } from '@/lib/reading-time'
+import { resolvePostImage } from '@/lib/post-image'
 import { InsightCard } from '@/components/insights/InsightCard'
 import InsightsFilter from '@/components/insights/InsightsFilter'
 import ScrollReveal from '@/components/ui/ScrollReveal'
@@ -80,7 +81,7 @@ export default async function InsightsPage() {
                       <div className="relative h-56 sm:h-72 lg:h-[26rem] bg-navy-900 overflow-hidden">
                         {featuredPost.featured_image ? (
                           <Image
-                            src={featuredPost.featured_image}
+                            src={resolvePostImage(featuredPost.featured_image)}
                             alt={featuredPost.title}
                             fill
                             sizes="(max-width: 1024px) 100vw, 50vw"
