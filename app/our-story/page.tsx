@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import GridFillers from '@/components/ui/GridFillers'
 import Image from 'next/image'
+import HeroScrim from '@/components/ui/HeroScrim'
 import type { Metadata } from 'next'
 import { teamMembers, offices } from '@/lib/team-data'
 import ScrollReveal from '@/components/ui/ScrollReveal'
@@ -34,10 +35,10 @@ export default function OurStoryPage() {
           priority
           className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-navy-950/80" />
+        <HeroScrim />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold tracking-[0.08em] text-navy-400 mb-4 sm:mb-5">About BlackArrow</p>
+            <p className="text-xs font-semibold tracking-[0.08em] text-white/70 mb-4 sm:mb-5">About BlackArrow</p>
             <h1 className="text-white mb-4 sm:mb-6">Our Story</h1>
             <p className="text-base sm:text-lg text-navy-300 leading-relaxed max-w-2xl">
               Two offices, one job: get Eastern North Carolina the right coverage from the right carrier, and be there when a claim comes.
@@ -72,7 +73,9 @@ export default function OurStoryPage() {
       </section>
 
       {/* Image + Stats */}
-      <section className="bg-white pb-16 sm:pb-24 lg:pb-36">
+      {/* Matches the bottom half of .section-padding — this was still on the
+          old lg:pb-36 scale after that class was tightened. */}
+      <section className="bg-white pb-14 sm:pb-20 md:pb-24 lg:pb-28">
         <div className="container-editorial">
           <ScrollReveal>
             <div className="relative overflow-hidden mb-8 sm:mb-12 h-48 sm:h-64 lg:h-80">
@@ -296,7 +299,7 @@ export default function OurStoryPage() {
               Let our team of experienced professionals help you find the right coverage for your needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/quote" className="btn-secondary px-8 py-4">Request a Quote</Link>
+              <Link href="/quote" className="btn-on-dark px-8 py-4">Request a Quote</Link>
               <Link href="/contact" className="btn-outline-white px-8 py-4">Speak with an Advisor</Link>
             </div>
           </ScrollReveal>

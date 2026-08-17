@@ -68,7 +68,7 @@ export default function Footer() {
               </p>
             </div>
             <div className="lg:col-span-5 flex flex-col sm:flex-row gap-3 sm:gap-4 lg:justify-end">
-              <Link href="/quote" className="btn-secondary whitespace-nowrap">
+              <Link href="/quote" className="btn-on-dark whitespace-nowrap">
                 Get a Quote
               </Link>
               <Link href="/contact" className="btn-outline-white whitespace-nowrap">
@@ -146,9 +146,12 @@ export default function Footer() {
           {/* Coverages */}
           <div className="col-span-2">
             <h3 className="text-xs font-semibold tracking-[0.08em] text-navy-400 mb-6">Coverages</h3>
-            <ul className="grid grid-cols-2 gap-x-6 gap-y-3">
+            {/* CSS columns, not a 2-col grid: in the grid, a label that wrapped
+                to two lines ("Dump & Straight Truck") stretched the whole row,
+                so the two columns developed uneven gaps down the list. */}
+            <ul className="columns-2 gap-x-6">
               {allInsurance.map(ins => (
-                <li key={ins.slug}>
+                <li key={ins.slug} className="mb-3 break-inside-avoid">
                   <Link href={`/insurance/${ins.slug}`} className="text-sm text-navy-400 hover:text-white transition-colors">
                     {ins.shortTitle}
                   </Link>
@@ -201,7 +204,10 @@ export default function Footer() {
                   {link.label}
                 </Link>
               ))}
-              <span className="text-xs sm:text-sm text-navy-600">
+              {/* navy-400, not navy-600: navy-600 on the navy-950 footer is
+                  2.6:1, well under AA — the same reason the copyright line
+                  above already uses navy-400. */}
+              <span className="text-xs sm:text-sm text-navy-400">
                 Website by{' '}
                 <a href="https://solagon.com" target="_blank" rel="noopener noreferrer" className="text-navy-400 hover:text-white transition-colors">
                   Solagon

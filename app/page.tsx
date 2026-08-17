@@ -24,14 +24,21 @@ export default async function Home() {
       {/* ============= HERO ============= */}
       <section className="relative bg-navy-950 overflow-hidden min-h-svh sm:min-h-[92vh] flex flex-col">
         <HeroBackground />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/60 to-navy-950/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/75 to-navy-950/40" />
+        {/* Second scrim across the top only. The hero photo rotates, and on the
+            bright interior shots the fixed header's white nav sat on a near-white
+            wall at roughly 1.5:1. This darkens the header band without touching
+            the middle of the image. */}
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-navy-950/70 to-transparent" />
 
         {/* Main hero content */}
         <div className="container-editorial relative z-10 mt-auto pb-0">
           {/* Mobile: single-column stacked layout / Desktop: 12-col grid */}
           <div className="flex flex-col gap-6 pb-10 sm:pb-12 lg:grid lg:grid-cols-12 lg:gap-16 lg:items-end lg:pb-20">
             <div className="lg:col-span-7">
-              <p className="text-xs font-semibold tracking-[0.08em] text-navy-400 mb-4 sm:mb-5 lg:hidden">Independent insurance brokerage</p>
+              {/* white/70, not navy-400: this eyebrow sits directly on the hero
+                  photograph, where navy-400 barely separated from the image. */}
+              <p className="text-xs font-semibold tracking-[0.08em] text-white/70 mb-4 sm:mb-5 lg:hidden">Independent insurance brokerage</p>
               <h1 className="text-white text-[1.75rem] sm:text-[2.75rem] md:text-[3.5rem] lg:text-[4.25rem] leading-[1.1] sm:leading-[1.05] font-display font-bold tracking-tight">
                 {/* Explicit space: JSX drops the newline adjacent to the <br>,
                     so with the break hidden below sm the words rendered as
@@ -42,7 +49,10 @@ export default async function Home() {
               </h1>
             </div>
             <div className="lg:col-span-5">
-              <p className="text-base sm:text-lg text-navy-300 leading-relaxed mb-6 sm:mb-8 max-w-md lg:max-w-none">
+              {/* white/85, not navy-300: this paragraph sits in the upper half
+                  of the hero where the scrim is thinnest, and the rotating
+                  photographs are often near-white behind it. */}
+              <p className="text-base sm:text-lg text-white/85 leading-relaxed mb-6 sm:mb-8 max-w-md lg:max-w-none">
                 An independent brokerage serving Eastern North Carolina. We compare coverage from 20+ carriers to find the right protection at the right price.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -98,7 +108,9 @@ export default async function Home() {
               <div className="grid sm:grid-cols-3 gap-6 sm:gap-8 pt-6 sm:pt-8 border-t border-gray-200">
                 {[
                   { title: 'Coverage that fits', desc: 'We build the policy around what you own and do — not a template with your name dropped in.' },
-                  { title: 'Shopped every renewal', desc: 'We run the same coverage past 20+ carriers, so you see who&rsquo;s actually competitive this year.' },
+                  // Curly apostrophe as a literal character: these strings are
+                  // JS, not JSX, so an HTML entity would render as raw text.
+                  { title: 'Shopped every renewal', desc: 'We run the same coverage past 20+ carriers, so you see who’s actually competitive this year.' },
                   { title: 'A person to call', desc: 'The same agent from the day you sign through the day you file a claim.' },
                 ].map((item) => (
                   <div key={item.title}>
@@ -137,7 +149,12 @@ export default async function Home() {
                 sizes="(max-width: 1024px) 100vw, 1100px"
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-navy-900/50 to-transparent" />
+              {/* Two scrims: a left-to-right wash for the desktop crop plus a
+                  bottom-up one, because on phones the caption sits over the
+                  bright middle of the photo where the horizontal gradient has
+                  already faded out. */}
+              <div className="absolute inset-0 bg-gradient-to-r from-navy-900/60 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-navy-950/75 to-transparent" />
               <div className="absolute bottom-8 left-8 sm:bottom-12 sm:left-12">
                 <p className="text-white text-xl sm:text-2xl font-display font-semibold max-w-md leading-snug">Protecting families across Eastern North Carolina</p>
               </div>
@@ -149,15 +166,15 @@ export default async function Home() {
           <div className="grid grid-cols-2 lg:grid-cols-5 gap-px bg-gray-200">
             {personalInsurance.map((ins, idx) => (
               <ScrollReveal key={ins.slug} delay={idx * 50}>
-                <Link href={`/insurance/${ins.slug}`} className="bg-white p-5 sm:p-8 group block h-full hover:bg-gray-50 transition-colors duration-200">
+                <Link href={`/insurance/${ins.slug}`} className="bg-white p-5 sm:p-8 group card-tile hover:bg-gray-50 transition-colors duration-200">
                   <div className="icon-box-navy mb-4 sm:mb-5">
                     {getIconByName(ins.icon)}
                   </div>
                   <h3 className="text-sm sm:text-base font-semibold text-navy-900 mb-2 group-hover:text-navy-700 transition-colors">
                     {ins.shortTitle}
                   </h3>
-                  <p className="text-xs sm:text-sm text-navy-600 leading-relaxed mb-4 sm:mb-5">{ins.tagline}</p>
-                  <span className="text-xs sm:text-sm font-medium text-navy-600 group-hover:text-navy-900 transition-colors">
+                  <p className="text-xs sm:text-sm text-navy-600 leading-relaxed">{ins.tagline}</p>
+                  <span className="card-tile-foot text-xs sm:text-sm font-medium text-navy-600 group-hover:text-navy-900 transition-colors">
                     Learn more →
                   </span>
                 </Link>
@@ -185,22 +202,23 @@ export default async function Home() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10">
             {propertyInsurance.map((ins, idx) => (
               <ScrollReveal key={ins.slug} delay={idx * 50}>
-                <Link href={`/insurance/${ins.slug}`} className="bg-navy-900 p-6 sm:p-8 hover:bg-navy-800 transition-colors duration-200 group block h-full">
+                <Link href={`/insurance/${ins.slug}`} className="bg-navy-900 p-6 sm:p-8 hover:bg-navy-800 transition-colors duration-200 group card-tile">
                   <div className="w-11 h-11 bg-white/[0.06] text-white flex items-center justify-center mb-4 sm:mb-5">
                     {getIconByName(ins.icon)}
                   </div>
                   <h3 className="text-base font-semibold text-white mb-2">{ins.shortTitle}</h3>
-                  <p className="text-sm text-navy-300 leading-relaxed mb-5 line-clamp-3">{ins.tagline}</p>
-                  <span className="text-sm font-medium text-navy-400 group-hover:text-white transition-colors">
+                  <p className="text-sm text-navy-300 leading-relaxed line-clamp-3">{ins.tagline}</p>
+                  <span className="card-tile-foot text-sm font-medium text-navy-400 group-hover:text-white transition-colors">
                     Learn more →
                   </span>
                 </Link>
               </ScrollReveal>
             ))}
-            {/* +1 for the "Request a property quote" card rendered after the map. */}
-            <GridFillers count={propertyInsurance.length + 1} cols={{ sm: 2, lg: 3 }} fill="bg-navy-900" />
+            {/* The CTA card comes before GridFillers so the short last row reads
+                [CTA][empty][empty]. Rendered after them it left two blank
+                bordered cells leading the eye to a stranded card in the corner. */}
             <ScrollReveal delay={250}>
-              <Link href="/quote" className="bg-white/[0.04] p-6 sm:p-8 hover:bg-white/[0.08] transition-colors duration-200 group block h-full flex flex-col items-start justify-center">
+              <Link href="/quote" className="bg-white/[0.04] p-6 sm:p-8 hover:bg-white/[0.08] transition-colors duration-200 group h-full flex flex-col items-start justify-center">
                 {/* navy-400, not navy-600: bg-white/[0.04] is 4% white over the
                     navy-900 section, so this card is dark despite the "bg-white"
                     in its class name. */}
@@ -210,6 +228,8 @@ export default async function Home() {
                 </span>
               </Link>
             </ScrollReveal>
+            {/* +1 for the "Request a property quote" card above. */}
+            <GridFillers count={propertyInsurance.length + 1} cols={{ sm: 2, lg: 3 }} fill="bg-navy-900" />
           </div>
         </div>
       </section>
@@ -277,12 +297,15 @@ export default async function Home() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-200">
             {locationPages.map((location, idx) => (
               <ScrollReveal key={location.slug} delay={idx * 50}>
-                <Link href={`/locations/${location.slug}`} className="bg-white p-6 sm:p-8 group block h-full hover:bg-gray-50 transition-colors duration-200">
+                <Link href={`/locations/${location.slug}`} className="bg-white p-6 sm:p-8 group card-tile hover:bg-gray-50 transition-colors duration-200">
                   <h3 className="text-base font-semibold text-navy-900 mb-2 group-hover:text-navy-700 transition-colors">
                     {location.city}, {location.stateAbbr}
                   </h3>
-                  <p className="text-sm text-navy-600 leading-relaxed mb-4 line-clamp-2">{location.heroDescription.slice(0, 120)}...</p>
-                  <span className="text-sm font-medium text-navy-600 group-hover:text-navy-900 transition-colors">
+                  {/* line-clamp alone. The old `slice(0, 120) + '...'` cut the
+                      sentence mid-word and then line-clamp cut it again, so the
+                      card ended in things like "served Whiteville and...". */}
+                  <p className="text-sm text-navy-600 leading-relaxed line-clamp-3">{location.heroDescription}</p>
+                  <span className="card-tile-foot text-sm font-medium text-navy-600 group-hover:text-navy-900 transition-colors">
                     Learn more →
                   </span>
                 </Link>

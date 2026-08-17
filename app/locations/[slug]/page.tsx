@@ -1,12 +1,27 @@
 import { notFound } from 'next/navigation'
 import GridFillers from '@/components/ui/GridFillers'
 import Link from 'next/link'
+import Image from 'next/image'
 import type { Metadata } from 'next'
 import { locationPages, getLocationBySlug } from '@/lib/location-data'
 import { personalInsurance, commercialInsurance, propertyInsurance, carriers } from '@/lib/insurance-data'
 import { getServiceLocationsByCity } from '@/lib/service-location-data'
 import { getIconByName } from '@/components/ui/Icons'
 import ScrollReveal from '@/components/ui/ScrollReveal'
+import HeroScrim from '@/components/ui/HeroScrim'
+
+/**
+ * Hero photograph per city. The two office cities get their own building; the
+ * service-area cities fall back to the coastal-home shot. Before this the
+ * template opened on a bare navy gradient with an empty right half.
+ */
+const locationHeroImages: Record<string, string> = {
+  'whiteville-nc': '/images/blackarrow-whiteville.jpg',
+  'greenville-nc': '/images/blackarrow_greenville.webp',
+  // Coastal city, coastal photo — the inland suburban fallback misrepresents it.
+  'wilmington-nc': '/images/stock/flood.jpg',
+}
+const DEFAULT_LOCATION_HERO = '/images/stock/homeowners.jpg'
 
 const featuredServices = [
   { slug: 'homeowners', label: 'Homeowners Insurance', icon: 'home' },
@@ -112,10 +127,19 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
       <LocationPageSchema page={page} />
       {/* ============= HERO ============= */}
       <section className="bg-navy-900 relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-28">
-        <div className="absolute inset-0 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800" />
+        <Image
+          src={locationHeroImages[page.slug] || DEFAULT_LOCATION_HERO}
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          priority
+          className="object-cover"
+        />
+        <HeroScrim />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold tracking-[0.08em] text-navy-400 mb-4 sm:mb-5">
+            <p className="text-xs font-semibold tracking-[0.08em] text-white/70 mb-4 sm:mb-5">
               {page.city}, {page.stateAbbr}
             </p>
             <h1 className="text-white mb-4 sm:mb-6">{page.heroHeading}</h1>
@@ -123,7 +147,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
               {page.heroDescription}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <Link href="/quote" className="btn-secondary">
+              <Link href="/quote" className="btn-on-dark">
                 Request a Quote
               </Link>
               <Link href="/contact" className="btn-outline-white">
@@ -395,7 +419,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
               Our licensed agents compare coverage from 20+ carriers to find the right policy for your home, vehicle, rental property, or business in {page.city}. No obligation, no pressure.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-              <Link href="/quote" className="btn-secondary px-8 py-4">
+              <Link href="/quote" className="btn-on-dark px-8 py-4">
                 Request a Quote
               </Link>
               <Link href="/contact" className="btn-outline-white px-8 py-4">

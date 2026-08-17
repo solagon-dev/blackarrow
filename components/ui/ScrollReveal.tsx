@@ -22,7 +22,11 @@ export default function ScrollReveal({ children, className = '', delay = 0 }: Sc
           observer.unobserve(el)
         }
       },
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      // threshold 0, not 0.1: a section taller than ~10x the viewport can never
+      // reach 10% visibility, so it would stay at opacity 0 forever. The
+      // negative bottom margin is what delays the reveal until the element is
+      // properly on screen.
+      { threshold: 0, rootMargin: '0px 0px -80px 0px' }
     )
 
     observer.observe(el)

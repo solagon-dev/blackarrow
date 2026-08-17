@@ -1,8 +1,10 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import GridFillers from '@/components/ui/GridFillers'
 import type { Metadata } from 'next'
 import { locationPages } from '@/lib/location-data'
 import ScrollReveal from '@/components/ui/ScrollReveal'
+import HeroScrim from '@/components/ui/HeroScrim'
 
 export const metadata: Metadata = {
   title: 'Insurance Agency Locations in North Carolina',
@@ -21,10 +23,22 @@ export default function LocationsPage() {
     <>
       {/* Hero */}
       <section className="bg-navy-900 relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-28">
-        <div className="absolute inset-0 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800" />
+        {/* Was a bare navy gradient with an empty right half. The Whiteville
+            office photo gives the locations index the same photographic hero the
+            rest of the site has. */}
+        <Image
+          src="/images/blackarrow-whiteville.jpg"
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          priority
+          className="object-cover"
+        />
+        <HeroScrim />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold tracking-[0.08em] text-navy-400 mb-4 sm:mb-5">
+            <p className="text-xs font-semibold tracking-[0.08em] text-white/70 mb-4 sm:mb-5">
               our locations
             </p>
             <h1 className="text-white mb-4 sm:mb-6">Insurance Services Across North Carolina</h1>
@@ -92,7 +106,7 @@ export default function LocationsPage() {
               No matter where you are in North Carolina, our licensed agents are ready to help you find the right coverage at a competitive rate.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-              <Link href="/quote" className="btn-secondary px-8 py-4">
+              <Link href="/quote" className="btn-on-dark px-8 py-4">
                 Request a Quote
               </Link>
               <Link href="/contact" className="btn-outline-white px-8 py-4">

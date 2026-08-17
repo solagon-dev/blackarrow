@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import GridFillers from '@/components/ui/GridFillers'
 import Image from 'next/image'
+import HeroScrim from '@/components/ui/HeroScrim'
 import type { Metadata } from 'next'
 import { getAllPosts, getCategories } from '@/lib/db'
 import { estimateReadingTime } from '@/lib/reading-time'
@@ -54,10 +55,10 @@ export default async function InsightsPage() {
           priority
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-navy-950/80" />
+        <HeroScrim />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold tracking-[0.08em] text-navy-400 mb-4 sm:mb-5">Knowledge center</p>
+            <p className="text-xs font-semibold tracking-[0.08em] text-white/70 mb-4 sm:mb-5">Knowledge center</p>
             <h1 className="text-white mb-4 sm:mb-6">Insights &amp; Resources</h1>
             <p className="text-base sm:text-lg text-navy-300 leading-relaxed max-w-2xl">
               Expert guidance on insurance coverage, risk management, and property protection — helping you make informed decisions about what matters most.
@@ -201,7 +202,7 @@ export default async function InsightsPage() {
                   Our team of licensed professionals is ready to help you find the right protection for your home, vehicle, business, or investment property.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link href="/quote" className="btn-secondary px-8 py-4">
+                  <Link href="/quote" className="btn-on-dark px-8 py-4">
                     Request a Quote
                   </Link>
                   <Link href="/contact" className="btn-outline-white px-8 py-4">

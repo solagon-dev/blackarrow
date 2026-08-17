@@ -258,6 +258,12 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <OrganizationSchema />
         <WebSiteSchema />
+        {/* Every ScrollReveal starts at opacity 0 and is un-hidden by an
+            IntersectionObserver. Without JS that leaves all but the hero blank,
+            so opt the whole mechanism out when scripting is unavailable. */}
+        <noscript>
+          <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
       </head>
       <body className="font-sans antialiased overflow-x-hidden">
         <a href="#main-content" className="skip-to-content">Skip to content</a>

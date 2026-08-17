@@ -8,6 +8,7 @@ import { serviceLocationPages } from '@/lib/service-location-data'
 import { getIconByName } from '@/components/ui/Icons'
 import { getPostsByCategory } from '@/lib/db'
 import ScrollReveal from '@/components/ui/ScrollReveal'
+import HeroScrim from '@/components/ui/HeroScrim'
 import { InsightCard } from '@/components/insights/InsightCard'
 
 export function generateStaticParams() {
@@ -122,16 +123,16 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
           priority
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-navy-950/80" />
+        <HeroScrim />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold tracking-[0.08em] text-navy-400 mb-4 sm:mb-5">
+            <p className="text-xs font-semibold tracking-[0.08em] text-white/70 mb-4 sm:mb-5">
                 {page.category === 'personal' ? 'Personal insurance' : page.category === 'commercial' ? 'Commercial insurance' : 'Property insurance'}
             </p>
             <h1 className="text-white mb-4 sm:mb-6">{page.title}</h1>
             <p className="text-base sm:text-lg text-navy-300 leading-relaxed mb-8 sm:mb-10 max-w-2xl">{page.description}</p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <Link href="/quote" className="btn-secondary">
+              <Link href="/quote" className="btn-on-dark">
                 Get a Quote
               </Link>
               <Link href="/contact" className="btn-outline-white">
@@ -182,8 +183,11 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
               {page.whoNeeds.map((item, idx) => (
                 <ScrollReveal key={idx} delay={idx * 60}>
                   <div className="bg-white p-6 flex gap-5">
-                    <div className="icon-box-navy w-10 h-10 flex-shrink-0">
-                      {getIconByName(page.icon, 'w-5 h-5')}
+                    {/* Numbered, not iconed. This used to render the page's own
+                        icon on every row, so all three entries carried the same
+                        glyph — three identical houses stacked down the column. */}
+                    <div className="icon-box-navy w-10 h-10 flex-shrink-0 text-sm font-semibold">
+                      {String(idx + 1).padStart(2, '0')}
                     </div>
                     <div>
                       <h3 className="font-semibold text-navy-900 mb-1">{item.title}</h3>
@@ -356,7 +360,7 @@ export default async function InsurancePage({ params }: { params: Promise<{ slug
               Our licensed agents will help you find the right {page.shortTitle.toLowerCase()} coverage at a competitive rate. No obligation, no hassle.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-              <Link href="/quote" className="btn-secondary px-8 py-4">
+              <Link href="/quote" className="btn-on-dark px-8 py-4">
                 Request a Quote
               </Link>
               <Link href="/contact" className="btn-outline-white px-8 py-4">

@@ -115,14 +115,31 @@ export default function Header() {
   // branch renders on the white header bar — navy-500 measures 4.28:1 there,
   // just under AA, which showed up on /legal and /admin where the header is
   // opaque from the top. navy-600 clears it at 6.08:1.
+  // white/85 rather than white/70 over the hero: the hero photographs rotate,
+  // and over the bright interior shots the old value left the nav barely
+  // separated from the image even with the header's own scrim behind it.
   const navTextClass = isTransparent
-    ? 'text-white/70 hover:text-white'
+    ? 'text-white/85 hover:text-white'
     : 'text-navy-600 hover:text-navy-900'
   const navTextActiveClass = isTransparent ? 'text-white' : 'text-navy-900'
   const phoneClass = isTransparent
-    ? 'text-white/70 hover:text-white'
+    ? 'text-white/85 hover:text-white'
     : 'text-navy-600 hover:text-navy-900'
   const menuIconClass = isTransparent ? 'text-white' : 'text-navy-900'
+
+  /**
+   * Current-section styling. Nothing in the header used to say where you were —
+   * `navTextActiveClass` only ever tracked "this dropdown is open". Coverage
+   * pages light up Insurance, the three policy forms light up Policy
+   * Management, and the rest match on their own path prefix.
+   */
+  const isCurrent = (href: string) => pathname === href || pathname.startsWith(`${href}/`)
+  const insuranceCurrent = pathname.startsWith('/insurance')
+  const policyCurrent = policyManagement.some(item => isCurrent(item.href))
+  const linkClass = (href: string) =>
+    `px-4 py-2 text-sm font-medium transition-colors duration-200 ${
+      isCurrent(href) ? navTextActiveClass : navTextClass
+    }`
 
   return (
     <header
@@ -130,7 +147,14 @@ export default function Header() {
         scrolled || mobileOpen
           ? 'bg-white border-b border-gray-200'
           : hasDarkHero
-            ? 'bg-transparent'
+            // Not `bg-transparent`: the header floats over photographic heroes
+            // whose top edge is often the brightest part of the image (a window,
+            // a white wall), and white nav links on it were close to unreadable.
+            // A short top-down scrim fixes every such page at once and stays
+            // invisible against the dark heroes.
+            // Kept light so it doesn't read as a band on the flat-navy heroes;
+            // the photographic heroes add their own top scrim on top of this.
+            ? 'bg-gradient-to-b from-black/25 to-transparent'
             : 'bg-white/90 backdrop-blur-sm'
       }`}
     >
@@ -166,7 +190,7 @@ export default function Header() {
                 aria-haspopup="true"
                 aria-controls="nav-insurance-menu"
                 onClick={() => { setInsuranceOpen(v => !v); setPolicyOpen(false) }}
-                className={`px-4 py-2 text-sm font-medium transition-colors duration-200 flex items-center gap-1.5 ${insuranceOpen ? navTextActiveClass : navTextClass}`}
+                className={`px-4 py-2 text-sm font-medium transition-colors duration-200 flex items-center gap-1.5 ${insuranceOpen || insuranceCurrent ? navTextActiveClass : navTextClass}`}
               >
                 Insurance
                 <svg aria-hidden="true" className={`w-3 h-3 transition-transform duration-200 ${insuranceOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -221,7 +245,7 @@ export default function Header() {
                 aria-haspopup="true"
                 aria-controls="nav-policy-menu"
                 onClick={() => { setPolicyOpen(v => !v); setInsuranceOpen(false) }}
-                className={`px-4 py-2 text-sm font-medium transition-colors duration-200 flex items-center gap-1.5 ${policyOpen ? navTextActiveClass : navTextClass}`}
+                className={`px-4 py-2 text-sm font-medium transition-colors duration-200 flex items-center gap-1.5 ${policyOpen || policyCurrent ? navTextActiveClass : navTextClass}`}
               >
                 Policy Management
                 <svg aria-hidden="true" className={`w-3 h-3 transition-transform duration-200 ${policyOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -250,9 +274,9 @@ export default function Header() {
               )}
             </div>
 
-            <Link href="/our-story" className={`px-4 py-2 text-sm font-medium transition-colors duration-200 ${navTextClass}`}>Company</Link>
-            <Link href="/insights" className={`px-4 py-2 text-sm font-medium transition-colors duration-200 ${navTextClass}`}>Insights</Link>
-            <Link href="/contact" className={`px-4 py-2 text-sm font-medium transition-colors duration-200 ${navTextClass}`}>Contact</Link>
+            <Link href="/our-story" className={linkClass('/our-story')}>Company</Link>
+            <Link href="/insights" className={linkClass('/insights')}>Insights</Link>
+            <Link href="/contact" className={linkClass('/contact')}>Contact</Link>
           </div>
 
           {/* Desktop CTA. The number was previously hidden below xl, so laptops

@@ -204,7 +204,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <h2 className="text-xl sm:text-2xl font-display font-bold text-white mb-4 sm:mb-5">Need {post.category || 'Insurance'} Coverage?</h2>
             <p className="text-navy-300 mb-6 sm:mb-8 leading-relaxed">Talk to a BlackArrow agent about your coverage options today.</p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-              <Link href="/quote" className="btn-secondary">Request a Quote</Link>
+              <Link href="/quote" className="btn-on-dark">Request a Quote</Link>
               <Link href="/contact" className="btn-outline-white">Speak with an Advisor</Link>
             </div>
           </div>

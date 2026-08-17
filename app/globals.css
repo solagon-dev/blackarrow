@@ -105,12 +105,15 @@
     @apply container-editorial;
   }
 
+  /* lg:py-28 rather than py-36: two stacked white sections put 288px of empty
+     page between the last card of one and the heading of the next, which read
+     as unfinished rather than airy. 224px still separates them clearly. */
   .section-padding {
-    @apply py-16 sm:py-24 md:py-28 lg:py-36;
+    @apply py-14 sm:py-20 md:py-24 lg:py-28;
   }
 
   .section-padding-sm {
-    @apply py-12 sm:py-16 md:py-20 lg:py-24;
+    @apply py-12 sm:py-16 md:py-18 lg:py-20;
   }
 
   /* ---- Editorial Dividers ---- */
@@ -166,10 +169,25 @@
            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-700 focus-visible:ring-offset-2;
   }
 
+  /* The primary action on a dark section. `.btn-secondary` used to fill this
+     role, but brand-500 on navy-900 is a low-contrast blue-grey that sits
+     *below* the white-outlined secondary next to it — the money button read as
+     disabled on 22 coverage pages, 26 city landing pages and the footer band.
+     Solid white matches what the homepage hero already does. */
+  .btn-on-dark {
+    @apply inline-flex items-center justify-center gap-2 text-center
+           px-7 py-3.5
+           bg-white text-navy-900 font-medium text-sm tracking-wide
+           hover:bg-gray-100
+           active:bg-gray-200
+           transition-colors duration-200
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900;
+  }
+
   .btn-outline-white {
     @apply inline-flex items-center justify-center gap-2 text-center
            px-7 py-3.5
-           border border-white/40 text-white font-medium text-sm tracking-wide
+           border border-white/60 text-white font-medium text-sm tracking-wide
            hover:bg-white hover:text-navy-900
            active:bg-gray-100
            transition-colors duration-200;
@@ -326,6 +344,19 @@
 
   .prose-premium a {
     @apply text-navy-900 underline underline-offset-4 decoration-navy-300 hover:decoration-navy-900 transition-colors;
+  }
+
+  /* ---- Card tiles ----
+     Card grids put a "Learn more →" after a tagline of unpredictable length, so
+     across a five-up row the links landed at four different heights. The tile
+     is a column and the footer takes the slack, which pins every link to the
+     same baseline. */
+  .card-tile {
+    @apply flex flex-col h-full;
+  }
+
+  .card-tile-foot {
+    @apply mt-auto pt-4;
   }
 
   /* ---- Scroll Reveal ---- */
