@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import GridFillers from '@/components/ui/GridFillers'
 import type { Metadata } from 'next'
 import { locationPages } from '@/lib/location-data'
 import ScrollReveal from '@/components/ui/ScrollReveal'
-import HeroScrim from '@/components/ui/HeroScrim'
+import EgHero from '@/components/ui/EgHero'
+import { locationHeroImages, DEFAULT_LOCATION_HERO } from '@/lib/location-images'
 
 export const metadata: Metadata = {
   title: 'Insurance Agency Locations in North Carolina',
@@ -20,95 +20,67 @@ export const metadata: Metadata = {
 
 export default function LocationsPage() {
   return (
-    <>
-      {/* Hero */}
-      <section className="bg-navy-900 relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-28">
-        {/* Was a bare navy gradient with an empty right half. The Whiteville
-            office photo gives the locations index the same photographic hero the
-            rest of the site has. */}
-        <Image
-          src="/images/blackarrow-whiteville.jpg"
-          alt=""
-          aria-hidden="true"
-          fill
-          sizes="100vw"
-          priority
-          className="object-cover"
-        />
-        <HeroScrim />
-        <div className="container-editorial relative">
-          <div className="max-w-3xl">
-            <h1 className="text-white mb-4 sm:mb-6">Insurance Services Across North Carolina</h1>
-            <p className="text-base sm:text-lg text-navy-300 leading-relaxed max-w-2xl">
-              BlackArrow Insurance serves homeowners, property investors, and businesses across Eastern North Carolina and the Triangle. As an independent brokerage, we compare coverage from 20+ carriers to find the right protection at the right price.
-            </p>
-          </div>
-        </div>
-      </section>
+    <div className="eg-field pt-18">
+      <EgHero
+        image="/images/blackarrow-whiteville.jpg"
+        title="Insurance services across North Carolina"
+        lede="We serve homeowners, property investors and businesses across Eastern North Carolina and the Triangle, comparing coverage from 20+ carriers."
+        actions={<Link href="/quote" className="eg-btn-primary">Request a quote &rarr;</Link>}
+      />
 
-      {/* Location Cards */}
-      <section className="section-padding bg-white">
-        <div className="container-editorial">
-          <ScrollReveal>
-            <div className="mb-10 sm:mb-16">
-              <h2>Find Insurance Services Near You</h2>
-            </div>
-          </ScrollReveal>
-          <div className="grid sm:grid-cols-2 gap-px bg-gray-200">
-            {locationPages.map((location, idx) => (
-              <ScrollReveal key={location.slug} delay={idx * 80}>
-                <Link
-                  href={`/locations/${location.slug}`}
-                  className="bg-white p-8 sm:p-10 group block h-full hover:bg-gray-50 transition-colors duration-200"
-                >
-                  <h3 className="text-xl sm:text-2xl font-display font-bold text-navy-900 mb-3 group-hover:text-navy-700 transition-colors">
-                    {location.city}
-                  </h3>
-                  <p className="text-sm text-navy-600 leading-relaxed mb-6 line-clamp-3">
-                    {location.heroDescription}
+      <section className="container-editorial mt-0.5">
+        <div className="eg-tile p-6 sm:p-10 lg:p-12">
+          <h2 className="eg-h2">Find insurance services near you</h2>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-0.5 mt-0.5">
+          {locationPages.map((location, idx) => (
+            <ScrollReveal key={location.slug} delay={idx * 60}>
+              <Link
+                href={`/locations/${location.slug}`}
+                className="eg-tile group flex flex-col h-full hover:bg-gray-50 transition-colors duration-200"
+              >
+                <div className="relative aspect-[16/9] overflow-hidden bg-navy-900">
+                  <Image
+                    src={locationHeroImages[location.slug] || DEFAULT_LOCATION_HERO}
+                    alt=""
+                    aria-hidden="true"
+                    fill
+                    sizes="(max-width: 760px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col p-6 sm:p-8">
+                  <h3 className="text-lg font-semibold text-navy-900 mb-2">{location.city}, {location.stateAbbr}</h3>
+                  <p className="text-sm text-navy-600 leading-relaxed line-clamp-3">{location.heroDescription}</p>
+                  {/* Surrounding towns as flat text rather than pills — a pill
+                      implies a filter you can press. */}
+                  <p className="text-sm text-navy-600 mt-4">
+                    Also serving {location.surroundingAreas.slice(0, 4).join(', ')}
+                    {location.surroundingAreas.length > 4 && ` and ${location.surroundingAreas.length - 4} more`}.
                   </p>
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {location.surroundingAreas.slice(0, 4).map(area => (
-                      <span key={area} className="text-xs text-navy-600 bg-gray-100 px-2.5 py-1">
-                        {area}
-                      </span>
-                    ))}
-                    {location.surroundingAreas.length > 4 && (
-                      <span className="text-xs text-navy-600 bg-gray-100 px-2.5 py-1">
-                        +{location.surroundingAreas.length - 4} more
-                      </span>
-                    )}
-                  </div>
-                  <span className="text-sm font-medium text-navy-600 group-hover:text-navy-900 transition-colors">
-                    View {location.city} services →
-                  </span>
-                </Link>
-              </ScrollReveal>
-            ))}
-            <GridFillers count={locationPages.length} cols={{ sm: 2 }} />
-          </div>
+                  <span className="eg-link mt-auto pt-5">View {location.city} services &rarr;</span>
+                </div>
+              </Link>
+            </ScrollReveal>
+          ))}
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="section-padding bg-navy-900 text-white">
-        <div className="container-editorial text-center">
-          <ScrollReveal>
-            <h2 className="text-white mb-4 sm:mb-6">Ready to Get Started?</h2>
-            <p className="text-base sm:text-lg text-navy-300 mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed">
-              No matter where you are in North Carolina, our licensed agents are ready to help you find the right coverage at a competitive rate.
+      <section className="container-editorial mt-0.5 pb-0.5">
+        <div className="grid lg:grid-cols-2 gap-0.5">
+          <div className="eg-tile eg-tile-dark flex flex-col justify-center p-6 sm:p-10 lg:p-12">
+            <h2 className="eg-h2">Wherever you are in North Carolina</h2>
+            <p className="eg-lede mt-4">
+              Our licensed agents work the whole state from two offices. Tell us what you need
+              covered and we&rsquo;ll come back with the market.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-              <Link href="/quote" className="btn-on-dark px-8 py-4">
-                Request a Quote
-              </Link>
-              <Link href="/contact" className="btn-outline-white px-8 py-4">
-                Speak with an Advisor
-              </Link>
-            </div>
-          </ScrollReveal>
+          </div>
+          <div className="eg-tile flex flex-col justify-center gap-0.5 p-6 sm:p-10 lg:p-12">
+            <Link href="/quote" className="eg-btn-primary">Request a quote &rarr;</Link>
+            <Link href="/contact" className="eg-btn-dark">Speak with an advisor</Link>
+          </div>
         </div>
       </section>
-    </>
+    </div>
   )
 }

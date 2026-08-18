@@ -31,15 +31,20 @@ const headerPhoneHref = `tel:${GREENVILLE_OFFICE.phone.replace(/\D/g, '')}`
 const LIGHT_HERO_PAGES = ['/admin', '/legal']
 
 /**
- * Pages ported to the Enterprise Grid system. There the header is a solid
- * white tile that participates in the grid — not a transparent bar floating
- * over a hero photograph — so it never runs the transparent branch, and the
- * current section is marked with a 2px signal rule rather than by weight.
+ * Templates still on the editorial system. Everything not listed here — and not
+ * a light-hero page — renders the Enterprise Grid header: a solid white tile
+ * that participates in the grid rather than a transparent bar floating over a
+ * hero photograph, with the current section marked by a 2px signal rule.
  *
- * Listed explicitly while the port is in progress; when every template has
- * moved this becomes the only behaviour and the transparent branch goes.
+ * Inverted deliberately. The 26 city landing pages live at top-level slugs with
+ * no shared prefix, so an allow-list would mean importing the whole
+ * service-location dataset into the client bundle just to answer a styling
+ * question. This list shrinks to nothing as the port finishes.
  */
-const GRID_SYSTEM_PAGES = ['/', '/insurance']
+const EDITORIAL_PAGES = [
+  '/insights', '/post', '/our-story', '/quote', '/contact',
+  '/file-a-claim', '/change-mortgagee', '/loan-number-change',
+]
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -54,9 +59,7 @@ export default function Header() {
 
   // Determine if current page has a dark hero
   const hasDarkHero = !LIGHT_HERO_PAGES.some(p => pathname.startsWith(p))
-  // Exact match for '/', prefix match for everything else, so /insurance covers
-  // the hub and all 22 coverage pages without listing each one.
-  const isGridSystem = GRID_SYSTEM_PAGES.some(p => p === '/' ? pathname === '/' : pathname.startsWith(p))
+  const isGridSystem = hasDarkHero && !EDITORIAL_PAGES.some(p => pathname.startsWith(p))
   const isTransparent = hasDarkHero && !isGridSystem && !scrolled && !mobileOpen
 
   useEffect(() => {

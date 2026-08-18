@@ -1,14 +1,12 @@
 import { notFound } from 'next/navigation'
-import GridFillers from '@/components/ui/GridFillers'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { serviceLocationPages, getServiceLocationBySlug } from '@/lib/service-location-data'
-import { getIconByName } from '@/components/ui/Icons'
 import Image from 'next/image'
 import { carriers, getInsuranceHeroImage } from '@/lib/insurance-data'
 import { locationPages } from '@/lib/location-data'
 import ScrollReveal from '@/components/ui/ScrollReveal'
-import HeroScrim from '@/components/ui/HeroScrim'
+import EgHero from '@/components/ui/EgHero'
 
 export function generateStaticParams() {
   return serviceLocationPages.map((page) => ({ slug: page.slug }))
@@ -111,274 +109,218 @@ function ServiceLocationSchema({ page }: { page: (typeof serviceLocationPages)[0
   )
 }
 
-const serviceIcons: Record<string, string> = {
-  homeowners: 'home',
-  auto: 'car',
-  'general-liability': 'shield',
-  'rental-dwelling': 'building',
-  'short-term-rental': 'key',
-  'commercial-auto': 'clipboard-check',
-  'builders-risk': 'hardhat',
-  'cyber-liability': 'lock',
-  'workers-compensation': 'users',
-  'business-owners-package': 'briefcase',
-  'dump-straight-truck': 'cube',
-  'commercial-property': 'building2',
-  equipment: 'wrench',
-  flood: 'shield',
-  renters: 'home',
-}
 
 export default async function ServiceLocationPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const page = getServiceLocationBySlug(slug)
   if (!page) notFound()
 
-  const icon = serviceIcons[page.insuranceSlug] || 'shield'
   const location = locationPages.find(l => l.slug === page.locationSlug)
 
   return (
-    <>
+    <div className="eg-field pt-18">
       <ServiceLocationSchema page={page} />
 
-      {/* ============= HERO ============= */}
-      <section className="bg-navy-900 relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-28">
-        {/* These 26 city pages are where local search lands, and they used to
-            open on a flat navy gradient with an empty right half. They reuse the
-            coverage photograph from the /insurance page they map to, under the
-            same left-weighted scrim the coverage heroes use. */}
-        <Image
-          src={getInsuranceHeroImage(page.insuranceSlug)}
-          alt=""
-          aria-hidden="true"
-          fill
-          sizes="100vw"
-          priority
-          className="object-cover"
-        />
-        <HeroScrim />
-        <div className="container-editorial relative">
-          <div className="max-w-3xl">
-            <h1 className="text-white mb-4 sm:mb-6">{page.heroHeading}</h1>
-            <p className="text-base sm:text-lg text-navy-300 leading-relaxed mb-8 sm:mb-10 max-w-2xl">
-              {page.heroDescription}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <Link href="/quote" className="btn-on-dark">
-                Get a {page.serviceType} Quote
-              </Link>
-              <Link href="/contact" className="btn-outline-white">
-                Speak with an Advisor
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <EgHero
+        image={getInsuranceHeroImage(page.insuranceSlug)}
+        breadcrumb={
+          <nav aria-label="Breadcrumb" className="mb-5">
+            <ol className="flex flex-wrap items-center gap-2 text-xs text-navy-600">
+              <li><Link href="/" className="hover:text-navy-900">Home</Link></li>
+              <li aria-hidden="true">/</li>
+              <li><Link href="/locations" className="hover:text-navy-900">Locations</Link></li>
+              <li aria-hidden="true">/</li>
+              <li aria-current="page" className="text-navy-900">{page.serviceType} in {page.city}</li>
+            </ol>
+          </nav>
+        }
+        title={page.heroHeading}
+        lede={page.heroDescription}
+        actions={
+          <>
+            <Link href="/quote" className="eg-btn-primary">Get a {page.serviceType.toLowerCase()} quote &rarr;</Link>
+            <Link href="/contact" className="eg-btn-dark">Speak with an advisor</Link>
+          </>
+        }
+      />
 
-      {/* ============= CONTENT SECTIONS ============= */}
+      {/* Narrative sections. Heading tile beside body tile — the alternating
+          white / grey backgrounds are unnecessary here, since the gutter is
+          already doing the separating. */}
       {page.sections.map((section, sIdx) => (
-        <section key={sIdx} className={`section-padding ${sIdx % 2 === 0 ? 'bg-white' : 'bg-gray-50 border-y border-gray-200'}`}>
-          <div className="container-editorial">
-            <div className="grid lg:grid-cols-12 gap-8 lg:gap-24 items-start">
-              <ScrollReveal className="lg:col-span-5">
-                <h2>{section.heading}</h2>
-              </ScrollReveal>
-              <ScrollReveal className="lg:col-span-7" delay={100}>
-                <div className="space-y-5 sm:space-y-6 text-navy-600 leading-relaxed text-base sm:text-lg">
-                  {section.content.map((paragraph, pIdx) => (
-                    <p key={pIdx}>{paragraph}</p>
-                  ))}
-                </div>
-                {sIdx === 0 && (
-                  <div className="mt-8">
-                    <Link href="/quote" className="link-arrow">Request a free quote</Link>
-                  </div>
-                )}
-              </ScrollReveal>
+        <section key={sIdx} className="container-editorial mt-0.5">
+          <div className="grid lg:grid-cols-2 gap-0.5">
+            <div className={`eg-tile flex flex-col justify-center p-6 sm:p-10 lg:p-12 ${sIdx % 2 === 1 ? 'lg:order-last' : ''}`}>
+              <h2 className="eg-h2">{section.heading}</h2>
+              {sIdx === 0 && (
+                <Link href="/quote" className="eg-btn-primary mt-7 self-start">Request a free quote &rarr;</Link>
+              )}
+            </div>
+            <div className="eg-tile p-6 sm:p-10 lg:p-12">
+              <div className="space-y-4 text-sm sm:text-base text-navy-600 leading-relaxed">
+                {section.content.map((paragraph, pIdx) => (
+                  <p key={pIdx}>{paragraph}</p>
+                ))}
+              </div>
             </div>
           </div>
         </section>
       ))}
 
-      {/* ============= COVERAGE OPTIONS ============= */}
-      <section className="section-padding bg-white">
-        <div className="container-editorial">
-          <ScrollReveal>
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-16">
-              <div>
-                <h2>{page.serviceType} Coverage in {page.city}</h2>
+      {/* Coverage options */}
+      <section className="container-editorial mt-0.5">
+        <div className="eg-tile flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 p-6 sm:p-10 lg:p-12">
+          <h2 className="eg-h2">What {page.serviceType.toLowerCase()} covers in {page.city}</h2>
+          <Link href={`/insurance/${page.insuranceSlug}`} className="eg-link flex-shrink-0">
+            Full coverage details &rarr;
+          </Link>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-0.5 mt-0.5">
+          {page.coverageItems.map((item, idx) => (
+            <ScrollReveal key={item.title} delay={idx * 50}>
+              <div className="eg-tile h-full p-5 sm:p-6">
+                <h3 className="text-base font-semibold text-navy-900 mb-2">{item.title}</h3>
+                <p className="text-sm text-navy-600 leading-relaxed">{item.description}</p>
               </div>
-              <Link href={`/insurance/${page.insuranceSlug}`} className="link-arrow flex-shrink-0">
-                Full coverage details
-              </Link>
-            </div>
-          </ScrollReveal>
-          <div className="grid sm:grid-cols-2 gap-px bg-gray-200">
-            {page.coverageItems.map((item, idx) => (
-              <ScrollReveal key={item.title} delay={idx * 60}>
-                <div className="bg-white p-6 sm:p-8 h-full">
-                  <div className="flex items-start gap-4">
-                    <div className="icon-box-navy w-10 h-10 flex-shrink-0">
-                      {getIconByName(icon, 'w-5 h-5')}
-                    </div>
-                    <div>
-                      <h3 className="text-base font-semibold text-navy-900 mb-2">{item.title}</h3>
-                      <p className="text-sm text-navy-600 leading-relaxed">{item.description}</p>
-                    </div>
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
-            <GridFillers count={page.coverageItems.length} cols={{ sm: 2 }} />
-          </div>
+            </ScrollReveal>
+          ))}
         </div>
       </section>
 
-      {/* ============= TIPS / GUIDANCE ============= */}
-      <section className="section-padding bg-gray-50 border-y border-gray-200">
-        <div className="container-editorial">
-          <ScrollReveal>
-            <div className="max-w-3xl mb-10 sm:mb-16">
-              <h2>{page.serviceType} Tips for {page.city} Residents</h2>
-            </div>
-          </ScrollReveal>
-          <div className="grid sm:grid-cols-3 gap-px bg-gray-200">
-            {page.tips.map((tip, idx) => (
-              <ScrollReveal key={tip.title} delay={idx * 80}>
-                <div className="bg-white p-6 sm:p-8 h-full">
-                  <span className="text-xs font-semibold text-navy-600 tracking-wide">
-                    {String(idx + 1).padStart(2, '0')}
-                  </span>
-                  <h3 className="text-base font-semibold text-navy-900 mt-3 mb-3">{tip.title}</h3>
-                  <p className="text-sm text-navy-600 leading-relaxed">{tip.description}</p>
-                </div>
-              </ScrollReveal>
-            ))}
-            <GridFillers count={page.tips.length} cols={{ sm: 3 }} />
-          </div>
+      {/* Tips — numbered, since these read as a sequence of things to do */}
+      <section className="container-editorial mt-0.5">
+        <div className="eg-tile eg-tile-dark p-6 sm:p-10 lg:p-12">
+          <h2 className="eg-h2 max-w-[28ch]">{page.serviceType} advice for {page.city} residents</h2>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-0.5 mt-0.5">
+          {page.tips.map((tip, idx) => (
+            <ScrollReveal key={tip.title} delay={idx * 50}>
+              <div className="eg-tile h-full p-5 sm:p-6">
+                <span className="block text-sm font-semibold text-signal mb-3 tabular-nums">
+                  {String(idx + 1).padStart(2, '0')}
+                </span>
+                <h3 className="text-base font-semibold text-navy-900 mb-2">{tip.title}</h3>
+                <p className="text-sm text-navy-600 leading-relaxed">{tip.description}</p>
+              </div>
+            </ScrollReveal>
+          ))}
         </div>
       </section>
 
-      {/* ============= FAQs ============= */}
+      {/* FAQs */}
       {page.faqItems.length > 0 && (
-        <section className="section-padding bg-white">
-          <div className="container-editorial">
-            <div className="max-w-3xl mx-auto">
-              <ScrollReveal className="text-center mb-16">
-                <h2>Frequently Asked Questions</h2>
-              </ScrollReveal>
-              <div className="divide-y divide-gray-200 border-t border-gray-200">
-                {page.faqItems.map((faq, idx) => (
-                  <ScrollReveal key={idx} delay={idx * 40}>
-                    <details className="group">
-                      <summary className="flex items-center justify-between cursor-pointer py-6 hover:text-navy-700 transition-colors list-none">
-                        <h3 className="text-base font-semibold text-navy-900 pr-8">{faq.question}</h3>
-                        <svg className="w-4 h-4 text-navy-600 group-open:rotate-45 transition-transform duration-200 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                        </svg>
-                      </summary>
-                      <div className="pb-6 text-navy-600 leading-relaxed max-w-2xl">
-                        {faq.answer}
-                      </div>
-                    </details>
-                  </ScrollReveal>
-                ))}
-              </div>
+        <section className="container-editorial mt-0.5">
+          <div className="eg-tile p-6 sm:p-10 lg:p-12">
+            <h2 className="eg-h2">{page.city} {page.serviceType.toLowerCase()} questions</h2>
+          </div>
+          <div className="eg-tile mt-0.5 px-6 sm:px-10 lg:px-12">
+            <div className="divide-y divide-gray-200">
+              {page.faqItems.map((faq, idx) => (
+                <details key={idx} className="group">
+                  <summary className="flex items-center justify-between gap-6 cursor-pointer py-5 list-none">
+                    <h3 className="text-base font-semibold text-navy-900">{faq.question}</h3>
+                    <svg className="w-4 h-4 text-signal group-open:rotate-45 transition-transform duration-200 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                    </svg>
+                  </summary>
+                  <div className="pb-6 text-sm text-navy-600 leading-relaxed max-w-[68ch]">{faq.answer}</div>
+                </details>
+              ))}
             </div>
           </div>
         </section>
       )}
 
-      {/* ============= RELATED COVERAGE ============= */}
-      <section className="section-padding-sm bg-white border-b border-gray-200">
-        <div className="container-editorial">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-200">
+      {/* Related coverage */}
+      {page.relatedServices.length > 0 && (
+        <section className="container-editorial mt-0.5">
+          <div className="eg-tile p-6 sm:p-10 lg:p-12">
+            <h2 className="eg-h2">Related coverage in {page.city}</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0.5 mt-0.5">
             {page.relatedServices.map((rs, idx) => (
-              <ScrollReveal key={rs.label} delay={idx * 60}>
+              <ScrollReveal key={rs.label} delay={idx * 50}>
                 <Link
                   href={rs.serviceLocationSlug ? `/${rs.serviceLocationSlug}` : `/insurance/${rs.insuranceSlug}`}
-                  className="bg-white p-6 sm:p-8 group block h-full hover:bg-gray-50 transition-colors duration-200"
+                  className="eg-tile group flex flex-col h-full hover:bg-gray-50 transition-colors duration-200"
                 >
-                  <div className="icon-box-navy w-10 h-10 mb-4">
-                    {getIconByName(serviceIcons[rs.insuranceSlug] || 'shield', 'w-5 h-5')}
+                  <div className="relative aspect-[16/10] overflow-hidden bg-navy-900">
+                    <Image
+                      src={getInsuranceHeroImage(rs.insuranceSlug)}
+                      alt=""
+                      aria-hidden="true"
+                      fill
+                      sizes="(max-width: 760px) 100vw, 25vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
                   </div>
-                  <h3 className="font-semibold text-navy-900 mb-1 group-hover:text-navy-700 transition-colors">{rs.label}</h3>
-                  <span className="text-sm font-medium text-navy-600 group-hover:text-navy-900 transition-colors">
-                    Learn more →
-                  </span>
+                  <div className="flex flex-1 flex-col p-5">
+                    <h3 className="text-base font-semibold text-navy-900 mb-2">{rs.label}</h3>
+                    <span className="eg-link mt-auto pt-4">Learn more &rarr;</span>
+                  </div>
                 </Link>
               </ScrollReveal>
             ))}
-            <GridFillers count={page.relatedServices.length} cols={{ sm: 2, lg: 4 }} />
+          </div>
+        </section>
+      )}
+
+      {/* Service area */}
+      <section className="container-editorial mt-0.5">
+        <div className="grid lg:grid-cols-2 gap-0.5">
+          <div className="eg-tile flex flex-col justify-center p-6 sm:p-10 lg:p-12">
+            <h2 className="eg-h2">Serving {page.city} and the surrounding area</h2>
+            <p className="eg-lede mt-4">
+              We write {page.serviceType.toLowerCase()} for homeowners, renters, property investors
+              and businesses across the region.
+            </p>
+            {location && (
+              <Link href={`/locations/${page.locationSlug}`} className="eg-link mt-6">
+                All insurance services in {page.city} &rarr;
+              </Link>
+            )}
+          </div>
+          <div className="eg-tile p-6 sm:p-10 lg:p-12">
+            <div className="flex flex-wrap gap-x-6 gap-y-2">
+              <span className="text-sm font-semibold text-navy-900">{page.city}</span>
+              {page.surroundingAreas.map(area => (
+                <span key={area} className="text-sm text-navy-600">{area}</span>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ============= SERVICE AREA ============= */}
-      <section className="section-padding bg-white">
-        <div className="container-editorial">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-24 items-start">
-            <ScrollReveal className="lg:col-span-5">
-              <h2>Serving {page.city} &amp; Surrounding Areas</h2>
-            </ScrollReveal>
-            <ScrollReveal className="lg:col-span-7" delay={100}>
-              <p className="text-navy-600 leading-relaxed text-base sm:text-lg mb-8">
-                BlackArrow Insurance provides {page.serviceType.toLowerCase()} coverage to clients in {page.city} and throughout the surrounding region. As an independent agency, we serve homeowners, renters, property investors, and businesses across a wide service area.
-              </p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-3 mb-10">
-                <p className="text-sm font-medium text-navy-900">{page.city}</p>
-                {page.surroundingAreas.map(area => (
-                  <p key={area} className="text-sm text-navy-600">{area}</p>
-                ))}
-              </div>
-              {location && (
-                <div className="pt-6 border-t border-gray-200">
-                  <Link
-                    href={`/locations/${page.locationSlug}`}
-                    className="link-arrow text-sm"
-                  >
-                    All insurance services in {page.city}
-                  </Link>
-                </div>
-              )}
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ============= CARRIERS ============= */}
-      <section className="py-12 bg-gray-50 border-y border-gray-200">
-        <div className="container-editorial">
-          <p className="text-center text-sm font-semibold text-navy-600 mb-6">
-            We compare {page.serviceType.toLowerCase()} rates from leading carriers
-          </p>
-          <div className="flex flex-wrap justify-center gap-x-8 gap-y-3">
+      {/* Carriers */}
+      <section className="container-editorial mt-0.5">
+        <div className="eg-tile p-6 sm:p-10 lg:p-12">
+          <h3 className="text-base font-semibold text-navy-900 mb-5">
+            We compare {page.serviceType.toLowerCase()} rates from
+          </h3>
+          <div className="flex flex-wrap gap-x-8 gap-y-3">
             {carriers.map(name => (
-              <span key={name} className="text-sm font-medium text-navy-600">{name}</span>
+              <span key={name} className="text-sm text-navy-600">{name}</span>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ============= CTA ============= */}
-      <section className="section-padding bg-navy-900 text-white">
-        <div className="container-editorial text-center">
-          <ScrollReveal>
-            <h2 className="text-white mb-4 sm:mb-6">Get Your {page.city} {page.serviceType} Quote</h2>
-            <p className="text-base sm:text-lg text-navy-300 mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed">
-              Our licensed agents compare {page.serviceType.toLowerCase()} from 20+ carriers to find the right policy for your needs in {page.city}. No obligation, no pressure.
+      {/* CTA */}
+      <section className="container-editorial mt-0.5 pb-0.5">
+        <div className="grid lg:grid-cols-2 gap-0.5">
+          <div className="eg-tile eg-tile-dark flex flex-col justify-center p-6 sm:p-10 lg:p-12">
+            <h2 className="eg-h2">Get your {page.city} {page.serviceType.toLowerCase()} quote</h2>
+            <p className="eg-lede mt-4">
+              We compare {page.serviceType.toLowerCase()} from 20+ carriers to find the right policy
+              for {page.city}. No obligation, no pressure.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-              <Link href="/quote" className="btn-on-dark px-8 py-4">
-                Request a Quote
-              </Link>
-              <Link href="/contact" className="btn-outline-white px-8 py-4">
-                Speak with an Advisor
-              </Link>
-            </div>
-          </ScrollReveal>
+          </div>
+          <div className="eg-tile flex flex-col justify-center gap-0.5 p-6 sm:p-10 lg:p-12">
+            <Link href="/quote" className="eg-btn-primary">Request a quote &rarr;</Link>
+            <Link href="/contact" className="eg-btn-dark">Speak with an advisor</Link>
+          </div>
         </div>
       </section>
-    </>
+    </div>
   )
 }
