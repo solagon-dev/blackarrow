@@ -1,16 +1,73 @@
 import Link from 'next/link'
-import GridFillers from '@/components/ui/GridFillers'
 import Image from 'next/image'
-import { personalInsurance, propertyInsurance } from '@/lib/insurance-data'
+import { personalInsurance, commercialInsurance, propertyInsurance, getInsuranceHeroImage } from '@/lib/insurance-data'
 import { locationPages } from '@/lib/location-data'
 import { getAllPosts } from '@/lib/db'
-import { getIconByName } from '@/components/ui/Icons'
 import { ensureAdminUser } from '@/lib/auth'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import CarrierLogoCarousel from '@/components/ui/CarrierLogoCarousel'
 import HeroBackground from '@/components/ui/HeroBackground'
-import CommercialCoverageSection from '@/components/home/CommercialCoverageSection'
-import { InsightCard } from '@/components/insights/InsightCard'
+import { resolvePostImage } from '@/lib/post-image'
+
+/**
+ * Homepage — Enterprise Grid.
+ *
+ * The system is documented in globals.css. The two structural moves that carry
+ * this page:
+ *
+ *  - `bg-field` + `gap-0.5` everywhere a group of tiles sits together. The 2px
+ *    of field showing through the gutters is what draws the grid; there are no
+ *    borders, radii or shadows anywhere on the page.
+ *  - Media is full-bleed inside its own tile and the words sit in the tile
+ *    beside it. The single exception is the hero, where a hard-edged tile is
+ *    pulled up over the video band — text over a faded photo would dissolve
+ *    exactly the structure this system is for.
+ *
+ * Every image here already existed in the repo: coverage photos come from
+ * getInsuranceHeroImage, city photos from the locations port, article images
+ * from the posts themselves.
+ */
+
+const policyActions = [
+  { title: 'Change Mortgagee', desc: 'Update your mortgagee after changing lenders or refinancing.', href: '/change-mortgagee' },
+  { title: 'Loan Number Change', desc: 'Update your loan number to keep your insurance records current.', href: '/loan-number-change' },
+  { title: 'File a Claim', desc: 'File an insurance claim directly with your carrier.', href: '/file-a-claim' },
+]
+
+/** Media tile: a photograph filling its cell edge to edge, nothing on top. */
+function MediaTile({ src, alt, className = '' }: { src: string; alt: string; className?: string }) {
+  return (
+    <div className={`relative overflow-hidden bg-navy-900 min-h-[240px] sm:min-h-[300px] ${className}`}>
+      <Image src={src} alt={alt} fill sizes="(max-width: 760px) 100vw, 50vw" className="object-cover" />
+    </div>
+  )
+}
+
+/** Coverage tile: locked 16:10 thumbnail, then text. Link foot pinned to the base. */
+function CoverageTile({ slug, title, tagline }: { slug: string; title: string; tagline: string }) {
+  // h-full matters: the grid item is the ScrollReveal wrapper, so without it the
+  // tile shrinks to its content and a two-line tagline drops the link below its
+  // neighbours' baseline.
+  return (
+    <Link href={`/insurance/${slug}`} className="eg-tile group flex flex-col h-full hover:bg-gray-50 transition-colors duration-200">
+      <div className="relative aspect-[16/10] overflow-hidden bg-navy-900">
+        <Image
+          src={getInsuranceHeroImage(slug)}
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="(max-width: 760px) 100vw, 33vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+        />
+      </div>
+      <div className="flex flex-1 flex-col p-5 sm:p-6">
+        <h3 className="text-base font-semibold text-navy-900 mb-2">{title}</h3>
+        <p className="text-sm text-navy-600 leading-relaxed">{tagline}</p>
+        <span className="eg-link mt-auto pt-5">Learn more &rarr;</span>
+      </div>
+    </Link>
+  )
+}
 
 export default async function Home() {
   await ensureAdminUser()
@@ -20,387 +77,222 @@ export default async function Home() {
   } catch {}
 
   return (
-    <>
+    /* pt-18 clears the fixed header, which on this page is an opaque tile
+       rather than a transparent bar over the hero. */
+    <div className="eg-field pt-18">
+
       {/* ============= HERO ============= */}
-      <section className="relative bg-navy-950 overflow-hidden min-h-svh sm:min-h-[92vh] flex flex-col">
-        <HeroBackground />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/75 to-navy-950/40" />
-        {/* Second scrim across the top only. The hero photo rotates, and on the
-            bright interior shots the fixed header's white nav sat on a near-white
-            wall at roughly 1.5:1. This darkens the header band without touching
-            the middle of the image. */}
-        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-navy-950/70 to-transparent" />
-
-        {/* Main hero content */}
-        <div className="container-editorial relative z-10 mt-auto pb-0">
-          {/* Mobile: single-column stacked layout / Desktop: 12-col grid */}
-          <div className="flex flex-col gap-6 pb-10 sm:pb-12 lg:grid lg:grid-cols-12 lg:gap-16 lg:items-end lg:pb-20">
-            <div className="lg:col-span-7">
-              {/* white/70, not navy-400: this eyebrow sits directly on the hero
-                  photograph, where navy-400 barely separated from the image. */}
-              <p className="text-xs font-semibold tracking-[0.08em] text-white/70 mb-4 sm:mb-5 lg:hidden">Independent insurance brokerage</p>
-              <h1 className="text-white text-[1.75rem] sm:text-[2.75rem] md:text-[3.5rem] lg:text-[4.25rem] leading-[1.1] sm:leading-[1.05] font-display font-bold tracking-tight">
-                {/* Explicit space: JSX drops the newline adjacent to the <br>,
-                    so with the break hidden below sm the words rendered as
-                    "Tomorrow,Today" on every phone. */}
-                Protecting Your Tomorrow,{' '}
-                <br className="hidden sm:block" />
-                Today
-              </h1>
-            </div>
-            <div className="lg:col-span-5">
-              {/* white/85, not navy-300: this paragraph sits in the upper half
-                  of the hero where the scrim is thinnest, and the rotating
-                  photographs are often near-white behind it. */}
-              <p className="text-base sm:text-lg text-white/85 leading-relaxed mb-6 sm:mb-8 max-w-md lg:max-w-none">
-                An independent brokerage serving Eastern North Carolina. We compare coverage from 20+ carriers to find the right protection at the right price.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <Link
-                  href="/quote"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-center text-navy-900 font-medium text-sm tracking-wide hover:bg-gray-100 active:bg-gray-200 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-navy-950"
-                >
-                  Request a Quote
-                </Link>
-                <Link href="/contact" className="btn-outline-white px-8 py-4">
-                  Speak with an Advisor
-                </Link>
-              </div>
-            </div>
-          </div>
+      <section>
+        <div className="relative h-[280px] sm:h-[360px] lg:h-[460px] overflow-hidden bg-navy-900">
+          <HeroBackground />
+          {/* A single scrim, flat rather than graduated: the text tile does the
+              legibility work, so this only has to keep the video from being
+              brighter than the page around it. */}
+          <div className="absolute inset-0 bg-navy-950/25" />
         </div>
 
-        {/* Stats bar — anchored to bottom */}
-        <div className="relative z-10 border-t border-white/[0.08] bg-navy-950/40 backdrop-blur-sm">
-          <div className="container-editorial py-5 sm:py-6 lg:py-7">
-            <div className="flex justify-between lg:grid lg:grid-cols-4 lg:gap-16">
-              {[
-                { value: '20+', label: 'Years' },
-                { value: '20+', label: 'Carriers' },
-                { value: '2', label: 'Offices' },
-                { value: '17+', label: 'Coverages' },
-              ].map((stat) => (
-                <div key={stat.label} className="text-center lg:text-left">
-                  <p className="text-xl sm:text-3xl lg:text-4xl font-display font-bold text-white">{stat.value}</p>
-                  <p className="text-[10px] sm:text-sm text-navy-400 tracking-wide mt-0.5">{stat.label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ============= CARRIER BAR ============= */}
-      <CarrierLogoCarousel />
-
-      {/* ============= EDITORIAL INTRO ============= */}
-      <section className="section-padding bg-white">
-        <div className="container-editorial">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-20">
-            <ScrollReveal className="lg:col-span-5">
-              <p className="section-label">Our approach</p>
-              <h2>Independent Advice.<br />Better Outcomes.</h2>
-            </ScrollReveal>
-            <ScrollReveal className="lg:col-span-7" delay={100}>
-              <p className="text-base sm:text-lg text-navy-600 leading-relaxed mb-8 max-w-2xl">
-                Because we don&rsquo;t work for any one insurance company, we work for you. We look at what you actually need to protect, then bring you options from the carriers that fit — instead of the one policy a captive agent happens to sell.
-              </p>
-              <div className="grid sm:grid-cols-3 gap-6 sm:gap-8 pt-6 sm:pt-8 border-t border-gray-200">
-                {[
-                  { title: 'Coverage that fits', desc: 'We build the policy around what you own and do — not a template with your name dropped in.' },
-                  // Curly apostrophe as a literal character: these strings are
-                  // JS, not JSX, so an HTML entity would render as raw text.
-                  { title: 'Shopped every renewal', desc: 'We run the same coverage past 20+ carriers, so you see who’s actually competitive this year.' },
-                  { title: 'A person to call', desc: 'The same agent from the day you sign through the day you file a claim.' },
-                ].map((item) => (
-                  <div key={item.title}>
-                    <h3 className="text-base font-semibold text-navy-900 mb-2">{item.title}</h3>
-                    <p className="text-sm text-navy-600 leading-relaxed">{item.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      <div className="rule" />
-
-      {/* ============= PERSONAL INSURANCE ============= */}
-      <section className="section-padding bg-white" id="insurance">
-        <div className="container-editorial">
-          <ScrollReveal>
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-16">
-              <div>
-                <p className="section-label">Personal insurance</p>
-                <h2>Protection for Individuals &amp; Families</h2>
-              </div>
-              <Link href="/quote" className="link-arrow flex-shrink-0">
-                All coverages
-              </Link>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal>
-            <div className="relative overflow-hidden mb-10 sm:mb-16 h-48 sm:h-72 lg:h-96">
-              <Image
-                src="/images/AdobeStock_300395016.jpeg"
-                alt="North Carolina family protected by BlackArrow Insurance home and auto coverage"
-                fill
-                sizes="(max-width: 1024px) 100vw, 1100px"
-                className="object-cover"
-              />
-              {/* Two scrims: a left-to-right wash for the desktop crop plus a
-                  bottom-up one, because on phones the caption sits over the
-                  bright middle of the photo where the horizontal gradient has
-                  already faded out. */}
-              <div className="absolute inset-0 bg-gradient-to-r from-navy-900/60 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-navy-950/75 to-transparent" />
-              <div className="absolute bottom-8 left-8 sm:bottom-12 sm:left-12">
-                <p className="text-white text-xl sm:text-2xl font-display font-semibold max-w-md leading-snug">Protecting families across Eastern North Carolina</p>
-              </div>
-            </div>
-          </ScrollReveal>
-          {/* 5 columns at lg so all five personal coverages sit on one row
-              (a 4-col grid left a single card orphaned on a second row). Below
-              lg it stays 2-up; GridFillers squares off that short mobile row. */}
-          <div className="grid grid-cols-2 lg:grid-cols-5 gap-px bg-gray-200">
-            {personalInsurance.map((ins, idx) => (
-              <ScrollReveal key={ins.slug} delay={idx * 50}>
-                <Link href={`/insurance/${ins.slug}`} className="bg-white p-5 sm:p-8 group card-tile hover:bg-gray-50 transition-colors duration-200">
-                  <div className="icon-box-navy mb-4 sm:mb-5">
-                    {getIconByName(ins.icon)}
-                  </div>
-                  <h3 className="text-sm sm:text-base font-semibold text-navy-900 mb-2 group-hover:text-navy-700 transition-colors">
-                    {ins.shortTitle}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-navy-600 leading-relaxed">{ins.tagline}</p>
-                  <span className="card-tile-foot text-xs sm:text-sm font-medium text-navy-600 group-hover:text-navy-900 transition-colors">
-                    Learn more →
-                  </span>
-                </Link>
-              </ScrollReveal>
-            ))}
-            <GridFillers count={personalInsurance.length} cols={{ base: 2, lg: 5 }} />
-          </div>
-        </div>
-      </section>
-
-      {/* ============= COMMERCIAL INSURANCE ============= */}
-      {/* Client component: hovering a coverage swaps the section image. */}
-      <CommercialCoverageSection />
-
-      {/* ============= PROPERTY INSURANCE ============= */}
-      <section className="section-padding bg-navy-900 text-white">
-        <div className="container-editorial">
-          <ScrollReveal className="max-w-2xl mb-16">
-            <p className="text-xs font-semibold tracking-[0.08em] text-navy-400 mb-4">Property insurance</p>
-            <h2 className="text-white mb-6">Specialized Property Coverage</h2>
-            <p className="text-lg text-navy-300 leading-relaxed">
-              From rental units to vacant properties and construction projects — we provide coverage for every stage of property ownership.
+        <div className="container-editorial relative z-10 -mt-14 sm:-mt-20 lg:-mt-24">
+          <div className="eg-tile max-w-[42rem] p-6 sm:p-9 lg:p-11">
+            <p className="eg-eyebrow mb-4">Independent brokerage &middot; Greenville &amp; Whiteville</p>
+            <h1 className="eg-h1">
+              Protecting Your Tomorrow, <span className="font-semibold">Today</span>
+            </h1>
+            <p className="eg-lede mt-4 max-w-[46ch]">
+              An independent brokerage serving Eastern North Carolina. We compare coverage from 20+ carriers to find the right protection at the right price.
             </p>
-          </ScrollReveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10">
-            {propertyInsurance.map((ins, idx) => (
-              <ScrollReveal key={ins.slug} delay={idx * 50}>
-                <Link href={`/insurance/${ins.slug}`} className="bg-navy-900 p-6 sm:p-8 hover:bg-navy-800 transition-colors duration-200 group card-tile">
-                  <div className="w-11 h-11 bg-white/[0.06] text-white flex items-center justify-center mb-4 sm:mb-5">
-                    {getIconByName(ins.icon)}
-                  </div>
-                  <h3 className="text-base font-semibold text-white mb-2">{ins.shortTitle}</h3>
-                  <p className="text-sm text-navy-300 leading-relaxed line-clamp-3">{ins.tagline}</p>
-                  <span className="card-tile-foot text-sm font-medium text-navy-400 group-hover:text-white transition-colors">
-                    Learn more →
-                  </span>
-                </Link>
-              </ScrollReveal>
-            ))}
-            {/* The CTA card comes before GridFillers so the short last row reads
-                [CTA][empty][empty]. Rendered after them it left two blank
-                bordered cells leading the eye to a stranded card in the corner. */}
-            <ScrollReveal delay={250}>
-              <Link href="/quote" className="bg-white/[0.04] p-6 sm:p-8 hover:bg-white/[0.08] transition-colors duration-200 group h-full flex flex-col items-start justify-center">
-                {/* navy-400, not navy-600: bg-white/[0.04] is 4% white over the
-                    navy-900 section, so this card is dark despite the "bg-white"
-                    in its class name. */}
-                <p className="text-sm text-navy-400 mb-3">Not sure what you need?</p>
-                <span className="text-base font-semibold text-white group-hover:text-navy-200 transition-colors">
-                  Request a property quote →
-                </span>
-              </Link>
-            </ScrollReveal>
-            {/* +1 for the "Request a property quote" card above. */}
-            <GridFillers count={propertyInsurance.length + 1} cols={{ sm: 2, lg: 3 }} fill="bg-navy-900" />
-          </div>
-        </div>
-      </section>
-
-      {/* ============= ABOUT PREVIEW ============= */}
-      <section className="section-padding bg-white">
-        <div className="container-editorial">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-            <ScrollReveal className="lg:col-span-5">
-              <p className="section-label">About BlackArrow</p>
-              <h2 className="mb-6">An Established Independent Agency</h2>
-              <p className="text-lg text-navy-600 leading-relaxed mb-6">
-                BlackArrow Insurance has served the Eastern North Carolina community since 2002. As a locally-owned independent agency, we provide the kind of attentive, consultative service that larger firms cannot.
-              </p>
-              <p className="text-navy-600 leading-relaxed mb-10">
-                Our team of licensed professionals takes the time to understand your situation and build coverage strategies that evolve with your needs.
-              </p>
-              <div className="flex gap-6">
-                <Link href="/our-story" className="link-arrow">Our Story</Link>
-                <Link href="/contact" className="link-arrow">Contact Us</Link>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal className="lg:col-span-7" delay={100}>
-              <div className="relative overflow-hidden h-56 sm:h-80 lg:h-[28rem]">
-                <Image
-                  src="/images/blackarrow-whiteville.jpg"
-                  alt="BlackArrow Insurance Whiteville, NC office at 301 Liberty Street"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 750px"
-                  className="object-cover"
-                />
-              </div>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-gray-200">
-                {[
-                  { value: '2002', label: 'Founded' },
-                  { value: '20+', label: 'Partners' },
-                  { value: '2', label: 'Offices' },
-                  { value: '9', label: 'Team' },
-                ].map((item) => (
-                  <div key={item.label}>
-                    <p className="text-xl sm:text-2xl lg:text-3xl font-display font-bold text-navy-900">{item.value}</p>
-                    <p className="text-xs text-navy-600 mt-1 tracking-wide">{item.label}</p>
-                  </div>
-                ))}
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ============= SERVICE AREAS ============= */}
-      <section className="section-padding-sm bg-gray-50 border-y border-gray-200">
-        <div className="container-editorial">
-          <ScrollReveal>
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-12">
-              <div>
-                <p className="section-label">Service areas</p>
-                <h2 className="text-2xl sm:text-3xl">Serving Communities Across North Carolina</h2>
-              </div>
-              <Link href="/locations" className="link-arrow flex-shrink-0">
-                All locations
-              </Link>
+            <div className="flex flex-col sm:flex-row gap-0.5 mt-7">
+              <Link href="/quote" className="eg-btn-primary">Request a Quote &rarr;</Link>
+              <Link href="/contact" className="eg-btn-dark">Speak with an Advisor</Link>
             </div>
-          </ScrollReveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-200">
-            {locationPages.map((location, idx) => (
-              <ScrollReveal key={location.slug} delay={idx * 50}>
-                <Link href={`/locations/${location.slug}`} className="bg-white p-6 sm:p-8 group card-tile hover:bg-gray-50 transition-colors duration-200">
-                  <h3 className="text-base font-semibold text-navy-900 mb-2 group-hover:text-navy-700 transition-colors">
+          </div>
+        </div>
+      </section>
+
+      {/* ============= STATS ============= */}
+      <div className="container-editorial mt-0.5">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-0.5">
+          {[
+            { value: '20+', label: 'Years' },
+            { value: '20+', label: 'Carriers' },
+            { value: '2', label: 'Offices' },
+            { value: '17+', label: 'Coverages' },
+          ].map((stat) => (
+            <div key={stat.label} className="eg-stat">
+              <b>{stat.value}</b>
+              <span>{stat.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ============= CARRIERS ============= */}
+      <div className="mt-0.5">
+        <CarrierLogoCarousel />
+      </div>
+
+      {/* ============= PERSONAL ============= */}
+      <section className="container-editorial mt-0.5">
+        <ScrollReveal>
+          <div className="grid lg:grid-cols-2 gap-0.5">
+            <MediaTile
+              src="/images/AdobeStock_300395016.jpeg"
+              alt="A North Carolina family at home, protected by BlackArrow home and auto coverage"
+            />
+            <div className="eg-tile flex flex-col justify-center p-6 sm:p-10 lg:p-12">
+              <p className="eg-eyebrow mb-4">Personal insurance</p>
+              <h2 className="eg-h2">Coverage that fits what you actually own</h2>
+              <p className="eg-lede mt-4">
+                We build the policy around your house, your cars and your risk &mdash; not a template with your name dropped in. In Eastern NC, how a policy handles wind and water is where the real differences show up.
+              </p>
+              <Link href="/quote" className="eg-link mt-6">All personal coverage &rarr;</Link>
+            </div>
+          </div>
+        </ScrollReveal>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0.5 mt-0.5">
+          {personalInsurance.map((ins, idx) => (
+            <ScrollReveal key={ins.slug} delay={idx * 50}>
+              <CoverageTile slug={ins.slug} title={ins.shortTitle} tagline={ins.tagline} />
+            </ScrollReveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ============= COMMERCIAL ============= */}
+      <section className="container-editorial mt-0.5">
+        <ScrollReveal>
+          <div className="grid lg:grid-cols-2 gap-0.5">
+            <div className="eg-tile eg-tile-dark flex flex-col justify-center p-6 sm:p-10 lg:p-12 lg:order-first">
+              <p className="eg-eyebrow mb-4">Commercial insurance</p>
+              <h2 className="eg-h2">Built for fleets, crews and job sites</h2>
+              <p className="eg-lede mt-4">
+                Dump trucks, contractors&rsquo; liability, workers&rsquo; comp audits. Once a vehicle is working for the business, a personal auto policy won&rsquo;t answer a claim.
+              </p>
+              <Link href="/quote" className="eg-link mt-6">Request a business quote &rarr;</Link>
+            </div>
+            <MediaTile
+              src="/images/AdobeStock_415962919.jpeg"
+              alt="North Carolina small business owners reviewing their commercial insurance"
+            />
+          </div>
+        </ScrollReveal>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0.5 mt-0.5">
+          {commercialInsurance.slice(0, 6).map((ins, idx) => (
+            <ScrollReveal key={ins.slug} delay={idx * 50}>
+              <CoverageTile slug={ins.slug} title={ins.shortTitle} tagline={ins.tagline} />
+            </ScrollReveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ============= PROPERTY ============= */}
+      <section className="container-editorial mt-0.5">
+        <ScrollReveal>
+          <div className="eg-tile eg-tile-dark p-6 sm:p-10 lg:p-12">
+            <p className="eg-eyebrow mb-4">Property insurance</p>
+            <h2 className="eg-h2 max-w-[24ch]">From rental units to vacant buildings and construction sites</h2>
+          </div>
+        </ScrollReveal>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0.5 mt-0.5">
+          {propertyInsurance.map((ins, idx) => (
+            <ScrollReveal key={ins.slug} delay={idx * 50}>
+              <CoverageTile slug={ins.slug} title={ins.shortTitle} tagline={ins.tagline} />
+            </ScrollReveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ============= LOCATIONS ============= */}
+      <section className="container-editorial mt-0.5">
+        <ScrollReveal>
+          <div className="eg-tile p-6 sm:p-10 lg:p-12">
+            <p className="eg-eyebrow mb-4">Service areas</p>
+            <h2 className="eg-h2">Serving communities across North Carolina</h2>
+          </div>
+        </ScrollReveal>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0.5 mt-0.5">
+          {locationPages.map((location, idx) => (
+            <ScrollReveal key={location.slug} delay={idx * 50}>
+              <Link href={`/locations/${location.slug}`} className="eg-tile group flex flex-col h-full hover:bg-gray-50 transition-colors duration-200">
+                <div className="flex flex-1 flex-col p-5 sm:p-6">
+                  <h3 className="text-base font-semibold text-navy-900 mb-2">
                     {location.city}, {location.stateAbbr}
                   </h3>
-                  {/* line-clamp alone. The old `slice(0, 120) + '...'` cut the
-                      sentence mid-word and then line-clamp cut it again, so the
-                      card ended in things like "served Whiteville and...". */}
                   <p className="text-sm text-navy-600 leading-relaxed line-clamp-3">{location.heroDescription}</p>
-                  <span className="card-tile-foot text-sm font-medium text-navy-600 group-hover:text-navy-900 transition-colors">
-                    Learn more →
-                  </span>
-                </Link>
-              </ScrollReveal>
-            ))}
-            <GridFillers count={locationPages.length} cols={{ sm: 2, lg: 4 }} />
-          </div>
+                  <span className="eg-link mt-auto pt-5">Learn more &rarr;</span>
+                </div>
+              </Link>
+            </ScrollReveal>
+          ))}
         </div>
       </section>
 
-      <div className="rule" />
-
       {/* ============= POLICY MANAGEMENT ============= */}
-      <section className="section-padding-sm bg-white">
-        <div className="container-editorial">
-          <ScrollReveal>
-            <div className="mb-8 sm:mb-12">
-              <p className="section-label">Policy management</p>
-              <h2 className="text-2xl sm:text-3xl">Manage Your Policy</h2>
-            </div>
-          </ScrollReveal>
-          <div className="grid sm:grid-cols-3 gap-px bg-gray-200">
-            {[
-              {
-                title: 'Change Mortgagee',
-                desc: 'Update your mortgagee information after changing lenders or refinancing.',
-                href: '/change-mortgagee',
-                iconPath: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4',
-              },
-              {
-                title: 'Loan Number Change',
-                desc: 'Update your loan number to keep your insurance records current.',
-                href: '/loan-number-change',
-                iconPath: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
-              },
-              {
-                title: 'File a Claim',
-                desc: 'File an insurance claim directly with your carrier.',
-                href: '/file-a-claim',
-                iconPath: 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z',
-              },
-            ].map((item, idx) => (
-              <ScrollReveal key={item.href} delay={idx * 50}>
-                <Link href={item.href} className="bg-white p-6 sm:p-8 group block h-full hover:bg-gray-50 transition-colors duration-200">
-                  <div className="icon-box-navy mb-4 sm:mb-5">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={item.iconPath} />
-                    </svg>
-                  </div>
-                  <h3 className="text-base font-semibold text-navy-900 mb-2 group-hover:text-navy-700 transition-colors">{item.title}</h3>
-                  <p className="text-sm text-navy-600 leading-relaxed">{item.desc}</p>
-                </Link>
-              </ScrollReveal>
-            ))}
+      <section className="container-editorial mt-0.5">
+        <ScrollReveal>
+          <div className="eg-tile p-6 sm:p-10 lg:p-12">
+            <p className="eg-eyebrow mb-4">Policy management</p>
+            <h2 className="eg-h2">Manage an existing policy</h2>
           </div>
+        </ScrollReveal>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-0.5 mt-0.5">
+          {policyActions.map((item, idx) => (
+            <ScrollReveal key={item.href} delay={idx * 50}>
+              <Link href={item.href} className="eg-tile group flex flex-col h-full hover:bg-gray-50 transition-colors duration-200 p-5 sm:p-6">
+                <h3 className="text-base font-semibold text-navy-900 mb-2">{item.title}</h3>
+                <p className="text-sm text-navy-600 leading-relaxed">{item.desc}</p>
+                <span className="eg-link mt-auto pt-5">Continue &rarr;</span>
+              </Link>
+            </ScrollReveal>
+          ))}
         </div>
       </section>
 
       {/* ============= INSIGHTS ============= */}
       {recentPosts.length > 0 && (
-        <>
-          <div className="rule" />
-          <section className="section-padding bg-white">
-            <div className="container-editorial">
-              <ScrollReveal>
-                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-16">
-                  <div>
-                    <p className="section-label">Insights</p>
-                    <h2>Recent Articles</h2>
-                  </div>
-                  <Link href="/insights" className="link-arrow flex-shrink-0">
-                    View all
-                  </Link>
-                </div>
-              </ScrollReveal>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200">
-                {recentPosts.map((post, idx) => (
-                  <ScrollReveal key={post.slug} delay={idx * 50}>
-                    <InsightCard
-                      slug={post.slug}
-                      title={post.title}
-                      excerpt={post.excerpt}
-                      category={post.category}
-                      featuredImage={post.featured_image}
-                      publishedAt={post.published_at}
-                    />
-                  </ScrollReveal>
-                ))}
-                <GridFillers count={recentPosts.length} cols={{ sm: 2, lg: 3 }} />
+        <section className="container-editorial mt-0.5 pb-0.5">
+          <ScrollReveal>
+            <div className="eg-tile flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 p-6 sm:p-10 lg:p-12">
+              <div>
+                <p className="eg-eyebrow mb-4">Insights</p>
+                <h2 className="eg-h2">Recent articles</h2>
               </div>
+              <Link href="/insights" className="eg-link flex-shrink-0">View all &rarr;</Link>
             </div>
-          </section>
-        </>
+          </ScrollReveal>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0.5 mt-0.5">
+            {recentPosts.map((post, idx) => {
+              const img = resolvePostImage(post.featured_image)
+              return (
+                <ScrollReveal key={post.slug} delay={idx * 50}>
+                  <Link href={`/post/${post.slug}`} className="eg-tile group flex flex-col h-full hover:bg-gray-50 transition-colors duration-200">
+                    <div className="relative aspect-[16/10] overflow-hidden bg-navy-900">
+                      {img && (
+                        <Image
+                          src={img}
+                          alt=""
+                          aria-hidden="true"
+                          fill
+                          sizes="(max-width: 760px) 100vw, 33vw"
+                          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                        />
+                      )}
+                    </div>
+                    <div className="flex flex-1 flex-col p-5 sm:p-6">
+                      {post.category && <p className="eg-eyebrow mb-3">{post.category}</p>}
+                      <h3 className="text-base font-semibold text-navy-900 mb-2 line-clamp-2">{post.title}</h3>
+                      {post.excerpt && <p className="text-sm text-navy-600 leading-relaxed line-clamp-3">{post.excerpt}</p>}
+                      <span className="eg-link mt-auto pt-5">Read article &rarr;</span>
+                    </div>
+                  </Link>
+                </ScrollReveal>
+              )
+            })}
+          </div>
+        </section>
       )}
 
-    </>
+    </div>
   )
 }

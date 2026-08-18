@@ -346,6 +346,116 @@
     @apply text-navy-900 underline underline-offset-4 decoration-navy-300 hover:decoration-navy-900 transition-colors;
   }
 
+  /* ============================================================
+     ENTERPRISE GRID
+     Carbon's structure, BlackArrow's colour. Three rules carry the
+     whole system and it collapses if any one is relaxed:
+
+       1. Display type is LIGHT (300). Set at 600 this stops being a
+          grid system and becomes a generic corporate site.
+       2. Nothing has a radius and nothing has a shadow. The 2px
+          gutter is the only separator.
+       3. Media is full-bleed inside its own tile and the words live
+          in the tile beside it — never floated over a faded image,
+          which dissolves the grid.
+
+     Opt-in per page while the port is in progress: none of these
+     names touch a page that doesn't ask for them.
+     ============================================================ */
+
+  /* Not a background — this is the colour that shows through the 2px
+     gutters, so it is what actually draws the grid. */
+  .eg-field {
+    @apply bg-field;
+  }
+
+  .eg-tile {
+    @apply bg-tile;
+  }
+
+  .eg-tile-dark {
+    @apply bg-navy-900 text-white;
+  }
+
+  .eg-h1 {
+    @apply font-display font-light text-navy-900
+           text-[1.85rem] sm:text-[2.4rem] lg:text-[3rem]
+           leading-[1.15];
+    letter-spacing: -0.014em;
+  }
+
+  .eg-h2 {
+    @apply font-display font-light text-navy-900
+           text-[1.3rem] sm:text-[1.6rem] lg:text-[1.9rem]
+           leading-[1.2];
+    letter-spacing: -0.014em;
+  }
+
+  /* Mono rather than the display face: these are labels on a spec sheet,
+     and monospace keeps them from competing with the light display weight. */
+  .eg-eyebrow {
+    @apply font-mono text-[0.68rem] tracking-[0.12em] uppercase text-navy-600;
+  }
+
+  .eg-lede {
+    @apply text-navy-600 text-[0.98rem] leading-relaxed;
+  }
+
+  .eg-tile-dark .eg-eyebrow,
+  .eg-tile-dark .eg-lede {
+    @apply text-white/75;
+  }
+
+  .eg-tile-dark .eg-h2,
+  .eg-tile-dark h3,
+  .eg-tile-dark h4 {
+    @apply text-white;
+  }
+
+  .eg-btn {
+    @apply inline-flex items-center justify-center gap-3 px-6 py-3.5
+           text-sm font-semibold tracking-wide text-center
+           transition-colors duration-200
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+    border-radius: 0;
+  }
+
+  .eg-btn-primary {
+    @apply eg-btn bg-signal text-white hover:bg-signal-hover active:bg-signal-active
+           focus-visible:ring-signal;
+  }
+
+  .eg-btn-dark {
+    @apply eg-btn bg-navy-900 text-white hover:bg-navy-800 active:bg-navy-950
+           focus-visible:ring-navy-900;
+  }
+
+  .eg-link {
+    @apply inline-flex items-center gap-2 text-sm font-semibold text-signal
+           hover:text-signal-hover transition-colors duration-200;
+  }
+
+  .eg-tile-dark .eg-link {
+    @apply text-white hover:text-navy-200;
+  }
+
+  /* The blue top-rule is what makes a figure read as measured rather than
+     decorative. */
+  .eg-stat {
+    @apply eg-tile border-t-2 border-signal px-5 py-6 sm:px-6 sm:py-7;
+  }
+
+  .eg-stat b {
+    @apply block font-display font-light text-navy-900
+           text-[1.55rem] sm:text-[1.9rem] lg:text-[2.3rem] leading-none;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .eg-stat span {
+    @apply block mt-2 text-sm text-navy-600;
+  }
+
   /* ---- Card tiles ----
      Card grids put a "Learn more →" after a tagline of unpredictable length, so
      across a five-up row the links landed at four different heights. The tile

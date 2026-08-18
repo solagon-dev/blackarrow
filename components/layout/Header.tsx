@@ -30,6 +30,17 @@ const headerPhoneHref = `tel:${GREENVILLE_OFFICE.phone.replace(/\D/g, '')}`
 // Pages that do NOT have a dark hero (admin pages, legal, etc.)
 const LIGHT_HERO_PAGES = ['/admin', '/legal']
 
+/**
+ * Pages ported to the Enterprise Grid system. There the header is a solid
+ * white tile that participates in the grid — not a transparent bar floating
+ * over a hero photograph — so it never runs the transparent branch, and the
+ * current section is marked with a 2px signal rule rather than by weight.
+ *
+ * Listed explicitly while the port is in progress; when every template has
+ * moved this becomes the only behaviour and the transparent branch goes.
+ */
+const GRID_SYSTEM_PAGES = ['/']
+
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -43,7 +54,8 @@ export default function Header() {
 
   // Determine if current page has a dark hero
   const hasDarkHero = !LIGHT_HERO_PAGES.some(p => pathname.startsWith(p))
-  const isTransparent = hasDarkHero && !scrolled && !mobileOpen
+  const isGridSystem = GRID_SYSTEM_PAGES.includes(pathname)
+  const isTransparent = hasDarkHero && !isGridSystem && !scrolled && !mobileOpen
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -136,10 +148,12 @@ export default function Header() {
   const isCurrent = (href: string) => pathname === href || pathname.startsWith(`${href}/`)
   const insuranceCurrent = pathname.startsWith('/insurance')
   const policyCurrent = policyManagement.some(item => isCurrent(item.href))
+  // On grid pages the current section carries a 2px signal rule underneath;
+  // elsewhere it's marked by colour alone.
+  const currentMark = (on: boolean) =>
+    on ? (isGridSystem ? `${navTextActiveClass} shadow-[inset_0_-2px_0_theme(colors.signal.DEFAULT)]` : navTextActiveClass) : navTextClass
   const linkClass = (href: string) =>
-    `px-4 py-2 text-sm font-medium transition-colors duration-200 ${
-      isCurrent(href) ? navTextActiveClass : navTextClass
-    }`
+    `px-4 py-2 text-sm font-medium transition-colors duration-200 ${currentMark(isCurrent(href))}`
 
   return (
     <header
@@ -190,7 +204,7 @@ export default function Header() {
                 aria-haspopup="true"
                 aria-controls="nav-insurance-menu"
                 onClick={() => { setInsuranceOpen(v => !v); setPolicyOpen(false) }}
-                className={`px-4 py-2 text-sm font-medium transition-colors duration-200 flex items-center gap-1.5 ${insuranceOpen || insuranceCurrent ? navTextActiveClass : navTextClass}`}
+                className={`px-4 py-2 text-sm font-medium transition-colors duration-200 flex items-center gap-1.5 ${insuranceOpen ? navTextActiveClass : currentMark(insuranceCurrent)}`}
               >
                 Insurance
                 <svg aria-hidden="true" className={`w-3 h-3 transition-transform duration-200 ${insuranceOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -245,7 +259,7 @@ export default function Header() {
                 aria-haspopup="true"
                 aria-controls="nav-policy-menu"
                 onClick={() => { setPolicyOpen(v => !v); setInsuranceOpen(false) }}
-                className={`px-4 py-2 text-sm font-medium transition-colors duration-200 flex items-center gap-1.5 ${policyOpen || policyCurrent ? navTextActiveClass : navTextClass}`}
+                className={`px-4 py-2 text-sm font-medium transition-colors duration-200 flex items-center gap-1.5 ${policyOpen ? navTextActiveClass : currentMark(policyCurrent)}`}
               >
                 Policy Management
                 <svg aria-hidden="true" className={`w-3 h-3 transition-transform duration-200 ${policyOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -286,9 +300,11 @@ export default function Header() {
               {headerPhoneNumber}
             </a>
             <Link href="/quote" className={`inline-flex items-center justify-center text-center text-sm py-2.5 px-6 font-medium tracking-wide transition-colors duration-200 ${
-              isTransparent
-                ? 'bg-white text-navy-900 hover:bg-gray-100'
-                : 'btn-primary'
+              isGridSystem
+                ? 'bg-signal text-white hover:bg-signal-hover font-semibold'
+                : isTransparent
+                  ? 'bg-white text-navy-900 hover:bg-gray-100'
+                  : 'btn-primary'
             }`}>
               Get a Quote
             </Link>

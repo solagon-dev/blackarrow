@@ -38,6 +38,20 @@ module.exports = {
         slate: {
           750: '#293548',
         },
+        /* ---- Enterprise Grid design system ----
+           `field` is not a background. It is the colour that shows through the
+           2px gutters between tiles, so it is what draws the grid. `tile` is
+           every surface that sits on top of it. */
+        field: '#EEF1F4',
+        tile: '#FFFFFF',
+        /* Carbon's own accent (#0F62FE) is a fingerprint — this is derived from
+           navy-900 instead, so the system reads as structural rather than
+           borrowed. 5.6:1 on white. */
+        signal: {
+          DEFAULT: '#0E5C9E',
+          hover: '#0B4A80',
+          active: '#083A65',
+        },
       },
       fontFamily: {
         display: ['var(--font-inter)'],
