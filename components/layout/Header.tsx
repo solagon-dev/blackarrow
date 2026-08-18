@@ -42,7 +42,7 @@ const LIGHT_HERO_PAGES = ['/admin', '/legal']
  * question. This list shrinks to nothing as the port finishes.
  */
 const EDITORIAL_PAGES = [
-  '/post', '/quote', '/contact',
+  '/quote', '/contact',
   '/file-a-claim', '/change-mortgagee', '/loan-number-change',
 ]
 
