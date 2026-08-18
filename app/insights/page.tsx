@@ -1,7 +1,6 @@
 import Link from 'next/link'
-import GridFillers from '@/components/ui/GridFillers'
 import Image from 'next/image'
-import HeroScrim from '@/components/ui/HeroScrim'
+import EgHero from '@/components/ui/EgHero'
 import type { Metadata } from 'next'
 import { getAllPosts, getCategories } from '@/lib/db'
 import { estimateReadingTime } from '@/lib/reading-time'
@@ -43,134 +42,100 @@ export default async function InsightsPage() {
   const hasContent = enrichedPosts.length > 0
 
   return (
-    <>
-      {/* Hero */}
-      <section className="bg-navy-900 relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-28">
-        <Image
-          src="/images/AdobeStock_220240507.jpeg"
-          alt=""
-          aria-hidden="true"
-          fill
-          sizes="100vw"
-          priority
-          className="object-cover"
-        />
-        <HeroScrim />
-        <div className="container-editorial relative">
-          <div className="max-w-3xl">
-            <h1 className="text-white mb-4 sm:mb-6">Insights &amp; Resources</h1>
-            <p className="text-base sm:text-lg text-navy-300 leading-relaxed max-w-2xl">
-              Expert guidance on insurance coverage, risk management, and property protection — helping you make informed decisions about what matters most.
-            </p>
-          </div>
-        </div>
-      </section>
+    <div className="eg-field pt-18">
+      <EgHero
+        image="/images/AdobeStock_220240507.jpeg"
+        title="Insights and resources"
+        lede="Guidance on coverage, risk and property protection, written for North Carolina homeowners, drivers and business owners."
+        actions={<Link href="/quote" className="eg-btn-primary">Request a quote &rarr;</Link>}
+      />
 
       {hasContent ? (
         <>
-          {/* Featured Article */}
+          {/* Lead article. A media tile beside a text tile at double height —
+              the same pattern as the rest of the site, scaled up rather than a
+              one-off layout. */}
           {featuredPost && (
-            <section className="section-padding bg-white">
-              <div className="container-editorial">
-                <ScrollReveal>
-                  <Link href={`/post/${featuredPost.slug}`} className="group block">
-                    <div className="grid lg:grid-cols-2 gap-0">
-                      <div className="relative h-56 sm:h-72 lg:h-[26rem] bg-navy-900 overflow-hidden">
-                        {featuredPost.featured_image ? (
-                          <Image
-                            src={resolvePostImage(featuredPost.featured_image)}
-                            alt={featuredPost.title}
-                            fill
-                            sizes="(max-width: 1024px) 100vw, 50vw"
-                            priority
-                            className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                          />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center">
-                            <span className="text-navy-500 text-sm">{featuredPost.category || 'Insurance'}</span>
-                          </div>
-                        )}
+            <section className="container-editorial mt-0.5">
+              <Link href={`/post/${featuredPost.slug}`} className="group block">
+                <div className="grid lg:grid-cols-2 gap-0.5">
+                  <div className="relative h-56 sm:h-72 lg:h-[26rem] bg-navy-900 overflow-hidden">
+                    {featuredPost.featured_image ? (
+                      <Image
+                        src={resolvePostImage(featuredPost.featured_image)}
+                        alt=""
+                        aria-hidden="true"
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        priority
+                        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <span className="text-sm text-white/70">{featuredPost.category || 'Insurance'}</span>
                       </div>
-                      <div className="bg-gray-50 p-8 sm:p-10 lg:p-14 flex flex-col justify-center">
-                        <div className="flex items-center gap-3 mb-5">
-                          {featuredPost.category && (
-                            <span className="text-sm font-semibold text-navy-600">{featuredPost.category}</span>
-                          )}
-                          {featuredPost.category && featuredPost.published_at && <span className="w-1 h-1 rounded-full bg-navy-300" />}
-                          {featuredPost.published_at && (
-                            <span className="text-xs text-navy-600">
-                              {new Date(featuredPost.published_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
-                            </span>
-                          )}
-                        </div>
-                        <h2 className="text-2xl sm:text-3xl font-display font-bold text-navy-900 mb-4 sm:mb-5 group-hover:text-navy-700 transition-colors leading-tight">
-                          {featuredPost.title}
-                        </h2>
-                        {featuredPost.excerpt && (
-                          <p className="text-base text-navy-600 leading-relaxed mb-6 line-clamp-3">{featuredPost.excerpt}</p>
-                        )}
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-3">
-                            {featuredPost.readingTime && <span className="text-xs text-navy-600">{featuredPost.readingTime} min read</span>}
-                          </div>
-                          <span className="text-sm font-medium text-navy-600 group-hover:text-navy-900 transition-colors">
-                            Read article →
-                          </span>
-                        </div>
-                      </div>
+                    )}
+                  </div>
+                  <div className="eg-tile flex flex-col justify-center p-6 sm:p-10 lg:p-12">
+                    <div className="flex items-center gap-3 mb-4 text-sm text-navy-600">
+                      {featuredPost.category && <span>{featuredPost.category}</span>}
+                      {featuredPost.category && featuredPost.published_at && <span className="w-1 h-1 rounded-full bg-navy-300" />}
+                      {featuredPost.published_at && (
+                        <span>
+                          {new Date(featuredPost.published_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                        </span>
+                      )}
                     </div>
-                  </Link>
-                </ScrollReveal>
+                    <h2 className="eg-h2">{featuredPost.title}</h2>
+                    {featuredPost.excerpt && (
+                      <p className="eg-lede mt-4 line-clamp-3">{featuredPost.excerpt}</p>
+                    )}
+                    <div className="mt-7 flex items-center justify-between gap-4">
+                      <span className="eg-link">Read article &rarr;</span>
+                      {featuredPost.readingTime && (
+                        <span className="text-sm text-navy-600">{featuredPost.readingTime} min read</span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </section>
+          )}
+
+          {/* Recent */}
+          {secondaryFeatured.length > 0 && (
+            <section className="container-editorial mt-0.5">
+              <div className="eg-tile p-6 sm:p-10 lg:p-12">
+                <h2 className="eg-h2">Recent articles</h2>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0.5 mt-0.5">
+                {secondaryFeatured.map((post, i) => (
+                  <ScrollReveal key={post.slug} delay={i * 50}>
+                    <InsightCard
+                      slug={post.slug}
+                      title={post.title}
+                      excerpt={post.excerpt}
+                      category={post.category}
+                      featuredImage={post.featured_image}
+                      publishedAt={post.published_at}
+                      readingTime={post.readingTime}
+                      author={post.author}
+                    />
+                  </ScrollReveal>
+                ))}
               </div>
             </section>
           )}
 
-          {/* Latest Articles — 3-up */}
-          {secondaryFeatured.length > 0 && (
-            <>
-              <div className="rule" />
-              <section className="section-padding bg-white">
-                <div className="container-editorial">
-                  <ScrollReveal>
-                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-12">
-                      <div>
-                        <h2 className="text-2xl sm:text-3xl">Recent Articles</h2>
-                      </div>
-                    </div>
-                  </ScrollReveal>
-                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200">
-                    {secondaryFeatured.map((post, i) => (
-                      <ScrollReveal key={post.slug} delay={i * 60}>
-                        <InsightCard
-                          slug={post.slug}
-                          title={post.title}
-                          excerpt={post.excerpt}
-                          category={post.category}
-                          featuredImage={post.featured_image}
-                          publishedAt={post.published_at}
-                          readingTime={post.readingTime}
-                          author={post.author}
-                        />
-                      </ScrollReveal>
-                    ))}
-                    <GridFillers count={secondaryFeatured.length} cols={{ sm: 2, lg: 3 }} />
-                  </div>
-                </div>
-              </section>
-            </>
-          )}
-
-          {/* All Articles with Search & Filter */}
-          <section className="section-padding bg-gray-50 border-y border-gray-200">
-            <div className="container-editorial">
-              <ScrollReveal>
-                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-12">
-                  <div>
-                    <h2 className="text-2xl sm:text-3xl">Browse by Topic</h2>
-                  </div>
-                  <p className="text-sm text-navy-600">{enrichedPosts.length} {enrichedPosts.length === 1 ? 'article' : 'articles'} published</p>
-                </div>
-              </ScrollReveal>
+          {/* Everything, searchable */}
+          <section className="container-editorial mt-0.5">
+            <div className="eg-tile flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 p-6 sm:p-10 lg:p-12">
+              <h2 className="eg-h2">Browse everything</h2>
+              <p className="text-sm text-navy-600 flex-shrink-0">
+                {enrichedPosts.length} {enrichedPosts.length === 1 ? 'article' : 'articles'} published
+              </p>
+            </div>
+            <div className="mt-0.5">
               <InsightsFilter
                 posts={enrichedPosts.map(p => ({
                   slug: p.slug,
@@ -188,36 +153,33 @@ export default async function InsightsPage() {
           </section>
 
           {/* CTA */}
-          <section className="bg-navy-900 py-16 sm:py-24 lg:py-32 text-white">
-            <div className="container-editorial text-center">
-              <ScrollReveal>
-                <h2 className="text-white mb-4 sm:mb-6">Have a Coverage Question?</h2>
-                <p className="text-base sm:text-lg text-navy-300 mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed">
-                  Our team of licensed professionals is ready to help you find the right protection for your home, vehicle, business, or investment property.
+          <section className="container-editorial mt-0.5 pb-0.5">
+            <div className="grid lg:grid-cols-2 gap-0.5">
+              <div className="eg-tile eg-tile-dark flex flex-col justify-center p-6 sm:p-10 lg:p-12">
+                <h2 className="eg-h2">Have a coverage question?</h2>
+                <p className="eg-lede mt-4">
+                  A licensed agent can answer it in a phone call, whether it&rsquo;s your home, your
+                  vehicle, your business or an investment property.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link href="/quote" className="btn-on-dark px-8 py-4">
-                    Request a Quote
-                  </Link>
-                  <Link href="/contact" className="btn-outline-white px-8 py-4">
-                    Speak with an Advisor
-                  </Link>
-                </div>
-              </ScrollReveal>
+              </div>
+              <div className="eg-tile flex flex-col justify-center gap-0.5 p-6 sm:p-10 lg:p-12">
+                <Link href="/quote" className="eg-btn-primary">Request a quote &rarr;</Link>
+                <Link href="/contact" className="eg-btn-dark">Speak with an advisor</Link>
+              </div>
             </div>
           </section>
         </>
       ) : (
-        <section className="section-padding bg-white">
-          <div className="container-editorial text-center">
-            <h2 className="text-3xl font-display font-bold text-navy-900 mb-5">Coming Soon</h2>
-            <p className="text-lg text-navy-600 mb-10 max-w-lg mx-auto">
-              We&apos;re preparing expert insurance insights and educational resources. Check back soon.
+        <section className="container-editorial mt-0.5 pb-0.5">
+          <div className="eg-tile p-6 sm:p-12 lg:p-16 text-center">
+            <h2 className="eg-h2">Nothing published yet</h2>
+            <p className="eg-lede mt-4 max-w-[46ch] mx-auto">
+              We&rsquo;re writing up the coverage questions we get asked most. Check back soon.
             </p>
-            <Link href="/" className="btn-primary">Back to Home</Link>
+            <Link href="/" className="eg-btn-primary mt-7">Back to home</Link>
           </div>
         </section>
       )}
-    </>
+    </div>
   )
 }

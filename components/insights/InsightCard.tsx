@@ -97,41 +97,36 @@ export function InsightCard({ slug, title, excerpt, category, featuredImage: raw
     )
   }
 
-  // Default variant
+  // Default variant — an Enterprise Grid tile: locked 16:10 media, no border,
+  // no radius, link foot pinned to the base so a row of cards shares a baseline.
   return (
-    <Link href={`/post/${slug}`} className="bg-white group flex flex-col h-full hover:bg-gray-50 transition-colors duration-200">
-      <div className="relative h-40 sm:h-52 bg-navy-50 overflow-hidden flex items-center justify-center">
+    <Link href={`/post/${slug}`} className="eg-tile group flex flex-col h-full hover:bg-gray-50 transition-colors duration-200">
+      <div className="relative aspect-[16/10] bg-navy-900 overflow-hidden flex items-center justify-center">
         {featuredImage ? (
           <Image
             src={featuredImage}
-            alt={title}
+            alt=""
+            aria-hidden="true"
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             priority={priority}
             className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           />
         ) : (
-          <span className="text-sm font-semibold text-navy-600 px-6 text-center">
-            {category || 'Insurance'}
-          </span>
+          <span className="text-sm text-white/70 px-6 text-center">{category || 'Insurance'}</span>
         )}
       </div>
-      <div className="p-5 sm:p-8 flex flex-1 flex-col">
-        <div className="flex items-center gap-3 mb-4">
-          {category && <span className="text-sm font-semibold text-navy-600">{category}</span>}
+      <div className="p-5 sm:p-6 flex flex-1 flex-col">
+        <div className="flex items-center gap-3 mb-3 text-sm text-navy-600">
+          {category && <span>{category}</span>}
           {category && formattedDate && <span className="w-1 h-1 rounded-full bg-navy-300" />}
-          {formattedDate && <span className="text-xs text-navy-600">{formattedDate}</span>}
+          {formattedDate && <span>{formattedDate}</span>}
         </div>
-        <h3 className="text-lg font-semibold text-navy-900 mb-3 group-hover:text-navy-700 transition-colors line-clamp-2">
-          {title}
-        </h3>
-        {excerpt && (
-          <p className="text-sm text-navy-600 line-clamp-3 leading-relaxed mb-4">{excerpt}</p>
-        )}
-        <div className="flex items-center gap-3 mt-auto">
-          {author && <span className="text-xs text-navy-600">{author}</span>}
-          {author && readingTime && <span className="w-1 h-1 rounded-full bg-navy-300" />}
-          {readingTime && <span className="text-xs text-navy-600">{readingTime} min read</span>}
+        <h3 className="text-base font-semibold text-navy-900 mb-2 line-clamp-2">{title}</h3>
+        {excerpt && <p className="text-sm text-navy-600 line-clamp-3 leading-relaxed">{excerpt}</p>}
+        <div className="mt-auto pt-5 flex items-center justify-between gap-3">
+          <span className="eg-link">Read article &rarr;</span>
+          {readingTime && <span className="text-sm text-navy-600">{readingTime} min</span>}
         </div>
       </div>
     </Link>

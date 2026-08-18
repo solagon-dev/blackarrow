@@ -1,7 +1,6 @@
 import Link from 'next/link'
-import GridFillers from '@/components/ui/GridFillers'
 import Image from 'next/image'
-import HeroScrim from '@/components/ui/HeroScrim'
+import EgHero from '@/components/ui/EgHero'
 import type { Metadata } from 'next'
 import { teamMembers, offices } from '@/lib/team-data'
 import ScrollReveal from '@/components/ui/ScrollReveal'
@@ -23,282 +22,232 @@ export default function OurStoryPage() {
   const staff = teamMembers.filter(m => !m.isLeadership)
 
   return (
-    <>
-      {/* Hero */}
-      <section className="bg-navy-900 relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-28">
-        <Image
-          src="/images/blackarrow_greenville.webp"
-          alt=""
-          aria-hidden="true"
-          fill
-          sizes="100vw"
-          priority
-          className="object-cover object-center"
-        />
-        <HeroScrim />
-        <div className="container-editorial relative">
-          <div className="max-w-3xl">
-            <h1 className="text-white mb-4 sm:mb-6">Our Story</h1>
-            <p className="text-base sm:text-lg text-navy-300 leading-relaxed max-w-2xl">
-              Two offices, one job: get Eastern North Carolina the right coverage from the right carrier, and be there when a claim comes.
-            </p>
+    <div className="eg-field pt-18">
+      <EgHero
+        image="/images/blackarrow_greenville.webp"
+        title="Two offices, one job"
+        lede="Get Eastern North Carolina the right coverage from the right carrier, and be there when a claim comes."
+        actions={
+          <>
+            <Link href="/quote" className="eg-btn-primary">Request a quote &rarr;</Link>
+            <Link href="/contact" className="eg-btn-dark">Speak with an advisor</Link>
+          </>
+        }
+      />
+
+      {/* Who we are */}
+      <section className="container-editorial mt-0.5">
+        <div className="grid lg:grid-cols-2 gap-0.5">
+          <div className="eg-tile flex flex-col justify-center p-6 sm:p-10 lg:p-12">
+            <h2 className="eg-h2">A trusted name in Eastern North Carolina insurance</h2>
+          </div>
+          <div className="eg-tile p-6 sm:p-10 lg:p-12">
+            <div className="space-y-4 text-sm sm:text-base text-navy-600 leading-relaxed">
+              <p>
+                When something goes wrong &mdash; a wreck, a storm, a claim at the worst possible
+                time &mdash; you don&rsquo;t want to be routed through a call center. You want
+                someone local who already knows your policy and picks up the phone. That&rsquo;s the
+                agency we&rsquo;ve built in Eastern North Carolina.
+              </p>
+              <p>
+                We&rsquo;ve done this for more than twenty years as a locally owned, independent
+                shop. Independent is the part that matters: we answer to the people we insure, not
+                to one company&rsquo;s sales targets, so the advice you get is about your coverage
+                rather than this quarter&rsquo;s quota.
+              </p>
+              <p>
+                Founded in 2002 by Scott Baldwin, originally under the name Iventure, the company
+                has grown into an established independent agency in Greenville, NC, and has expanded
+                to serve clients from our Whiteville office as well.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Who We Are — Editorial two-column */}
-      <section className="section-padding bg-white">
-        <div className="container-editorial">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-24 items-start">
-            <ScrollReveal className="lg:col-span-5">
-              <h2>A Trusted Name in Eastern North Carolina Insurance</h2>
-            </ScrollReveal>
-            <ScrollReveal className="lg:col-span-7" delay={100}>
-              <div className="space-y-5 sm:space-y-6 text-navy-600 leading-relaxed text-base sm:text-lg">
-                <p>
-                  When something goes wrong — a wreck, a storm, a claim at the worst possible time — you don&rsquo;t want to be routed through a call center. You want someone local who already knows your policy and picks up the phone. That&rsquo;s the agency we&rsquo;ve built in Eastern North Carolina.
-                </p>
-                <p>
-                  We&rsquo;ve done this for more than twenty years as a locally owned, independent shop. Independent is the part that matters: we answer to the people we insure, not to one company&rsquo;s sales targets, so the advice you get is about your coverage rather than this quarter&rsquo;s quota.
-                </p>
-                <p>
-                  Founded in 2002 by Scott Baldwin, originally under the name Iventure, the company has grown into an established independent agency in Greenville, NC, and has expanded to serve clients from our Whiteville office as well.
-                </p>
+      {/* Figures */}
+      <div className="container-editorial mt-0.5">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-0.5">
+          {[
+            { value: '2002', label: 'Founded' },
+            { value: '20+', label: 'Years of service' },
+            { value: '2', label: 'Office locations' },
+            { value: '20+', label: 'Carrier partners' },
+          ].map(stat => (
+            <div key={stat.label} className="eg-stat">
+              <b>{stat.value}</b>
+              <span>{stat.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Credentials. Flat text, not a row of bullet-separated badges — these are
+          facts about the agency, and dressing them as chips oversold them. */}
+      <div className="container-editorial mt-0.5">
+        <div className="eg-tile px-6 py-5 sm:px-8">
+          <div className="flex flex-wrap gap-x-8 gap-y-2 text-sm text-navy-600">
+            {['Licensed', 'Bonded', 'Insured', 'Locally owned', '20+ carrier partners'].map(item => (
+              <span key={item}>{item}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Why clients choose us */}
+      <section className="container-editorial mt-0.5">
+        <div className="eg-tile eg-tile-dark p-6 sm:p-10 lg:p-12">
+          <h2 className="eg-h2">Why clients choose us</h2>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0.5 mt-0.5">
+          {[
+            { title: 'Local expertise', desc: 'We live and write policies here, so we know coastal wind, flood zones, and what NC actually requires.' },
+            { title: 'Multi-carrier access', desc: 'We run your coverage past 20+ carriers and bring back the ones that actually fit — not a single company’s pitch.' },
+            { title: 'One agent, every time', desc: 'You work with the same person year to year — someone who knows your policy without pulling the file.' },
+            { title: 'Home, auto and business', desc: 'Personal, commercial and property coverage handled by one agency, so your policies work together rather than against each other.' },
+          ].map((item, i) => (
+            <ScrollReveal key={item.title} delay={i * 50}>
+              <div className="eg-tile h-full p-5 sm:p-6">
+                <h3 className="text-base font-semibold text-navy-900 mb-2">{item.title}</h3>
+                <p className="text-sm text-navy-600 leading-relaxed">{item.desc}</p>
               </div>
             </ScrollReveal>
-          </div>
+          ))}
         </div>
       </section>
 
-      {/* Image + Stats */}
-      {/* Matches the bottom half of .section-padding — this was still on the
-          old lg:pb-36 scale after that class was tightened. */}
-      <section className="bg-white pb-14 sm:pb-20 md:pb-24 lg:pb-28">
-        <div className="container-editorial">
-          <ScrollReveal>
-            <div className="relative overflow-hidden mb-8 sm:mb-12 h-48 sm:h-64 lg:h-80">
-              <Image
-                src="/images/AdobeStock_530165977.jpeg"
-                alt="BlackArrow Insurance team serving Eastern North Carolina clients"
-                fill
-                sizes="(max-width: 1024px) 100vw, 1100px"
-                className="object-cover"
-              />
-            </div>
-          </ScrollReveal>
-          <ScrollReveal>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 pt-6 sm:pt-8 border-t border-gray-200">
-              {[
-                { value: '2002', label: 'Founded' },
-                { value: '20+', label: 'Years of Service' },
-                { value: '2', label: 'Office Locations' },
-                { value: '20+', label: 'Carrier Partners' },
-              ].map(stat => (
-                <div key={stat.label}>
-                  <p className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-navy-900 mb-1 sm:mb-2">{stat.value}</p>
-                  <p className="text-sm text-navy-600 tracking-wide">{stat.label}</p>
-                </div>
-              ))}
-            </div>
-          </ScrollReveal>
+      {/* Owners */}
+      <section className="container-editorial mt-0.5">
+        <div className="eg-tile p-6 sm:p-10 lg:p-12">
+          <h2 className="eg-h2">Meet the owners</h2>
         </div>
-      </section>
-
-      <div className="rule" />
-
-      {/* Trust Bar */}
-      <section className="py-10 bg-white">
-        <div className="container-editorial">
-          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-sm font-medium text-navy-600">
-            {['Licensed', 'Bonded', 'Insured', 'Locally Owned', '20+ Carrier Partners'].map((item, i) => (
-              <span key={item} className="flex items-center gap-4">
-                {i > 0 && <span className="hidden sm:inline-block w-1 h-1 rounded-full bg-navy-300" />}
-                {item}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <div className="rule" />
-
-      {/* Why Choose Us */}
-      <section className="section-padding bg-gray-50">
-        <div className="container-editorial">
-          <ScrollReveal>
-            <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-16">
-              <h2>Why Clients Choose Us</h2>
-            </div>
-          </ScrollReveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-200">
-            {[
-              { title: 'Local Expertise', desc: 'We live and write policies here, so we know coastal wind, flood zones, and what NC actually requires.', icon: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z' },
-              { title: 'Multi-Carrier Access', desc: 'We run your coverage past 20+ carriers and bring back the ones that actually fit — not a single company&rsquo;s pitch.', icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z' },
-              { title: 'One Agent, Every Time', desc: 'You work with the same person year to year — someone who knows your policy without pulling the file.', icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z' },
-              { title: 'Home, Auto & Business', desc: 'Personal, commercial, and property coverage handled by one agency — so your policies work together, not against each other.', icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4' },
-            ].map((item, i) => (
-              <ScrollReveal key={item.title} delay={i * 80}>
-                <div className="bg-white p-6 sm:p-8 h-full">
-                  <div className="icon-box-navy mb-5">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d={item.icon} />
-                    </svg>
-                  </div>
-                  <h3 className="text-base font-semibold text-navy-900 mb-2">{item.title}</h3>
-                  <p className="text-sm text-navy-600 leading-relaxed">{item.desc}</p>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Leadership */}
-      <section className="section-padding bg-white">
-        <div className="container-editorial">
-          <ScrollReveal>
-            <div className="mb-10 sm:mb-16">
-              <h2>Meet Our Owners</h2>
-            </div>
-          </ScrollReveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200">
-            {leadership.map((member, i) => (
-              <ScrollReveal key={member.name} delay={i * 80}>
-                <div className="bg-white h-full">
-                  <div className="h-56 sm:h-72 lg:h-80 bg-navy-900 relative overflow-hidden">
-                    {member.image ? (
-                      <Image
-                        src={member.image}
-                        alt={member.name}
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        className="object-cover"
-                        style={{ objectPosition: member.imagePosition || 'center center' }}
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <span className="text-2xl font-display font-bold text-navy-500">
-                          {member.name.split(' ').map(n => n[0]).join('')}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-6 sm:p-8">
-                    <h3 className="text-lg font-semibold text-navy-900">{member.name}</h3>
-                    <p className="text-sm text-navy-600 mb-3 sm:mb-4">{member.role}</p>
-                    <p className="text-sm text-navy-600 leading-relaxed">{member.bio}</p>
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
-            <GridFillers count={leadership.length} cols={{ sm: 2, lg: 3 }} />
-          </div>
-        </div>
-      </section>
-
-      <div className="rule" />
-
-      {/* Team */}
-      <section className="section-padding bg-gray-50">
-        <div className="container-editorial">
-          <ScrollReveal>
-            <div className="mb-10 sm:mb-16">
-              <h2>The People Behind BlackArrow</h2>
-            </div>
-          </ScrollReveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200">
-            {staff.map((member, i) => (
-              <ScrollReveal key={member.name} delay={i * 60}>
-                <div className="bg-white p-6 sm:p-8 h-full">
-                  <div className="flex items-center gap-5 mb-5">
-                    {member.image ? (
-                      <Image
-                        src={member.image}
-                        alt={member.name}
-                        width={56}
-                        height={56}
-                        sizes="56px"
-                        className="w-14 h-14 rounded-full object-cover flex-shrink-0"
-                        style={{ objectPosition: member.imagePosition || 'center center' }}
-                      />
-                    ) : (
-                      <div className="w-14 h-14 rounded-full bg-navy-100 flex items-center justify-center flex-shrink-0">
-                        <span className="text-lg font-display font-bold text-navy-600">
-                          {member.name.split(' ').map(n => n[0]).join('')}
-                        </span>
-                      </div>
-                    )}
-                    <div>
-                      <h3 className="font-semibold text-navy-900">{member.name}</h3>
-                      <p className="text-sm text-navy-600">{member.role}</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0.5 mt-0.5">
+          {leadership.map((member, i) => (
+            <ScrollReveal key={member.name} delay={i * 50}>
+              <div className="eg-tile h-full flex flex-col">
+                <div className="relative aspect-[4/5] bg-navy-900 overflow-hidden">
+                  {member.image ? (
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover"
+                      style={{ objectPosition: member.imagePosition || 'center center' }}
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <span className="text-2xl font-display font-light text-white/70">
+                        {member.name.split(' ').map(n => n[0]).join('')}
+                      </span>
                     </div>
-                  </div>
+                  )}
+                </div>
+                <div className="p-5 sm:p-6">
+                  <h3 className="text-base font-semibold text-navy-900">{member.name}</h3>
+                  <p className="text-sm text-navy-600 mb-3">{member.role}</p>
                   <p className="text-sm text-navy-600 leading-relaxed">{member.bio}</p>
                 </div>
-              </ScrollReveal>
-            ))}
-            <GridFillers count={staff.length} cols={{ sm: 2, lg: 3 }} />
-          </div>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+      </section>
+
+      {/* Team */}
+      <section className="container-editorial mt-0.5">
+        <div className="eg-tile p-6 sm:p-10 lg:p-12">
+          <h2 className="eg-h2">The people behind BlackArrow</h2>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0.5 mt-0.5">
+          {staff.map((member, i) => (
+            <ScrollReveal key={member.name} delay={i * 40}>
+              <div className="eg-tile h-full p-5 sm:p-6">
+                <div className="flex items-center gap-4 mb-4">
+                  {member.image ? (
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      width={56}
+                      height={56}
+                      sizes="56px"
+                      /* Square, not a circle: nothing else in this system is
+                         rounded, and one circle reads as an import. */
+                      className="w-14 h-14 object-cover flex-shrink-0"
+                      style={{ objectPosition: member.imagePosition || 'center center' }}
+                    />
+                  ) : (
+                    <div className="w-14 h-14 bg-field flex items-center justify-center flex-shrink-0">
+                      <span className="text-base font-semibold text-navy-600">
+                        {member.name.split(' ').map(n => n[0]).join('')}
+                      </span>
+                    </div>
+                  )}
+                  <div>
+                    <h3 className="text-base font-semibold text-navy-900">{member.name}</h3>
+                    <p className="text-sm text-navy-600">{member.role}</p>
+                  </div>
+                </div>
+                <p className="text-sm text-navy-600 leading-relaxed">{member.bio}</p>
+              </div>
+            </ScrollReveal>
+          ))}
         </div>
       </section>
 
       {/* Offices */}
-      <section className="section-padding bg-white">
-        <div className="container-editorial">
-          <ScrollReveal>
-            <div className="mb-10 sm:mb-16">
-              <h2>Visit Us</h2>
-            </div>
-          </ScrollReveal>
-          <div className="grid sm:grid-cols-2 gap-px bg-gray-200 max-w-5xl">
-            {offices.map((office, i) => (
-              <ScrollReveal key={office.name} delay={i * 100}>
-                <div className="bg-white h-full">
-                  <div className="relative h-44 sm:h-56 overflow-hidden bg-navy-100">
-                    <Image
-                      src={office.image}
-                      alt={office.imageAlt}
-                      fill
-                      sizes="(max-width: 640px) 100vw, 50vw"
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="p-6 sm:p-8">
-                    <h3 className="text-lg sm:text-xl font-semibold text-navy-900 mb-4 sm:mb-5">{office.name}</h3>
-                    <div className="space-y-4 text-sm text-navy-600">
-                      <p>{office.address}<br />{office.city}, {office.state} {office.zip}</p>
-                      <a href={`tel:${office.phone.replace(/[^\d+]/g, '')}`} className="block font-medium text-navy-900 hover:text-navy-700 transition-colors">
-                        {office.phone}
-                      </a>
-                      <a href={`mailto:${office.email}`} className="block font-medium text-navy-900 hover:text-navy-700 transition-colors">
-                        {office.email}
-                      </a>
-                      <p className="text-navy-600">{office.hours}<br />{office.closed}</p>
-                    </div>
+      <section className="container-editorial mt-0.5">
+        <div className="eg-tile p-6 sm:p-10 lg:p-12">
+          <h2 className="eg-h2">Visit us</h2>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-0.5 mt-0.5">
+          {offices.map((office, i) => (
+            <ScrollReveal key={office.name} delay={i * 60}>
+              <div className="eg-tile h-full flex flex-col">
+                <div className="relative aspect-[16/9] overflow-hidden bg-navy-900">
+                  <Image
+                    src={office.image}
+                    alt={office.imageAlt}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-6 sm:p-8">
+                  <h3 className="text-lg font-semibold text-navy-900 mb-4">{office.name}</h3>
+                  <div className="space-y-3 text-sm text-navy-600">
+                    <p>{office.address}<br />{office.city}, {office.state} {office.zip}</p>
+                    <a href={`tel:${office.phone.replace(/[^\d+]/g, '')}`} className="block eg-link">
+                      {office.phone}
+                    </a>
+                    <a href={`mailto:${office.email}`} className="block eg-link">
+                      {office.email}
+                    </a>
+                    <p>{office.hours}<br />{office.closed}</p>
                   </div>
                 </div>
-              </ScrollReveal>
-            ))}
-            <GridFillers count={offices.length} cols={{ sm: 2 }} />
-          </div>
+              </div>
+            </ScrollReveal>
+          ))}
         </div>
       </section>
 
       {/* CTA */}
-      <section className="bg-navy-900 py-16 sm:py-24 lg:py-32 text-white">
-        <div className="container-editorial text-center">
-          <ScrollReveal>
-            <h2 className="text-white mb-4 sm:mb-6">Ready to Get Started?</h2>
-            <p className="text-base sm:text-lg text-navy-300 mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed">
-              Let our team of experienced professionals help you find the right coverage for your needs.
+      <section className="container-editorial mt-0.5 pb-0.5">
+        <div className="grid lg:grid-cols-2 gap-0.5">
+          <div className="eg-tile eg-tile-dark flex flex-col justify-center p-6 sm:p-10 lg:p-12">
+            <h2 className="eg-h2">Let&rsquo;s talk about your coverage</h2>
+            <p className="eg-lede mt-4">
+              Call either office, or send us what you need covered and we&rsquo;ll come back with
+              the market.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/quote" className="btn-on-dark px-8 py-4">Request a Quote</Link>
-              <Link href="/contact" className="btn-outline-white px-8 py-4">Speak with an Advisor</Link>
-            </div>
-          </ScrollReveal>
+          </div>
+          <div className="eg-tile flex flex-col justify-center gap-0.5 p-6 sm:p-10 lg:p-12">
+            <Link href="/quote" className="eg-btn-primary">Request a quote &rarr;</Link>
+            <Link href="/contact" className="eg-btn-dark">Contact us</Link>
+          </div>
         </div>
       </section>
-    </>
+    </div>
   )
 }
