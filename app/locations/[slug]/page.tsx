@@ -163,7 +163,6 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         <div className="container-editorial">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-24 items-start">
             <ScrollReveal className="lg:col-span-5">
-              <p className="section-label">About BlackArrow in {page.city}</p>
               <h2>{page.aboutHeading}</h2>
             </ScrollReveal>
             <ScrollReveal className="lg:col-span-7" delay={100}>
@@ -185,7 +184,6 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
           <ScrollReveal>
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-16">
               <div>
-                <p className="section-label">Insurance services</p>
                 <h2>Insurance Services in {page.city}</h2>
               </div>
               <Link href="/quote" className="link-arrow flex-shrink-0">
@@ -236,9 +234,6 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
       {cityServicePages.length > 0 && (
         <section className="section-padding-sm bg-white border-b border-gray-200">
           <div className="container-editorial">
-            <ScrollReveal>
-              <p className="section-label mb-8">Coverage guides for {page.city}</p>
-            </ScrollReveal>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-200">
               {cityServicePages.map((sp, idx) => (
                 <ScrollReveal key={sp.slug} delay={idx * 60}>
@@ -269,7 +264,6 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         <div className="container-editorial">
           <ScrollReveal>
             <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-16">
-              <p className="section-label">Why BlackArrow</p>
               <h2>Why Clients in {page.city} Choose BlackArrow</h2>
             </div>
           </ScrollReveal>
@@ -295,7 +289,6 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         <div className="container-editorial">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-24 items-start">
             <ScrollReveal className="lg:col-span-5">
-              <p className="section-label">Local expertise</p>
               <h2>{page.localInsights.heading}</h2>
             </ScrollReveal>
             <ScrollReveal className="lg:col-span-7" delay={100}>
@@ -316,7 +309,6 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         <div className="container-editorial">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-24 items-start">
             <ScrollReveal className="lg:col-span-5">
-              <p className="section-label">Property coverage</p>
               <h2>{page.propertyOwnerHeading}</h2>
               <div className="mt-8">
                 <Link href="/quote" className="btn-primary">Get a Property Quote</Link>
@@ -338,7 +330,6 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         <div className="container-editorial">
           <ScrollReveal>
             <div className="max-w-3xl mb-10 sm:mb-16">
-              <p className="section-label">Coverage guidance</p>
               <h2>{page.guidanceHeading}</h2>
             </div>
           </ScrollReveal>
@@ -364,7 +355,6 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         <div className="container-editorial">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-24 items-start">
             <ScrollReveal className="lg:col-span-5">
-              <p className="section-label">Service area</p>
               <h2>Serving {page.city} &amp; Surrounding Communities</h2>
             </ScrollReveal>
             <ScrollReveal className="lg:col-span-7" delay={100}>

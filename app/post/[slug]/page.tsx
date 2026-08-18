@@ -217,7 +217,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <div className="container-editorial">
             <div className="flex items-end justify-between mb-8 sm:mb-12">
               <div>
-                <p className="section-label">Continue reading</p>
                 <h2 className="text-2xl sm:text-3xl">Related Articles</h2>
               </div>
               <Link href="/insights" className="link-arrow hidden sm:flex flex-shrink-0">

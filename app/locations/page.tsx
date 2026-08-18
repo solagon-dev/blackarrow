@@ -54,7 +54,6 @@ export default function LocationsPage() {
         <div className="container-editorial">
           <ScrollReveal>
             <div className="mb-10 sm:mb-16">
-              <p className="section-label">Markets we serve</p>
               <h2>Find Insurance Services Near You</h2>
             </div>
           </ScrollReveal>

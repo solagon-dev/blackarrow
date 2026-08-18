@@ -50,7 +50,6 @@ export default function CommercialCoverageSection() {
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           <ScrollReveal>
             <div>
-              <p className="section-label">Commercial insurance</p>
               <h2 className="mb-6">Coverage Built for Your Business</h2>
               <p className="text-lg text-navy-600 leading-relaxed mb-10">
                 We work with businesses of all sizes to develop insurance programs that address real operational risks — not just check boxes.

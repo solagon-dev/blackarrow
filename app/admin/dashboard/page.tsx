@@ -70,7 +70,7 @@ export default function DashboardPage() {
         <div className="max-w-6xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center gap-6">
             <img src="/images/BlackArrowLogo.svg" alt="BlackArrow" width={82} height={20} className="h-5 w-auto brightness-0 invert opacity-70" />
-            <span className="hidden sm:block text-xs text-navy-400 uppercase tracking-[0.15em] font-semibold">Dashboard</span>
+            <span className="hidden sm:block text-xs text-navy-400 font-semibold">Dashboard</span>
           </div>
           <div className="flex items-center gap-4">
             <Link href="/" className="text-xs text-navy-400 hover:text-white transition-colors">
@@ -106,7 +106,7 @@ export default function DashboardPage() {
             { label: 'Drafts', value: drafts.length, color: 'text-amber-600' },
           ].map(stat => (
             <div key={stat.label} className="bg-white p-5 sm:p-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-navy-600 mb-2">{stat.label}</p>
+              <p className="text-xs font-semibold text-navy-600 mb-2">{stat.label}</p>
               <p className={`text-2xl sm:text-3xl font-display font-bold ${stat.color}`}>{stat.value}</p>
             </div>
           ))}
@@ -159,7 +159,7 @@ export default function DashboardPage() {
           ) : (
             <div>
               {/* Table header */}
-              <div className="hidden sm:grid sm:grid-cols-12 gap-4 px-5 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-navy-600 border-b border-gray-100 bg-gray-50/50">
+              <div className="hidden sm:grid sm:grid-cols-12 gap-4 px-5 py-3 text-xs font-semibold text-navy-600 border-b border-gray-100 bg-gray-50/50">
                 <div className="col-span-5">Title</div>
                 <div className="col-span-2">Category</div>
                 <div className="col-span-2">Status</div>

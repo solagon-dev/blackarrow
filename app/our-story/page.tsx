@@ -52,7 +52,6 @@ export default function OurStoryPage() {
         <div className="container-editorial">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-24 items-start">
             <ScrollReveal className="lg:col-span-5">
-              <p className="section-label">Who we are</p>
               <h2>A Trusted Name in Eastern North Carolina Insurance</h2>
             </ScrollReveal>
             <ScrollReveal className="lg:col-span-7" delay={100}>
@@ -129,7 +128,6 @@ export default function OurStoryPage() {
         <div className="container-editorial">
           <ScrollReveal>
             <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-16">
-              <p className="section-label">Why BlackArrow</p>
               <h2>Why Clients Choose Us</h2>
             </div>
           </ScrollReveal>
@@ -161,7 +159,6 @@ export default function OurStoryPage() {
         <div className="container-editorial">
           <ScrollReveal>
             <div className="mb-10 sm:mb-16">
-              <p className="section-label">Leadership</p>
               <h2>Meet Our Owners</h2>
             </div>
           </ScrollReveal>
@@ -207,7 +204,6 @@ export default function OurStoryPage() {
         <div className="container-editorial">
           <ScrollReveal>
             <div className="mb-10 sm:mb-16">
-              <p className="section-label">Our team</p>
               <h2>The People Behind BlackArrow</h2>
             </div>
           </ScrollReveal>
@@ -252,7 +248,6 @@ export default function OurStoryPage() {
         <div className="container-editorial">
           <ScrollReveal>
             <div className="mb-10 sm:mb-16">
-              <p className="section-label">Our offices</p>
               <h2>Visit Us</h2>
             </div>
           </ScrollReveal>

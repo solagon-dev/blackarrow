@@ -7,6 +7,7 @@ import { ensureAdminUser } from '@/lib/auth'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import CarrierLogoCarousel from '@/components/ui/CarrierLogoCarousel'
 import HeroBackground from '@/components/ui/HeroBackground'
+import EgHero from '@/components/ui/EgHero'
 import { resolvePostImage } from '@/lib/post-image'
 
 /**
@@ -82,31 +83,19 @@ export default async function Home() {
     <div className="eg-field pt-18">
 
       {/* ============= HERO ============= */}
-      <section>
-        <div className="relative h-[280px] sm:h-[360px] lg:h-[460px] overflow-hidden bg-navy-900">
-          <HeroBackground />
-          {/* A single scrim, flat rather than graduated: the text tile does the
-              legibility work, so this only has to keep the video from being
-              brighter than the page around it. */}
-          <div className="absolute inset-0 bg-navy-950/25" />
-        </div>
-
-        <div className="container-editorial relative z-10 -mt-14 sm:-mt-20 lg:-mt-24">
-          <div className="eg-tile max-w-[42rem] p-6 sm:p-9 lg:p-11">
-            <p className="eg-eyebrow mb-4">Independent brokerage &middot; Greenville &amp; Whiteville</p>
-            <h1 className="eg-h1">
-              Protecting Your Tomorrow, <span className="font-semibold">Today</span>
-            </h1>
-            <p className="eg-lede mt-4 max-w-[46ch]">
-              An independent brokerage serving Eastern North Carolina. We compare coverage from 20+ carriers to find the right protection at the right price.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-0.5 mt-7">
-              <Link href="/quote" className="eg-btn-primary">Request a Quote &rarr;</Link>
-              <Link href="/contact" className="eg-btn-dark">Speak with an Advisor</Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <EgHero
+        band="tall"
+        title={<>Protecting Your Tomorrow, <span className="font-semibold">Today</span></>}
+        lede="An independent brokerage serving Eastern North Carolina. We compare coverage from 20+ carriers to find the right protection at the right price."
+        actions={
+          <>
+            <Link href="/quote" className="eg-btn-primary">Request a Quote &rarr;</Link>
+            <Link href="/contact" className="eg-btn-dark">Speak with an Advisor</Link>
+          </>
+        }
+      >
+        <HeroBackground />
+      </EgHero>
 
       {/* ============= STATS ============= */}
       <div className="container-editorial mt-0.5">
@@ -139,8 +128,9 @@ export default async function Home() {
               alt="A North Carolina family at home, protected by BlackArrow home and auto coverage"
             />
             <div className="eg-tile flex flex-col justify-center p-6 sm:p-10 lg:p-12">
-              <p className="eg-eyebrow mb-4">Personal insurance</p>
-              <h2 className="eg-h2">Coverage that fits what you actually own</h2>
+              {/* Heading names the category itself now that the label above it
+                  is gone — "Coverage that fits" alone didn't say personal. */}
+              <h2 className="eg-h2">Coverage for your home, your cars and your family</h2>
               <p className="eg-lede mt-4">
                 We build the policy around your house, your cars and your risk &mdash; not a template with your name dropped in. In Eastern NC, how a policy handles wind and water is where the real differences show up.
               </p>
@@ -163,7 +153,6 @@ export default async function Home() {
         <ScrollReveal>
           <div className="grid lg:grid-cols-2 gap-0.5">
             <div className="eg-tile eg-tile-dark flex flex-col justify-center p-6 sm:p-10 lg:p-12 lg:order-first">
-              <p className="eg-eyebrow mb-4">Commercial insurance</p>
               <h2 className="eg-h2">Built for fleets, crews and job sites</h2>
               <p className="eg-lede mt-4">
                 Dump trucks, contractors&rsquo; liability, workers&rsquo; comp audits. Once a vehicle is working for the business, a personal auto policy won&rsquo;t answer a claim.
@@ -190,7 +179,6 @@ export default async function Home() {
       <section className="container-editorial mt-0.5">
         <ScrollReveal>
           <div className="eg-tile eg-tile-dark p-6 sm:p-10 lg:p-12">
-            <p className="eg-eyebrow mb-4">Property insurance</p>
             <h2 className="eg-h2 max-w-[24ch]">From rental units to vacant buildings and construction sites</h2>
           </div>
         </ScrollReveal>
@@ -207,7 +195,6 @@ export default async function Home() {
       <section className="container-editorial mt-0.5">
         <ScrollReveal>
           <div className="eg-tile p-6 sm:p-10 lg:p-12">
-            <p className="eg-eyebrow mb-4">Service areas</p>
             <h2 className="eg-h2">Serving communities across North Carolina</h2>
           </div>
         </ScrollReveal>
@@ -232,7 +219,6 @@ export default async function Home() {
       <section className="container-editorial mt-0.5">
         <ScrollReveal>
           <div className="eg-tile p-6 sm:p-10 lg:p-12">
-            <p className="eg-eyebrow mb-4">Policy management</p>
             <h2 className="eg-h2">Manage an existing policy</h2>
           </div>
         </ScrollReveal>
@@ -255,7 +241,6 @@ export default async function Home() {
           <ScrollReveal>
             <div className="eg-tile flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 p-6 sm:p-10 lg:p-12">
               <div>
-                <p className="eg-eyebrow mb-4">Insights</p>
                 <h2 className="eg-h2">Recent articles</h2>
               </div>
               <Link href="/insights" className="eg-link flex-shrink-0">View all &rarr;</Link>
@@ -280,7 +265,9 @@ export default async function Home() {
                       )}
                     </div>
                     <div className="flex flex-1 flex-col p-5 sm:p-6">
-                      {post.category && <p className="eg-eyebrow mb-3">{post.category}</p>}
+                      {/* Plain metadata, not a styled eyebrow — a category on an
+                          article card is content, the same as a date. */}
+                      {post.category && <p className="text-sm text-navy-600 mb-2">{post.category}</p>}
                       <h3 className="text-base font-semibold text-navy-900 mb-2 line-clamp-2">{post.title}</h3>
                       {post.excerpt && <p className="text-sm text-navy-600 leading-relaxed line-clamp-3">{post.excerpt}</p>}
                       <span className="eg-link mt-auto pt-5">Read article &rarr;</span>

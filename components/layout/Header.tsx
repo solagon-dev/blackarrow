@@ -39,7 +39,7 @@ const LIGHT_HERO_PAGES = ['/admin', '/legal']
  * Listed explicitly while the port is in progress; when every template has
  * moved this becomes the only behaviour and the transparent branch goes.
  */
-const GRID_SYSTEM_PAGES = ['/']
+const GRID_SYSTEM_PAGES = ['/', '/insurance']
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -54,7 +54,9 @@ export default function Header() {
 
   // Determine if current page has a dark hero
   const hasDarkHero = !LIGHT_HERO_PAGES.some(p => pathname.startsWith(p))
-  const isGridSystem = GRID_SYSTEM_PAGES.includes(pathname)
+  // Exact match for '/', prefix match for everything else, so /insurance covers
+  // the hub and all 22 coverage pages without listing each one.
+  const isGridSystem = GRID_SYSTEM_PAGES.some(p => p === '/' ? pathname === '/' : pathname.startsWith(p))
   const isTransparent = hasDarkHero && !isGridSystem && !scrolled && !mobileOpen
 
   useEffect(() => {

@@ -74,9 +74,6 @@ export default async function InsightsPage() {
             <section className="section-padding bg-white">
               <div className="container-editorial">
                 <ScrollReveal>
-                  <p className="section-label mb-10 sm:mb-12">Featured article</p>
-                </ScrollReveal>
-                <ScrollReveal>
                   <Link href={`/post/${featuredPost.slug}`} className="group block">
                     <div className="grid lg:grid-cols-2 gap-0">
                       <div className="relative h-56 sm:h-72 lg:h-[26rem] bg-navy-900 overflow-hidden">
@@ -138,7 +135,6 @@ export default async function InsightsPage() {
                   <ScrollReveal>
                     <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-12">
                       <div>
-                        <p className="section-label">Latest</p>
                         <h2 className="text-2xl sm:text-3xl">Recent Articles</h2>
                       </div>
                     </div>
@@ -171,7 +167,6 @@ export default async function InsightsPage() {
               <ScrollReveal>
                 <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-12">
                   <div>
-                    <p className="section-label">All insights</p>
                     <h2 className="text-2xl sm:text-3xl">Browse by Topic</h2>
                   </div>
                   <p className="text-sm text-navy-600">{enrichedPosts.length} {enrichedPosts.length === 1 ? 'article' : 'articles'} published</p>

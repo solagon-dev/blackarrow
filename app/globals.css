@@ -125,14 +125,10 @@
     @apply w-full h-px bg-white/10;
   }
 
-  /* navy-600 rather than navy-400: at 12px on white, navy-400 measures 2.91:1
-     against a 4.5:1 requirement. Every one of the ~38 usages of this class
-     renders on white or gray-50 (verified against the built pages), so there's
-     no dark-background case to preserve here. navy-600 is the lightest shade
-     on the scale that clears AA on white, at 6.08:1. */
-  .section-label {
-    @apply text-xs font-semibold tracking-[0.08em] text-navy-600 mb-4;
-  }
+  /* `.section-label` lived here — the small tracked label that sat above every
+     section heading. Removed along with all 34 of its usages: the treatment
+     reads as generated, and a heading that needs a label above it to make sense
+     is a heading that needs rewriting. */
 
   .section-divider {
     @apply w-full h-px bg-gray-200;
@@ -270,7 +266,7 @@
   /* ---- Badges ---- */
   .badge {
     @apply inline-flex items-center gap-1 px-3 py-1
-           text-xs font-semibold tracking-wide uppercase;
+           text-xs font-semibold tracking-wide;
   }
 
   .badge-brand {
@@ -391,17 +387,14 @@
     letter-spacing: -0.014em;
   }
 
-  /* Mono rather than the display face: these are labels on a spec sheet,
-     and monospace keeps them from competing with the light display weight. */
-  .eg-eyebrow {
-    @apply font-mono text-[0.68rem] tracking-[0.12em] uppercase text-navy-600;
-  }
+  /* No eyebrow class here by design. The grid does the categorising — a tile
+     of coverage cards under a heading needs no label telling you it's a tile
+     of coverage cards. */
 
   .eg-lede {
     @apply text-navy-600 text-[0.98rem] leading-relaxed;
   }
 
-  .eg-tile-dark .eg-eyebrow,
   .eg-tile-dark .eg-lede {
     @apply text-white/75;
   }

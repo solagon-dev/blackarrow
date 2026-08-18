@@ -184,7 +184,6 @@ export default async function ServiceLocationPage({ params }: { params: Promise<
           <div className="container-editorial">
             <div className="grid lg:grid-cols-12 gap-8 lg:gap-24 items-start">
               <ScrollReveal className="lg:col-span-5">
-                <p className="section-label">{section.label}</p>
                 <h2>{section.heading}</h2>
               </ScrollReveal>
               <ScrollReveal className="lg:col-span-7" delay={100}>
@@ -210,7 +209,6 @@ export default async function ServiceLocationPage({ params }: { params: Promise<
           <ScrollReveal>
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-16">
               <div>
-                <p className="section-label">Coverage options</p>
                 <h2>{page.serviceType} Coverage in {page.city}</h2>
               </div>
               <Link href={`/insurance/${page.insuranceSlug}`} className="link-arrow flex-shrink-0">
@@ -244,7 +242,6 @@ export default async function ServiceLocationPage({ params }: { params: Promise<
         <div className="container-editorial">
           <ScrollReveal>
             <div className="max-w-3xl mb-10 sm:mb-16">
-              <p className="section-label">Coverage guidance</p>
               <h2>{page.serviceType} Tips for {page.city} Residents</h2>
             </div>
           </ScrollReveal>
@@ -271,7 +268,6 @@ export default async function ServiceLocationPage({ params }: { params: Promise<
           <div className="container-editorial">
             <div className="max-w-3xl mx-auto">
               <ScrollReveal className="text-center mb-16">
-                <p className="section-label">FAQs</p>
                 <h2>Frequently Asked Questions</h2>
               </ScrollReveal>
               <div className="divide-y divide-gray-200 border-t border-gray-200">
@@ -299,9 +295,6 @@ export default async function ServiceLocationPage({ params }: { params: Promise<
       {/* ============= RELATED COVERAGE ============= */}
       <section className="section-padding-sm bg-white border-b border-gray-200">
         <div className="container-editorial">
-          <ScrollReveal>
-            <p className="section-label mb-8">Related coverage</p>
-          </ScrollReveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-200">
             {page.relatedServices.map((rs, idx) => (
               <ScrollReveal key={rs.label} delay={idx * 60}>
@@ -329,7 +322,6 @@ export default async function ServiceLocationPage({ params }: { params: Promise<
         <div className="container-editorial">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-24 items-start">
             <ScrollReveal className="lg:col-span-5">
-              <p className="section-label">Service area</p>
               <h2>Serving {page.city} &amp; Surrounding Areas</h2>
             </ScrollReveal>
             <ScrollReveal className="lg:col-span-7" delay={100}>

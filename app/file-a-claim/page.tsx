@@ -65,9 +65,6 @@ export default function FileAClaimPage() {
       <section className="section-padding bg-white">
         <div className="container-editorial">
           <div className="max-w-4xl mx-auto">
-            <ScrollReveal>
-              <p className="section-label mb-10">Select your carrier to begin</p>
-            </ScrollReveal>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200">
               {carrierLinks.map((carrier, idx) => (
                 <ScrollReveal key={carrier.name} delay={idx * 30}>
