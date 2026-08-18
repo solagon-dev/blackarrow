@@ -32,7 +32,6 @@ export default function ContactPage() {
         <div className="absolute inset-0 bg-navy-950/80" />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold tracking-[0.08em] text-navy-400 mb-4 sm:mb-5">Get in touch</p>
             <h1 className="text-white mb-4 sm:mb-6">Contact Us</h1>
             <p className="text-base sm:text-lg text-navy-300 leading-relaxed">
               We&apos;re here for you and all your insurance needs. Reach out to our team at either of our office locations.

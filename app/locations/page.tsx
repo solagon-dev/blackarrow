@@ -38,9 +38,6 @@ export default function LocationsPage() {
         <HeroScrim />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold tracking-[0.08em] text-white/70 mb-4 sm:mb-5">
-              our locations
-            </p>
             <h1 className="text-white mb-4 sm:mb-6">Insurance Services Across North Carolina</h1>
             <p className="text-base sm:text-lg text-navy-300 leading-relaxed max-w-2xl">
               BlackArrow Insurance serves homeowners, property investors, and businesses across Eastern North Carolina and the Triangle. As an independent brokerage, we compare coverage from 20+ carriers to find the right protection at the right price.
@@ -64,9 +61,6 @@ export default function LocationsPage() {
                   href={`/locations/${location.slug}`}
                   className="bg-white p-8 sm:p-10 group block h-full hover:bg-gray-50 transition-colors duration-200"
                 >
-                  <p className="text-xs font-semibold tracking-[0.08em] text-navy-600 mb-3">
-                    {location.stateAbbr}
-                  </p>
                   <h3 className="text-xl sm:text-2xl font-display font-bold text-navy-900 mb-3 group-hover:text-navy-700 transition-colors">
                     {location.city}
                   </h3>

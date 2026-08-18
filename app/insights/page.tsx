@@ -58,7 +58,6 @@ export default async function InsightsPage() {
         <HeroScrim />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold tracking-[0.08em] text-white/70 mb-4 sm:mb-5">Knowledge center</p>
             <h1 className="text-white mb-4 sm:mb-6">Insights &amp; Resources</h1>
             <p className="text-base sm:text-lg text-navy-300 leading-relaxed max-w-2xl">
               Expert guidance on insurance coverage, risk management, and property protection — helping you make informed decisions about what matters most.
@@ -88,14 +87,14 @@ export default async function InsightsPage() {
                           />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center">
-                            <span className="text-navy-500 text-sm tracking-[0.08em]">{featuredPost.category || 'Insurance'}</span>
+                            <span className="text-navy-500 text-sm">{featuredPost.category || 'Insurance'}</span>
                           </div>
                         )}
                       </div>
                       <div className="bg-gray-50 p-8 sm:p-10 lg:p-14 flex flex-col justify-center">
                         <div className="flex items-center gap-3 mb-5">
                           {featuredPost.category && (
-                            <span className="text-xs font-semibold tracking-[0.08em] text-navy-600">{featuredPost.category}</span>
+                            <span className="text-sm font-semibold text-navy-600">{featuredPost.category}</span>
                           )}
                           {featuredPost.category && featuredPost.published_at && <span className="w-1 h-1 rounded-full bg-navy-300" />}
                           {featuredPost.published_at && (

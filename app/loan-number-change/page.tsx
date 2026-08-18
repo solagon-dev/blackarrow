@@ -34,7 +34,6 @@ export default function LoanNumberChangePage() {
         <div className="absolute inset-0 bg-navy-950/80" />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold tracking-[0.08em] text-navy-400 mb-4 sm:mb-5">Policy management</p>
             <h1 className="text-white mb-4 sm:mb-6">Loan Number Change</h1>
             <p className="text-base sm:text-lg text-navy-300 leading-relaxed">
               Updating your loan number is quick and simple. Ensure your insurance policy reflects your current financial details by filling out our form.

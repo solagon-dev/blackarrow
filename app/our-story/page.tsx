@@ -38,7 +38,6 @@ export default function OurStoryPage() {
         <HeroScrim />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold tracking-[0.08em] text-white/70 mb-4 sm:mb-5">About BlackArrow</p>
             <h1 className="text-white mb-4 sm:mb-6">Our Story</h1>
             <p className="text-base sm:text-lg text-navy-300 leading-relaxed max-w-2xl">
               Two offices, one job: get Eastern North Carolina the right coverage from the right carrier, and be there when a claim comes.

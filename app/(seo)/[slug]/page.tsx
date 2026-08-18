@@ -159,9 +159,6 @@ export default async function ServiceLocationPage({ params }: { params: Promise<
         <HeroScrim />
         <div className="container-editorial relative">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold tracking-[0.08em] text-white/70 mb-4 sm:mb-5">
-              {page.serviceType} &middot; {page.city}, {page.stateAbbr}
-            </p>
             <h1 className="text-white mb-4 sm:mb-6">{page.heroHeading}</h1>
             <p className="text-base sm:text-lg text-navy-300 leading-relaxed mb-8 sm:mb-10 max-w-2xl">
               {page.heroDescription}
@@ -352,7 +349,7 @@ export default async function ServiceLocationPage({ params }: { params: Promise<
       {/* ============= CARRIERS ============= */}
       <section className="py-12 bg-gray-50 border-y border-gray-200">
         <div className="container-editorial">
-          <p className="text-center text-xs font-semibold tracking-[0.08em] text-navy-600 mb-6">
+          <p className="text-center text-sm font-semibold text-navy-600 mb-6">
             We compare {page.serviceType.toLowerCase()} rates from leading carriers
           </p>
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-3">

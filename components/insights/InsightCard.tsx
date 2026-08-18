@@ -41,12 +41,12 @@ export function InsightCard({ slug, title, excerpt, category, featuredImage: raw
                 className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               />
             ) : (
-              <span className="text-navy-500 text-sm tracking-[0.08em]">{category || 'Insurance'}</span>
+              <span className="text-navy-500 text-sm">{category || 'Insurance'}</span>
             )}
           </div>
           <div className="lg:col-span-7 py-2">
             <div className="flex items-center gap-3 mb-4">
-              {category && <span className="text-xs font-semibold tracking-[0.08em] text-navy-600">{category}</span>}
+              {category && <span className="text-sm font-semibold text-navy-600">{category}</span>}
               {category && formattedDate && <span className="w-1 h-1 rounded-full bg-navy-300" />}
               {formattedDate && <span className="text-xs text-navy-600">{formattedDate}</span>}
             </div>
@@ -78,7 +78,7 @@ export function InsightCard({ slug, title, excerpt, category, featuredImage: raw
               className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
             />
           ) : (
-            <span className="text-[10px] font-semibold tracking-[0.08em] text-navy-600 px-3 text-center">
+            <span className="text-xs font-medium text-navy-600 px-3 text-center">
               {category || 'Insight'}
             </span>
           )}
@@ -111,14 +111,14 @@ export function InsightCard({ slug, title, excerpt, category, featuredImage: raw
             className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           />
         ) : (
-          <span className="text-xs font-semibold tracking-[0.08em] text-navy-600 px-6 text-center">
+          <span className="text-sm font-semibold text-navy-600 px-6 text-center">
             {category || 'Insurance'}
           </span>
         )}
       </div>
       <div className="p-5 sm:p-8 flex flex-1 flex-col">
         <div className="flex items-center gap-3 mb-4">
-          {category && <span className="text-xs font-semibold tracking-[0.08em] text-navy-600">{category}</span>}
+          {category && <span className="text-sm font-semibold text-navy-600">{category}</span>}
           {category && formattedDate && <span className="w-1 h-1 rounded-full bg-navy-300" />}
           {formattedDate && <span className="text-xs text-navy-600">{formattedDate}</span>}
         </div>
