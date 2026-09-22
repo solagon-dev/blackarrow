@@ -99,8 +99,7 @@ function withAttribution(params: AnalyticsParams): AnalyticsParams {
 /** Typed convenience helpers so components never touch vendor APIs directly. */
 export const analytics = {
   pageView: (path: string) => track(ANALYTICS_EVENTS.pageView, { page_path: path }),
-  phoneClick: (office: string, page: string) =>
-    track(ANALYTICS_EVENTS.phoneClick, { office, page_path: page }),
+  phoneClick: (page: string) => track(ANALYTICS_EVENTS.phoneClick, { page_path: page }),
   emailClick: (office: string) => track(ANALYTICS_EVENTS.emailClick, { office }),
   directionsClick: (office: string) => track(ANALYTICS_EVENTS.directionsClick, { office }),
   quoteStart: (coverage?: string) =>

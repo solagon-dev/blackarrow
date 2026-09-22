@@ -35,7 +35,7 @@ phone numbers) are dropped and strings are truncated to 100 chars.
 | Event | Helper | Params | Fired when |
 |---|---|---|---|
 | `page_view` | `analytics.pageView(path)` | `page_path` | Every route change |
-| `phone_click` | (delegated) | `office`, `page_path` | Any `tel:` link click |
+| `phone_click` | (delegated) | `page_path` | Click on a `tel:` link to the main line, (910) 914-6074 |
 | `email_click` | (delegated) | `office` | Any `mailto:` link click |
 | `directions_click` | (delegated) | `office` | Any maps/directions link click |
 | `quote_start` | `analytics.quoteStart(coverage?)` | `coverage?` | Quote flow begins |

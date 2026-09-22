@@ -97,11 +97,9 @@ export default function AnalyticsProvider() {
   // Delegated tracking for phone / email / directions clicks site-wide (§5.2),
   // so we don't have to instrument every link. No PII is sent.
   useEffect(() => {
-    function officeFromPhone(href: string): string {
-      const digits = href.replace(/\D/g, '')
-      if (digits.includes('9555898')) return 'greenville'
-      if (digits.includes('9146074')) return 'whiteville'
-      return 'unknown'
+    // Only calls to the main line count; any other tel: link is ignored.
+    function isMainLine(href: string): boolean {
+      return href.replace(/\D/g, '').replace(/^1/, '') === '9109146074'
     }
     function onClick(e: MouseEvent) {
       const target = e.target as HTMLElement | null
@@ -109,7 +107,7 @@ export default function AnalyticsProvider() {
       if (!anchor) return
       const href = anchor.getAttribute('href') || ''
       if (href.startsWith('tel:')) {
-        analytics.phoneClick(officeFromPhone(href), window.location.pathname)
+        if (isMainLine(href)) analytics.phoneClick(window.location.pathname)
       } else if (href.startsWith('mailto:')) {
         analytics.emailClick('agency')
       } else if (/(?:maps\.google|google\.[a-z.]+\/maps|goo\.gl\/maps|maps\.app\.goo\.gl)/i.test(href)) {
