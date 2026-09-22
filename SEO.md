@@ -143,7 +143,7 @@ The Ahrefs Rank Tracker project (id 9710012, tracked from Wilmington, NC) has 68
 3. **Verify Google Search Console** ownership (add the verification string to `metadata.verification.google` in `app/layout.tsx`) and resubmit the sitemap.
 4. **Build backlinks** — the domain currently has essentially no referring domains. Priority directories: NC independent agent associations (IIANC), Greenville/Whiteville chambers of commerce, Google Business Profile for both offices, industry directories (Trusted Choice, MyPoly).
 5. **Expand blog content** for the striking-distance keywords: there's already good structure at `/insights` — publish 2–3 NC-specific coverage pieces per month (topics: NC hurricane deductibles, NC coastal home insurance premiums, NC workers comp requirements, NC flood zones).
-6. **Set up Google Business Profiles** for both Greenville (905 Conference Dr) and Whiteville (301 Liberty St) offices, with the exact NAP that matches the JSON-LD in `app/layout.tsx`.
+6. **Set up Google Business Profiles** for both Greenville (101 Fox Haven Rd) and Whiteville (301 Liberty St) offices, with the exact NAP that matches the JSON-LD in `app/layout.tsx`.
 7. **Consider hreflang** only if expanding beyond US/English (currently not needed).
 
 ### Files touched in this pass

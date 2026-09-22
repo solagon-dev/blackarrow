@@ -94,7 +94,7 @@ export const teamMembers: TeamMember[] = [
 export const offices: Office[] = [
   {
     name: 'Greenville Office',
-    address: '905 Conference Dr. 2B',
+    address: '101 Fox Haven Rd.',
     city: 'Greenville',
     state: 'NC',
     zip: '27858',

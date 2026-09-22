@@ -166,13 +166,13 @@ function OrganizationSchema() {
         image: 'https://www.blackarrow.co/images/blackarrow_greenville.webp',
         address: {
           '@type': 'PostalAddress',
-          streetAddress: '905 Conference Dr. 2B',
+          streetAddress: '101 Fox Haven Rd.',
           addressLocality: 'Greenville',
           addressRegion: 'NC',
           postalCode: '27858',
           addressCountry: 'US',
         },
-        geo: { '@type': 'GeoCoordinates', latitude: 35.6127, longitude: -77.3664 },
+        geo: { '@type': 'GeoCoordinates', latitude: 35.5922, longitude: -77.3189 },
         telephone: '+1-910-914-6074',
         email: 'service@blackarrowfg.com',
         openingHoursSpecification: [{

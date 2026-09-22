@@ -22,7 +22,7 @@ This is the single biggest lever and none of it is in the code. It drives the
 "near me" terms, the local pack, and fixes the weak branded CTR.
 
 - [ ] **Claim + verify both offices** as separate GBP listings:
-  - Greenville — 905 Conference Dr. 2B, Greenville, NC 27858 · (252) 955-5898
+  - Greenville — 101 Fox Haven Rd., Greenville, NC 27858 · (910) 914-6074
   - Whiteville — 301 Liberty St. Ste 101, Whiteville, NC 28472 · (910) 914-6074
 - [ ] **NAP must match the site exactly** (name, address, phone) — same
   formatting as the footer and schema. Inconsistency is why "black arrow
