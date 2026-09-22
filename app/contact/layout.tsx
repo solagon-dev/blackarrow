@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Contact BlackArrow Insurance — Greenville & Whiteville, NC',
-  description: 'Contact BlackArrow Insurance in Greenville (252-955-5898) or Whiteville (910-914-6074), North Carolina. Our licensed agents help with quotes, claims, policy changes, and coverage questions.',
+  description: 'Contact BlackArrow Insurance at (910) 914-6074, with offices in Greenville and Whiteville, North Carolina. Our licensed agents help with quotes, claims, policy changes, and coverage questions.',
   alternates: { canonical: '/contact' },
   openGraph: {
     title: 'Contact BlackArrow Insurance | Greenville & Whiteville NC',

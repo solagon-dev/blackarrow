@@ -98,7 +98,7 @@ export const offices: Office[] = [
     city: 'Greenville',
     state: 'NC',
     zip: '27858',
-    phone: '(252) 955-5898',
+    phone: '(910) 914-6074',
     email: 'service@blackarrowfg.com',
     hours: 'Monday–Friday 9:00am–5:30pm',
     closed: 'Saturday–Sunday Closed',

@@ -142,7 +142,7 @@ function OrganizationSchema() {
     contactPoint: [
       {
         '@type': 'ContactPoint',
-        telephone: '+1-252-955-5898',
+        telephone: '+1-910-914-6074',
         contactType: 'customer service',
         areaServed: 'US-NC',
         availableLanguage: 'English',
@@ -173,7 +173,7 @@ function OrganizationSchema() {
           addressCountry: 'US',
         },
         geo: { '@type': 'GeoCoordinates', latitude: 35.6127, longitude: -77.3664 },
-        telephone: '+1-252-955-5898',
+        telephone: '+1-910-914-6074',
         email: 'service@blackarrowfg.com',
         openingHoursSpecification: [{
           '@type': 'OpeningHoursSpecification',
