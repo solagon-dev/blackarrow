@@ -90,6 +90,7 @@ describe('POST /api/forms — delivery outcomes (§4.7)', () => {
     const json = await res.json()
     expect(json).toMatchObject({ success: true, stored: true, notified: true })
     const storedId = mockCreate.mock.calls[0][0].id
+    expect(JSON.parse(mockCreate.mock.calls[0][0].data)).toMatchObject({ smsConsent: false })
     expect(mockUpdateNotif).toHaveBeenCalledWith(storedId, expect.objectContaining({ status: 'sent' }))
   })
 
@@ -161,6 +162,40 @@ describe('POST /api/forms — idempotency (§4.5.13)', () => {
 })
 
 describe('POST /api/forms — validation & abuse (§4.5.1, §4.5.12)', () => {
+  it('accepts a quote request with email and no phone or SMS consent', async () => {
+    const res = await POST(makeRequest({
+      form_type: 'quote',
+      recaptcha_token: 'tok',
+      data: { firstName: 'Jane', lastName: 'Driver', email: 'jane@example.com', phone: '', smsConsent: false },
+    }, freshIp()))
+
+    expect(res.status).toBe(200)
+    expect(JSON.parse(mockCreate.mock.calls[0][0].data)).toMatchObject({ phone: '', smsConsent: false })
+  })
+
+  it('rejects SMS opt-in without a phone number', async () => {
+    const res = await POST(makeRequest({
+      form_type: 'contact',
+      recaptcha_token: 'tok',
+      data: { name: 'Jane', email: 'jane@example.com', message: 'Please call me.', smsConsent: true },
+    }, freshIp()))
+
+    expect(res.status).toBe(400)
+    expect(mockCreate).not.toHaveBeenCalled()
+    expect(mockSendEmail).not.toHaveBeenCalled()
+  })
+
+  it('stores an affirmative SMS choice with the phone number', async () => {
+    const res = await POST(makeRequest({
+      form_type: 'contact',
+      recaptcha_token: 'tok',
+      data: { name: 'Jane', email: 'jane@example.com', phone: '252-555-0100', message: 'Please call me.', smsConsent: true },
+    }, freshIp()))
+
+    expect(res.status).toBe(200)
+    expect(JSON.parse(mockCreate.mock.calls[0][0].data)).toMatchObject({ phone: '252-555-0100', smsConsent: true })
+  })
+
   it('rejects unsupported form type', async () => {
     const res = await POST(makeRequest({ form_type: 'nope', recaptcha_token: 't', data: {} }, freshIp()))
     expect(res.status).toBe(400)

@@ -3,12 +3,13 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { useFormSubmit } from '@/lib/use-form-submit'
+import SmsConsentCheckbox from '@/components/ui/SmsConsentCheckbox'
 
 export default function ChangeMortgageePage() {
   const [form, setForm] = useState({
     policyNumber: '', insuredName: '', propertyAddress: '',
     newMortgageeName: '', newMortgageeAddress: '', loanNumber: '',
-    email: '', phone: '',
+    email: '', phone: '', smsConsent: false,
   })
   const { status, errorMessage, submit } = useFormSubmit('change-mortgagee', 'change_mortgagee')
 
@@ -17,7 +18,7 @@ export default function ChangeMortgageePage() {
     await submit(form)
   }
 
-  const update = (field: string, value: string) => setForm(f => ({ ...f, [field]: value }))
+  const update = (field: string, value: string) => setForm(f => ({ ...f, [field]: value, ...(field === 'phone' && !value.trim() ? { smsConsent: false } : {}) }))
 
   return (
     <>
@@ -79,6 +80,14 @@ export default function ChangeMortgageePage() {
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div><label htmlFor="mortgagee-email" className="input-label">Email *</label><input id="mortgagee-email" type="email" required className="input-field" value={form.email} onChange={e => update('email', e.target.value)} /></div>
                     <div><label htmlFor="mortgagee-phone" className="input-label">Phone</label><input id="mortgagee-phone" type="tel" className="input-field" value={form.phone} onChange={e => update('phone', e.target.value)} /></div>
+                  </div>
+                  <div className="mt-5">
+                    <SmsConsentCheckbox
+                      id="mortgagee-sms-consent"
+                      checked={form.smsConsent}
+                      onChange={checked => setForm(f => ({ ...f, smsConsent: checked }))}
+                      disabled={!form.phone.trim()}
+                    />
                   </div>
                 </div>
                 <div aria-live="polite">{status === 'error' && <p className="text-red-600 text-sm">{errorMessage}</p>}</div>

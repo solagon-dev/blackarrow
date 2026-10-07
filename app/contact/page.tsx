@@ -6,15 +6,16 @@ import Link from 'next/link'
 import { offices } from '@/lib/team-data'
 import { useFormSubmit } from '@/lib/use-form-submit'
 import { IconPhone, IconMail, IconMapPin, IconClock } from '@/components/ui/Icons'
+import SmsConsentCheckbox from '@/components/ui/SmsConsentCheckbox'
 
 export default function ContactPage() {
-  const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' })
+  const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '', smsConsent: false })
   const { status, errorMessage, submit } = useFormSubmit('contact', 'contact')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const ok = await submit(form)
-    if (ok) setForm({ name: '', email: '', phone: '', subject: '', message: '' })
+    if (ok) setForm({ name: '', email: '', phone: '', subject: '', message: '', smsConsent: false })
   }
 
   return (
@@ -121,7 +122,7 @@ export default function ContactPage() {
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
                         <label htmlFor="contact-phone-number" className="input-label">Phone Number</label>
-                        <input id="contact-phone-number" type="tel" className="input-field" value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} placeholder="(555) 123-4567" />
+                        <input id="contact-phone-number" type="tel" className="input-field" value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value, smsConsent: e.target.value.trim() ? form.smsConsent : false })} placeholder="(555) 123-4567" />
                       </div>
                       <div>
                         <label htmlFor="contact-subject" className="input-label">Subject</label>
@@ -132,6 +133,12 @@ export default function ContactPage() {
                       <label htmlFor="contact-message" className="input-label">Message *</label>
                       <textarea id="contact-message" required rows={5} className="input-field resize-none" value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} placeholder="Tell us about your insurance needs..." />
                     </div>
+                    <SmsConsentCheckbox
+                      id="contact-sms-consent"
+                      checked={form.smsConsent}
+                      onChange={checked => setForm({ ...form, smsConsent: checked })}
+                      disabled={!form.phone.trim()}
+                    />
                     <div aria-live="polite">
                       {status === 'error' && (
                         <p className="text-red-600 text-sm">{errorMessage}</p>

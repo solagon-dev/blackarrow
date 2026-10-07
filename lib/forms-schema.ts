@@ -32,14 +32,18 @@ const emailStr = z.string().trim().max(LIMITS.email).email()
 const phoneStr = z.string().trim().max(LIMITS.phone)
 const messageStr = z.string().trim().max(LIMITS.message)
 
-/** At least one of email/phone must be present and non-empty. */
-function requireContactable<T extends { email?: string; phone?: string }>(
+/** Require a way to reply, and never record SMS consent without a number. */
+function requireContactable<T extends { email?: string; phone?: string; smsConsent?: boolean }>(
   schema: z.ZodType<T>
-): z.ZodEffects<z.ZodType<T>> {
-  return schema.refine(
-    (d) => Boolean((d.email && d.email.length > 0) || (d.phone && d.phone.length > 0)),
-    { message: 'Provide an email address or phone number so we can reach you.', path: ['email'] }
-  )
+) {
+  return schema.superRefine((data, context) => {
+    if (!data.email && !data.phone) {
+      context.addIssue({ code: z.ZodIssueCode.custom, message: 'Provide an email address or phone number so we can reach you.', path: ['email'] })
+    }
+    if (data.smsConsent && !data.phone?.trim()) {
+      context.addIssue({ code: z.ZodIssueCode.custom, message: 'Enter a phone number to sign up for texts.', path: ['phone'] })
+    }
+  })
 }
 
 const contactSchema = requireContactable(
@@ -50,6 +54,7 @@ const contactSchema = requireContactable(
       phone: phoneStr.optional(),
       subject: shortStr.optional(),
       message: messageStr.min(1, 'Message is required'),
+      smsConsent: z.boolean().default(false),
     })
     .strip()
 )
@@ -68,6 +73,7 @@ const quoteSchema = requireContactable(
       state: shortStr.optional(),
       zip: z.string().trim().max(LIMITS.zip).optional(),
       message: messageStr.optional(),
+      smsConsent: z.boolean().default(false),
     })
     // Keep additional branching-flow answers instead of dropping them.
     .passthrough()
@@ -84,6 +90,7 @@ const changeMortgageeSchema = requireContactable(
       loanNumber: shortStr.optional(),
       email: emailStr.optional().or(z.literal('')),
       phone: phoneStr.optional(),
+      smsConsent: z.boolean().default(false),
     })
     .strip()
 )
@@ -99,6 +106,7 @@ const loanNumberChangeSchema = requireContactable(
       mortgageeName: shortStr.optional(),
       email: emailStr.optional().or(z.literal('')),
       phone: phoneStr.optional(),
+      smsConsent: z.boolean().default(false),
     })
     .strip()
 )

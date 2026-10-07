@@ -64,7 +64,12 @@ const sections = [
   {
     id: 'text-messaging',
     title: 'Text Messaging Consent & Privacy',
-    content: 'If you opt in to receive text messages from BlackArrow Insurance, your opt-in data and consent will not be shared, sold, or transferred to any third parties under any circumstances. We maintain strict privacy compliance with all text messaging communications.',
+    intro: 'If you choose to opt in to text messaging, we use the mobile number you provide to send conversational messages about your quote or policy service. Message frequency varies, and message and data rates may apply.',
+    items: [
+      'Text messaging is optional. You may opt out at any time by replying STOP to a text message. Reply HELP for help, or contact our office through the contact information on this website.',
+      'Mobile information and text messaging opt-in data and consent are not sold or shared with third parties or affiliates for marketing or promotional purposes.',
+      'We use service providers to store your form submission, notify our team, and deliver messages. They may process the information only to provide those services to us.',
+    ],
   },
   {
     id: 'disclosure',
@@ -112,7 +117,7 @@ export default function PrivacyPolicyPage() {
               Black Arrow Financial Group (&ldquo;BlackArrow Insurance,&rdquo; &ldquo;we,&rdquo; &ldquo;our,&rdquo; or &ldquo;us&rdquo;) is committed to protecting the privacy of our customers and website visitors.
             </p>
             <div className="flex items-center gap-4 mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-white/10">
-              <p className="text-xs text-navy-400">Last updated: July 29, 2026</p>
+              <p className="text-xs text-navy-400">Last updated: October 7, 2026</p>
               <span className="w-1 h-1 rounded-full bg-navy-500" />
               <Link href="/legal/terms-of-use" className="text-xs text-navy-400 hover:text-white transition-colors">
                 Terms of Service

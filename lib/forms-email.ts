@@ -5,7 +5,7 @@ const formConfigs = {
   contact: {
     label: 'Contact Form',
     subject: (data: FormPayload) => `New contact form submission from ${getContactIdentity(data)}`,
-    fieldOrder: ['name', 'email', 'phone', 'subject', 'message'],
+    fieldOrder: ['name', 'email', 'phone', 'subject', 'message', 'smsConsent'],
   },
   quote: {
     label: 'Quote Request',
@@ -22,6 +22,7 @@ const formConfigs = {
       'state',
       'zip',
       'message',
+      'smsConsent',
     ],
   },
   'change-mortgagee': {
@@ -36,6 +37,7 @@ const formConfigs = {
       'loanNumber',
       'email',
       'phone',
+      'smsConsent',
     ],
   },
   'loan-number-change': {
@@ -50,6 +52,7 @@ const formConfigs = {
       'mortgageeName',
       'email',
       'phone',
+      'smsConsent',
     ],
   },
 } as const
@@ -77,6 +80,7 @@ const fieldLabels: Record<string, string> = {
   oldLoanNumber: 'Current Loan Number',
   newLoanNumber: 'New Loan Number',
   mortgageeName: 'Mortgagee Name',
+  smsConsent: 'SMS Consent',
 }
 
 type FormPayload = Record<string, unknown>

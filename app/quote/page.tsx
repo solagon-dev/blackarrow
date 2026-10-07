@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { insurancePages } from '@/lib/insurance-data'
 import { GREENVILLE_OFFICE, offices } from '@/lib/business-facts'
 import { useFormSubmit } from '@/lib/use-form-submit'
+import SmsConsentCheckbox from '@/components/ui/SmsConsentCheckbox'
 
 const insuranceTypes = insurancePages.map(p => ({ value: p.slug, label: p.title }))
 
@@ -21,7 +22,7 @@ export default function QuotePage() {
   const [form, setForm] = useState({
     firstName: '', lastName: '', email: '', phone: '',
     insuranceType: '', currentInsurance: '', address: '',
-    city: '', state: 'NC', zip: '', message: '',
+    city: '', state: 'NC', zip: '', message: '', smsConsent: false,
   })
   const { status, errorMessage, submit } = useFormSubmit('quote', 'quote')
 
@@ -30,10 +31,10 @@ export default function QuotePage() {
     await submit(form)
   }
 
-  const update = (field: string, value: string) => setForm(f => ({ ...f, [field]: value }))
+  const update = (field: string, value: string) => setForm(f => ({ ...f, [field]: value, ...(field === 'phone' && !value.trim() ? { smsConsent: false } : {}) }))
 
   const canAdvance = () => {
-    if (step === 1) return form.firstName && form.lastName && form.email && form.phone
+    if (step === 1) return form.firstName && form.lastName && form.email
     if (step === 2) return form.insuranceType
     return true
   }
@@ -153,8 +154,8 @@ export default function QuotePage() {
                             <input id="quote-email-address" type="email" required className="input-field" value={form.email} onChange={e => update('email', e.target.value)} placeholder="john@example.com" />
                           </div>
                           <div>
-                            <label htmlFor="quote-phone-number" className="input-label">Phone Number *</label>
-                            <input id="quote-phone-number" type="tel" required className="input-field" value={form.phone} onChange={e => update('phone', e.target.value)} placeholder="(555) 123-4567" />
+                            <label htmlFor="quote-phone-number" className="input-label">Phone Number (optional)</label>
+                            <input id="quote-phone-number" type="tel" className="input-field" value={form.phone} onChange={e => update('phone', e.target.value)} placeholder="(555) 123-4567" />
                           </div>
                         </div>
                       </div>
@@ -252,17 +253,27 @@ export default function QuotePage() {
                           {[
                             { label: 'Name', value: `${form.firstName} ${form.lastName}` },
                             { label: 'Email', value: form.email },
-                            { label: 'Phone', value: form.phone },
+                            { label: 'Phone', value: form.phone || 'Not provided' },
                             { label: 'Insurance Type', value: insuranceTypes.find(t => t.value === form.insuranceType)?.label || form.insuranceType },
                             { label: 'Currently Insured', value: form.currentInsurance || 'Not specified' },
                             ...(form.address ? [{ label: 'Address', value: `${form.address}${form.city ? `, ${form.city}` : ''}${form.state ? `, ${form.state}` : ''} ${form.zip}`.trim() }] : []),
                             ...(form.message ? [{ label: 'Additional Info', value: form.message }] : []),
+                            { label: 'SMS Consent', value: form.phone && form.smsConsent ? 'Yes' : 'No' },
                           ].map(item => (
                             <div key={item.label} className="flex items-start justify-between gap-4 py-4 border-b border-gray-200">
                               <span className="text-xs font-semibold tracking-[0.06em] text-navy-600 w-32 sm:w-40 flex-shrink-0 pt-0.5">{item.label}</span>
                               <span className="text-sm text-navy-700 text-right">{item.value}</span>
                             </div>
                           ))}
+                        </div>
+
+                        <div className="mt-6">
+                          <SmsConsentCheckbox
+                            id="quote-sms-consent"
+                            checked={form.smsConsent}
+                            onChange={checked => setForm(f => ({ ...f, smsConsent: checked }))}
+                            disabled={!form.phone.trim()}
+                          />
                         </div>
 
                         <div aria-live="assertive">
