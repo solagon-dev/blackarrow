@@ -4,8 +4,8 @@ import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import AnalyticsProvider from '@/components/analytics/AnalyticsProvider'
+import CloudflareWebAnalytics from '@/components/analytics/CloudflareWebAnalytics'
 import ConsentBanner from '@/components/analytics/ConsentBanner'
-import { analyticsConfig, isAhrefsEnabled } from '@/lib/analytics-config'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -252,8 +252,6 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         {/* Performance: preconnect + dns-prefetch to external origins used on every page.
             Cuts TLS/DNS handshake time for render-blocking + analytics resources. */}
-        <link rel="preconnect" href="https://analytics.ahrefs.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://analytics.ahrefs.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <OrganizationSchema />
@@ -267,13 +265,7 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased overflow-x-hidden">
         <a href="#main-content" className="skip-to-content">Skip to content</a>
-        {/* Ahrefs Web Analytics (cookieless) — env-driven key, production only so
-            dev/preview don't pollute production data. Raw <script> so the tag renders
-            in initial HTML with data-key intact, avoiding issues with next/script
-            client-side injection dropping custom data-* attributes. */}
-        {isAhrefsEnabled() && (
-          <script async src="https://analytics.ahrefs.com/analytics.js" data-key={analyticsConfig.ahrefsKey}></script>
-        )}
+        <CloudflareWebAnalytics />
         {/* GA4 (consent-gated) + attribution capture + pageview tracking. */}
         <AnalyticsProvider />
         <div id="site-header"><Header /></div>
