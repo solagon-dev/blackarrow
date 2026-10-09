@@ -45,7 +45,7 @@ const sections = [
     title: 'Cookies, Analytics & Campaign Attribution',
     intro: 'We use a limited set of cookies and analytics tools to understand how the site is used and where visitors come from:',
     items: [
-      'Privacy-friendly, cookieless web analytics that measures aggregate traffic without tracking you across other sites.',
+      'Cloudflare Web Analytics counts public page visits without cookies regardless of your optional analytics-cookie choice.',
       'A first-party cookie that records how you arrived (for example, a marketing campaign link) so we can measure which efforts help people find us. This information is not sold or shared for cross-site advertising.',
       'Google Analytics, which uses cookies, is loaded only after you consent through the on-site notice, and you can decline.',
       'You can control cookies through your browser settings; declining analytics cookies does not affect your ability to use the site or request a quote.',
